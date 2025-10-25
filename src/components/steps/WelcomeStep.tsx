@@ -27,7 +27,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
             Crédito Consignado CLT de forma{" "}
             <span className="text-secondary">rápida</span> e{" "}
-            <span className="text-primary">segura</span>
+            <span className="text-secondary">segura</span>
           </h1>
           <div className="flex items-start gap-3 p-4 bg-secondary/10 rounded-lg border border-secondary/30 mt-4">
             <div className="bg-secondary/20 p-2 rounded-full">
