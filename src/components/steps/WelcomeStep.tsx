@@ -26,20 +26,17 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         <div className="flex-1 space-y-4 text-center md:text-left">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
             Crédito Consignado CLT de forma{" "}
-            <span className="text-primary">rápida</span> e{" "}
-            <span className="text-secondary">segura</span>
+            <span className="text-secondary">rápida</span> e{" "}
+            <span className="text-primary">segura</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground">
-            100% online. Taxas competitivas. Em até 30 minutos.
-          </p>
-          <div className="flex items-start gap-3 p-4 bg-primary/10 rounded-lg border border-primary/20 mt-4">
-            <div className="bg-primary/20 p-2 rounded-full">
-              <TrendingUp className="h-5 w-5 text-primary" />
+          <div className="flex items-start gap-3 p-4 bg-secondary/10 rounded-lg border border-secondary/30 mt-4">
+            <div className="bg-secondary/20 p-2 rounded-full">
+              <TrendingUp className="h-6 w-6 text-secondary" />
             </div>
             <div className="text-left">
-              <h3 className="font-semibold text-foreground">Exclusivo Legal é Viver</h3>
-              <p className="text-sm text-muted-foreground">
-                Mais de 5 bancos competindo pela melhor proposta para você
+              <h3 className="font-bold text-foreground text-lg">Aqui você é quem manda!</h3>
+              <p className="text-base text-muted-foreground">
+                Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong> e as <strong>melhores condições</strong> exclusivas para você
               </p>
             </div>
           </div>
@@ -47,53 +44,33 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       </div>
 
       {/* Trust Indicators */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-        <div className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg border border-border">
-          <div className="bg-primary/10 p-2 rounded-full">
-            <Shield className="h-5 w-5 text-primary" />
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-8">
+        <div className="flex flex-col items-center gap-2 p-3 bg-muted/30 rounded-lg border border-border/50">
+          <div className="bg-primary/20 p-2 rounded-full">
+            <Shield className="h-4 w-4 text-primary" />
           </div>
-          <div>
-            <h3 className="font-semibold text-foreground">Segurança Total</h3>
-            <p className="text-sm text-muted-foreground">
-              Seus dados são protegidos com criptografia de ponta
-            </p>
-          </div>
+          <p className="text-xs font-medium text-foreground text-center">Segurança Total</p>
         </div>
 
-        <div className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg border border-border">
-          <div className="bg-secondary/10 p-2 rounded-full">
-            <Clock className="h-5 w-5 text-secondary" />
+        <div className="flex flex-col items-center gap-2 p-3 bg-muted/30 rounded-lg border border-border/50">
+          <div className="bg-secondary/20 p-2 rounded-full">
+            <Clock className="h-4 w-4 text-secondary" />
           </div>
-          <div>
-            <h3 className="font-semibold text-foreground">Rápido e Fácil</h3>
-            <p className="text-sm text-muted-foreground">
-              Processo 100% digital em poucos minutos
-            </p>
-          </div>
+          <p className="text-xs font-medium text-foreground text-center">Rápido e Fácil</p>
         </div>
 
-        <div className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg border border-border">
-          <div className="bg-primary/10 p-2 rounded-full">
-            <CheckCircle2 className="h-5 w-5 text-primary" />
+        <div className="flex flex-col items-center gap-2 p-3 bg-muted/30 rounded-lg border border-border/50">
+          <div className="bg-primary/20 p-2 rounded-full">
+            <CheckCircle2 className="h-4 w-4 text-primary" />
           </div>
-          <div>
-            <h3 className="font-semibold text-foreground">Taxas Competitivas</h3>
-            <p className="text-sm text-muted-foreground">
-              As melhores condições do mercado para você
-            </p>
-          </div>
+          <p className="text-xs font-medium text-foreground text-center">Melhores Taxas</p>
         </div>
 
-        <div className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg border border-border">
-          <div className="bg-secondary/10 p-2 rounded-full">
-            <Lock className="h-5 w-5 text-secondary" />
+        <div className="flex flex-col items-center gap-2 p-3 bg-muted/30 rounded-lg border border-border/50">
+          <div className="bg-secondary/20 p-2 rounded-full">
+            <Lock className="h-4 w-4 text-secondary" />
           </div>
-          <div>
-            <h3 className="font-semibold text-foreground">Dados Protegidos</h3>
-            <p className="text-sm text-muted-foreground">
-              Conforme Lei Geral de Proteção de Dados (LGPD)
-            </p>
-          </div>
+          <p className="text-xs font-medium text-foreground text-center">Proteção LGPD</p>
         </div>
       </div>
 
@@ -104,7 +81,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           size="lg"
           className="w-full md:w-auto px-12 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all"
         >
-          Iniciar Solicitação
+          Simule Agora
         </Button>
         <p className="text-xs text-muted-foreground">
           🔒 Seus dados estão protegidos e não serão compartilhados
