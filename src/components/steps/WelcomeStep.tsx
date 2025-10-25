@@ -14,15 +14,22 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         <img src={logo} alt="Legal é Viver" className="h-24 w-auto" />
       </div>
 
-      {/* Hero Title */}
-      <div className="text-center space-y-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-          Saque seu FGTS de forma{" "}
+      {/* Hero Image and Title */}
+      <div className="text-center space-y-6">
+        <div className="flex justify-center">
+          <img 
+            src="https://legaleviver.com.br/wp-content/uploads/2025/10/Luciana-1.webp" 
+            alt="Crédito Consignado" 
+            className="w-full max-w-lg rounded-2xl shadow-2xl"
+          />
+        </div>
+        <h1 className="text-3xl md:text-5xl font-bold text-foreground">
+          Crédito Consignado CLT de forma{" "}
           <span className="text-primary">rápida</span> e{" "}
           <span className="text-secondary">segura</span>
-        </h2>
-        <p className="text-lg text-muted-foreground">
-          100% online. Sem custo. Em até 30 minutos.
+        </h1>
+        <p className="text-lg md:text-xl text-muted-foreground">
+          100% online. Taxas competitivas. Em até 30 minutos.
         </p>
       </div>
 
@@ -57,9 +64,9 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             <CheckCircle2 className="h-5 w-5 text-primary" />
           </div>
           <div>
-            <h3 className="font-semibold text-foreground">Sem Custo</h3>
+            <h3 className="font-semibold text-foreground">Taxas Competitivas</h3>
             <p className="text-sm text-muted-foreground">
-              Consulta grátis e sem compromisso
+              As melhores condições do mercado para você
             </p>
           </div>
         </div>

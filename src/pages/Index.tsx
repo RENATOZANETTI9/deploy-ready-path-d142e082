@@ -89,7 +89,7 @@ const Index = () => {
             <>
               <div className="text-center mb-12">
                 <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
-                  Solicitação de FGTS
+                  Crédito Consignado CLT
                 </h1>
                 <p className="text-muted-foreground">
                   Processo rápido, seguro e 100% digital
