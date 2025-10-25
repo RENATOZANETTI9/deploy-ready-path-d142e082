@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { StepIndicator } from "@/components/StepIndicator";
+import { WelcomeStep } from "@/components/steps/WelcomeStep";
 import { CpfStep } from "@/components/steps/CpfStep";
 import { AuthorizationStep } from "@/components/steps/AuthorizationStep";
 import { PixStep } from "@/components/steps/PixStep";
@@ -14,7 +15,7 @@ interface FormData {
 }
 
 const Index = () => {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     cpf: "",
@@ -24,6 +25,10 @@ const Index = () => {
   const { toast } = useToast();
 
   const totalSteps = 4;
+
+  const handleStart = () => {
+    setCurrentStep(1);
+  };
 
   const handleCpfNext = (cpf: string) => {
     setFormData((prev) => ({ ...prev, cpf }));
@@ -76,24 +81,29 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
       <div className="container mx-auto px-4 py-8 md:py-12">
         <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-2">
-              Solicitação de Crédito
-            </h1>
-            <p className="text-muted-foreground">
-              Processo rápido, seguro e 100% digital
-            </p>
-          </div>
+          {/* Header - Only show after welcome */}
+          {currentStep > 0 && (
+            <>
+              <div className="text-center mb-12">
+                <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
+                  Solicitação de FGTS
+                </h1>
+                <p className="text-muted-foreground">
+                  Processo rápido, seguro e 100% digital
+                </p>
+              </div>
 
-          {/* Step Indicator */}
-          <StepIndicator currentStep={currentStep} totalSteps={totalSteps} />
+              {/* Step Indicator */}
+              <StepIndicator currentStep={currentStep} totalSteps={totalSteps} />
+            </>
+          )}
 
           {/* Steps Content */}
           <div className="bg-card rounded-2xl shadow-lg p-6 md:p-8 lg:p-12 border min-h-[500px] flex items-center justify-center">
+            {currentStep === 0 && <WelcomeStep onStart={handleStart} />}
             {currentStep === 1 && <CpfStep onNext={handleCpfNext} />}
             {currentStep === 2 && <AuthorizationStep onNext={handleAuthorizationNext} />}
             {currentStep === 3 && !isLoading && <PixStep onNext={handlePixNext} />}
@@ -102,9 +112,11 @@ const Index = () => {
           </div>
 
           {/* Footer */}
-          <div className="text-center mt-8 text-sm text-muted-foreground">
-            <p>🔒 Seus dados estão protegidos e seguros</p>
-          </div>
+          {currentStep > 0 && (
+            <div className="text-center mt-8 text-sm text-muted-foreground">
+              <p>🔒 Seus dados estão protegidos e seguros</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
