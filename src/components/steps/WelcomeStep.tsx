@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Shield, Lock, CheckCircle2, Clock } from "lucide-react";
-import logo from "@/assets/logo-legal-e-viver.webp";
+import logo from "@/assets/logo-legal-e-viver-alt.webp";
 
 interface WelcomeStepProps {
   onStart: () => void;
@@ -15,22 +15,24 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       </div>
 
       {/* Hero Image and Title */}
-      <div className="text-center space-y-6">
-        <div className="flex justify-center">
+      <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+        <div className="flex-1 space-y-4 text-center md:text-left">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
+            Crédito Consignado CLT de forma{" "}
+            <span className="text-primary">rápida</span> e{" "}
+            <span className="text-secondary">segura</span>
+          </h1>
+          <p className="text-lg md:text-xl text-muted-foreground">
+            100% online. Taxas competitivas. Em até 30 minutos.
+          </p>
+        </div>
+        <div className="w-full md:w-auto md:flex-shrink-0">
           <img 
             src="https://legaleviver.com.br/wp-content/uploads/2025/10/Luciana-1.webp" 
             alt="Crédito Consignado" 
-            className="w-full max-w-lg rounded-2xl shadow-2xl"
+            className="w-full md:w-64 lg:w-80 rounded-2xl shadow-2xl"
           />
         </div>
-        <h1 className="text-3xl md:text-5xl font-bold text-foreground">
-          Crédito Consignado CLT de forma{" "}
-          <span className="text-primary">rápida</span> e{" "}
-          <span className="text-secondary">segura</span>
-        </h1>
-        <p className="text-lg md:text-xl text-muted-foreground">
-          100% online. Taxas competitivas. Em até 30 minutos.
-        </p>
       </div>
 
       {/* Trust Indicators */}
