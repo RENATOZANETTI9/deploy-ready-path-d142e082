@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Shield, Lock, CheckCircle2, Clock } from "lucide-react";
-import logo from "@/assets/logo-legal-e-viver-alt.webp";
+import { Shield, Lock, CheckCircle2, Clock, TrendingUp } from "lucide-react";
+import logo from "@/assets/logo-legal-e-viver.webp";
 
 interface WelcomeStepProps {
   onStart: () => void;
@@ -11,7 +11,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
     <div className="w-full max-w-2xl mx-auto space-y-8 animate-fade-in">
       {/* Logo */}
       <div className="flex justify-center mb-8">
-        <img src={logo} alt="Legal é Viver" className="h-24 w-auto" />
+        <img src={logo} alt="Legal é Viver" className="h-24 w-auto animate-fade-in" />
       </div>
 
       {/* Hero Image and Title */}
@@ -20,7 +20,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           <img 
             src="https://legaleviver.com.br/wp-content/uploads/2025/10/Luciana-1.webp" 
             alt="Crédito Consignado" 
-            className="w-full md:w-64 lg:w-80 rounded-2xl shadow-2xl"
+            className="w-full max-w-xs mx-auto md:mx-0 md:w-64 lg:w-80 rounded-2xl shadow-2xl object-cover"
           />
         </div>
         <div className="flex-1 space-y-4 text-center md:text-left">
@@ -32,6 +32,17 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           <p className="text-lg md:text-xl text-muted-foreground">
             100% online. Taxas competitivas. Em até 30 minutos.
           </p>
+          <div className="flex items-start gap-3 p-4 bg-primary/10 rounded-lg border border-primary/20 mt-4">
+            <div className="bg-primary/20 p-2 rounded-full">
+              <TrendingUp className="h-5 w-5 text-primary" />
+            </div>
+            <div className="text-left">
+              <h3 className="font-semibold text-foreground">Exclusivo Legal é Viver</h3>
+              <p className="text-sm text-muted-foreground">
+                Mais de 5 bancos competindo pela melhor proposta para você
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
