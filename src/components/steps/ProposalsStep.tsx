@@ -21,22 +21,31 @@ export const ProposalsStep = ({ onFinish }: ProposalsStepProps) => {
   // Propostas de exemplo (em produção viriam do backend)
   const proposals: Proposal[] = [
     {
-      bank: "Banco ABC",
-      amount: "5.000,00",
-      installments: "12",
-      installmentValue: "450,00",
-      rate: "2,5",
-      total: "5.400,00",
-      contractUrl: "#",
+      bank: "Nubank",
+      amount: "8.500,00",
+      installments: "18",
+      installmentValue: "520,00",
+      rate: "1,99",
+      total: "9.360,00",
+      contractUrl: "https://nubank.com.br/emprestimo",
     },
     {
-      bank: "Banco XYZ",
-      amount: "5.000,00",
-      installments: "12",
-      installmentValue: "470,00",
-      rate: "2,9",
-      total: "5.640,00",
-      contractUrl: "#",
+      bank: "Banco Inter",
+      amount: "8.500,00",
+      installments: "18",
+      installmentValue: "545,00",
+      rate: "2,25",
+      total: "9.810,00",
+      contractUrl: "https://inter.co/emprestimo",
+    },
+    {
+      bank: "Banco PAN",
+      amount: "8.500,00",
+      installments: "18",
+      installmentValue: "565,00",
+      rate: "2,49",
+      total: "10.170,00",
+      contractUrl: "https://bancopan.com.br/emprestimo",
     },
   ];
 
@@ -89,15 +98,13 @@ export const ProposalsStep = ({ onFinish }: ProposalsStepProps) => {
           </div>
 
           <Button 
-            className="w-full" 
+            className="w-full group" 
             variant={isBest ? "default" : "outline"}
             size="lg"
-            asChild
+            onClick={() => window.open(proposal.contractUrl, '_blank')}
           >
-            <a href={proposal.contractUrl} target="_blank" rel="noopener noreferrer">
-              {isBest ? "Contrate agora e receba na sua chave PIX 💸" : "Contrate esta proposta"}
-              <ExternalLink className="w-4 h-4 ml-2" />
-            </a>
+            <span className="flex-1">{isBest ? "Contrate agora e receba na sua chave PIX 💸" : "Contrate esta proposta"}</span>
+            <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>
       </CardContent>
@@ -118,11 +125,12 @@ export const ProposalsStep = ({ onFinish }: ProposalsStepProps) => {
 
       <div className="space-y-6 mb-8">
         {proposals.map((proposal, index) => (
-          <ProposalCard 
-            key={index} 
-            proposal={proposal} 
-            isBest={index === 0}
-          />
+          <div key={index} className="animate-in fade-in slide-in-from-bottom-4" style={{ animationDelay: `${index * 150}ms` }}>
+            <ProposalCard 
+              proposal={proposal} 
+              isBest={index === 0}
+            />
+          </div>
         ))}
       </div>
 

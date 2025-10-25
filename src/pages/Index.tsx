@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StepIndicator } from "@/components/StepIndicator";
 import { CpfStep } from "@/components/steps/CpfStep";
 import { AuthorizationStep } from "@/components/steps/AuthorizationStep";
 import { PixStep } from "@/components/steps/PixStep";
 import { ProposalsStep } from "@/components/steps/ProposalsStep";
+import { LoadingProposals } from "@/components/LoadingProposals";
 import { useToast } from "@/hooks/use-toast";
 
 interface FormData {
@@ -14,6 +15,7 @@ interface FormData {
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     cpf: "",
     pixType: "",
@@ -42,12 +44,28 @@ const Index = () => {
 
   const handlePixNext = (pixType: string, pixKey: string) => {
     setFormData((prev) => ({ ...prev, pixType, pixKey }));
-    setCurrentStep(4);
+    setIsLoading(true);
+    
     toast({
       title: "Dados bancários confirmados",
       description: "Buscando as melhores propostas para você...",
     });
+
+    // Simula busca de propostas (em produção seria uma chamada de API)
+    setTimeout(() => {
+      setIsLoading(false);
+      setCurrentStep(4);
+    }, 3000);
   };
+
+  useEffect(() => {
+    if (currentStep === 4 && !isLoading) {
+      toast({
+        title: "Propostas encontradas! 🎉",
+        description: "Encontramos 3 excelentes opções para você",
+      });
+    }
+  }, [currentStep, isLoading, toast]);
 
   const handleFinish = () => {
     toast({
@@ -75,11 +93,12 @@ const Index = () => {
           <StepIndicator currentStep={currentStep} totalSteps={totalSteps} />
 
           {/* Steps Content */}
-          <div className="bg-card rounded-2xl shadow-lg p-6 md:p-8 lg:p-12 border">
+          <div className="bg-card rounded-2xl shadow-lg p-6 md:p-8 lg:p-12 border min-h-[500px] flex items-center justify-center">
             {currentStep === 1 && <CpfStep onNext={handleCpfNext} />}
             {currentStep === 2 && <AuthorizationStep onNext={handleAuthorizationNext} />}
-            {currentStep === 3 && <PixStep onNext={handlePixNext} />}
-            {currentStep === 4 && <ProposalsStep onFinish={handleFinish} />}
+            {currentStep === 3 && !isLoading && <PixStep onNext={handlePixNext} />}
+            {isLoading && <LoadingProposals />}
+            {currentStep === 4 && !isLoading && <ProposalsStep onFinish={handleFinish} />}
           </div>
 
           {/* Footer */}
