@@ -39,22 +39,67 @@ export const CpfStep = ({ onNext }: CpfStepProps) => {
 
   const validateCpfWithBackend = async () => {
     try {
-      // Aqui será feita a chamada ao N8N para validar o CPF
-      const response = await fetch('YOUR_N8N_WEBHOOK_URL', {
+      const response = await fetch('https://webhook.vpslegaleviver.shop/webhook/nova_vida', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ cpf }),
+        body: JSON.stringify({
+          nodes: [
+            {
+              parameters: {
+                method: "POST",
+                url: "https://wsnv.novavidati.com.br/WSLocalizador.asmx/PesquisaAtributosTK",
+                sendHeaders: true,
+                headerParameters: {
+                  parameters: [
+                    {
+                      name: "Accept",
+                      value: "application/xml"
+                    }
+                  ]
+                },
+                sendBody: true,
+                contentType: "form-urlencoded",
+                bodyParameters: {
+                  parameters: [
+                    {
+                      name: "documento",
+                      value: cpf
+                    },
+                    {
+                      name: "token",
+                      value: "={{ $json.token }}"
+                    }
+                  ]
+                },
+                options: {}
+              },
+              id: "780a1396-b813-426c-83d2-b51ca8c0ea5a",
+              name: "HTTP Request",
+              type: "n8n-nodes-base.httpRequest",
+              typeVersion: 4.2,
+              position: [-1200, 192]
+            }
+          ],
+          connections: {
+            "HTTP Request": {
+              main: [[]]
+            }
+          },
+          pinData: {},
+          meta: {
+            templateCredsSetupCompleted: true,
+            instanceId: "8da124da9390e319ebf6d6e518c7a607dd54130f85103c271531362fdde4ffdd"
+          }
+        }),
       });
 
       const data = await response.json();
 
       if (data.valid) {
-        // CPF válido, prosseguir
         onNext(cpf);
       } else {
-        // CPF inválido, mostrar erro e resetar
         setError("CPF inválido. Por favor, verifique os dados e tente novamente.");
         setIsValidating(false);
         setCountdown(6);
