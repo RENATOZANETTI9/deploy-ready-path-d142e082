@@ -1,12 +1,32 @@
 import { Button } from "@/components/ui/button";
 import { Shield, Lock, CheckCircle2, Clock, TrendingUp } from "lucide-react";
+import { Slider } from "@/components/ui/slider";
 import logo from "@/assets/logo-legal-e-viver.webp";
+import { useState } from "react";
 
 interface WelcomeStepProps {
   onStart: () => void;
 }
 
 export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
+  const [salary, setSalary] = useState(1518);
+  const minSalary = 1518;
+  const maxSalary = 20000;
+  
+  // Cálculo da parcela máxima (35% do salário)
+  const maxInstallment = salary * 0.35;
+  
+  // Cálculo do crédito disponível (180% do salário = salário + 80%)
+  const availableCredit = salary * 1.8;
+  
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+      minimumFractionDigits: 2,
+    }).format(value);
+  };
+
   return (
     <div className="w-full max-w-2xl mx-auto space-y-8 animate-fade-in">
       {/* Logo */}
@@ -71,6 +91,38 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             <Lock className="h-4 w-4 text-secondary" />
           </div>
           <p className="text-xs font-medium text-foreground text-center">Proteção LGPD</p>
+        </div>
+      </div>
+
+      {/* Salary Slider Section */}
+      <div className="space-y-6 p-6 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-foreground">
+            Qual o valor do seu salário?
+          </label>
+          <div className="text-3xl font-bold text-secondary">
+            {formatCurrency(salary)}
+          </div>
+        </div>
+
+        <Slider
+          value={[salary]}
+          onValueChange={(value) => setSalary(value[0])}
+          min={minSalary}
+          max={maxSalary}
+          step={100}
+          className="w-full"
+        />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+          <div className="p-4 bg-primary/10 rounded-lg border border-primary/30">
+            <p className="text-xs text-muted-foreground mb-1">Valor máximo da parcela (35%)</p>
+            <p className="text-xl font-bold text-primary">{formatCurrency(maxInstallment)}</p>
+          </div>
+          <div className="p-4 bg-secondary/10 rounded-lg border border-secondary/30">
+            <p className="text-xs text-muted-foreground mb-1">Você pode receber até</p>
+            <p className="text-xl font-bold text-secondary">{formatCurrency(availableCredit)}</p>
+          </div>
         </div>
       </div>
 
