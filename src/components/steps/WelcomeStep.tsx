@@ -133,7 +133,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           size="lg"
           className="w-full md:w-auto px-12 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all"
         >
-          Simule Agora
+          Continuar
         </Button>
         <p className="text-xs text-muted-foreground">
           🔒 Seus dados estão protegidos e não serão compartilhados
