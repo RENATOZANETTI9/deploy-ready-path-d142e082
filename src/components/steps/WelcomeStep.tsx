@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Shield, Lock, CheckCircle2, Clock, TrendingUp } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
+import { Input } from "@/components/ui/input";
 import logo from "@/assets/logo-legal-e-viver.webp";
 import { useState } from "react";
 
@@ -25,6 +26,13 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       currency: 'BRL',
       minimumFractionDigits: 2,
     }).format(value);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '');
+    const numValue = parseInt(value) || minSalary;
+    const clampedValue = Math.min(Math.max(numValue, minSalary), maxSalary);
+    setSalary(clampedValue);
   };
 
   return (
@@ -100,8 +108,17 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           <label className="text-sm font-medium text-foreground">
             Qual o valor do seu salário?
           </label>
-          <div className="text-3xl font-bold text-secondary">
-            {formatCurrency(salary)}
+          <div className="flex items-center gap-4">
+            <div className="text-3xl font-bold text-secondary">
+              {formatCurrency(salary)}
+            </div>
+            <Input
+              type="text"
+              value={salary}
+              onChange={handleInputChange}
+              placeholder="R$ 1.518"
+              className="max-w-[150px] text-lg font-semibold"
+            />
           </div>
         </div>
 
