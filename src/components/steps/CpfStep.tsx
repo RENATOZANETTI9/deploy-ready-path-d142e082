@@ -124,14 +124,18 @@ export const CpfStep = ({ onNext }: CpfStepProps) => {
     <div className="w-full max-w-md mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
       {isValidating ? (
         <div className="text-center space-y-6">
-          <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-primary/10 mb-4">
-            <span className="text-6xl font-bold text-primary">{countdown}</span>
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-4 animate-pulse">
+            <Loader2 className="w-10 h-10 text-primary animate-spin" />
           </div>
           <h2 className="text-2xl font-bold">Validando seu CPF...</h2>
           <p className="text-muted-foreground">
             Aguarde enquanto verificamos seus dados
           </p>
-          <Loader2 className="w-8 h-8 animate-spin mx-auto text-primary" />
+          <div className="mt-6 flex items-center justify-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: "0ms" }} />
+            <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: "150ms" }} />
+            <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: "300ms" }} />
+          </div>
         </div>
       ) : (
         <>
