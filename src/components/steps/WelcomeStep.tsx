@@ -30,10 +30,11 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/\D/g, '');
-    const numValue = parseInt(value) || minSalary;
-    const clampedValue = Math.min(Math.max(numValue, minSalary), maxSalary);
-    setSalary(clampedValue);
+    const numValue = parseInt(value) || 0;
+    setSalary(numValue);
   };
+
+  const isValidSalary = salary >= minSalary;
 
   return (
     <div className="w-full max-w-2xl mx-auto space-y-8 animate-fade-in">
@@ -145,10 +146,16 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
 
       {/* CTA Button */}
       <div className="text-center space-y-4 pt-4">
+        {!isValidSalary && (
+          <p className="text-sm font-medium text-destructive">
+            O salário mínimo deve ser de R$ 1.518,00
+          </p>
+        )}
         <Button
           onClick={onStart}
+          disabled={!isValidSalary}
           size="lg"
-          className="w-full md:w-auto px-12 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all"
+          className="w-full md:w-auto px-12 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Continuar
         </Button>
