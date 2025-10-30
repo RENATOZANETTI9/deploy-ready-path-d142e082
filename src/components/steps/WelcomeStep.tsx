@@ -110,7 +110,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           onValueChange={(value) => setSalary(value[0])}
           min={minSalary}
           max={maxSalary}
-          step={100}
+          step={10}
           className="w-full"
         />
 
