@@ -97,7 +97,7 @@ export const CpfStep = ({ onNext }: CpfStepProps) => {
 
       const data = await response.json();
 
-      if (data.valid) {
+      if (data[0]?.resposta === "existe") {
         onNext(cpf);
       } else {
         setError("CPF inválido. Por favor, verifique os dados e tente novamente.");
