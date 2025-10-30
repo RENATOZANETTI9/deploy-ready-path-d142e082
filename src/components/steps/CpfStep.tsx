@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2 } from "lucide-react";
+import { Confetti } from "@/components/Confetti";
 
 interface CpfStepProps {
   onNext: (cpf: string) => void;
@@ -125,31 +126,33 @@ export const CpfStep = ({ onNext }: CpfStepProps) => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
-      {showSuccess ? (
-        <div className="text-center space-y-6 animate-in fade-in scale-in duration-500">
-          <div className="relative inline-flex items-center justify-center w-24 h-24 mb-4">
-            <div className="absolute inset-0 rounded-full bg-green-500/20 animate-ping" />
-            <div className="relative flex items-center justify-center w-24 h-24 rounded-full bg-green-500/10">
-              <span className="text-6xl animate-bounce">🎉</span>
+    <>
+      {showSuccess && <Confetti />}
+      <div className="w-full max-w-md mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
+        {showSuccess ? (
+          <div className="text-center space-y-6 animate-in fade-in scale-in duration-500">
+            <div className="relative inline-flex items-center justify-center w-24 h-24 mb-4">
+              <div className="absolute inset-0 rounded-full bg-green-500/20 animate-ping" />
+              <div className="relative flex items-center justify-center w-24 h-24 rounded-full bg-green-500/10">
+                <span className="text-6xl animate-bounce">🎉</span>
+              </div>
+            </div>
+            
+            <h2 className="text-3xl font-bold text-green-600 dark:text-green-400">
+              CPF Validado!
+            </h2>
+            
+            <p className="text-lg text-muted-foreground">
+              Ótimas notícias! Vamos continuar...
+            </p>
+            
+            <div className="flex items-center justify-center gap-3">
+              <span className="text-4xl animate-bounce" style={{ animationDelay: "0ms" }}>✨</span>
+              <span className="text-4xl animate-bounce" style={{ animationDelay: "100ms" }}>🎊</span>
+              <span className="text-4xl animate-bounce" style={{ animationDelay: "200ms" }}>✨</span>
             </div>
           </div>
-          
-          <h2 className="text-3xl font-bold text-green-600 dark:text-green-400">
-            CPF Validado!
-          </h2>
-          
-          <p className="text-lg text-muted-foreground">
-            Ótimas notícias! Vamos continuar...
-          </p>
-          
-          <div className="flex items-center justify-center gap-3">
-            <span className="text-4xl animate-bounce" style={{ animationDelay: "0ms" }}>✨</span>
-            <span className="text-4xl animate-bounce" style={{ animationDelay: "100ms" }}>🎊</span>
-            <span className="text-4xl animate-bounce" style={{ animationDelay: "200ms" }}>✨</span>
-          </div>
-        </div>
-      ) : isValidating ? (
+        ) : isValidating ? (
         <div className="text-center space-y-6">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-4 animate-pulse">
             <Loader2 className="w-10 h-10 text-primary animate-spin" />
@@ -203,7 +206,8 @@ export const CpfStep = ({ onNext }: CpfStepProps) => {
             </Button>
           </form>
         </>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 };
