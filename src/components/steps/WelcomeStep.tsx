@@ -9,8 +9,8 @@ interface WelcomeStepProps {
 }
 
 export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
-  const [salary, setSalary] = useState(1518);
-  const minSalary = 1518;
+  const [salary, setSalary] = useState(3000);
+  const minSalary = 1520;
   const maxSalary = 20000;
   
   // Cálculo da parcela máxima (35% do salário)
