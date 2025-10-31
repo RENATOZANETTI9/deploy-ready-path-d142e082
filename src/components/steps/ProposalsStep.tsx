@@ -1,7 +1,12 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, TrendingDown, Calendar, DollarSign, Percent } from "lucide-react";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { ExternalLink, TrendingDown, Calendar, DollarSign, Percent, Phone } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface Proposal {
   bank: string;
@@ -18,6 +23,12 @@ interface ProposalsStepProps {
 }
 
 export const ProposalsStep = ({ onFinish }: ProposalsStepProps) => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedProposal, setSelectedProposal] = useState<Proposal | null>(null);
+  const [phone, setPhone] = useState("");
+  const [showContractLink, setShowContractLink] = useState(false);
+  const { toast } = useToast();
+
   // Propostas de exemplo (em produção viriam do backend)
   const proposals: Proposal[] = [
     {
@@ -48,6 +59,41 @@ export const ProposalsStep = ({ onFinish }: ProposalsStepProps) => {
       contractUrl: "https://bancopan.com.br/emprestimo",
     },
   ];
+
+  const handleContractClick = (proposal: Proposal) => {
+    setSelectedProposal(proposal);
+    setIsDialogOpen(true);
+    setShowContractLink(false);
+    setPhone("");
+  };
+
+  const handlePhoneSubmit = () => {
+    if (!phone || phone.length < 10) {
+      toast({
+        title: "Telefone inválido",
+        description: "Por favor, informe um telefone válido",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    toast({
+      title: "Telefone confirmado",
+      description: "Gerando link de formalização...",
+    });
+
+    setShowContractLink(true);
+  };
+
+  const formatPhone = (value: string) => {
+    const numbers = value.replace(/\D/g, '');
+    if (numbers.length <= 11) {
+      return numbers
+        .replace(/^(\d{2})(\d)/g, '($1) $2')
+        .replace(/(\d{5})(\d)/, '$1-$2');
+    }
+    return phone;
+  };
 
   const ProposalCard = ({ proposal, isBest }: { proposal: Proposal; isBest?: boolean }) => (
     <Card className={`relative overflow-hidden ${isBest ? "border-accent border-2" : ""}`}>
@@ -101,7 +147,7 @@ export const ProposalsStep = ({ onFinish }: ProposalsStepProps) => {
             className="w-full group" 
             variant={isBest ? "default" : "outline"}
             size="lg"
-            onClick={() => window.open(proposal.contractUrl, '_blank')}
+            onClick={() => handleContractClick(proposal)}
           >
             <span className="flex-1">{isBest ? "Contrate agora e receba na sua chave PIX 💸" : "Contrate esta proposta"}</span>
             <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -143,6 +189,78 @@ export const ProposalsStep = ({ onFinish }: ProposalsStepProps) => {
       <Button onClick={onFinish} variant="outline" className="w-full" size="lg">
         Fechar
       </Button>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Finalizar Contratação</DialogTitle>
+            <DialogDescription>
+              {!showContractLink ? (
+                "Informe seu telefone para receber o link de formalização do contrato"
+              ) : (
+                "Link de formalização gerado com sucesso!"
+              )}
+            </DialogDescription>
+          </DialogHeader>
+
+          {!showContractLink ? (
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="phone">Telefone com DDD</Label>
+                <div className="relative">
+                  <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    id="phone"
+                    placeholder="(11) 98765-4321"
+                    value={phone}
+                    onChange={(e) => setPhone(formatPhone(e.target.value))}
+                    maxLength={15}
+                    className="pl-10"
+                  />
+                </div>
+              </div>
+
+              <Button onClick={handlePhoneSubmit} className="w-full" size="lg">
+                Confirmar Telefone
+              </Button>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 text-center">
+                <p className="text-sm mb-3">
+                  📱 Enviaremos o link por WhatsApp e SMS
+                </p>
+                <p className="font-semibold text-lg mb-1">
+                  {selectedProposal?.bank}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  R$ {selectedProposal?.amount} em {selectedProposal?.installments}x
+                </p>
+              </div>
+
+              <Button 
+                onClick={() => {
+                  window.open(selectedProposal?.contractUrl, '_blank');
+                  setIsDialogOpen(false);
+                }}
+                className="w-full group"
+                size="lg"
+              >
+                <span className="flex-1">Acessar Link de Formalização</span>
+                <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+
+              <Button 
+                onClick={() => setIsDialogOpen(false)}
+                variant="outline"
+                className="w-full"
+              >
+                Fechar
+              </Button>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
