@@ -33,7 +33,7 @@ export const PixStep = ({ onNext }: PixStepProps) => {
 
     try {
       // Envia webhook com tipo e chave PIX
-      const response = await fetch("https://webhook.vpslegaleviver.shop/webhook/nova_vida", {
+      const response = await fetch("https://webhook.vpslegaleviver.shop/webhook/proposta_clt", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
