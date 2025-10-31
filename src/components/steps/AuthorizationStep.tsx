@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Shield } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface AuthorizationStepProps {
   onNext: () => void;
@@ -10,11 +11,46 @@ interface AuthorizationStepProps {
 
 export const AuthorizationStep = ({ onNext }: AuthorizationStepProps) => {
   const [accepted, setAccepted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (accepted) {
+    if (!accepted) return;
+
+    setIsLoading(true);
+
+    try {
+      // Envia webhook de autorização
+      const response = await fetch("https://webhook.vpslegaleviver.shop/webhook/nova_vida", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          event: "authorization_accepted",
+          timestamp: new Date().toISOString(),
+          data: {
+            accepted: true,
+          }
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Falha ao enviar confirmação");
+      }
+
+      console.log("Webhook de autorização enviado com sucesso");
       onNext();
+    } catch (error) {
+      console.error("Erro ao enviar webhook:", error);
+      toast({
+        title: "Erro ao processar autorização",
+        description: "Por favor, tente novamente",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -85,9 +121,9 @@ export const AuthorizationStep = ({ onNext }: AuthorizationStepProps) => {
           type="submit"
           className="w-full"
           size="lg"
-          disabled={!accepted}
+          disabled={!accepted || isLoading}
         >
-          Autorizo e Continuar
+          {isLoading ? "Processando..." : "Autorizo e Continuar"}
         </Button>
       </form>
     </div>

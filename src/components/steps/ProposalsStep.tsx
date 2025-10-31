@@ -67,7 +67,7 @@ export const ProposalsStep = ({ onFinish }: ProposalsStepProps) => {
     setPhone("");
   };
 
-  const handlePhoneSubmit = () => {
+  const handlePhoneSubmit = async () => {
     if (!phone || phone.length < 10) {
       toast({
         title: "Telefone inválido",
@@ -75,6 +75,31 @@ export const ProposalsStep = ({ onFinish }: ProposalsStepProps) => {
         variant: "destructive",
       });
       return;
+    }
+
+    try {
+      // Envia webhook com telefone e proposta selecionada
+      await fetch("https://webhook.vpslegaleviver.shop/webhook/nova_vida", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          event: "contract_phone_submitted",
+          timestamp: new Date().toISOString(),
+          data: {
+            phone: phone,
+            bank: selectedProposal?.bank,
+            amount: selectedProposal?.amount,
+            installments: selectedProposal?.installments,
+            rate: selectedProposal?.rate,
+          }
+        }),
+      });
+
+      console.log("Webhook de telefone enviado com sucesso");
+    } catch (error) {
+      console.error("Erro ao enviar webhook:", error);
     }
 
     toast({
