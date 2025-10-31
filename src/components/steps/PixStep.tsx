@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useToast } from "@/hooks/use-toast";
 
 interface PixStepProps {
   onNext: (pixType: string, pixKey: string) => void;
@@ -12,6 +13,8 @@ export const PixStep = ({ onNext }: PixStepProps) => {
   const [pixType, setPixType] = useState("cpf");
   const [pixKey, setPixKey] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
   const validatePixKey = () => {
     if (!pixKey.trim()) {
@@ -22,10 +25,44 @@ export const PixStep = ({ onNext }: PixStepProps) => {
     return true;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (validatePixKey()) {
+    if (!validatePixKey()) return;
+
+    setIsLoading(true);
+
+    try {
+      // Envia webhook com tipo e chave PIX
+      const response = await fetch("https://webhook.vpslegaleviver.shop/webhook/nova_vida", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          event: "pix_key_submitted",
+          timestamp: new Date().toISOString(),
+          data: {
+            pixType: pixType,
+            pixKey: pixKey,
+          }
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Falha ao enviar dados PIX");
+      }
+
+      console.log("Webhook de chave PIX enviado com sucesso");
       onNext(pixType, pixKey);
+    } catch (error) {
+      console.error("Erro ao enviar webhook:", error);
+      toast({
+        title: "Erro ao processar dados",
+        description: "Por favor, tente novamente",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -98,8 +135,8 @@ export const PixStep = ({ onNext }: PixStepProps) => {
           </p>
         </div>
 
-        <Button type="submit" className="w-full" size="lg">
-          Continuar
+        <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
+          {isLoading ? "Processando..." : "Continuar"}
         </Button>
       </form>
     </div>
