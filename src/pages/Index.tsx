@@ -116,7 +116,7 @@ const Index = () => {
             {currentStep === 0 && <WelcomeStep onStart={handleStart} />}
             {currentStep === 1 && <CpfStep onNext={handleCpfNext} />}
             {currentStep === 2 && <AuthorizationStep onNext={handleAuthorizationNext} />}
-            {currentStep === 3 && !isLoading && <PixStep onNext={handlePixNext} />}
+            {currentStep === 3 && !isLoading && <PixStep onNext={handlePixNext} cpf={formData.cpf} />}
             {isLoading && <LoadingProposals />}
             {currentStep === 4 && !isLoading && <ProposalsStep onFinish={handleFinish} />}
           </div>

@@ -7,9 +7,10 @@ import { useToast } from "@/hooks/use-toast";
 
 interface PixStepProps {
   onNext: (pixType: string, pixKey: string) => void;
+  cpf: string;
 }
 
-export const PixStep = ({ onNext }: PixStepProps) => {
+export const PixStep = ({ onNext, cpf }: PixStepProps) => {
   const [pixType, setPixType] = useState("cpf");
   const [pixKey, setPixKey] = useState("");
   const [error, setError] = useState("");
@@ -42,6 +43,7 @@ export const PixStep = ({ onNext }: PixStepProps) => {
         event: "pix_key_submitted",
         timestamp: new Date().toISOString(),
         data: {
+          cpf: cpf,
           pixType: pixType,
           pixKey: pixKey,
         }
