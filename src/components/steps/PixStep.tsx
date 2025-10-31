@@ -27,32 +27,48 @@ export const PixStep = ({ onNext }: PixStepProps) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validatePixKey()) return;
+    console.log("handleSubmit chamado - iniciando processamento");
+    
+    if (!validatePixKey()) {
+      console.log("Validação falhou");
+      return;
+    }
 
+    console.log("Validação OK, enviando webhook...");
     setIsLoading(true);
 
     try {
+      const webhookData = {
+        event: "pix_key_submitted",
+        timestamp: new Date().toISOString(),
+        data: {
+          pixType: pixType,
+          pixKey: pixKey,
+        }
+      };
+      
+      console.log("Dados do webhook:", webhookData);
+      
       // Envia webhook com tipo e chave PIX
       const response = await fetch("https://webhook.vpslegaleviver.shop/webhook/proposta_clt", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          event: "pix_key_submitted",
-          timestamp: new Date().toISOString(),
-          data: {
-            pixType: pixType,
-            pixKey: pixKey,
-          }
-        }),
+        body: JSON.stringify(webhookData),
       });
 
+      console.log("Resposta do webhook:", response.status, response.statusText);
+
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Erro na resposta:", errorText);
         throw new Error("Falha ao enviar dados PIX");
       }
 
-      console.log("Webhook de chave PIX enviado com sucesso");
+      const responseData = await response.json();
+      console.log("Webhook de chave PIX enviado com sucesso:", responseData);
+      
       onNext(pixType, pixKey);
     } catch (error) {
       console.error("Erro ao enviar webhook:", error);
