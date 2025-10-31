@@ -80,6 +80,16 @@ const Index = () => {
     // Em produção, aqui redirecionaria ou resetaria o fluxo
   };
 
+  const handleStepClick = (step: number) => {
+    if (step < currentStep) {
+      setCurrentStep(step);
+      toast({
+        title: "Voltando para etapa anterior",
+        description: `Você está na Etapa ${step}`,
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/20 via-background to-primary/10">
       <div className="container mx-auto px-4 py-8 md:py-12">
@@ -97,7 +107,7 @@ const Index = () => {
               </div>
 
               {/* Step Indicator */}
-              <StepIndicator currentStep={currentStep} totalSteps={totalSteps} />
+              <StepIndicator currentStep={currentStep} totalSteps={totalSteps} onStepClick={handleStepClick} />
             </>
           )}
 

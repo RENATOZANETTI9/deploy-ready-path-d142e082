@@ -3,9 +3,10 @@ import { Check } from "lucide-react";
 interface StepIndicatorProps {
   currentStep: number;
   totalSteps: number;
+  onStepClick?: (step: number) => void;
 }
 
-export const StepIndicator = ({ currentStep, totalSteps }: StepIndicatorProps) => {
+export const StepIndicator = ({ currentStep, totalSteps, onStepClick }: StepIndicatorProps) => {
   return (
     <div className="w-full mb-8">
       <div className="flex items-center justify-between mb-2">
@@ -18,12 +19,13 @@ export const StepIndicator = ({ currentStep, totalSteps }: StepIndicatorProps) =
             <div key={stepNumber} className="flex items-center flex-1">
               <div className="flex flex-col items-center relative">
                 <div
+                  onClick={() => isCompleted && onStepClick?.(stepNumber)}
                   className={`
                     w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm
                     transition-all duration-300
                     ${
                       isCompleted
-                        ? "bg-accent text-accent-foreground shadow-md"
+                        ? "bg-accent text-accent-foreground shadow-md cursor-pointer hover:scale-110"
                         : isCurrent
                         ? "bg-primary text-primary-foreground shadow-md scale-110"
                         : "bg-muted text-muted-foreground"
