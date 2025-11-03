@@ -46,9 +46,11 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       {/* Hero Title - 2 lines */}
       <div className="text-center space-y-3">
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground uppercase font-visby leading-tight">
-          CRÉDITO CONSIGNADO CLT<br />
-          DE FORMA <span className="text-secondary">RÁPIDA</span> E <span className="text-secondary">SEGURA</span>
+          CRÉDITO CONSIGNADO CLT
         </h1>
+        <h2 className="text-xl md:text-2xl font-bold text-secondary uppercase font-visby">
+          O CRÉDITO DO TRABALHADOR
+        </h2>
         
         {/* Support Text - Below Hero as normal text */}
         <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
