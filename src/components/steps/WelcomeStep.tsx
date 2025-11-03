@@ -17,8 +17,8 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
   // Cálculo da parcela máxima (35% do salário)
   const maxInstallment = salary * 0.35;
   
-  // Cálculo do crédito disponível (180% do salário = salário + 80%)
-  const availableCredit = salary * 1.8;
+  // Cálculo do crédito disponível (parcela máxima / 0,055)
+  const availableCredit = maxInstallment / 0.055;
   
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('pt-BR', {
