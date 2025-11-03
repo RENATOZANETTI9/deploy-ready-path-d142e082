@@ -43,13 +43,17 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         <img src={logo} alt="Legal é Viver" className="h-24 w-auto animate-fade-in" />
       </div>
 
-      {/* Hero Title */}
-      <div className="text-center space-y-2">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground uppercase font-visby">
-          CRÉDITO CONSIGNADO CLT DE FORMA{" "}
-          <span className="text-secondary">RÁPIDA</span> E{" "}
-          <span className="text-secondary">SEGURA</span>
+      {/* Hero Title - 2 lines */}
+      <div className="text-center space-y-3">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground uppercase font-visby leading-tight">
+          CRÉDITO CONSIGNADO CLT<br />
+          DE FORMA <span className="text-secondary">RÁPIDA</span> E <span className="text-secondary">SEGURA</span>
         </h1>
+        
+        {/* Support Text - Below Hero as normal text */}
+        <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+          Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong> e as <strong>melhores condições</strong> exclusivas para você
+        </p>
       </div>
 
       {/* Hero Image - 60% do tamanho original */}
@@ -59,19 +63,6 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           alt="Crédito Consignado" 
           className="w-full max-w-[240px] md:max-w-[260px] lg:max-w-[288px] rounded-2xl shadow-2xl object-cover"
         />
-      </div>
-
-      {/* Support Text - Below Image */}
-      <div className="flex items-start gap-3 p-4 bg-secondary/10 rounded-lg border border-secondary/30">
-        <div className="bg-secondary/20 p-2 rounded-full">
-          <TrendingUp className="h-6 w-6 text-secondary" />
-        </div>
-        <div className="text-left">
-          <h3 className="font-black text-foreground text-lg uppercase font-visby">AQUI VOCÊ É QUEM MANDA!</h3>
-          <p className="text-base text-muted-foreground">
-            Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong> e as <strong>melhores condições</strong> exclusivas para você
-          </p>
-        </div>
       </div>
 
       {/* Salary Slider Section */}
