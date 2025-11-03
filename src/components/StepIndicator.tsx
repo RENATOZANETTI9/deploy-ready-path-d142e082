@@ -8,7 +8,7 @@ interface StepIndicatorProps {
 
 export const StepIndicator = ({ currentStep, totalSteps, onStepClick }: StepIndicatorProps) => {
   return (
-    <div className="w-full mb-8 flex justify-center translate-x-[50px]">
+    <div className="w-full mb-8 flex justify-center translate-x-[25px]">
       <div className="flex items-center justify-center mb-2 w-full">
         {Array.from({ length: totalSteps }).map((_, index) => {
           const stepNumber = index + 1;
