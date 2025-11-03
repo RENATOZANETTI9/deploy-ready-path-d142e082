@@ -30,17 +30,10 @@ export const Footer = () => {
           </div>
 
           {/* Company Info */}
-          <div className="text-center space-y-2">
-            <p className="text-sm font-medium text-foreground">
-              A Legal é viver
+          <div className="text-center space-y-2 max-w-4xl">
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              LEGAL É VIVER é uma plataforma digital pertencente a JCR2 SOLUCOES E CONSULTORIA LTDA CNPJ: 13.238.960/0001-36. É correspondente bancário credenciado em diversas instituições financeiras. O crédito é sujeito a margem disponível e adequação à política de concessão estabelecida por cada instituição. Valores de parcelas, prazos, taxa de juros, tarifas e CET (Custo Efetivo Total) podem variar conforme regras e a qualquer tempo. Todas as operações de crédito têm incidência de IOF, conforme legislação vigente. É direito ao mutuário o pagamento antecipado a qualquer tempo.
             </p>
-            <div className="text-xs text-muted-foreground space-y-1">
-              <p><strong>Mais de 14 anos</strong> de atuação.</p>
-              <p><strong>95 mil clientes atendidos</strong> por mês.</p>
-              <p><strong>+ 300 milhões de saques FGTS</strong> realizados até agora.</p>
-              <p><strong>Atendimento em todo Brasil.</strong></p>
-              <p><strong>Simulação 24 horas / Plataforma sempre ativa.</strong></p>
-            </div>
           </div>
 
           {/* Copyright */}
