@@ -6,6 +6,21 @@
 All colors MUST be HSL.
 */
 
+/* Visby Font Faces */
+@font-face {
+  font-family: 'Visby';
+  src: url('/fonts/VisbyHeavy_Italic.otf') format('opentype');
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Visby';
+  src: url('/fonts/VisbyMedium_Italic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+}
+
 @layer base {
   :root {
     --background: 265 80% 25%;
@@ -105,5 +120,6 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Visby', sans-serif;
   }
 }

@@ -98,11 +98,11 @@ const Index = () => {
           {currentStep > 0 && (
             <>
               <div className="text-center mb-12">
-                <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
-                  Crédito Consignado CLT
+                <h1 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2 uppercase font-visby">
+                  CRÉDITO CONSIGNADO CLT
                 </h1>
-                <p className="text-muted-foreground">
-                  Processo rápido, seguro e 100% digital
+                <p className="text-muted-foreground uppercase font-visby font-bold">
+                  PROCESSO RÁPIDO, SEGURO E 100% DIGITAL
                 </p>
               </div>
 
