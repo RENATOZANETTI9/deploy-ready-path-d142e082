@@ -130,7 +130,7 @@ export const AuthorizationStep = ({ onNext, onBack }: AuthorizationStepProps) =>
             disabled={!accepted || isLoading}
             className="flex-1"
           >
-            {isLoading ? "Processando..." : "Autorizo e Continuar"}
+            {isLoading ? "Processando..." : "Continuar"}
           </Button>
         </div>
       </form>
