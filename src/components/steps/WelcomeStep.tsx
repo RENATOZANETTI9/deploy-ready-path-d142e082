@@ -37,29 +37,14 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
   const isValidSalary = salary >= minSalary;
 
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-8 animate-fade-in">
+    <div className="w-full max-w-2xl md:max-w-5xl lg:max-w-6xl mx-auto space-y-8 animate-fade-in">
       {/* Logo */}
       <div className="flex justify-center mb-8">
         <img src={logo} alt="Legal é Viver" className="h-24 w-auto animate-fade-in" />
       </div>
 
       {/* Hero Section - Responsive Layout */}
-      <div className="flex flex-col md:flex-row md:items-center md:gap-8 lg:gap-12 space-y-6 md:space-y-0">
-        {/* Hero Title and Text - Left side on tablet/desktop */}
-        <div className="text-center md:text-left space-y-1 md:flex-1">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground uppercase font-visby leading-tight">
-            CRÉDITO CONSIGNADO CLT
-          </h1>
-          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-secondary uppercase font-visby">
-            O CRÉDITO DO TRABALHADOR
-          </h2>
-          
-          {/* Support Text - Below Hero as normal text */}
-          <p className="text-sm md:text-base text-muted-foreground max-w-xl md:max-w-none pt-3 text-center md:text-left">
-            Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong> e as <strong>melhores condições</strong> exclusivas para você
-          </p>
-        </div>
-
+      <div className="flex flex-col md:flex-row-reverse md:items-center md:gap-8 lg:gap-12 space-y-6 md:space-y-0">
         {/* Hero Image - Right side on tablet/desktop */}
         <div className="flex justify-center md:justify-end md:flex-shrink-0">
           <img 
@@ -68,10 +53,55 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             className="w-full max-w-[240px] md:max-w-[280px] lg:max-w-[320px] rounded-2xl shadow-2xl object-cover"
           />
         </div>
+
+        {/* Hero Title and Text - Left side on tablet/desktop */}
+        <div className="text-center md:text-left space-y-3 md:flex-1">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground uppercase font-visby leading-tight">
+            CRÉDITO CONSIGNADO CLT
+          </h1>
+          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-secondary uppercase font-visby">
+            O CRÉDITO DO TRABALHADOR
+          </h2>
+          
+          {/* Support Text - Below Hero as normal text */}
+          <p className="text-sm md:text-base text-muted-foreground pt-3 text-center md:text-left">
+            Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong> e as <strong>melhores condições</strong> exclusivas para você
+          </p>
+          
+          {/* Salary Input - Show below text on mobile, inline on desktop */}
+          <div className="md:hidden pt-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-foreground">
+                Qual o valor do seu salário?
+              </label>
+              <div className="flex items-center gap-4">
+                <div className="text-3xl font-bold text-secondary">
+                  {formatCurrency(salary)}
+                </div>
+                <Input
+                  type="text"
+                  value={salary}
+                  onChange={handleInputChange}
+                  placeholder="R$ 1.518"
+                  className="max-w-[150px] text-lg font-semibold"
+                />
+              </div>
+            </div>
+
+            <Slider
+              value={[salary]}
+              onValueChange={(value) => setSalary(value[0])}
+              min={minSalary}
+              max={maxSalary}
+              step={10}
+              className="w-full mt-4"
+            />
+          </div>
+        </div>
       </div>
 
-      {/* Salary Slider Section */}
-      <div className="space-y-6 p-6 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
+      {/* Salary Slider Section - Hide on mobile (shown inline above), show on tablet/desktop */}
+      <div className="hidden md:block space-y-6 p-6 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
         <div className="space-y-2">
           <label className="text-sm font-medium text-foreground">
             Qual o valor do seu salário?
@@ -99,6 +129,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           className="w-full"
         />
 
+        {/* Results Cards - Show on both mobile and desktop */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
           <div className="p-4 bg-primary/10 rounded-lg border border-primary/30">
             <p className="text-xs text-muted-foreground mb-1">Valor máximo da parcela (35%)</p>
@@ -108,6 +139,18 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             <p className="text-xs text-muted-foreground mb-1">Você pode receber até</p>
             <p className="text-xl font-bold text-secondary">{formatCurrency(availableCredit)}</p>
           </div>
+        </div>
+      </div>
+
+      {/* Mobile: Results Cards Below Salary Input */}
+      <div className="md:hidden grid grid-cols-1 gap-4 pt-4">
+        <div className="p-4 bg-primary/10 rounded-lg border border-primary/30">
+          <p className="text-xs text-muted-foreground mb-1">Valor máximo da parcela (35%)</p>
+          <p className="text-xl font-bold text-primary">{formatCurrency(maxInstallment)}</p>
+        </div>
+        <div className="p-4 bg-secondary/10 rounded-lg border border-secondary/30">
+          <p className="text-xs text-muted-foreground mb-1">Você pode receber até</p>
+          <p className="text-xl font-bold text-secondary">{formatCurrency(availableCredit)}</p>
         </div>
       </div>
 
