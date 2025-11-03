@@ -58,36 +58,6 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           <p className="text-sm md:text-base text-muted-foreground pt-3 text-center md:text-left">
             Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong> e as <strong>melhores condições</strong> exclusivas para você
           </p>
-          
-          {/* Salary Input - Show below text on mobile, inline on desktop */}
-          <div className="md:hidden pt-4">
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-foreground">
-                Qual o valor do seu salário?
-              </label>
-              <div className="flex items-center gap-4">
-                <div className="text-3xl font-bold text-secondary">
-                  {formatCurrency(salary)}
-                </div>
-                <Input
-                  type="text"
-                  value={salary}
-                  onChange={handleInputChange}
-                  placeholder="R$ 1.518"
-                  className="max-w-[150px] text-lg font-semibold"
-                />
-              </div>
-            </div>
-
-            <Slider
-              value={[salary]}
-              onValueChange={(value) => setSalary(value[0])}
-              min={minSalary}
-              max={maxSalary}
-              step={10}
-              className="w-full mt-4"
-            />
-          </div>
         </div>
 
         {/* Hero Image - Below text on mobile, Right side on tablet/desktop */}
@@ -98,6 +68,36 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             className="w-full max-w-[240px] md:max-w-[280px] lg:max-w-[320px] rounded-2xl shadow-2xl object-cover"
           />
         </div>
+      </div>
+
+      {/* Salary Input - Show below image on mobile */}
+      <div className="md:hidden">
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-foreground">
+            Qual o valor do seu salário?
+          </label>
+          <div className="flex items-center gap-4">
+            <div className="text-3xl font-bold text-secondary">
+              {formatCurrency(salary)}
+            </div>
+            <Input
+              type="text"
+              value={salary}
+              onChange={handleInputChange}
+              placeholder="R$ 1.518"
+              className="max-w-[150px] text-lg font-semibold"
+            />
+          </div>
+        </div>
+
+        <Slider
+          value={[salary]}
+          onValueChange={(value) => setSalary(value[0])}
+          min={minSalary}
+          max={maxSalary}
+          step={10}
+          className="w-full mt-4"
+        />
       </div>
 
       {/* Salary Slider Section - Hide on mobile (shown inline above), show on tablet/desktop */}
