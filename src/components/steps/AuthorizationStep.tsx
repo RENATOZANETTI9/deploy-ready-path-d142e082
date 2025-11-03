@@ -72,21 +72,21 @@ export const AuthorizationStep = ({ onNext }: AuthorizationStepProps) => {
           
           <div className="space-y-3 text-sm text-muted-foreground">
             <p className="flex gap-2">
-              <span className="text-primary font-semibold">(i)</span>
+              <span className="w-2 h-2 rounded-full bg-secondary mt-1.5 flex-shrink-0"></span>
               <span>
                 concorda que seus dados serão tratados conforme a Política de
                 Privacidade dos bancos/fintech;
               </span>
             </p>
             <p className="flex gap-2">
-              <span className="text-primary font-semibold">(ii)</span>
+              <span className="w-2 h-2 rounded-full bg-secondary mt-1.5 flex-shrink-0"></span>
               <span>
                 permite que os bancos/fintech consultem as informações no Sistema
                 de Informações de Crédito do Banco Central;
               </span>
             </p>
             <p className="flex gap-2">
-              <span className="text-primary font-semibold">(iii)</span>
+              <span className="w-2 h-2 rounded-full bg-secondary mt-1.5 flex-shrink-0"></span>
               <span>
                 autoriza os bancos/fintech a consultar informações dos seus
                 contratos de trabalho.

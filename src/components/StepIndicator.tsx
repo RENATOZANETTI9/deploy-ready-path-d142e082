@@ -8,8 +8,8 @@ interface StepIndicatorProps {
 
 export const StepIndicator = ({ currentStep, totalSteps, onStepClick }: StepIndicatorProps) => {
   return (
-    <div className="w-full mb-8">
-      <div className="flex items-center justify-between mb-2">
+    <div className="w-full mb-8 flex justify-center">
+      <div className="flex items-center justify-between mb-2 max-w-2xl w-full">
         {Array.from({ length: totalSteps }).map((_, index) => {
           const stepNumber = index + 1;
           const isCompleted = stepNumber < currentStep;
@@ -25,7 +25,7 @@ export const StepIndicator = ({ currentStep, totalSteps, onStepClick }: StepIndi
                     transition-all duration-300
                     ${
                       isCompleted
-                        ? "bg-accent text-accent-foreground shadow-md cursor-pointer hover:scale-110"
+                        ? "bg-secondary text-secondary-foreground shadow-md cursor-pointer hover:scale-110"
                         : isCurrent
                         ? "bg-primary text-primary-foreground shadow-md scale-110"
                         : "bg-muted text-muted-foreground"
@@ -42,7 +42,7 @@ export const StepIndicator = ({ currentStep, totalSteps, onStepClick }: StepIndi
                 <div className="flex-1 h-1 mx-2 rounded-full bg-muted overflow-hidden">
                   <div
                     className={`h-full transition-all duration-500 ${
-                      isCompleted ? "w-full bg-accent" : "w-0 bg-primary"
+                      isCompleted ? "w-full bg-secondary" : "w-0 bg-primary"
                     }`}
                   />
                 </div>

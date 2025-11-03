@@ -53,7 +53,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         </h2>
         
         {/* Support Text - Below Hero as normal text */}
-        <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto pt-3">
+        <p className="text-sm md:text-base text-muted-foreground max-w-xl mx-auto pt-3 text-center">
           Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong> e as <strong>melhores condições</strong> exclusivas para você
         </p>
       </div>

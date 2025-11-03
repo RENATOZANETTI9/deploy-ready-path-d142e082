@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Wallet } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface PixStepProps {
@@ -101,7 +102,7 @@ export const PixStep = ({ onNext, cpf }: PixStepProps) => {
     <div className="w-full max-w-md mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="text-center mb-8">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-          <span className="text-3xl">💳</span>
+          <Wallet className="w-8 h-8 text-primary" />
         </div>
         <h2 className="text-2xl font-bold mb-2">Dados Bancários</h2>
         <p className="text-muted-foreground">
