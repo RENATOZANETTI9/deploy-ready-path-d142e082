@@ -48,7 +48,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground uppercase font-visby leading-tight">
           CRÉDITO CONSIGNADO CLT
         </h1>
-        <h2 className="text-xl md:text-2xl font-bold text-secondary uppercase font-visby whitespace-nowrap">
+        <h2 className="text-base sm:text-lg md:text-2xl font-bold text-secondary uppercase font-visby">
           O CRÉDITO DO TRABALHADOR
         </h2>
         

@@ -6,6 +6,7 @@ import { AuthorizationStep } from "@/components/steps/AuthorizationStep";
 import { PixStep } from "@/components/steps/PixStep";
 import { ProposalsStep } from "@/components/steps/ProposalsStep";
 import { LoadingProposals } from "@/components/LoadingProposals";
+import { Footer } from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
 
 interface FormData {
@@ -97,8 +98,8 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/20 via-background to-primary/10">
-      <div className="container mx-auto px-4 py-8 md:py-12">
+    <div className="min-h-screen bg-gradient-to-br from-primary/20 via-background to-primary/10 flex flex-col">
+      <div className="container mx-auto px-4 py-8 md:py-12 flex-1">
         <div className="max-w-4xl mx-auto">
           {/* Header - Only show after welcome */}
           {currentStep > 0 && (
@@ -135,6 +136,8 @@ const Index = () => {
           )}
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };
