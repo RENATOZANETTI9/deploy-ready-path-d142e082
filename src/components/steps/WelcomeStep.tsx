@@ -44,16 +44,16 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       </div>
 
       {/* Hero Title - 2 lines */}
-      <div className="text-center space-y-3">
+      <div className="text-center space-y-1">
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground uppercase font-visby leading-tight">
           CRÉDITO CONSIGNADO CLT
         </h1>
-        <h2 className="text-xl md:text-2xl font-bold text-secondary uppercase font-visby">
+        <h2 className="text-xl md:text-2xl font-bold text-secondary uppercase font-visby whitespace-nowrap">
           O CRÉDITO DO TRABALHADOR
         </h2>
         
         {/* Support Text - Below Hero as normal text */}
-        <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto pt-3">
           Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong> e as <strong>melhores condições</strong> exclusivas para você
         </p>
       </div>
