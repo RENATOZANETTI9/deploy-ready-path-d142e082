@@ -174,7 +174,7 @@ export const ProposalsStep = ({ onFinish }: ProposalsStepProps) => {
             size="lg"
             onClick={() => handleContractClick(proposal)}
           >
-            <span className="flex-1">{isBest ? "Contrate agora e receba na sua chave PIX 💸" : "Contrate esta proposta"}</span>
+            <span className="flex-1">{isBest ? "Contrate e receba no seu PIX💸" : "Contrate esta proposta"}</span>
             <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>

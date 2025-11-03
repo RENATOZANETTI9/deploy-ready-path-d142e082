@@ -44,18 +44,9 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       </div>
 
       {/* Hero Section - Responsive Layout */}
-      <div className="flex flex-col md:flex-row-reverse md:items-center md:gap-8 lg:gap-12 space-y-6 md:space-y-0">
-        {/* Hero Image - Right side on tablet/desktop */}
-        <div className="flex justify-center md:justify-end md:flex-shrink-0">
-          <img 
-            src="https://legaleviver.com.br/wp-content/uploads/2025/10/Luciana-1.webp" 
-            alt="Crédito Consignado" 
-            className="w-full max-w-[240px] md:max-w-[280px] lg:max-w-[320px] rounded-2xl shadow-2xl object-cover"
-          />
-        </div>
-
-        {/* Hero Title and Text - Left side on tablet/desktop */}
-        <div className="text-center md:text-left space-y-3 md:flex-1">
+      <div className="flex flex-col space-y-6 md:flex-row-reverse md:items-center md:gap-8 lg:gap-12 md:space-y-0">
+        {/* Hero Title and Text - Above image on mobile, Left side on tablet/desktop */}
+        <div className="text-center md:text-left space-y-3 md:flex-1 order-1 md:order-2">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground uppercase font-visby leading-tight">
             CRÉDITO CONSIGNADO CLT
           </h1>
@@ -97,6 +88,15 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
               className="w-full mt-4"
             />
           </div>
+        </div>
+
+        {/* Hero Image - Below text on mobile, Right side on tablet/desktop */}
+        <div className="flex justify-center md:justify-end md:flex-shrink-0 order-2 md:order-1">
+          <img 
+            src="https://legaleviver.com.br/wp-content/uploads/2025/10/Luciana-1.webp" 
+            alt="Crédito Consignado" 
+            className="w-full max-w-[240px] md:max-w-[280px] lg:max-w-[320px] rounded-2xl shadow-2xl object-cover"
+          />
         </div>
       </div>
 
