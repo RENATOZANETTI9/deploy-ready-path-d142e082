@@ -3,15 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Wallet } from "lucide-react";
+import { Wallet, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface PixStepProps {
   onNext: (pixType: string, pixKey: string) => void;
   cpf: string;
+  onBack: () => void;
 }
 
-export const PixStep = ({ onNext, cpf }: PixStepProps) => {
+export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
   const [pixType, setPixType] = useState("cpf");
   const [pixKey, setPixKey] = useState("");
   const [error, setError] = useState("");
@@ -154,9 +155,15 @@ export const PixStep = ({ onNext, cpf }: PixStepProps) => {
           </p>
         </div>
 
-        <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
-          {isLoading ? "Processando..." : "Continuar"}
-        </Button>
+        <div className="flex gap-3">
+          <Button type="button" variant="outline" size="lg" onClick={onBack} className="flex-1" disabled={isLoading}>
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Voltar
+          </Button>
+          <Button type="submit" variant="secondary" size="lg" disabled={isLoading} className="flex-1">
+            {isLoading ? "Processando..." : "Continuar"}
+          </Button>
+        </div>
       </form>
     </div>
   );

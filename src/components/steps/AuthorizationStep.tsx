@@ -2,14 +2,15 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { Shield } from "lucide-react";
+import { Shield, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface AuthorizationStepProps {
   onNext: () => void;
+  onBack: () => void;
 }
 
-export const AuthorizationStep = ({ onNext }: AuthorizationStepProps) => {
+export const AuthorizationStep = ({ onNext, onBack }: AuthorizationStepProps) => {
   const [accepted, setAccepted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -117,14 +118,21 @@ export const AuthorizationStep = ({ onNext }: AuthorizationStepProps) => {
           </Label>
         </div>
 
-        <Button
-          type="submit"
-          className="w-full"
-          size="lg"
-          disabled={!accepted || isLoading}
-        >
-          {isLoading ? "Processando..." : "Autorizo e Continuar"}
-        </Button>
+        <div className="flex gap-3">
+          <Button type="button" variant="outline" size="lg" onClick={onBack} className="flex-1">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Voltar
+          </Button>
+          <Button
+            type="submit"
+            variant="secondary"
+            size="lg"
+            disabled={!accepted || isLoading}
+            className="flex-1"
+          >
+            {isLoading ? "Processando..." : "Autorizo e Continuar"}
+          </Button>
+        </div>
       </form>
     </div>
   );

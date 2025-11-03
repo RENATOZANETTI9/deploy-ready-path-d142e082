@@ -90,6 +90,12 @@ const Index = () => {
     }
   };
 
+  const handleBack = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/20 via-background to-primary/10">
       <div className="container mx-auto px-4 py-8 md:py-12">
@@ -114,9 +120,9 @@ const Index = () => {
           {/* Steps Content */}
           <div className="bg-card rounded-2xl shadow-lg p-6 md:p-8 lg:p-12 border min-h-[500px] flex items-center justify-center">
             {currentStep === 0 && <WelcomeStep onStart={handleStart} />}
-            {currentStep === 1 && <CpfStep onNext={handleCpfNext} />}
-            {currentStep === 2 && <AuthorizationStep onNext={handleAuthorizationNext} />}
-            {currentStep === 3 && !isLoading && <PixStep onNext={handlePixNext} cpf={formData.cpf} />}
+            {currentStep === 1 && <CpfStep onNext={handleCpfNext} onBack={handleBack} />}
+            {currentStep === 2 && <AuthorizationStep onNext={handleAuthorizationNext} onBack={handleBack} />}
+            {currentStep === 3 && !isLoading && <PixStep onNext={handlePixNext} cpf={formData.cpf} onBack={handleBack} />}
             {isLoading && <LoadingProposals />}
             {currentStep === 4 && !isLoading && <ProposalsStep onFinish={handleFinish} />}
           </div>

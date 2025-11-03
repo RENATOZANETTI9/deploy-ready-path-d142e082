@@ -2,14 +2,15 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Loader2, Shield } from "lucide-react";
+import { Loader2, Lock, ArrowLeft } from "lucide-react";
 import { Confetti } from "@/components/Confetti";
 
 interface CpfStepProps {
   onNext: (cpf: string) => void;
+  onBack: () => void;
 }
 
-export const CpfStep = ({ onNext }: CpfStepProps) => {
+export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
   const [cpf, setCpf] = useState("");
   const [error, setError] = useState("");
   const [isValidating, setIsValidating] = useState(false);
@@ -169,10 +170,10 @@ export const CpfStep = ({ onNext }: CpfStepProps) => {
         </div>
       ) : (
         <>
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-              <Shield className="w-8 h-8 text-primary" />
-            </div>
+      <div className="text-center mb-8">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+          <Lock className="w-8 h-8 text-primary" />
+        </div>
             <h2 className="text-2xl font-bold mb-2">Vamos começar</h2>
             <p className="text-muted-foreground">
               Para iniciar, preciso apenas do seu CPF:
@@ -201,9 +202,15 @@ export const CpfStep = ({ onNext }: CpfStepProps) => {
               </p>
             </div>
 
-            <Button type="submit" className="w-full" size="lg">
-              Continuar
-            </Button>
+        <div className="flex gap-3">
+          <Button type="button" variant="outline" size="lg" onClick={onBack} className="flex-1">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Voltar
+          </Button>
+          <Button type="submit" variant="secondary" size="lg" className="flex-1">
+            Continuar
+          </Button>
+        </div>
           </form>
         </>
         )}
