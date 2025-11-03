@@ -43,28 +43,31 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         <img src={logo} alt="Legal é Viver" className="h-24 w-auto animate-fade-in" />
       </div>
 
-      {/* Hero Title - 2 lines */}
-      <div className="text-center space-y-1">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground uppercase font-visby leading-tight">
-          CRÉDITO CONSIGNADO CLT
-        </h1>
-        <h2 className="text-base sm:text-lg md:text-2xl font-bold text-secondary uppercase font-visby">
-          O CRÉDITO DO TRABALHADOR
-        </h2>
-        
-        {/* Support Text - Below Hero as normal text */}
-        <p className="text-sm md:text-base text-muted-foreground max-w-xl mx-auto pt-3 text-center">
-          Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong> e as <strong>melhores condições</strong> exclusivas para você
-        </p>
-      </div>
+      {/* Hero Section - Responsive Layout */}
+      <div className="flex flex-col md:flex-row md:items-center md:gap-8 lg:gap-12 space-y-6 md:space-y-0">
+        {/* Hero Title and Text - Left side on tablet/desktop */}
+        <div className="text-center md:text-left space-y-1 md:flex-1">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground uppercase font-visby leading-tight">
+            CRÉDITO CONSIGNADO CLT
+          </h1>
+          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-secondary uppercase font-visby">
+            O CRÉDITO DO TRABALHADOR
+          </h2>
+          
+          {/* Support Text - Below Hero as normal text */}
+          <p className="text-sm md:text-base text-muted-foreground max-w-xl md:max-w-none pt-3 text-center md:text-left">
+            Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong> e as <strong>melhores condições</strong> exclusivas para você
+          </p>
+        </div>
 
-      {/* Hero Image - 60% do tamanho original */}
-      <div className="flex justify-center">
-        <img 
-          src="https://legaleviver.com.br/wp-content/uploads/2025/10/Luciana-1.webp" 
-          alt="Crédito Consignado" 
-          className="w-full max-w-[240px] md:max-w-[260px] lg:max-w-[288px] rounded-2xl shadow-2xl object-cover"
-        />
+        {/* Hero Image - Right side on tablet/desktop */}
+        <div className="flex justify-center md:justify-end md:flex-shrink-0">
+          <img 
+            src="https://legaleviver.com.br/wp-content/uploads/2025/10/Luciana-1.webp" 
+            alt="Crédito Consignado" 
+            className="w-full max-w-[240px] md:max-w-[280px] lg:max-w-[320px] rounded-2xl shadow-2xl object-cover"
+          />
+        </div>
       </div>
 
       {/* Salary Slider Section */}
