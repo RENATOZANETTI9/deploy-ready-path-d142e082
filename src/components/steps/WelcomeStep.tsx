@@ -47,10 +47,10 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       <div className="flex flex-col space-y-4 md:flex-row-reverse md:items-center md:gap-6 lg:gap-8 md:space-y-0">
         {/* Hero Title and Text - Above image on mobile, Left side on tablet/desktop */}
         <div className="text-center md:text-left space-y-1.5 md:flex-1 order-1 md:order-2">
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-foreground uppercase font-visby leading-tight whitespace-nowrap">
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-black text-foreground uppercase font-visby leading-tight">
             CRÉDITO CONSIGNADO CLT
           </h1>
-          <h2 className="text-base sm:text-lg md:text-xl font-bold text-secondary uppercase font-visby">
+          <h2 className="text-sm sm:text-base md:text-lg font-bold text-secondary uppercase font-visby">
             O CRÉDITO DO TRABALHADOR
           </h2>
           
