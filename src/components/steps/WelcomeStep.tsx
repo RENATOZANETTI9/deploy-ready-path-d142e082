@@ -37,25 +37,25 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
   const isValidSalary = salary >= minSalary;
 
   return (
-    <div className="w-full max-w-2xl md:max-w-5xl lg:max-w-6xl mx-auto space-y-8 animate-fade-in">
+    <div className="w-full max-w-2xl md:max-w-5xl lg:max-w-6xl mx-auto space-y-5 animate-fade-in">
       {/* Logo */}
-      <div className="flex justify-center mb-8">
-        <img src={logo} alt="Legal é Viver" className="h-24 w-auto animate-fade-in" />
+      <div className="flex justify-center mb-4">
+        <img src={logo} alt="Legal é Viver" className="h-14 md:h-16 w-auto animate-fade-in" />
       </div>
 
       {/* Hero Section - Responsive Layout */}
-      <div className="flex flex-col space-y-6 md:flex-row-reverse md:items-center md:gap-8 lg:gap-12 md:space-y-0">
+      <div className="flex flex-col space-y-4 md:flex-row-reverse md:items-center md:gap-6 lg:gap-8 md:space-y-0">
         {/* Hero Title and Text - Above image on mobile, Left side on tablet/desktop */}
-        <div className="text-center md:text-left space-y-3 md:flex-1 order-1 md:order-2">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground uppercase font-visby leading-tight">
+        <div className="text-center md:text-left space-y-1.5 md:flex-1 order-1 md:order-2">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-foreground uppercase font-visby leading-tight whitespace-nowrap">
             CRÉDITO CONSIGNADO CLT
           </h1>
-          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-secondary uppercase font-visby">
+          <h2 className="text-base sm:text-lg md:text-xl font-bold text-secondary uppercase font-visby">
             O CRÉDITO DO TRABALHADOR
           </h2>
           
           {/* Support Text - Below Hero as normal text */}
-          <p className="text-sm md:text-base text-muted-foreground pt-3 text-center md:text-left">
+          <p className="text-xs md:text-sm text-muted-foreground pt-1.5 text-center md:text-left">
             Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong> e as <strong>melhores condições</strong> exclusivas para você
           </p>
         </div>
@@ -65,7 +65,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           <img 
             src="https://legaleviver.com.br/wp-content/uploads/2025/10/Luciana-1.webp" 
             alt="Crédito Consignado" 
-            className="w-full max-w-[240px] md:max-w-[280px] lg:max-w-[320px] rounded-2xl shadow-2xl object-cover"
+            className="w-full max-w-[180px] md:max-w-[220px] lg:max-w-[260px] rounded-2xl shadow-2xl object-cover"
           />
         </div>
       </div>
