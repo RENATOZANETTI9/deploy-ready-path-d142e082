@@ -137,7 +137,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
           <div className="p-4 bg-primary/10 rounded-lg border border-primary/30">
             <p className="text-sm font-medium text-foreground mb-0.5">Valor da parcela</p>
-            <p className="text-xs text-muted-foreground mb-1">Valor máximo da parcela (35%)</p>
+            <p className="text-[10px] text-muted-foreground mb-1">*Valor máximo da parcela (35%)</p>
             <p className="text-xl font-bold text-primary">{formatCurrency(maxInstallment)}</p>
           </div>
           <div className="p-4 bg-secondary/10 rounded-lg border border-secondary/30">
@@ -151,7 +151,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       <div className="md:hidden grid grid-cols-1 gap-4 pt-4">
         <div className="p-4 bg-primary/10 rounded-lg border border-primary/30">
           <p className="text-sm font-medium text-foreground mb-0.5">Valor da parcela</p>
-          <p className="text-xs text-muted-foreground mb-1">Valor máximo da parcela (35%)</p>
+          <p className="text-[10px] text-muted-foreground mb-1">*Valor máximo da parcela (35%)</p>
           <p className="text-xl font-bold text-primary">{formatCurrency(maxInstallment)}</p>
         </div>
         <div className="p-4 bg-secondary/10 rounded-lg border border-secondary/30">
