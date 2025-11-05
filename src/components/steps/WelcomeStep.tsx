@@ -1,5 +1,16 @@
 import { Button } from "@/components/ui/button";
-import { Shield, Lock, CheckCircle2, Clock, TrendingUp, Zap, DollarSign, Calendar, Smartphone, UserCheck } from "lucide-react";
+import {
+  Shield,
+  Lock,
+  CheckCircle2,
+  Clock,
+  TrendingUp,
+  Zap,
+  DollarSign,
+  Calendar,
+  Smartphone,
+  UserCheck,
+} from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import logo from "@/assets/logo-legal-e-viver.webp";
@@ -13,23 +24,23 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
   const [salary, setSalary] = useState(1518);
   const minSalary = 1518;
   const maxSalary = 20000;
-  
+
   // Cálculo da parcela máxima (35% do salário)
   const maxInstallment = salary * 0.35;
-  
+
   // Cálculo do crédito disponível (parcela máxima / 0,055)
   const availableCredit = maxInstallment / 0.055;
-  
+
   const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
       minimumFractionDigits: 2,
     }).format(value);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\D/g, '');
+    const value = e.target.value.replace(/\D/g, "");
     const numValue = parseInt(value) || 0;
     setSalary(numValue);
   };
@@ -53,18 +64,19 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           <h2 className="text-sm sm:text-base md:text-lg font-bold text-secondary uppercase font-visby">
             O CRÉDITO DO TRABALHADOR
           </h2>
-          
+
           {/* Support Text - Below Hero as normal text */}
           <p className="text-xs md:text-sm text-muted-foreground pt-1.5 text-center md:text-left">
-            Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong> e as <strong>melhores condições</strong> exclusivas para você
+            Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong>{" "}
+            e as <strong>melhores condições</strong> exclusivas para você
           </p>
         </div>
 
         {/* Hero Image - Below text on mobile, Right side on tablet/desktop */}
         <div className="flex justify-center md:justify-end md:flex-shrink-0 order-2 md:order-1">
-          <img 
-            src="https://legaleviver.com.br/wp-content/uploads/2025/10/Luciana-1.webp" 
-            alt="Crédito Consignado" 
+          <img
+            src="https://legaleviver.com.br/wp-content/uploads/2025/10/Luciana-1.webp"
+            alt="Crédito Consignado"
             className="w-full max-w-[180px] md:max-w-[220px] lg:max-w-[260px] rounded-2xl shadow-2xl object-cover"
           />
         </div>
@@ -73,13 +85,9 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       {/* Salary Input - Show below image on mobile */}
       <div className="md:hidden">
         <div className="space-y-2">
-          <label className="text-sm font-medium text-foreground">
-            Qual o valor do seu salário?
-          </label>
+          <label className="text-sm font-medium text-foreground">Qual o valor do seu salário?</label>
           <div className="flex items-center gap-4">
-            <div className="text-3xl font-bold text-secondary">
-              {formatCurrency(salary)}
-            </div>
+            <div className="text-3xl font-bold text-secondary">{formatCurrency(salary)}</div>
             <Input
               type="text"
               value={salary}
@@ -103,13 +111,9 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       {/* Salary Slider Section - Hide on mobile (shown inline above), show on tablet/desktop */}
       <div className="hidden md:block space-y-6 p-6 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
         <div className="space-y-2">
-          <label className="text-sm font-medium text-foreground">
-            Qual o valor do seu salário?
-          </label>
+          <label className="text-sm font-medium text-foreground">Qual o valor do seu salário?</label>
           <div className="flex items-center gap-4">
-            <div className="text-3xl font-bold text-secondary">
-              {formatCurrency(salary)}
-            </div>
+            <div className="text-3xl font-bold text-secondary">{formatCurrency(salary)}</div>
             <Input
               type="text"
               value={salary}
@@ -145,7 +149,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       {/* Mobile: Results Cards Below Salary Input */}
       <div className="md:hidden grid grid-cols-1 gap-4 pt-4">
         <div className="p-4 bg-primary/10 rounded-lg border border-primary/30">
-          <p className="text-xs text-muted-foreground mb-1">Valor máximo da parcela (35%)</p>
+          <p className="text-xs text-muted-foreground mb-1">*Valor máximo da parcela mensal é 35% do salário líquido</p>
           <p className="text-xl font-bold text-primary">{formatCurrency(maxInstallment)}</p>
         </div>
         <div className="p-4 bg-secondary/10 rounded-lg border border-secondary/30">
@@ -157,9 +161,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       {/* CTA Button */}
       <div className="text-center space-y-4 pt-4">
         {!isValidSalary && (
-          <p className="text-sm font-medium text-destructive">
-            O salário mínimo deve ser de R$ 1.518,00
-          </p>
+          <p className="text-sm font-medium text-destructive">O salário mínimo deve ser de R$ 1.518,00</p>
         )}
         <Button
           onClick={onStart}
@@ -169,9 +171,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         >
           Continuar
         </Button>
-        <p className="text-xs text-muted-foreground">
-          🔒 Seus dados estão protegidos e não serão compartilhados
-        </p>
+        <p className="text-xs text-muted-foreground">🔒 Seus dados estão protegidos e não serão compartilhados</p>
       </div>
 
       {/* Trust Indicators - 6 Topics at the end */}
