@@ -171,7 +171,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         >
           Continuar
         </Button>
-        <p className="text-xs text-muted-foreground">🔒 Seus dados estão protegidos e não serão compartilhados</p>
+        <p className="text-xs text-muted-foreground">Contratação sujeita a análise. Os valores aqui presentes podem variar no leilão conforme as respostas dos bancos.</p>
       </div>
 
       {/* Trust Indicators - 6 Topics at the end */}
