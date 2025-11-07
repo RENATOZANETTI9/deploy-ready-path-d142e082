@@ -57,36 +57,46 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       {/* Hero Section - Responsive Layout */}
       <div className="flex flex-col space-y-4 md:space-y-0">
         {/* Desktop/Tablet Layout */}
-        <div className="hidden md:flex md:flex-col md:gap-6">
-          {/* Title, Text and Salary Slider on Desktop/Tablet */}
-          <div className="space-y-4">
-            <div className="text-center md:text-left space-y-1.5">
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-black text-foreground uppercase font-visby leading-tight">
-                CRÉDITO CONSIGNADO CLT
-              </h1>
-              <h2 className="text-sm sm:text-base md:text-lg font-bold text-secondary uppercase font-visby">
-                O CRÉDITO DO TRABALHADOR
-              </h2>
+        <div className="hidden md:flex md:flex-col md:gap-5">
+          {/* Title and Text */}
+          <div className="text-center md:text-left space-y-1.5">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-black text-foreground uppercase font-visby leading-tight">
+              CRÉDITO CONSIGNADO CLT
+            </h1>
+            <h2 className="text-sm sm:text-base md:text-lg font-bold text-secondary uppercase font-visby">
+              O CRÉDITO DO TRABALHADOR
+            </h2>
 
-              {/* Support Text */}
-              <p className="text-xs md:text-sm text-muted-foreground pt-1.5 text-center md:text-left">
-                Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong>{" "}
-                e as <strong>melhores condições</strong> exclusivas para você
-              </p>
+            {/* Support Text */}
+            <p className="text-xs md:text-sm text-muted-foreground pt-1.5 text-center md:text-left">
+              Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong>{" "}
+              e as <strong>melhores condições</strong> exclusivas para você
+            </p>
+          </div>
+
+          {/* Photo and Slider Side by Side */}
+          <div className="flex gap-5 items-start">
+            {/* Hero Image - Left Side */}
+            <div className="flex-shrink-0">
+              <img
+                src="https://legaleviver.com.br/wp-content/uploads/2025/10/Luciana-1.webp"
+                alt="Crédito Consignado"
+                className="w-[180px] lg:w-[200px] rounded-2xl shadow-2xl object-cover"
+              />
             </div>
 
-            {/* Salary Slider Section - Desktop/Tablet */}
-            <div className="space-y-4 p-5 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
+            {/* Salary Slider Section - Right Side */}
+            <div className="flex-1 space-y-3 p-4 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-foreground">Qual o valor do seu salário?</label>
-                <div className="flex items-center gap-4">
-                  <div className="text-2xl font-bold text-secondary">{formatCurrency(salary)}</div>
+                <div className="flex items-center gap-3">
+                  <div className="text-xl font-bold text-secondary">{formatCurrency(salary)}</div>
                   <Input
                     type="text"
                     value={salary}
                     onChange={handleInputChange}
                     placeholder="R$ 1.518"
-                    className="max-w-[150px] text-lg font-semibold"
+                    className="max-w-[130px] text-base font-semibold"
                   />
                 </div>
               </div>
@@ -101,27 +111,18 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
               />
 
               {/* Results Cards - Desktop/Tablet */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                <div className="p-4 bg-primary/10 rounded-lg border border-primary/30">
-                  <p className="text-sm font-medium text-foreground mb-0.5">Valor da parcela</p>
-                  <p className="text-xl font-bold text-primary">{formatCurrency(maxInstallment)}</p>
-                  <p className="text-[10px] text-muted-foreground mt-1">*Valor máximo da parcela (35%)</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+                <div className="p-3 bg-primary/10 rounded-lg border border-primary/30">
+                  <p className="text-xs font-medium text-foreground mb-0.5">Valor da parcela</p>
+                  <p className="text-lg font-bold text-primary">{formatCurrency(maxInstallment)}</p>
+                  <p className="text-[9px] text-muted-foreground mt-1">*Valor máximo da parcela (35%)</p>
                 </div>
-                <div className="p-4 bg-secondary/10 rounded-lg border border-secondary/30">
-                  <p className="text-xs text-muted-foreground mb-1">Você pode receber até</p>
-                  <p className="text-xl font-bold text-secondary">{formatCurrency(availableCredit)}</p>
+                <div className="p-3 bg-secondary/10 rounded-lg border border-secondary/30">
+                  <p className="text-[10px] text-muted-foreground mb-1">Você pode receber até</p>
+                  <p className="text-lg font-bold text-secondary">{formatCurrency(availableCredit)}</p>
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Hero Image - Desktop/Tablet */}
-          <div className="flex justify-center">
-            <img
-              src="https://legaleviver.com.br/wp-content/uploads/2025/10/Luciana-1.webp"
-              alt="Crédito Consignado"
-              className="w-full max-w-[240px] lg:max-w-[280px] rounded-2xl shadow-2xl object-cover"
-            />
           </div>
         </div>
 
