@@ -121,7 +121,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             <img
               src="https://legaleviver.com.br/wp-content/uploads/2025/10/Luciana-1.webp"
               alt="Crédito Consignado"
-              className="w-[180px] lg:w-[200px] rounded-2xl shadow-2xl object-cover"
+              className="w-[240px] lg:w-[280px] rounded-2xl shadow-2xl object-cover"
             />
           </div>
         </div>
