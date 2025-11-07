@@ -57,36 +57,27 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       {/* Hero Section - Responsive Layout */}
       <div className="flex flex-col space-y-4 md:space-y-0">
         {/* Desktop/Tablet Layout */}
-        <div className="hidden md:flex md:flex-col md:gap-5">
-          {/* Title and Text */}
-          <div className="text-center md:text-left space-y-1.5">
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-black text-foreground uppercase font-visby leading-tight">
-              CRÉDITO CONSIGNADO CLT
-            </h1>
-            <h2 className="text-sm sm:text-base md:text-lg font-bold text-secondary uppercase font-visby">
-              O CRÉDITO DO TRABALHADOR
-            </h2>
+        <div className="hidden md:flex md:gap-5 md:items-start">
+          {/* Left Side: Title, Text and Slider */}
+          <div className="flex-1 space-y-5">
+            {/* Title and Text */}
+            <div className="text-left space-y-1.5">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-black text-foreground uppercase font-visby leading-tight">
+                CRÉDITO CONSIGNADO CLT
+              </h1>
+              <h2 className="text-sm sm:text-base md:text-lg font-bold text-secondary uppercase font-visby">
+                O CRÉDITO DO TRABALHADOR
+              </h2>
 
-            {/* Support Text */}
-            <p className="text-xs md:text-sm text-muted-foreground pt-1.5 text-center md:text-left">
-              Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong>{" "}
-              e as <strong>melhores condições</strong> exclusivas para você
-            </p>
-          </div>
-
-          {/* Photo and Slider Side by Side */}
-          <div className="flex gap-5 items-start">
-            {/* Hero Image - Left Side */}
-            <div className="flex-shrink-0">
-              <img
-                src="https://legaleviver.com.br/wp-content/uploads/2025/10/Luciana-1.webp"
-                alt="Crédito Consignado"
-                className="w-[180px] lg:w-[200px] rounded-2xl shadow-2xl object-cover"
-              />
+              {/* Support Text */}
+              <p className="text-xs md:text-sm text-muted-foreground pt-1.5 text-left">
+                Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong>{" "}
+                e as <strong>melhores condições</strong> exclusivas para você
+              </p>
             </div>
 
-            {/* Salary Slider Section - Right Side */}
-            <div className="flex-1 space-y-3 p-4 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
+            {/* Salary Slider Section */}
+            <div className="space-y-3 p-4 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-foreground">Qual o valor do seu salário?</label>
                 <div className="flex items-center gap-3">
@@ -110,7 +101,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
                 className="w-full"
               />
 
-              {/* Results Cards - Desktop/Tablet */}
+              {/* Results Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
                 <div className="p-3 bg-primary/10 rounded-lg border border-primary/30">
                   <p className="text-xs font-medium text-foreground mb-0.5">Valor da parcela</p>
@@ -123,6 +114,15 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Right Side: Hero Image */}
+          <div className="flex-shrink-0">
+            <img
+              src="https://legaleviver.com.br/wp-content/uploads/2025/10/Luciana-1.webp"
+              alt="Crédito Consignado"
+              className="w-[180px] lg:w-[200px] rounded-2xl shadow-2xl object-cover"
+            />
           </div>
         </div>
 
