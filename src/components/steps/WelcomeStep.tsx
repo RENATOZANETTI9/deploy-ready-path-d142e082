@@ -252,6 +252,57 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           <p className="text-xs font-medium text-foreground text-center">Segurança certificada</p>
         </div>
       </div>
+
+      {/* Depoimentos Section */}
+      <div className="mt-12 space-y-6">
+        <div className="text-center">
+          <h3 className="text-2xl md:text-3xl font-black text-foreground uppercase font-visby">
+            Depoimentos
+          </h3>
+          <p className="text-sm text-muted-foreground mt-2">Veja o que nossos clientes têm a dizer</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Video 1 */}
+          <div className="bg-muted/30 rounded-lg overflow-hidden border border-border/50">
+            <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/cItwT8Gws4g"
+                title="Depoimento 1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+
+          {/* Video 2 */}
+          <div className="bg-muted/30 rounded-lg overflow-hidden border border-border/50">
+            <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/MJink-JZHV4"
+                title="Depoimento 2"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+
+          {/* Video 3 */}
+          <div className="bg-muted/30 rounded-lg overflow-hidden border border-border/50">
+            <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/4pRNBTypGgQ"
+                title="Depoimento 3"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
