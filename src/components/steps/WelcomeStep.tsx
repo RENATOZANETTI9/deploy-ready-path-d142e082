@@ -209,12 +209,12 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             </p>
           </div>
 
-          {/* Hero Image - Mobile - Full width */}
+          {/* Hero Image - Mobile - Full width and larger */}
           <div className="flex justify-center -mx-4">
             <img
               src={heroImage}
               alt="Crédito Consignado"
-              className="w-full shadow-2xl object-cover"
+              className="w-full h-auto min-h-[400px] shadow-2xl object-cover"
             />
           </div>
 
