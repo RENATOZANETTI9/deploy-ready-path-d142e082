@@ -50,9 +50,9 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
   const isValidSalary = salary >= minSalary;
 
   return (
-    <div className="relative w-full max-w-2xl md:max-w-5xl lg:max-w-6xl mx-auto space-y-5 animate-fade-in">
-      {/* Decorative Lines - Top */}
-      <div className="absolute -top-20 left-0 w-full h-32 pointer-events-none overflow-hidden opacity-60">
+    <>
+      {/* Decorative Lines Background - Top */}
+      <div className="fixed top-0 left-0 w-screen h-40 pointer-events-none overflow-hidden opacity-40 z-0">
         <img 
           src={decorativeLines} 
           alt="" 
@@ -60,8 +60,8 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         />
       </div>
 
-      {/* Decorative Lines - Bottom */}
-      <div className="absolute -bottom-20 right-0 w-full h-32 pointer-events-none overflow-hidden opacity-60 rotate-180">
+      {/* Decorative Lines Background - Bottom */}
+      <div className="fixed bottom-0 left-0 w-screen h-40 pointer-events-none overflow-hidden opacity-40 z-0 rotate-180">
         <img 
           src={decorativeLines} 
           alt="" 
@@ -69,10 +69,11 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         />
       </div>
 
-      {/* Logo */}
-      <div className="flex justify-center mb-4 relative z-10">
-        <img src={logo} alt="Legal é Viver" className="h-14 md:h-16 w-auto animate-fade-in" />
-      </div>
+      <div className="relative w-full max-w-2xl md:max-w-5xl lg:max-w-6xl mx-auto space-y-5 animate-fade-in z-10">
+        {/* Logo */}
+        <div className="flex justify-center mb-4">
+          <img src={logo} alt="Legal é Viver" className="h-14 md:h-16 w-auto animate-fade-in" />
+        </div>
 
       {/* Hero Section - Responsive Layout */}
       <div className="flex flex-col space-y-4 md:space-y-0">
@@ -302,6 +303,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           <p className="text-xs font-medium text-foreground text-center">Prazos longos e flexíveis</p>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
