@@ -31,7 +31,7 @@ export const Footer = () => {
 
           {/* Company Info */}
           <div className="text-center space-y-2 max-w-4xl">
-            <p className="text-xs text-muted-foreground leading-relaxed">
+            <p className="text-xs text-muted-foreground leading-relaxed text-justify">
               LEGAL É VIVER é uma plataforma digital pertencente a JCR2 SOLUCOES E CONSULTORIA LTDA CNPJ: 13.238.960/0001-36. É correspondente bancário credenciado em diversas instituições financeiras. O crédito é sujeito a margem disponível e adequação à política de concessão estabelecida por cada instituição. Valores de parcelas, prazos, taxa de juros, tarifas e CET (Custo Efetivo Total) podem variar conforme regras e a qualquer tempo. Todas as operações de crédito têm incidência de IOF, conforme legislação vigente. É direito ao mutuário o pagamento antecipado a qualquer tempo.
             </p>
           </div>
