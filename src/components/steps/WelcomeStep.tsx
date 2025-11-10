@@ -89,34 +89,9 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       </div>
 
       <div className="relative w-full max-w-2xl md:max-w-5xl lg:max-w-6xl mx-auto space-y-5 animate-fade-in z-10">
-        {/* Header with Logo and Menu */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
-          {/* Logo - Left */}
-          <div className="flex-shrink-0">
-            <img src={logo} alt="Legal é Viver" className="h-12 md:h-14 w-auto animate-fade-in" />
-          </div>
-
-          {/* Navigation Menu - Right - Hidden on mobile */}
-          <nav className="hidden md:flex gap-2 md:gap-3 p-2 bg-card/60 backdrop-blur-md rounded-full border border-border/50 shadow-lg">
-            <button
-              onClick={() => scrollToSection('sobre')}
-              className="px-4 md:px-6 py-2 text-xs md:text-sm font-bold text-foreground hover:text-primary hover:bg-primary/10 rounded-full transition-all uppercase font-visby"
-            >
-              Sobre
-            </button>
-            <button
-              onClick={() => scrollToSection('vantagens')}
-              className="px-4 md:px-6 py-2 text-xs md:text-sm font-bold text-foreground hover:text-secondary hover:bg-secondary/10 rounded-full transition-all uppercase font-visby"
-            >
-              Vantagens
-            </button>
-            <button
-              onClick={() => scrollToSection('faq')}
-              className="px-4 md:px-6 py-2 text-xs md:text-sm font-bold text-foreground hover:text-primary hover:bg-primary/10 rounded-full transition-all uppercase font-visby"
-            >
-              FAQ
-            </button>
-          </nav>
+        {/* Header with Logo only */}
+        <div className="flex justify-center mb-6">
+          <img src={logo} alt="Legal é Viver" className="h-12 md:h-14 w-auto animate-fade-in" />
         </div>
 
       {/* Hero Section - Responsive Layout */}
@@ -191,8 +166,8 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           </div>
         </div>
 
-        {/* Mobile Layout - Keep as is */}
-        <div className="md:hidden space-y-4">
+        {/* Mobile Layout */}
+        <div className="md:hidden space-y-2">
           {/* Hero Title and Text */}
           <div className="text-center space-y-1.5">
             <h1 className="text-xl sm:text-2xl font-black text-foreground uppercase font-visby leading-tight">
@@ -209,12 +184,12 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             </p>
           </div>
 
-          {/* Hero Image - Mobile - Full width and larger */}
-          <div className="flex justify-center -mx-4">
+          {/* Hero Image - Mobile - Full width */}
+          <div className="flex justify-center -mx-4 mt-2">
             <img
               src={heroImage}
               alt="Crédito Consignado"
-              className="w-full h-auto min-h-[400px] shadow-2xl object-cover"
+              className="w-full h-auto shadow-2xl object-cover"
             />
           </div>
 
