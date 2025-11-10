@@ -14,6 +14,7 @@ import {
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import logo from "@/assets/logo-legal-e-viver.webp";
+import heroImage from "@/assets/luciana-hero.png";
 import { useState } from "react";
 
 interface WelcomeStepProps {
@@ -119,7 +120,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           {/* Right Side: Hero Image */}
           <div className="flex-shrink-0">
             <img
-              src="https://legaleviver.com.br/wp-content/uploads/2025/10/Luciana-1.webp"
+              src={heroImage}
               alt="Crédito Consignado"
               className="w-[240px] lg:w-[280px] rounded-2xl shadow-2xl object-cover"
             />
@@ -147,7 +148,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           {/* Hero Image - Mobile */}
           <div className="flex justify-center">
             <img
-              src="https://legaleviver.com.br/wp-content/uploads/2025/10/Luciana-1.webp"
+              src={heroImage}
               alt="Crédito Consignado"
               className="w-full max-w-[180px] rounded-2xl shadow-2xl object-cover"
             />
@@ -208,51 +209,6 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         <p className="text-xs text-muted-foreground">Contratação sujeita a análise. Os valores aqui presentes podem variar no leilão conforme as respostas dos bancos.</p>
       </div>
 
-      {/* Trust Indicators - 6 Topics at the end */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-8">
-        <div className="flex flex-col items-center gap-2 p-3 bg-muted/30 rounded-lg border border-border/50">
-          <div className="bg-secondary/20 p-2 rounded-full">
-            <Zap className="h-4 w-4 text-secondary" />
-          </div>
-          <p className="text-xs font-medium text-foreground text-center">Contrate e receba em minutos</p>
-        </div>
-
-        <div className="flex flex-col items-center gap-2 p-3 bg-muted/30 rounded-lg border border-border/50">
-          <div className="bg-primary/20 p-2 rounded-full">
-            <DollarSign className="h-4 w-4 text-primary" />
-          </div>
-          <p className="text-xs font-medium text-foreground text-center">Taxas de juros reduzidas</p>
-        </div>
-
-        <div className="flex flex-col items-center gap-2 p-3 bg-muted/30 rounded-lg border border-border/50">
-          <div className="bg-secondary/20 p-2 rounded-full">
-            <Calendar className="h-4 w-4 text-secondary" />
-          </div>
-          <p className="text-xs font-medium text-foreground text-center">Prazos longos e flexíveis</p>
-        </div>
-
-        <div className="flex flex-col items-center gap-2 p-3 bg-muted/30 rounded-lg border border-border/50">
-          <div className="bg-primary/20 p-2 rounded-full">
-            <Smartphone className="h-4 w-4 text-primary" />
-          </div>
-          <p className="text-xs font-medium text-foreground text-center">Processo 100% digital</p>
-        </div>
-
-        <div className="flex flex-col items-center gap-2 p-3 bg-muted/30 rounded-lg border border-border/50">
-          <div className="bg-secondary/20 p-2 rounded-full">
-            <UserCheck className="h-4 w-4 text-secondary" />
-          </div>
-          <p className="text-xs font-medium text-foreground text-center">Disponível para negativados</p>
-        </div>
-
-        <div className="flex flex-col items-center gap-2 p-3 bg-muted/30 rounded-lg border border-border/50">
-          <div className="bg-primary/20 p-2 rounded-full">
-            <Shield className="h-4 w-4 text-primary" />
-          </div>
-          <p className="text-xs font-medium text-foreground text-center">Segurança certificada</p>
-        </div>
-      </div>
-
       {/* Depoimentos Section */}
       <div className="mt-12 space-y-6">
         <div className="text-center">
@@ -301,6 +257,30 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
               />
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Trust Indicators - 3 Topics below testimonials */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-8">
+        <div className="flex flex-col items-center gap-2 p-3 bg-muted/30 rounded-lg border border-border/50">
+          <div className="bg-secondary/20 p-2 rounded-full">
+            <Zap className="h-4 w-4 text-secondary" />
+          </div>
+          <p className="text-xs font-medium text-foreground text-center">Contrate e receba em minutos</p>
+        </div>
+
+        <div className="flex flex-col items-center gap-2 p-3 bg-muted/30 rounded-lg border border-border/50">
+          <div className="bg-primary/20 p-2 rounded-full">
+            <DollarSign className="h-4 w-4 text-primary" />
+          </div>
+          <p className="text-xs font-medium text-foreground text-center">Taxas de juros reduzidas</p>
+        </div>
+
+        <div className="flex flex-col items-center gap-2 p-3 bg-muted/30 rounded-lg border border-border/50">
+          <div className="bg-secondary/20 p-2 rounded-full">
+            <Calendar className="h-4 w-4 text-secondary" />
+          </div>
+          <p className="text-xs font-medium text-foreground text-center">Prazos longos e flexíveis</p>
         </div>
       </div>
     </div>
