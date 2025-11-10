@@ -15,6 +15,7 @@ import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import logo from "@/assets/logo-legal-e-viver.webp";
 import heroImage from "@/assets/luciana-hero.png";
+import decorativeLines from "@/assets/decorative-lines.png";
 import { useState } from "react";
 
 interface WelcomeStepProps {
@@ -49,9 +50,27 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
   const isValidSalary = salary >= minSalary;
 
   return (
-    <div className="w-full max-w-2xl md:max-w-5xl lg:max-w-6xl mx-auto space-y-5 animate-fade-in">
+    <div className="relative w-full max-w-2xl md:max-w-5xl lg:max-w-6xl mx-auto space-y-5 animate-fade-in">
+      {/* Decorative Lines - Top */}
+      <div className="absolute -top-20 left-0 w-full h-32 pointer-events-none overflow-hidden opacity-60">
+        <img 
+          src={decorativeLines} 
+          alt="" 
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      {/* Decorative Lines - Bottom */}
+      <div className="absolute -bottom-20 right-0 w-full h-32 pointer-events-none overflow-hidden opacity-60 rotate-180">
+        <img 
+          src={decorativeLines} 
+          alt="" 
+          className="w-full h-full object-cover"
+        />
+      </div>
+
       {/* Logo */}
-      <div className="flex justify-center mb-4">
+      <div className="flex justify-center mb-4 relative z-10">
         <img src={logo} alt="Legal é Viver" className="h-14 md:h-16 w-auto animate-fade-in" />
       </div>
 
