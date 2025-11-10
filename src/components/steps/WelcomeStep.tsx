@@ -7,9 +7,24 @@ import {
   TrendingUp,
   Smartphone,
   UserCheck,
+  FileText,
+  UserCircle,
+  CreditCard,
+  Banknote,
+  Percent,
+  Calendar,
+  BadgeCheck,
+  Zap,
+  DollarSign,
 } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import logo from "@/assets/logo-legal-e-viver.webp";
 import heroImage from "@/assets/luciana-hero.png";
 import sideLine from "@/assets/side-line.png";
@@ -274,6 +289,218 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
               />
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Tópico 1: O que é o consignado para trabalhadores */}
+      <div className="mt-16 space-y-4">
+        <div className="text-center">
+          <h3 className="text-2xl md:text-3xl font-black text-foreground uppercase font-visby">
+            O que é o consignado para trabalhadores?
+          </h3>
+        </div>
+        
+        <div className="p-6 md:p-8 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
+          <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+            O consignado privado é uma solução financeira exclusiva para profissionais com carteira assinada.
+          </p>
+          <p className="text-sm md:text-base text-muted-foreground leading-relaxed mt-4">
+            Os valores são descontados diretamente da folha de pagamento, o que garante condições mais vantajosas, com taxas reduzidas e sem burocracia. Assim, você tem acesso rápido e seguro ao crédito que precisa, com total praticidade.
+          </p>
+        </div>
+      </div>
+
+      {/* Tópico 2: Como funciona */}
+      <div className="mt-16 space-y-6">
+        <div className="text-center">
+          <h3 className="text-2xl md:text-3xl font-black text-foreground uppercase font-visby">
+            Como funciona
+          </h3>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="flex items-start gap-4 p-5 bg-primary/10 rounded-xl border border-primary/30">
+            <div className="bg-primary/20 p-3 rounded-full flex-shrink-0">
+              <Smartphone className="h-6 w-6 text-primary" />
+            </div>
+            <div>
+              <p className="text-sm md:text-base font-medium text-foreground">
+                A solicitação é feita de forma totalmente digital.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-4 p-5 bg-secondary/10 rounded-xl border border-secondary/30">
+            <div className="bg-secondary/20 p-3 rounded-full flex-shrink-0">
+              <UserCircle className="h-6 w-6 text-secondary" />
+            </div>
+            <div>
+              <p className="text-sm md:text-base font-medium text-foreground">
+                A avaliação considera o seu vínculo empregatício.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-4 p-5 bg-primary/10 rounded-xl border border-primary/30">
+            <div className="bg-primary/20 p-3 rounded-full flex-shrink-0">
+              <Banknote className="h-6 w-6 text-primary" />
+            </div>
+            <div>
+              <p className="text-sm md:text-base font-medium text-foreground">
+                Após a aprovação, o valor é liberado diretamente na sua conta.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-4 p-5 bg-secondary/10 rounded-xl border border-secondary/30">
+            <div className="bg-secondary/20 p-3 rounded-full flex-shrink-0">
+              <CreditCard className="h-6 w-6 text-secondary" />
+            </div>
+            <div>
+              <p className="text-sm md:text-base font-medium text-foreground">
+                Os pagamentos são descontados automaticamente do seu contracheque.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Tópico 3: Benefícios */}
+      <div className="mt-16 space-y-6">
+        <div className="text-center space-y-2">
+          <h3 className="text-2xl md:text-3xl font-black text-foreground uppercase font-visby">
+            Benefícios do novo consignado privado
+          </h3>
+          <p className="text-sm text-muted-foreground">Por que escolher essa modalidade?</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="flex flex-col items-center gap-3 p-5 bg-card/50 rounded-xl border border-border/50 hover:border-primary/50 transition-colors">
+            <div className="bg-primary/20 p-3 rounded-full">
+              <Percent className="h-6 w-6 text-primary" />
+            </div>
+            <h4 className="text-base font-bold text-foreground">Juros Baixos</h4>
+            <p className="text-xs text-center text-muted-foreground">
+              Condições muito mais acessíveis que as opções tradicionais de mercado.
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center gap-3 p-5 bg-card/50 rounded-xl border border-border/50 hover:border-secondary/50 transition-colors">
+            <div className="bg-secondary/20 p-3 rounded-full">
+              <Calendar className="h-6 w-6 text-secondary" />
+            </div>
+            <h4 className="text-base font-bold text-foreground">Pagamento Facilitado</h4>
+            <p className="text-xs text-center text-muted-foreground">
+              Parcelas fixas e automáticas, debitadas direto da folha de pagamento.
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center gap-3 p-5 bg-card/50 rounded-xl border border-border/50 hover:border-primary/50 transition-colors">
+            <div className="bg-primary/20 p-3 rounded-full">
+              <BadgeCheck className="h-6 w-6 text-primary" />
+            </div>
+            <h4 className="text-base font-bold text-foreground">Aprovação de Negativados</h4>
+            <p className="text-xs text-center text-muted-foreground">
+              Disponível também para quem possui restrições no nome.
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center gap-3 p-5 bg-card/50 rounded-xl border border-border/50 hover:border-secondary/50 transition-colors">
+            <div className="bg-secondary/20 p-3 rounded-full">
+              <Zap className="h-6 w-6 text-secondary" />
+            </div>
+            <h4 className="text-base font-bold text-foreground">Agilidade no Processo</h4>
+            <p className="text-xs text-center text-muted-foreground">
+              Atendimento 100% online, simples e sem burocracia.
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center gap-3 p-5 bg-card/50 rounded-xl border border-border/50 hover:border-primary/50 transition-colors">
+            <div className="bg-primary/20 p-3 rounded-full">
+              <DollarSign className="h-6 w-6 text-primary" />
+            </div>
+            <h4 className="text-base font-bold text-foreground">Limite Disponível</h4>
+            <p className="text-xs text-center text-muted-foreground">
+              A parcela pode comprometer até 35% da sua renda mensal.
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center gap-3 p-5 bg-card/50 rounded-xl border border-border/50 hover:border-secondary/50 transition-colors">
+            <div className="bg-secondary/20 p-3 rounded-full">
+              <Shield className="h-6 w-6 text-secondary" />
+            </div>
+            <h4 className="text-base font-bold text-foreground">Segurança e Praticidade</h4>
+            <p className="text-xs text-center text-muted-foreground">
+              Todo o processo é digital, protegido e transparente — você acompanha cada etapa com total controle.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Tópico 4: FAQ */}
+      <div className="mt-16 space-y-6">
+        <div className="text-center">
+          <h3 className="text-2xl md:text-3xl font-black text-foreground uppercase font-visby">
+            Perguntas Frequentes
+          </h3>
+        </div>
+
+        <div className="p-6 md:p-8 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            <AccordionItem value="item-1" className="border border-border/50 rounded-lg px-4 bg-background/50">
+              <AccordionTrigger className="text-left text-sm md:text-base font-semibold text-foreground hover:text-primary">
+                Quem pode contratar o consignado privado?
+              </AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground">
+                Trabalhadores com carteira assinada (CLT), maiores de 18 anos, registrados no e-Social e com margem consignável disponível no salário.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-2" className="border border-border/50 rounded-lg px-4 bg-background/50">
+              <AccordionTrigger className="text-left text-sm md:text-base font-semibold text-foreground hover:text-primary">
+                Quais empresas aceitam esse tipo de operação?
+              </AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground">
+                Todas as empresas privadas que utilizam o e-Social e autorizam o desconto direto na folha de pagamento.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-3" className="border border-border/50 rounded-lg px-4 bg-background/50">
+              <AccordionTrigger className="text-left text-sm md:text-base font-semibold text-foreground hover:text-primary">
+                Como funciona o desconto em folha?
+              </AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground">
+                Até 35% do salário pode ser reservado para a operação. O valor é retido automaticamente pelo RH da empresa no momento do pagamento.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-4" className="border border-border/50 rounded-lg px-4 bg-background/50">
+              <AccordionTrigger className="text-left text-sm md:text-base font-semibold text-foreground hover:text-primary">
+                Em quanto tempo o valor é liberado?
+              </AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground">
+                Após a aprovação, o depósito é realizado em poucas horas — normalmente em menos de 2 horas úteis.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-5" className="border border-border/50 rounded-lg px-4 bg-background/50">
+              <AccordionTrigger className="text-left text-sm md:text-base font-semibold text-foreground hover:text-primary">
+                Quais documentos são necessários?
+              </AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground">
+                Documento oficial com foto, como RG ou CNH.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-6" className="border border-border/50 rounded-lg px-4 bg-background/50">
+              <AccordionTrigger className="text-left text-sm md:text-base font-semibold text-foreground hover:text-primary">
+                Como são realizados os pagamentos das parcelas?
+              </AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground">
+                A própria empresa realiza o repasse, descontando o valor diretamente do salário do colaborador e enviando via Guia do FGTS.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </div>
 
