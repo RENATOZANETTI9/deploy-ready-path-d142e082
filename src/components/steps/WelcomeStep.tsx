@@ -96,8 +96,8 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             <img src={logo} alt="Legal é Viver" className="h-12 md:h-14 w-auto animate-fade-in" />
           </div>
 
-          {/* Navigation Menu - Right */}
-          <nav className="flex gap-2 md:gap-3 p-2 bg-card/60 backdrop-blur-md rounded-full border border-border/50 shadow-lg">
+          {/* Navigation Menu - Right - Hidden on mobile */}
+          <nav className="hidden md:flex gap-2 md:gap-3 p-2 bg-card/60 backdrop-blur-md rounded-full border border-border/50 shadow-lg">
             <button
               onClick={() => scrollToSection('sobre')}
               className="px-4 md:px-6 py-2 text-xs md:text-sm font-bold text-foreground hover:text-primary hover:bg-primary/10 rounded-full transition-all uppercase font-visby"
@@ -209,12 +209,12 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             </p>
           </div>
 
-          {/* Hero Image - Mobile */}
-          <div className="flex justify-center">
+          {/* Hero Image - Mobile - Full width */}
+          <div className="flex justify-center -mx-4">
             <img
               src={heroImage}
               alt="Crédito Consignado"
-              className="w-full max-w-[240px] rounded-2xl shadow-2xl object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
+              className="w-full shadow-2xl object-cover"
             />
           </div>
 
