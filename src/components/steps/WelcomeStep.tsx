@@ -56,7 +56,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         <img 
           src={sideLine} 
           alt="" 
-          className="h-full w-full object-cover"
+          className="h-full w-full object-fill scale-y-110"
         />
       </div>
 
@@ -65,7 +65,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         <img 
           src={sideLine} 
           alt="" 
-          className="h-full w-full object-cover"
+          className="h-full w-full object-fill scale-y-110"
         />
       </div>
 
