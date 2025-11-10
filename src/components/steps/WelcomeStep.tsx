@@ -15,7 +15,6 @@ import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import logo from "@/assets/logo-legal-e-viver.webp";
 import heroImage from "@/assets/luciana-hero.png";
-import decorativeLines from "@/assets/decorative-lines.png";
 import { useState } from "react";
 
 interface WelcomeStepProps {
@@ -50,30 +49,11 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
   const isValidSalary = salary >= minSalary;
 
   return (
-    <>
-      {/* Decorative Lines Background - Top */}
-      <div className="fixed top-0 left-0 w-screen h-48 pointer-events-none overflow-hidden opacity-25 z-0">
-        <img 
-          src={decorativeLines} 
-          alt="" 
-          className="w-full h-full object-cover"
-        />
+    <div className="w-full max-w-2xl md:max-w-5xl lg:max-w-6xl mx-auto space-y-5 animate-fade-in">
+      {/* Logo */}
+      <div className="flex justify-center mb-4">
+        <img src={logo} alt="Legal é Viver" className="h-14 md:h-16 w-auto animate-fade-in" />
       </div>
-
-      {/* Decorative Lines Background - Bottom */}
-      <div className="fixed bottom-0 left-0 w-screen h-48 pointer-events-none overflow-hidden opacity-25 z-0 rotate-180">
-        <img 
-          src={decorativeLines} 
-          alt="" 
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      <div className="relative w-full max-w-2xl md:max-w-5xl lg:max-w-6xl mx-auto space-y-5 animate-fade-in z-10">
-        {/* Logo */}
-        <div className="flex justify-center mb-4">
-          <img src={logo} alt="Legal é Viver" className="h-14 md:h-16 w-auto animate-fade-in" />
-        </div>
 
       {/* Hero Section - Responsive Layout */}
       <div className="flex flex-col space-y-4 md:space-y-0">
@@ -303,7 +283,6 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           <p className="text-xs font-medium text-foreground text-center">Prazos longos e flexíveis</p>
         </div>
       </div>
-      </div>
-    </>
+    </div>
   );
 };
