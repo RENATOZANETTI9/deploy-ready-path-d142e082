@@ -29,6 +29,7 @@ import logo from "@/assets/logo-legal-e-viver.webp";
 import heroImage from "@/assets/luciana-hero.png";
 import sideLine from "@/assets/side-line.png";
 import { useState } from "react";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 interface WelcomeStepProps {
   onStart: () => void;
@@ -38,6 +39,12 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
   const [salary, setSalary] = useState(1518);
   const minSalary = 1518;
   const maxSalary = 20000;
+
+  // Scroll animations
+  const aboutSection = useScrollAnimation();
+  const howItWorksSection = useScrollAnimation();
+  const benefitsSection = useScrollAnimation();
+  const faqSection = useScrollAnimation();
 
   // Cálculo da parcela máxima (35% do salário)
   const maxInstallment = salary * 0.35;
@@ -167,7 +174,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         </div>
 
         {/* Mobile Layout */}
-        <div className="md:hidden space-y-2">
+        <div className="md:hidden space-y-1">
           {/* Hero Title and Text */}
           <div className="text-center space-y-1.5">
             <h1 className="text-xl sm:text-2xl font-black text-foreground uppercase font-visby leading-tight">
@@ -185,7 +192,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           </div>
 
           {/* Hero Image - Mobile - Full width */}
-          <div className="flex justify-center -mx-4 mt-2">
+          <div className="flex justify-center -mx-4">
             <img
               src={heroImage}
               alt="Crédito Consignado"
@@ -300,14 +307,18 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       </div>
 
       {/* Tópico 1: O que é o consignado para trabalhadores */}
-      <div id="sobre" className="mt-16 space-y-4 scroll-mt-20">
-        <div className="text-center">
+      <div 
+        id="sobre" 
+        className="mt-16 space-y-4 scroll-mt-20"
+        ref={aboutSection.elementRef}
+      >
+        <div className={`text-center transition-all duration-700 ${aboutSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h3 className="text-2xl md:text-3xl font-black text-foreground uppercase font-visby">
             O que é o consignado para trabalhadores?
           </h3>
         </div>
         
-        <div className="p-6 md:p-8 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
+        <div className={`p-6 md:p-8 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm transition-all duration-700 delay-150 ${aboutSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
             O consignado privado é uma solução financeira exclusiva para profissionais com carteira assinada.
           </p>
@@ -318,14 +329,17 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       </div>
 
       {/* Tópico 2: Como funciona */}
-      <div className="mt-16 space-y-6">
-        <div className="text-center">
+      <div 
+        className="mt-16 space-y-6"
+        ref={howItWorksSection.elementRef}
+      >
+        <div className={`text-center transition-all duration-700 ${howItWorksSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h3 className="text-2xl md:text-3xl font-black text-foreground uppercase font-visby">
             Como funciona
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 transition-all duration-700 delay-150 ${howItWorksSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="flex items-start gap-4 p-5 bg-primary/10 rounded-xl border border-primary/30">
             <div className="bg-primary/50 p-3 rounded-full flex-shrink-0">
               <Smartphone className="h-6 w-6 text-primary-foreground" />
@@ -373,15 +387,19 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       </div>
 
       {/* Tópico 3: Benefícios */}
-      <div id="vantagens" className="mt-16 space-y-6 scroll-mt-20">
-        <div className="text-center space-y-2">
+      <div 
+        id="vantagens" 
+        className="mt-16 space-y-6 scroll-mt-20"
+        ref={benefitsSection.elementRef}
+      >
+        <div className={`text-center space-y-2 transition-all duration-700 ${benefitsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h3 className="text-2xl md:text-3xl font-black text-foreground uppercase font-visby">
             Benefícios do novo consignado privado
           </h3>
           <p className="text-sm text-muted-foreground">Por que escolher essa modalidade?</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 transition-all duration-700 delay-150 ${benefitsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="flex flex-col items-center gap-3 p-5 bg-card/50 rounded-xl border border-border/50 hover:border-primary/50 transition-colors">
             <div className="bg-primary/60 p-3 rounded-full">
               <Percent className="h-6 w-6 text-primary-foreground" />
@@ -445,14 +463,18 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       </div>
 
       {/* Tópico 4: FAQ */}
-      <div id="faq" className="mt-16 space-y-6 scroll-mt-20">
-        <div className="text-center">
+      <div 
+        id="faq" 
+        className="mt-16 space-y-6 scroll-mt-20"
+        ref={faqSection.elementRef}
+      >
+        <div className={`text-center transition-all duration-700 ${faqSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h3 className="text-2xl md:text-3xl font-black text-foreground uppercase font-visby">
             Perguntas Frequentes
           </h3>
         </div>
 
-        <div className="p-6 md:p-8 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
+        <div className={`p-6 md:p-8 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm transition-all duration-700 delay-150 ${faqSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <Accordion type="single" collapsible className="w-full space-y-4">
             <AccordionItem value="item-1" className="border border-border/50 rounded-lg px-4 bg-background/50">
               <AccordionTrigger className="text-left text-sm md:text-base font-semibold text-foreground hover:text-primary">
