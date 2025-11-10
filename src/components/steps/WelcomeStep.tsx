@@ -5,9 +5,6 @@ import {
   CheckCircle2,
   Clock,
   TrendingUp,
-  Zap,
-  DollarSign,
-  Calendar,
   Smartphone,
   UserCheck,
 } from "lucide-react";
@@ -280,29 +277,6 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         </div>
       </div>
 
-      {/* Trust Indicators - 3 Topics below testimonials */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-8">
-        <div className="flex flex-col items-center gap-2 p-3 bg-muted/30 rounded-lg border border-border/50">
-          <div className="bg-secondary/20 p-2 rounded-full">
-            <Zap className="h-4 w-4 text-secondary" />
-          </div>
-          <p className="text-xs font-medium text-foreground text-center">Contrate e receba em minutos</p>
-        </div>
-
-        <div className="flex flex-col items-center gap-2 p-3 bg-muted/30 rounded-lg border border-border/50">
-          <div className="bg-primary/20 p-2 rounded-full">
-            <DollarSign className="h-4 w-4 text-primary" />
-          </div>
-          <p className="text-xs font-medium text-foreground text-center">Taxas de juros reduzidas</p>
-        </div>
-
-        <div className="flex flex-col items-center gap-2 p-3 bg-muted/30 rounded-lg border border-border/50">
-          <div className="bg-secondary/20 p-2 rounded-full">
-            <Calendar className="h-4 w-4 text-secondary" />
-          </div>
-          <p className="text-xs font-medium text-foreground text-center">Prazos longos e flexíveis</p>
-        </div>
-      </div>
       </div>
     </>
   );
