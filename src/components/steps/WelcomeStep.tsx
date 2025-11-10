@@ -15,6 +15,7 @@ import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import logo from "@/assets/logo-legal-e-viver.webp";
 import heroImage from "@/assets/luciana-hero.png";
+import sideLine from "@/assets/side-line.png";
 import { useState } from "react";
 
 interface WelcomeStepProps {
@@ -49,11 +50,30 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
   const isValidSalary = salary >= minSalary;
 
   return (
-    <div className="w-full max-w-2xl md:max-w-5xl lg:max-w-6xl mx-auto space-y-5 animate-fade-in">
-      {/* Logo */}
-      <div className="flex justify-center mb-4">
-        <img src={logo} alt="Legal é Viver" className="h-14 md:h-16 w-auto animate-fade-in" />
+    <>
+      {/* Decorative Line - Left Side */}
+      <div className="fixed left-0 top-0 h-screen w-8 md:w-16 pointer-events-none overflow-hidden opacity-30 z-0">
+        <img 
+          src={sideLine} 
+          alt="" 
+          className="h-full w-full object-cover"
+        />
       </div>
+
+      {/* Decorative Line - Right Side (mirrored) */}
+      <div className="fixed right-0 top-0 h-screen w-8 md:w-16 pointer-events-none overflow-hidden opacity-30 z-0 scale-x-[-1]">
+        <img 
+          src={sideLine} 
+          alt="" 
+          className="h-full w-full object-cover"
+        />
+      </div>
+
+      <div className="relative w-full max-w-2xl md:max-w-5xl lg:max-w-6xl mx-auto space-y-5 animate-fade-in z-10">
+        {/* Logo */}
+        <div className="flex justify-center mb-4">
+          <img src={logo} alt="Legal é Viver" className="h-14 md:h-16 w-auto animate-fade-in" />
+        </div>
 
       {/* Hero Section - Responsive Layout */}
       <div className="flex flex-col space-y-4 md:space-y-0">
@@ -283,6 +303,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           <p className="text-xs font-medium text-foreground text-center">Prazos longos e flexíveis</p>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
