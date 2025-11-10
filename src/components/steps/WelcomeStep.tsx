@@ -308,15 +308,12 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
 
       {/* CTA after testimonials */}
       <section className="text-center py-12 px-4 sm:px-6">
-        <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-6">
-          Faça igual elas, simule agora!
-        </h3>
         <Button
           onClick={onStart}
           disabled={!isValidSalary}
           className="px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Simule Agora
+          Faça igual elas, simule agora!
         </Button>
       </section>
 
@@ -549,15 +546,12 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
 
       {/* CTA after FAQ */}
       <section className="text-center py-12 px-4 sm:px-6">
-        <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-          Simule agora! É rápido e gratuito
-        </h3>
         <Button
           onClick={onStart}
           disabled={!isValidSalary}
           className="px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Simule Agora
+          Simule agora! É rápido e gratuito
         </Button>
       </section>
 
