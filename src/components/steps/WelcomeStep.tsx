@@ -248,7 +248,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           onClick={onStart}
           disabled={!isValidSalary}
           size="lg"
-          className="w-full md:w-auto px-12 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full md:w-auto md:max-w-md px-12 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight"
         >
           Simule Agora
         </Button>
@@ -311,7 +311,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         <Button
           onClick={onStart}
           disabled={!isValidSalary}
-          className="px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full md:w-auto md:max-w-md px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight"
         >
           Faça igual elas, simule agora!
         </Button>
@@ -549,7 +549,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         <Button
           onClick={onStart}
           disabled={!isValidSalary}
-          className="px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full md:w-auto md:max-w-md px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight"
         >
           Simule agora! É rápido e gratuito
         </Button>
