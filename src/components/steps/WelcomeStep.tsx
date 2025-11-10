@@ -174,7 +174,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         </div>
 
         {/* Mobile Layout */}
-        <div className="md:hidden space-y-1">
+        <div className="md:hidden space-y-0 -mt-12">
           {/* Hero Title and Text */}
           <div className="text-center space-y-1.5">
             <h1 className="text-xl sm:text-2xl font-black text-foreground uppercase font-visby leading-tight">
