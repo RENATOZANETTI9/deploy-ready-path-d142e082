@@ -52,7 +52,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
   return (
     <>
       {/* Decorative Lines Background - Top */}
-      <div className="fixed top-0 left-0 w-screen h-40 pointer-events-none overflow-hidden opacity-40 z-0">
+      <div className="fixed top-0 left-0 w-screen h-48 pointer-events-none overflow-hidden opacity-25 z-0">
         <img 
           src={decorativeLines} 
           alt="" 
@@ -61,7 +61,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       </div>
 
       {/* Decorative Lines Background - Bottom */}
-      <div className="fixed bottom-0 left-0 w-screen h-40 pointer-events-none overflow-hidden opacity-40 z-0 rotate-180">
+      <div className="fixed bottom-0 left-0 w-screen h-48 pointer-events-none overflow-hidden opacity-25 z-0 rotate-180">
         <img 
           src={decorativeLines} 
           alt="" 
