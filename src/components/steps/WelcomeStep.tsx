@@ -397,6 +397,17 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         </div>
       </div>
 
+      {/* CTA after Como Funciona */}
+      <section className="text-center py-12 px-4 sm:px-6">
+        <Button
+          onClick={onStart}
+          disabled={!isValidSalary}
+          className="w-full md:w-auto md:max-w-md px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight"
+        >
+          Simule agora! É rápido e gratuito
+        </Button>
+      </section>
+
       {/* Tópico 3: Benefícios */}
       <div 
         id="vantagens" 
@@ -472,6 +483,17 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           </div>
         </div>
       </div>
+
+      {/* CTA after Benefícios */}
+      <section className="text-center py-12 px-4 sm:px-6">
+        <Button
+          onClick={onStart}
+          disabled={!isValidSalary}
+          className="w-full md:w-auto md:max-w-md px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight"
+        >
+          Simule agora! É rápido e gratuito
+        </Button>
+      </section>
 
       {/* Tópico 4: FAQ */}
       <div 
