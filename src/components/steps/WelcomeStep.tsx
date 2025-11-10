@@ -89,14 +89,15 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       </div>
 
       <div className="relative w-full max-w-2xl md:max-w-5xl lg:max-w-6xl mx-auto space-y-5 animate-fade-in z-10">
-        {/* Logo */}
-        <div className="flex justify-center mb-4">
-          <img src={logo} alt="Legal é Viver" className="h-14 md:h-16 w-auto animate-fade-in" />
-        </div>
+        {/* Header with Logo and Menu */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
+          {/* Logo - Left */}
+          <div className="flex-shrink-0">
+            <img src={logo} alt="Legal é Viver" className="h-12 md:h-14 w-auto animate-fade-in" />
+          </div>
 
-        {/* Navigation Menu */}
-        <div className="flex justify-center mb-6">
-          <nav className="flex gap-2 md:gap-4 p-2 bg-card/60 backdrop-blur-md rounded-full border border-border/50 shadow-lg">
+          {/* Navigation Menu - Right */}
+          <nav className="flex gap-2 md:gap-3 p-2 bg-card/60 backdrop-blur-md rounded-full border border-border/50 shadow-lg">
             <button
               onClick={() => scrollToSection('sobre')}
               className="px-4 md:px-6 py-2 text-xs md:text-sm font-bold text-foreground hover:text-primary hover:bg-primary/10 rounded-full transition-all uppercase font-visby"
