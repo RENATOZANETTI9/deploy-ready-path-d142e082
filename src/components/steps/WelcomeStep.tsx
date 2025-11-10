@@ -250,7 +250,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           size="lg"
           className="w-full md:w-auto px-12 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Continuar
+          Simule Agora
         </Button>
         <p className="text-xs text-muted-foreground">Contratação sujeita a análise. Os valores aqui presentes podem variar no leilão conforme as respostas dos bancos.</p>
       </div>
@@ -305,6 +305,20 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           </div>
         </div>
       </div>
+
+      {/* CTA after testimonials */}
+      <section className="text-center py-12 px-4 sm:px-6">
+        <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-6">
+          Faça igual elas, simule agora!
+        </h3>
+        <Button
+          onClick={onStart}
+          disabled={!isValidSalary}
+          className="px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Simule Agora
+        </Button>
+      </section>
 
       {/* Tópico 1: O que é o consignado para trabalhadores */}
       <div 
@@ -532,6 +546,20 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           </Accordion>
         </div>
       </div>
+
+      {/* CTA after FAQ */}
+      <section className="text-center py-12 px-4 sm:px-6">
+        <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
+          Simule agora! É rápido e gratuito
+        </h3>
+        <Button
+          onClick={onStart}
+          disabled={!isValidSalary}
+          className="px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Simule Agora
+        </Button>
+      </section>
 
       </div>
     </>
