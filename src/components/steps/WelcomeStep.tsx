@@ -122,7 +122,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             <img
               src={heroImage}
               alt="Crédito Consignado"
-              className="w-[300px] lg:w-[360px] rounded-2xl shadow-2xl object-cover"
+              className="w-[300px] lg:w-[360px] rounded-2xl shadow-2xl object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
             />
           </div>
         </div>
@@ -150,7 +150,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             <img
               src={heroImage}
               alt="Crédito Consignado"
-              className="w-full max-w-[240px] rounded-2xl shadow-2xl object-cover"
+              className="w-full max-w-[240px] rounded-2xl shadow-2xl object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
             />
           </div>
 
