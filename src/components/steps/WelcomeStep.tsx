@@ -61,6 +61,13 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
 
   const isValidSalary = salary >= minSalary;
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <>
       {/* Decorative Line - Left Side */}
@@ -85,6 +92,30 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         {/* Logo */}
         <div className="flex justify-center mb-4">
           <img src={logo} alt="Legal é Viver" className="h-14 md:h-16 w-auto animate-fade-in" />
+        </div>
+
+        {/* Navigation Menu */}
+        <div className="flex justify-center mb-6">
+          <nav className="flex gap-2 md:gap-4 p-2 bg-card/60 backdrop-blur-md rounded-full border border-border/50 shadow-lg">
+            <button
+              onClick={() => scrollToSection('sobre')}
+              className="px-4 md:px-6 py-2 text-xs md:text-sm font-bold text-foreground hover:text-primary hover:bg-primary/10 rounded-full transition-all uppercase font-visby"
+            >
+              Sobre
+            </button>
+            <button
+              onClick={() => scrollToSection('vantagens')}
+              className="px-4 md:px-6 py-2 text-xs md:text-sm font-bold text-foreground hover:text-secondary hover:bg-secondary/10 rounded-full transition-all uppercase font-visby"
+            >
+              Vantagens
+            </button>
+            <button
+              onClick={() => scrollToSection('faq')}
+              className="px-4 md:px-6 py-2 text-xs md:text-sm font-bold text-foreground hover:text-primary hover:bg-primary/10 rounded-full transition-all uppercase font-visby"
+            >
+              FAQ
+            </button>
+          </nav>
         </div>
 
       {/* Hero Section - Responsive Layout */}
@@ -293,7 +324,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       </div>
 
       {/* Tópico 1: O que é o consignado para trabalhadores */}
-      <div className="mt-16 space-y-4">
+      <div id="sobre" className="mt-16 space-y-4 scroll-mt-20">
         <div className="text-center">
           <h3 className="text-2xl md:text-3xl font-black text-foreground uppercase font-visby">
             O que é o consignado para trabalhadores?
@@ -320,8 +351,8 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex items-start gap-4 p-5 bg-primary/10 rounded-xl border border-primary/30">
-            <div className="bg-primary/20 p-3 rounded-full flex-shrink-0">
-              <Smartphone className="h-6 w-6 text-primary" />
+            <div className="bg-primary/50 p-3 rounded-full flex-shrink-0">
+              <Smartphone className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
               <p className="text-sm md:text-base font-medium text-foreground">
@@ -331,8 +362,8 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           </div>
 
           <div className="flex items-start gap-4 p-5 bg-secondary/10 rounded-xl border border-secondary/30">
-            <div className="bg-secondary/20 p-3 rounded-full flex-shrink-0">
-              <UserCircle className="h-6 w-6 text-secondary" />
+            <div className="bg-secondary/50 p-3 rounded-full flex-shrink-0">
+              <UserCircle className="h-6 w-6 text-secondary-foreground" />
             </div>
             <div>
               <p className="text-sm md:text-base font-medium text-foreground">
@@ -342,8 +373,8 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           </div>
 
           <div className="flex items-start gap-4 p-5 bg-primary/10 rounded-xl border border-primary/30">
-            <div className="bg-primary/20 p-3 rounded-full flex-shrink-0">
-              <Banknote className="h-6 w-6 text-primary" />
+            <div className="bg-primary/50 p-3 rounded-full flex-shrink-0">
+              <Banknote className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
               <p className="text-sm md:text-base font-medium text-foreground">
@@ -353,8 +384,8 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           </div>
 
           <div className="flex items-start gap-4 p-5 bg-secondary/10 rounded-xl border border-secondary/30">
-            <div className="bg-secondary/20 p-3 rounded-full flex-shrink-0">
-              <CreditCard className="h-6 w-6 text-secondary" />
+            <div className="bg-secondary/50 p-3 rounded-full flex-shrink-0">
+              <CreditCard className="h-6 w-6 text-secondary-foreground" />
             </div>
             <div>
               <p className="text-sm md:text-base font-medium text-foreground">
@@ -366,7 +397,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       </div>
 
       {/* Tópico 3: Benefícios */}
-      <div className="mt-16 space-y-6">
+      <div id="vantagens" className="mt-16 space-y-6 scroll-mt-20">
         <div className="text-center space-y-2">
           <h3 className="text-2xl md:text-3xl font-black text-foreground uppercase font-visby">
             Benefícios do novo consignado privado
@@ -376,8 +407,8 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="flex flex-col items-center gap-3 p-5 bg-card/50 rounded-xl border border-border/50 hover:border-primary/50 transition-colors">
-            <div className="bg-primary/20 p-3 rounded-full">
-              <Percent className="h-6 w-6 text-primary" />
+            <div className="bg-primary/60 p-3 rounded-full">
+              <Percent className="h-6 w-6 text-primary-foreground" />
             </div>
             <h4 className="text-base font-bold text-foreground">Juros Baixos</h4>
             <p className="text-xs text-center text-muted-foreground">
@@ -386,8 +417,8 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           </div>
 
           <div className="flex flex-col items-center gap-3 p-5 bg-card/50 rounded-xl border border-border/50 hover:border-secondary/50 transition-colors">
-            <div className="bg-secondary/20 p-3 rounded-full">
-              <Calendar className="h-6 w-6 text-secondary" />
+            <div className="bg-secondary/60 p-3 rounded-full">
+              <Calendar className="h-6 w-6 text-secondary-foreground" />
             </div>
             <h4 className="text-base font-bold text-foreground">Pagamento Facilitado</h4>
             <p className="text-xs text-center text-muted-foreground">
@@ -396,8 +427,8 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           </div>
 
           <div className="flex flex-col items-center gap-3 p-5 bg-card/50 rounded-xl border border-border/50 hover:border-primary/50 transition-colors">
-            <div className="bg-primary/20 p-3 rounded-full">
-              <BadgeCheck className="h-6 w-6 text-primary" />
+            <div className="bg-primary/60 p-3 rounded-full">
+              <BadgeCheck className="h-6 w-6 text-primary-foreground" />
             </div>
             <h4 className="text-base font-bold text-foreground">Aprovação de Negativados</h4>
             <p className="text-xs text-center text-muted-foreground">
@@ -406,8 +437,8 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           </div>
 
           <div className="flex flex-col items-center gap-3 p-5 bg-card/50 rounded-xl border border-border/50 hover:border-secondary/50 transition-colors">
-            <div className="bg-secondary/20 p-3 rounded-full">
-              <Zap className="h-6 w-6 text-secondary" />
+            <div className="bg-secondary/60 p-3 rounded-full">
+              <Zap className="h-6 w-6 text-secondary-foreground" />
             </div>
             <h4 className="text-base font-bold text-foreground">Agilidade no Processo</h4>
             <p className="text-xs text-center text-muted-foreground">
@@ -416,8 +447,8 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           </div>
 
           <div className="flex flex-col items-center gap-3 p-5 bg-card/50 rounded-xl border border-border/50 hover:border-primary/50 transition-colors">
-            <div className="bg-primary/20 p-3 rounded-full">
-              <DollarSign className="h-6 w-6 text-primary" />
+            <div className="bg-primary/60 p-3 rounded-full">
+              <DollarSign className="h-6 w-6 text-primary-foreground" />
             </div>
             <h4 className="text-base font-bold text-foreground">Limite Disponível</h4>
             <p className="text-xs text-center text-muted-foreground">
@@ -426,8 +457,8 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           </div>
 
           <div className="flex flex-col items-center gap-3 p-5 bg-card/50 rounded-xl border border-border/50 hover:border-secondary/50 transition-colors">
-            <div className="bg-secondary/20 p-3 rounded-full">
-              <Shield className="h-6 w-6 text-secondary" />
+            <div className="bg-secondary/60 p-3 rounded-full">
+              <Shield className="h-6 w-6 text-secondary-foreground" />
             </div>
             <h4 className="text-base font-bold text-foreground">Segurança e Praticidade</h4>
             <p className="text-xs text-center text-muted-foreground">
@@ -438,7 +469,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       </div>
 
       {/* Tópico 4: FAQ */}
-      <div className="mt-16 space-y-6">
+      <div id="faq" className="mt-16 space-y-6 scroll-mt-20">
         <div className="text-center">
           <h3 className="text-2xl md:text-3xl font-black text-foreground uppercase font-visby">
             Perguntas Frequentes
