@@ -175,11 +175,15 @@ export const ProposalsStep = ({ onFinish }: ProposalsStepProps) => {
               </div>
             </div>
 
-            <div className="flex items-start gap-2">
-              <DollarSign className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-              <div>
-                <p className="text-xs text-muted-foreground">Valor Líquido Liberado</p>
-                <p className="font-semibold text-sm">R$ {proposal.netAmount}</p>
+            <div className="col-span-2 bg-primary/5 border border-primary/20 rounded-lg p-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <DollarSign className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground mb-0.5">Valor Líquido Liberado</p>
+                  <p className="font-bold text-2xl text-primary">R$ {proposal.netAmount}</p>
+                </div>
               </div>
             </div>
 
@@ -239,13 +243,6 @@ export const ProposalsStep = ({ onFinish }: ProposalsStepProps) => {
               </div>
             </div>
 
-            <div className="flex items-start gap-2 col-span-2">
-              <TrendingDown className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-              <div>
-                <p className="text-xs text-muted-foreground">Valor Total</p>
-                <p className="font-semibold text-sm">R$ {proposal.total}</p>
-              </div>
-            </div>
           </div>
 
           <Button 
