@@ -38,7 +38,7 @@ export const ProposalsStep = ({ onFinish }: ProposalsStepProps) => {
   // Propostas de exemplo (em produção viriam do backend)
   const proposals: Proposal[] = [
     {
-      bank: "Nubank",
+      bank: "UY3",
       amount: "8.500,00",
       installments: "18",
       installmentValue: "520,00",
