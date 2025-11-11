@@ -28,18 +28,22 @@ export interface Proposal {
   cetAnnual: string;
 }
 
-// Remove "R$ " e retorna apenas números com vírgula
+// Remove "R$ " se existir e retorna apenas números com vírgula
 const cleanCurrency = (value: string): string => {
-  return value.replace('R$ ', '').trim();
+  if (!value) return "0,00";
+  return value.replace('R$ ', '').replace('R$', '').trim();
 };
 
-// Remove "%" e retorna apenas números
+// Remove "%" se existir e retorna apenas números
 const cleanPercentage = (value: string): string => {
+  if (!value) return "0";
   return value.replace('%', '').trim();
 };
 
 export const parseWebhookProposals = (webhookData: WebhookProposal[]): Proposal[] => {
-  return webhookData.map((item) => ({
+  console.log("🔍 Parseando propostas do webhook:", webhookData);
+  
+  const parsed = webhookData.map((item) => ({
     bank: "UY3",
     amount: cleanCurrency(item.valor_financiado),
     installments: item.prazo.toString(),
@@ -54,4 +58,7 @@ export const parseWebhookProposals = (webhookData: WebhookProposal[]): Proposal[
     cetMonthly: cleanPercentage(item.cet_mensal),
     cetAnnual: cleanPercentage(item.cet_anual),
   }));
+  
+  console.log("✅ Propostas parseadas:", parsed);
+  return parsed;
 };

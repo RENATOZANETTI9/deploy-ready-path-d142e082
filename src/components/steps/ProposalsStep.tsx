@@ -22,7 +22,9 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals }: ProposalsSt
   const { toast } = useToast();
 
   // Parsear propostas do webhook
+  console.log("📥 ProposalsStep recebeu rawProposals:", rawProposals);
   const proposals: Proposal[] = parseWebhookProposals(rawProposals);
+  console.log("📊 Propostas após parsing:", proposals);
 
   // Validação: se não houver propostas
   if (!proposals || proposals.length === 0) {
