@@ -46,11 +46,11 @@ export const parseWebhookProposals = (webhookData: WebhookProposal[]): Proposal[
   const parsed = webhookData.map((item) => ({
     bank: "UY3",
     amount: cleanCurrency(item.valor_financiado),
-    installments: item.prazo.toString(),
+    installments: item.prazo ? item.prazo.toString() : "0",
     installmentValue: cleanCurrency(item.valor_parcela),
     rate: cleanPercentage(item.taxa_juros_mensal),
     total: "0",
-    contractUrl: item.contract_url,
+    contractUrl: item.contract_url || "Sem link de contrato",
     iof: cleanCurrency(item.iof),
     netAmount: cleanCurrency(item.valor_liquido_liberado),
     firstDueDate: item.data_primeiro_vencimento || "A definir",
