@@ -7,7 +7,7 @@ import { Wallet, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface PixStepProps {
-  onNext: (pixType: string, pixKey: string) => void;
+  onNext: (pixType: string, pixKey: string, proposals: any[]) => void;
   cpf: string;
   onBack: () => void;
 }
@@ -53,7 +53,7 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
       
       console.log("Dados do webhook:", webhookData);
       
-      // Envia webhook com tipo e chave PIX
+      // Envia webhook e aguarda resposta com propostas
       const response = await fetch("https://webhook.vpslegaleviver.shop/webhook/proposta_clt", {
         method: "POST",
         headers: {
@@ -71,14 +71,20 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
       }
 
       const responseData = await response.json();
-      console.log("Webhook de chave PIX enviado com sucesso:", responseData);
+      console.log("Resposta do webhook com propostas:", responseData);
       
-      onNext(pixType, pixKey);
+      // Validar se retornou propostas
+      if (!responseData || !Array.isArray(responseData) || responseData.length === 0) {
+        throw new Error("Nenhuma proposta encontrada");
+      }
+      
+      // Passar propostas para o próximo step
+      onNext(pixType, pixKey, responseData);
     } catch (error) {
-      console.error("Erro ao enviar webhook:", error);
+      console.error("Erro ao processar:", error);
       toast({
-        title: "Erro ao processar dados",
-        description: "Por favor, tente novamente",
+        title: "Erro ao buscar propostas",
+        description: "Por favor, tente novamente ou entre em contato",
         variant: "destructive",
       });
     } finally {

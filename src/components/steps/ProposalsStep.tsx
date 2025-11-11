@@ -7,82 +7,40 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ExternalLink, TrendingDown, Calendar, DollarSign, Percent, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-
-interface Proposal {
-  bank: string;
-  amount: string;
-  installments: string;
-  installmentValue: string;
-  rate: string;
-  total: string;
-  contractUrl: string;
-  iof: string;
-  netAmount: string;
-  firstDueDate: string;
-  annualRate: string;
-  cetMonthly: string;
-  cetAnnual: string;
-}
+import { parseWebhookProposals, type Proposal } from "@/lib/proposalParser";
 
 interface ProposalsStepProps {
   onFinish: () => void;
+  proposals: any[];
 }
 
-export const ProposalsStep = ({ onFinish }: ProposalsStepProps) => {
+export const ProposalsStep = ({ onFinish, proposals: rawProposals }: ProposalsStepProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedProposal, setSelectedProposal] = useState<Proposal | null>(null);
   const [phone, setPhone] = useState("");
   const [showContractLink, setShowContractLink] = useState(false);
   const { toast } = useToast();
 
-  // Propostas de exemplo (em produção viriam do backend)
-  const proposals: Proposal[] = [
-    {
-      bank: "UY3",
-      amount: "8.500,00",
-      installments: "18",
-      installmentValue: "520,00",
-      rate: "1,99",
-      total: "9.360,00",
-      contractUrl: "https://nubank.com.br/emprestimo",
-      iof: "255,00",
-      netAmount: "8.245,00",
-      firstDueDate: "15/12/2025",
-      annualRate: "26,51",
-      cetMonthly: "2,15",
-      cetAnnual: "29,12",
-    },
-    {
-      bank: "Banco Inter",
-      amount: "8.500,00",
-      installments: "18",
-      installmentValue: "545,00",
-      rate: "2,25",
-      total: "9.810,00",
-      contractUrl: "https://inter.co/emprestimo",
-      iof: "255,00",
-      netAmount: "8.245,00",
-      firstDueDate: "15/12/2025",
-      annualRate: "30,42",
-      cetMonthly: "2,42",
-      cetAnnual: "33,28",
-    },
-    {
-      bank: "Banco PAN",
-      amount: "8.500,00",
-      installments: "18",
-      installmentValue: "565,00",
-      rate: "2,49",
-      total: "10.170,00",
-      contractUrl: "https://bancopan.com.br/emprestimo",
-      iof: "255,00",
-      netAmount: "8.245,00",
-      firstDueDate: "15/12/2025",
-      annualRate: "34,18",
-      cetMonthly: "2,68",
-      cetAnnual: "37,05",
-    },
-  ];
+  // Parsear propostas do webhook
+  const proposals: Proposal[] = parseWebhookProposals(rawProposals);
+
+  // Validação: se não houver propostas
+  if (!proposals || proposals.length === 0) {
+    return (
+      <div className="w-full max-w-md mx-auto text-center space-y-4">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-destructive/10 mb-4">
+          <span className="text-3xl">⚠️</span>
+        </div>
+        <h2 className="text-2xl font-bold">Nenhuma proposta encontrada</h2>
+        <p className="text-muted-foreground">
+          Não foi possível encontrar propostas no momento. Por favor, tente novamente.
+        </p>
+        <Button onClick={onFinish} variant="outline" size="lg">
+          Voltar
+        </Button>
+      </div>
+    );
+  }
 
   const handleContractClick = (proposal: Proposal) => {
     setSelectedProposal(proposal);

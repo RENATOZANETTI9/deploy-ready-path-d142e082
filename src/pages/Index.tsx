@@ -13,6 +13,7 @@ interface FormData {
   cpf: string;
   pixType: string;
   pixKey: string;
+  proposals: any[];
 }
 
 const Index = () => {
@@ -22,6 +23,7 @@ const Index = () => {
     cpf: "",
     pixType: "",
     pixKey: "",
+    proposals: [],
   });
   const { toast } = useToast();
 
@@ -48,8 +50,8 @@ const Index = () => {
     });
   };
 
-  const handlePixNext = (pixType: string, pixKey: string) => {
-    setFormData((prev) => ({ ...prev, pixType, pixKey }));
+  const handlePixNext = (pixType: string, pixKey: string, proposals: any[]) => {
+    setFormData((prev) => ({ ...prev, pixType, pixKey, proposals }));
     setIsLoading(true);
     
     toast({
@@ -57,11 +59,11 @@ const Index = () => {
       description: "Buscando as melhores propostas para você...",
     });
 
-    // Simula busca de propostas (em produção seria uma chamada de API)
+    // Pequeno delay para melhor UX
     setTimeout(() => {
       setIsLoading(false);
       setCurrentStep(4);
-    }, 3000);
+    }, 1500);
   };
 
   useEffect(() => {
@@ -125,7 +127,7 @@ const Index = () => {
             {currentStep === 2 && <AuthorizationStep onNext={handleAuthorizationNext} onBack={handleBack} />}
             {currentStep === 3 && !isLoading && <PixStep onNext={handlePixNext} cpf={formData.cpf} onBack={handleBack} />}
             {isLoading && <LoadingProposals />}
-            {currentStep === 4 && !isLoading && <ProposalsStep onFinish={handleFinish} />}
+            {currentStep === 4 && !isLoading && <ProposalsStep proposals={formData.proposals} onFinish={handleFinish} />}
           </div>
 
           {/* Footer */}
