@@ -16,6 +16,12 @@ interface Proposal {
   rate: string;
   total: string;
   contractUrl: string;
+  iof: string;
+  netAmount: string;
+  firstDueDate: string;
+  annualRate: string;
+  cetMonthly: string;
+  cetAnnual: string;
 }
 
 interface ProposalsStepProps {
@@ -39,6 +45,12 @@ export const ProposalsStep = ({ onFinish }: ProposalsStepProps) => {
       rate: "1,99",
       total: "9.360,00",
       contractUrl: "https://nubank.com.br/emprestimo",
+      iof: "255,00",
+      netAmount: "8.245,00",
+      firstDueDate: "15/12/2025",
+      annualRate: "26,51",
+      cetMonthly: "2,15",
+      cetAnnual: "29,12",
     },
     {
       bank: "Banco Inter",
@@ -48,6 +60,12 @@ export const ProposalsStep = ({ onFinish }: ProposalsStepProps) => {
       rate: "2,25",
       total: "9.810,00",
       contractUrl: "https://inter.co/emprestimo",
+      iof: "255,00",
+      netAmount: "8.245,00",
+      firstDueDate: "15/12/2025",
+      annualRate: "30,42",
+      cetMonthly: "2,42",
+      cetAnnual: "33,28",
     },
     {
       bank: "Banco PAN",
@@ -57,6 +75,12 @@ export const ProposalsStep = ({ onFinish }: ProposalsStepProps) => {
       rate: "2,49",
       total: "10.170,00",
       contractUrl: "https://bancopan.com.br/emprestimo",
+      iof: "255,00",
+      netAmount: "8.245,00",
+      firstDueDate: "15/12/2025",
+      annualRate: "34,18",
+      cetMonthly: "2,68",
+      cetAnnual: "37,05",
     },
   ];
 
@@ -134,36 +158,92 @@ export const ProposalsStep = ({ onFinish }: ProposalsStepProps) => {
             {isBest && <Badge variant="outline" className="bg-accent/10">Recomendado</Badge>}
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
             <div className="flex items-start gap-2">
-              <DollarSign className="w-5 h-5 text-primary mt-0.5" />
+              <DollarSign className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
               <div>
-                <p className="text-xs text-muted-foreground">Valor</p>
-                <p className="font-semibold">R$ {proposal.amount}</p>
+                <p className="text-xs text-muted-foreground">Valor Financiado</p>
+                <p className="font-semibold text-sm">R$ {proposal.amount}</p>
               </div>
             </div>
 
             <div className="flex items-start gap-2">
-              <Calendar className="w-5 h-5 text-primary mt-0.5" />
+              <DollarSign className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
               <div>
-                <p className="text-xs text-muted-foreground">Parcelas</p>
-                <p className="font-semibold">{proposal.installments}x de R$ {proposal.installmentValue}</p>
+                <p className="text-xs text-muted-foreground">IOF</p>
+                <p className="font-semibold text-sm">R$ {proposal.iof}</p>
               </div>
             </div>
 
             <div className="flex items-start gap-2">
-              <Percent className="w-5 h-5 text-primary mt-0.5" />
+              <DollarSign className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
               <div>
-                <p className="text-xs text-muted-foreground">Taxa ao mês</p>
-                <p className="font-semibold">{proposal.rate}%</p>
+                <p className="text-xs text-muted-foreground">Valor Líquido Liberado</p>
+                <p className="font-semibold text-sm">R$ {proposal.netAmount}</p>
               </div>
             </div>
 
             <div className="flex items-start gap-2">
-              <TrendingDown className="w-5 h-5 text-primary mt-0.5" />
+              <Calendar className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
               <div>
-                <p className="text-xs text-muted-foreground">Total</p>
-                <p className="font-semibold">R$ {proposal.total}</p>
+                <p className="text-xs text-muted-foreground">Valor da Parcela</p>
+                <p className="font-semibold text-sm">R$ {proposal.installmentValue}</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2">
+              <Calendar className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <p className="text-xs text-muted-foreground">Prazo</p>
+                <p className="font-semibold text-sm">{proposal.installments} parcelas</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2">
+              <Calendar className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <p className="text-xs text-muted-foreground">Data 1ª Parcela</p>
+                <p className="font-semibold text-sm">{proposal.firstDueDate}</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2">
+              <Percent className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <p className="text-xs text-muted-foreground">Taxa Juros Mensal</p>
+                <p className="font-semibold text-sm">{proposal.rate}%</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2">
+              <Percent className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <p className="text-xs text-muted-foreground">Taxa Juros Anual</p>
+                <p className="font-semibold text-sm">{proposal.annualRate}%</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2">
+              <Percent className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <p className="text-xs text-muted-foreground">CET Mensal</p>
+                <p className="font-semibold text-sm">{proposal.cetMonthly}%</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2">
+              <Percent className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <p className="text-xs text-muted-foreground">CET Anual</p>
+                <p className="font-semibold text-sm">{proposal.cetAnnual}%</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2 col-span-2">
+              <TrendingDown className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <p className="text-xs text-muted-foreground">Valor Total</p>
+                <p className="font-semibold text-sm">R$ {proposal.total}</p>
               </div>
             </div>
           </div>
