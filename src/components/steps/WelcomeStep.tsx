@@ -175,6 +175,11 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
 
         {/* Mobile Layout - Compact */}
         <div className="md:hidden -space-y-0.5 -mt-52">
+          {/* Logo - Mobile Top Centered */}
+          <div className="flex justify-center mb-1">
+            <img src={logo} alt="Legal é Viver" className="h-6 w-auto" />
+          </div>
+          
           {/* Hero Title and Text - Compact */}
           <div className="text-center">
             <h1 className="text-base font-black text-foreground uppercase font-visby leading-tight">
@@ -199,12 +204,9 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             />
           </div>
 
-          {/* Salary Input - Mobile - Compact with Logo */}
+          {/* Salary Input - Mobile - Compact */}
           <div className="space-y-0.5 pt-0.5">
-            <div className="flex items-center justify-between mb-0.5">
-              <label className="text-[11px] font-medium text-foreground">Qual o valor do seu salário?</label>
-              <img src={logo} alt="Legal é Viver" className="h-6 w-auto" />
-            </div>
+            <label className="text-[11px] font-medium text-foreground">Qual o valor do seu salário?</label>
             <div className="flex items-center gap-2.5">
               <div className="text-base font-bold text-secondary">{formatCurrency(salary)}</div>
               <Input
