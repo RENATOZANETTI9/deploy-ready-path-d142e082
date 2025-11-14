@@ -174,7 +174,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         </div>
 
         {/* Mobile Layout - Compact */}
-        <div className="md:hidden -space-y-0.5 -mt-40">
+        <div className="md:hidden -space-y-0.5 -mt-52">
           {/* Hero Title and Text - Compact */}
           <div className="text-center">
             <h1 className="text-base font-black text-foreground uppercase font-visby leading-tight">
@@ -191,7 +191,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           </div>
 
           {/* Hero Image - Mobile - Compact */}
-          <div className="flex justify-center -mx-4 mt-1">
+          <div className="flex justify-center -mx-4 mt-0">
             <img
               src={heroImage}
               alt="Crédito Consignado"
