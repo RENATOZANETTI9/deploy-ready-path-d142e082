@@ -206,13 +206,13 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
               <img src={logo} alt="Legal é Viver" className="h-7 w-auto" />
             </div>
             <div className="flex items-center gap-3">
-              <div className="text-2xl font-bold text-secondary">{formatCurrency(salary)}</div>
+              <div className="text-lg font-bold text-secondary">{formatCurrency(salary)}</div>
               <Input
                 type="text"
                 value={salary}
                 onChange={handleInputChange}
                 placeholder="R$ 1.518"
-                className="max-w-[130px] text-base font-semibold"
+                className="max-w-[130px] text-sm font-semibold"
               />
             </div>
           </div>
@@ -238,7 +238,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         {/* Installment Value - Secondary */}
         <div className="p-3 bg-primary/5 rounded-lg border border-primary/20">
           <p className="text-[10px] font-medium text-foreground/70 mb-0.5">Valor da parcela</p>
-          <p className="text-base font-semibold text-foreground">{formatCurrency(maxInstallment)}</p>
+          <p className="text-sm font-semibold text-foreground">{formatCurrency(maxInstallment)}</p>
           <p className="text-[9px] text-muted-foreground mt-0.5">*Valor máximo da parcela (35%)</p>
         </div>
       </div>
