@@ -106,13 +106,13 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         {/* Desktop/Tablet Layout */}
         <div className="hidden md:flex md:gap-5 md:items-start">
           {/* Left Side: Title, Text and Slider */}
-          <div className="flex-1 space-y-5">
+          <div className="flex-1 space-y-3">
             {/* Title and Text */}
             <div className="text-left space-y-1.5">
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-black text-foreground uppercase font-visby leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-foreground uppercase font-visby leading-tight">
                 CRÉDITO CONSIGNADO CLT
               </h1>
-              <h2 className="text-sm sm:text-base md:text-lg font-bold text-secondary uppercase font-visby">
+              <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-secondary uppercase font-visby">
                 O CRÉDITO DO TRABALHADOR
               </h2>
 
@@ -124,7 +124,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             </div>
 
             {/* Salary Slider Section */}
-            <div className="space-y-3 p-4 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
+            <div className="space-y-2 p-4 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-foreground">Qual o valor do seu salário?</label>
                 <div className="flex items-center gap-3">
@@ -168,7 +168,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             <img
               src={heroImage}
               alt="Crédito Consignado"
-              className="w-[300px] lg:w-[360px] rounded-2xl shadow-2xl object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
+              className="w-[400px] lg:w-[480px] rounded-2xl shadow-2xl object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
             />
           </div>
         </div>
