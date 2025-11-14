@@ -96,8 +96,8 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       </div>
 
       <div className="relative w-full max-w-2xl md:max-w-5xl lg:max-w-6xl mx-auto space-y-5 animate-fade-in z-10">
-        {/* Header with Logo only */}
-        <div className="flex justify-center mb-6">
+        {/* Header with Logo - Desktop only */}
+        <div className="hidden md:flex justify-center mb-6">
           <img src={logo} alt="Legal é Viver" className="h-12 md:h-14 w-auto animate-fade-in" />
         </div>
 
@@ -173,44 +173,47 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           </div>
         </div>
 
-        {/* Mobile Layout */}
-        <div className="md:hidden space-y-0 -mt-12">
-          {/* Hero Title and Text */}
-          <div className="text-center space-y-1.5">
-            <h1 className="text-xl sm:text-2xl font-black text-foreground uppercase font-visby leading-tight">
+        {/* Mobile Layout - Compact */}
+        <div className="md:hidden space-y-2 -mt-12">
+          {/* Hero Title and Text - Compact */}
+          <div className="text-center space-y-0.5">
+            <h1 className="text-lg font-black text-foreground uppercase font-visby leading-tight">
               CRÉDITO CONSIGNADO CLT
             </h1>
-            <h2 className="text-sm sm:text-base font-bold text-secondary uppercase font-visby">
+            <h2 className="text-xs font-bold text-secondary uppercase font-visby">
               O CRÉDITO DO TRABALHADOR
             </h2>
 
-            {/* Support Text */}
-            <p className="text-xs text-muted-foreground pt-1.5 text-center">
-              Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong>{" "}
-              e as <strong>melhores condições</strong> exclusivas para você
+            {/* Support Text - Compact */}
+            <p className="text-[10px] text-muted-foreground pt-1 text-center">
+              Coloque <strong>mais de 5 bancos</strong> para competirem e garantir a <strong>melhor taxa</strong>
             </p>
           </div>
 
-          {/* Hero Image - Mobile - Full width */}
-          <div className="flex justify-center -mx-4">
+          {/* Hero Image - Mobile - Compact with Logo */}
+          <div className="relative flex justify-center -mx-4">
             <img
               src={heroImage}
               alt="Crédito Consignado"
-              className="w-full h-auto shadow-2xl object-cover"
+              className="w-full h-auto object-cover"
             />
+            {/* Logo positioned near elbow */}
+            <div className="absolute top-2 left-2">
+              <img src={logo} alt="Legal é Viver" className="h-8 w-auto" />
+            </div>
           </div>
 
-          {/* Salary Input - Mobile */}
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-foreground">Qual o valor do seu salário?</label>
-            <div className="flex items-center gap-4">
-              <div className="text-3xl font-bold text-secondary">{formatCurrency(salary)}</div>
+          {/* Salary Input - Mobile - Compact */}
+          <div className="space-y-1 pt-1">
+            <label className="text-xs font-medium text-foreground">Qual o valor do seu salário?</label>
+            <div className="flex items-center gap-3">
+              <div className="text-2xl font-bold text-secondary">{formatCurrency(salary)}</div>
               <Input
                 type="text"
                 value={salary}
                 onChange={handleInputChange}
                 placeholder="R$ 1.518"
-                className="max-w-[150px] text-lg font-semibold"
+                className="max-w-[130px] text-base font-semibold"
               />
             </div>
           </div>
@@ -221,38 +224,40 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             min={minSalary}
             max={maxSalary}
             step={10}
-            className="w-full mt-4"
+            className="w-full mt-2"
           />
         </div>
       </div>
 
-      {/* Mobile: Results Cards Below Salary Input */}
-      <div className="md:hidden grid grid-cols-1 gap-4">
-        <div className="p-4 bg-primary/10 rounded-lg border border-primary/30">
-          <p className="text-sm font-medium text-foreground mb-0.5">Valor da parcela</p>
-          <p className="text-xl font-bold text-primary">{formatCurrency(maxInstallment)}</p>
-          <p className="text-[10px] text-muted-foreground mt-1">*Valor máximo da parcela (35%)</p>
+      {/* Mobile: Results Cards - Emphasis on Available Credit */}
+      <div className="md:hidden grid grid-cols-1 gap-2 mt-3">
+        {/* Available Credit - MAIN EMPHASIS */}
+        <div className="p-4 bg-gradient-accent rounded-xl border-2 border-secondary shadow-lg">
+          <p className="text-xs text-secondary-foreground/80 mb-1">Você pode receber até</p>
+          <p className="text-3xl font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
         </div>
-        <div className="p-4 bg-secondary/10 rounded-lg border border-secondary/30">
-          <p className="text-xs text-muted-foreground mb-1">Você pode receber até</p>
-          <p className="text-xl font-bold text-secondary">{formatCurrency(availableCredit)}</p>
+        {/* Installment Value - Secondary */}
+        <div className="p-3 bg-primary/5 rounded-lg border border-primary/20">
+          <p className="text-[10px] font-medium text-foreground/70 mb-0.5">Valor da parcela</p>
+          <p className="text-base font-semibold text-foreground">{formatCurrency(maxInstallment)}</p>
+          <p className="text-[9px] text-muted-foreground mt-0.5">*Valor máximo da parcela (35%)</p>
         </div>
       </div>
 
-      {/* CTA Button */}
-      <div className="text-center space-y-4 pt-4">
+      {/* CTA Button - Prominent */}
+      <div className="text-center space-y-2 pt-3">
         {!isValidSalary && (
-          <p className="text-sm font-medium text-destructive">O salário mínimo deve ser de R$ 1.518,00</p>
+          <p className="text-xs font-medium text-destructive">O salário mínimo deve ser de R$ 1.518,00</p>
         )}
         <Button
           onClick={onStart}
           disabled={!isValidSalary}
           size="lg"
-          className="w-full md:w-auto md:max-w-md px-12 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight"
+          className="w-full md:w-auto md:max-w-md px-12 py-5 text-base md:text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-xl hover:shadow-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Simule Agora
         </Button>
-        <p className="text-xs text-muted-foreground">Contratação sujeita a análise. Os valores aqui presentes podem variar no leilão conforme as respostas dos bancos.</p>
+        <p className="text-[10px] md:text-xs text-muted-foreground px-2">Contratação sujeita a análise. Os valores podem variar conforme respostas dos bancos.</p>
       </div>
 
       {/* Depoimentos Section */}
