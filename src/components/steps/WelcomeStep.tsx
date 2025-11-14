@@ -231,9 +231,9 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       {/* Mobile: Results Cards - Emphasis on Available Credit */}
       <div className="md:hidden grid grid-cols-1 gap-1.5 mt-2">
         {/* Available Credit - MAIN EMPHASIS */}
-        <div className="p-3 bg-gradient-accent rounded-xl border-2 border-secondary shadow-lg">
-          <p className="text-[11px] text-secondary-foreground/80 mb-0.5">Você pode receber até</p>
-          <p className="text-[27px] font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
+        <div className="p-2 bg-gradient-accent rounded-lg border-2 border-secondary shadow-lg">
+          <p className="text-[8px] text-secondary-foreground/80 mb-0.5">Você pode receber até</p>
+          <p className="text-[19px] font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
         </div>
         {/* Installment Value - Secondary */}
         <div className="p-2.5 bg-primary/5 rounded-lg border border-primary/20">
