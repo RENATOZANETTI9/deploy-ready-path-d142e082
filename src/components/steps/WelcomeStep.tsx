@@ -174,9 +174,9 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         </div>
 
         {/* Mobile Layout - Compact */}
-        <div className="md:hidden space-y-2 -mt-12">
+        <div className="md:hidden space-y-1 -mt-12">
           {/* Hero Title and Text - Compact */}
-          <div className="text-center space-y-0.5">
+          <div className="text-center space-y-0">
             <h1 className="text-lg font-black text-foreground uppercase font-visby leading-tight">
               CRÉDITO CONSIGNADO CLT
             </h1>
@@ -185,7 +185,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             </h2>
 
             {/* Support Text - Compact */}
-            <p className="text-[10px] text-muted-foreground pt-1 text-center">
+            <p className="text-[10px] text-muted-foreground pt-0.5 text-center">
               Coloque <strong>mais de 5 bancos</strong> para competirem e garantir a <strong>melhor taxa</strong>
             </p>
           </div>
