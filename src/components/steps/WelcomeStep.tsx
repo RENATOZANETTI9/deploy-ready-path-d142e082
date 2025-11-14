@@ -190,22 +190,21 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             </p>
           </div>
 
-          {/* Hero Image - Mobile - Compact with Logo */}
-          <div className="relative flex justify-center -mx-4">
+          {/* Hero Image - Mobile - Compact */}
+          <div className="flex justify-center -mx-4">
             <img
               src={heroImage}
               alt="Crédito Consignado"
               className="w-full h-auto object-cover"
             />
-            {/* Logo positioned near elbow */}
-            <div className="absolute top-2 left-2">
-              <img src={logo} alt="Legal é Viver" className="h-8 w-auto" />
-            </div>
           </div>
 
-          {/* Salary Input - Mobile - Compact */}
+          {/* Salary Input - Mobile - Compact with Logo */}
           <div className="space-y-1 pt-1">
-            <label className="text-xs font-medium text-foreground">Qual o valor do seu salário?</label>
+            <div className="flex items-center justify-between mb-1">
+              <label className="text-xs font-medium text-foreground">Qual o valor do seu salário?</label>
+              <img src={logo} alt="Legal é Viver" className="h-7 w-auto" />
+            </div>
             <div className="flex items-center gap-3">
               <div className="text-2xl font-bold text-secondary">{formatCurrency(salary)}</div>
               <Input
