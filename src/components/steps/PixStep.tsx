@@ -86,6 +86,7 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
         title: "Erro ao buscar propostas",
         description: "Por favor, tente novamente ou entre em contato",
         variant: "destructive",
+        duration: 3000,
       });
     } finally {
       setIsLoading(false);

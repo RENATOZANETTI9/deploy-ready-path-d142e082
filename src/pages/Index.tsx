@@ -39,6 +39,7 @@ const Index = () => {
     toast({
       title: "CPF confirmado",
       description: "Vamos para a próxima etapa",
+      duration: 3000,
     });
   };
 
@@ -47,6 +48,7 @@ const Index = () => {
     toast({
       title: "Autorização concedida",
       description: "Obrigado pela confiança",
+      duration: 3000,
     });
   };
 
@@ -57,6 +59,7 @@ const Index = () => {
     toast({
       title: "Dados bancários confirmados",
       description: "Buscando as melhores propostas para você...",
+      duration: 3000,
     });
 
     // Pequeno delay para melhor UX
@@ -71,6 +74,7 @@ const Index = () => {
       toast({
         title: "Propostas encontradas! 🎉",
         description: "Encontramos 3 excelentes opções para você",
+        duration: 3000,
       });
     }
   }, [currentStep, isLoading, toast]);
@@ -79,6 +83,7 @@ const Index = () => {
     toast({
       title: "Processo concluído",
       description: "Obrigado por utilizar nossos serviços!",
+      duration: 3000,
     });
     // Em produção, aqui redirecionaria ou resetaria o fluxo
   };
@@ -89,6 +94,7 @@ const Index = () => {
       toast({
         title: "Voltando para etapa anterior",
         description: `Você está na Etapa ${step}`,
+        duration: 3000,
       });
     }
   };
