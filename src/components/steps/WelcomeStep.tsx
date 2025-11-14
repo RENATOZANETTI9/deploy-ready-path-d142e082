@@ -176,7 +176,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         {/* Mobile Layout - Compact */}
         <div className="md:hidden -space-y-0.5 -mt-52">
           {/* Logo - Mobile Top Centered */}
-          <div className="flex justify-center mb-1 -mt-8">
+          <div className="flex justify-center mb-1 -mt-16">
             <img src={logo} alt="Legal é Viver" className="h-6 w-auto" />
           </div>
           
