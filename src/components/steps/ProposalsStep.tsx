@@ -57,6 +57,7 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals }: ProposalsSt
         title: "Telefone inválido",
         description: "Por favor, informe um telefone válido",
         variant: "destructive",
+        duration: 3000,
       });
       return;
     }
@@ -89,6 +90,7 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals }: ProposalsSt
     toast({
       title: "Telefone confirmado",
       description: "Gerando link de formalização...",
+      duration: 3000,
     });
 
     setShowContractLink(true);
