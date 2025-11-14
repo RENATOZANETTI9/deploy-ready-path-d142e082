@@ -244,7 +244,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       </div>
 
       {/* CTA Button - Prominent */}
-      <div className="text-center space-y-1.5 pt-1.5">
+      <div className="text-center space-y-1.5 pt-0.5">
         {!isValidSalary && (
           <p className="text-[11px] font-medium text-destructive">O salário mínimo deve ser de R$ 1.518,00</p>
         )}
