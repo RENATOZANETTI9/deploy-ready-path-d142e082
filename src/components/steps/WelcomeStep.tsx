@@ -177,15 +177,15 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         <div className="md:hidden -space-y-0.5 -mt-32">
           {/* Hero Title and Text - Compact */}
           <div className="text-center">
-            <h1 className="text-lg font-black text-foreground uppercase font-visby leading-tight">
+            <h1 className="text-base font-black text-foreground uppercase font-visby leading-tight">
               CRÉDITO CONSIGNADO CLT
             </h1>
-            <h2 className="text-xs font-bold text-secondary uppercase font-visby">
+            <h2 className="text-[11px] font-bold text-secondary uppercase font-visby">
               O CRÉDITO DO TRABALHADOR
             </h2>
 
             {/* Support Text - Compact */}
-            <p className="text-[10px] text-muted-foreground pt-0.5 text-center">
+            <p className="text-[9px] text-muted-foreground pt-0.5 text-center">
               Coloque <strong>mais de 5 bancos</strong> para competirem e garantir a <strong>melhor taxa</strong>
             </p>
           </div>
@@ -195,24 +195,24 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             <img
               src={heroImage}
               alt="Crédito Consignado"
-              className="w-[80%] h-auto object-cover"
+              className="w-[72%] h-auto object-cover"
             />
           </div>
 
           {/* Salary Input - Mobile - Compact with Logo */}
-          <div className="space-y-1 pt-1">
-            <div className="flex items-center justify-between mb-1">
-              <label className="text-xs font-medium text-foreground">Qual o valor do seu salário?</label>
-              <img src={logo} alt="Legal é Viver" className="h-7 w-auto" />
+          <div className="space-y-0.5 pt-0.5">
+            <div className="flex items-center justify-between mb-0.5">
+              <label className="text-[11px] font-medium text-foreground">Qual o valor do seu salário?</label>
+              <img src={logo} alt="Legal é Viver" className="h-6 w-auto" />
             </div>
-            <div className="flex items-center gap-3">
-              <div className="text-lg font-bold text-secondary">{formatCurrency(salary)}</div>
+            <div className="flex items-center gap-2.5">
+              <div className="text-base font-bold text-secondary">{formatCurrency(salary)}</div>
               <Input
                 type="text"
                 value={salary}
                 onChange={handleInputChange}
                 placeholder="R$ 1.518"
-                className="max-w-[130px] text-sm font-semibold"
+                className="max-w-[115px] text-xs font-semibold"
               />
             </div>
           </div>
@@ -223,40 +223,40 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             min={minSalary}
             max={maxSalary}
             step={10}
-            className="w-full mt-2"
+            className="w-full mt-1.5"
           />
         </div>
       </div>
 
       {/* Mobile: Results Cards - Emphasis on Available Credit */}
-      <div className="md:hidden grid grid-cols-1 gap-2 mt-3">
+      <div className="md:hidden grid grid-cols-1 gap-1.5 mt-2">
         {/* Available Credit - MAIN EMPHASIS */}
-        <div className="p-4 bg-gradient-accent rounded-xl border-2 border-secondary shadow-lg">
-          <p className="text-xs text-secondary-foreground/80 mb-1">Você pode receber até</p>
-          <p className="text-3xl font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
+        <div className="p-3 bg-gradient-accent rounded-xl border-2 border-secondary shadow-lg">
+          <p className="text-[11px] text-secondary-foreground/80 mb-0.5">Você pode receber até</p>
+          <p className="text-[27px] font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
         </div>
         {/* Installment Value - Secondary */}
-        <div className="p-3 bg-primary/5 rounded-lg border border-primary/20">
-          <p className="text-[10px] font-medium text-foreground/70 mb-0.5">Valor da parcela</p>
-          <p className="text-sm font-semibold text-foreground">{formatCurrency(maxInstallment)}</p>
-          <p className="text-[9px] text-muted-foreground mt-0.5">*Valor máximo da parcela (35%)</p>
+        <div className="p-2.5 bg-primary/5 rounded-lg border border-primary/20">
+          <p className="text-[9px] font-medium text-foreground/70 mb-0.5">Valor da parcela</p>
+          <p className="text-xs font-semibold text-foreground">{formatCurrency(maxInstallment)}</p>
+          <p className="text-[8px] text-muted-foreground mt-0.5">*Valor máximo da parcela (35%)</p>
         </div>
       </div>
 
       {/* CTA Button - Prominent */}
-      <div className="text-center space-y-2 pt-3">
+      <div className="text-center space-y-1.5 pt-2">
         {!isValidSalary && (
-          <p className="text-xs font-medium text-destructive">O salário mínimo deve ser de R$ 1.518,00</p>
+          <p className="text-[11px] font-medium text-destructive">O salário mínimo deve ser de R$ 1.518,00</p>
         )}
         <Button
           onClick={onStart}
           disabled={!isValidSalary}
           size="lg"
-          className="w-full md:w-auto md:max-w-md px-12 py-5 text-base md:text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-xl hover:shadow-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full md:w-auto md:max-w-md px-10 py-4 text-sm md:text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-xl hover:shadow-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Simule Agora
         </Button>
-        <p className="text-[10px] md:text-xs text-muted-foreground px-2">Contratação sujeita a análise. Os valores podem variar conforme respostas dos bancos.</p>
+        <p className="text-[9px] md:text-xs text-muted-foreground px-2">Contratação sujeita a análise. Os valores podem variar conforme respostas dos bancos.</p>
       </div>
 
       {/* Depoimentos Section */}
