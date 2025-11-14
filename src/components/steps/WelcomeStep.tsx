@@ -196,7 +196,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           </div>
 
           {/* Hero Image - Mobile - Compact */}
-          <div className="flex justify-center -mx-4 mt-0">
+          <div className="flex justify-center -mx-4 -mt-4">
             <img
               src={heroImage}
               alt="Crédito Consignado"
