@@ -150,14 +150,14 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
 
               {/* Results Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
-                <div className="p-3 bg-primary/10 rounded-lg border border-primary/30">
-                  <p className="text-xs font-medium text-foreground mb-0.5">Valor da parcela</p>
-                  <p className="text-lg font-bold text-primary">{formatCurrency(maxInstallment)}</p>
-                  <p className="text-[9px] text-muted-foreground mt-1">*Valor máximo da parcela (35%)</p>
+                <div className="p-4 md:p-5 bg-primary/10 rounded-lg border border-primary/30 flex flex-col justify-between">
+                  <p className="text-xs md:text-sm font-medium text-foreground mb-1 md:mb-2">Valor da parcela</p>
+                  <p className="text-xl md:text-2xl lg:text-3xl font-bold text-primary">{formatCurrency(maxInstallment)}</p>
+                  <p className="text-[10px] md:text-xs text-muted-foreground mt-2">*Valor máximo da parcela (35%)</p>
                 </div>
-                <div className="p-4 bg-gradient-accent rounded-xl border-2 border-secondary shadow-lg animate-pulse">
-                  <p className="text-xs font-semibold text-secondary-foreground/90 mb-1">Você pode receber até</p>
-                  <p className="text-2xl md:text-3xl font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
+                <div className="p-4 md:p-5 bg-gradient-accent rounded-xl border-2 border-secondary shadow-lg animate-pulse flex flex-col justify-between">
+                  <p className="text-xs md:text-sm font-semibold text-secondary-foreground/90 mb-1 md:mb-2">Você pode receber até</p>
+                  <p className="text-2xl md:text-3xl lg:text-4xl font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
                 </div>
               </div>
             </div>
