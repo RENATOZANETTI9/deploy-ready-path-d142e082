@@ -104,15 +104,15 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       {/* Hero Section - Responsive Layout */}
       <div className="flex flex-col space-y-4 md:space-y-0">
         {/* Desktop/Tablet Layout */}
-        <div className="hidden md:flex md:gap-5 md:items-start">
+        <div className="hidden md:flex md:gap-6 md:items-start md:justify-between">
           {/* Left Side: Title, Text and Slider */}
-          <div className="flex-1 space-y-3">
+          <div className="flex-1 max-w-2xl space-y-4">
             {/* Title and Text */}
-            <div className="text-left space-y-1.5">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-foreground uppercase font-visby leading-tight">
+            <div className="text-left space-y-2">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-black text-foreground uppercase font-visby leading-tight">
                 CRÉDITO CONSIGNADO CLT
               </h1>
-              <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-secondary uppercase font-visby">
+              <h2 className="text-base sm:text-lg md:text-xl lg:text-xl font-bold text-secondary uppercase font-visby">
                 O CRÉDITO DO TRABALHADOR
               </h2>
 
@@ -124,7 +124,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             </div>
 
             {/* Salary Slider Section */}
-            <div className="space-y-2 p-4 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
+            <div className="space-y-3 p-5 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm shadow-lg">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-foreground">Preencha com o valor do seu salário, a partir de R$ 1.518</label>
                 <div className="flex items-center gap-3">
@@ -164,11 +164,11 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           </div>
 
           {/* Right Side: Hero Image */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 flex items-center">
             <img
               src={heroImage}
               alt="Crédito Consignado"
-              className="w-[400px] lg:w-[480px] rounded-2xl shadow-2xl object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
+              className="w-[280px] lg:w-[340px] rounded-2xl shadow-2xl object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
             />
           </div>
         </div>
