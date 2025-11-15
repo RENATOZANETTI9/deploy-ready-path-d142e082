@@ -157,7 +157,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
                 </div>
                 <div className="p-4 bg-gradient-accent rounded-xl border-2 border-secondary shadow-lg animate-pulse">
                   <p className="text-xs font-semibold text-secondary-foreground/90 mb-1">Você pode receber até</p>
-                  <p className="text-2xl md:text-3xl font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
+                  <p className="text-xl md:text-2xl font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
                 </div>
               </div>
             </div>
@@ -235,7 +235,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         {/* Available Credit - MAIN EMPHASIS */}
         <div className="p-3 bg-gradient-accent rounded-xl border-2 border-secondary shadow-xl animate-pulse">
           <p className="text-[10px] font-semibold text-secondary-foreground/90 mb-1">Você pode receber até</p>
-          <p className="text-[22px] font-black text-secondary-foreground leading-tight">{formatCurrency(availableCredit)}</p>
+          <p className="text-lg font-black text-secondary-foreground leading-tight">{formatCurrency(availableCredit)}</p>
         </div>
         {/* Installment Value - Secondary */}
         <div className="p-2.5 bg-primary/5 rounded-lg border border-primary/20">
