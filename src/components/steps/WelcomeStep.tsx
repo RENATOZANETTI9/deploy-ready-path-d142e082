@@ -106,13 +106,13 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         {/* Desktop/Tablet Layout */}
         <div className="hidden md:flex md:gap-5 md:items-start">
           {/* Left Side: Title, Text and Slider */}
-          <div className="flex-1 space-y-3">
+          <div className="flex-1 space-y-5">
             {/* Title and Text */}
             <div className="text-left space-y-1.5">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-foreground uppercase font-visby leading-tight">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-black text-foreground uppercase font-visby leading-tight">
                 CRÉDITO CONSIGNADO CLT
               </h1>
-              <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-secondary uppercase font-visby">
+              <h2 className="text-sm sm:text-base md:text-lg font-bold text-secondary uppercase font-visby">
                 O CRÉDITO DO TRABALHADOR
               </h2>
 
@@ -124,9 +124,9 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             </div>
 
             {/* Salary Slider Section */}
-            <div className="space-y-2 p-4 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
+            <div className="space-y-3 p-4 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">Preencha com o valor do seu salário, a partir de R$ 1.518</label>
+                <label className="text-sm font-medium text-foreground">Qual o valor do seu salário?</label>
                 <div className="flex items-center gap-3">
                   <div className="text-xl font-bold text-secondary">{formatCurrency(salary)}</div>
                   <Input
@@ -150,14 +150,14 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
 
               {/* Results Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
-                <div className="p-4 md:p-5 bg-primary/10 rounded-lg border border-primary/30 flex flex-col justify-between">
-                  <p className="text-xs md:text-sm font-medium text-foreground mb-1 md:mb-2">Valor da parcela</p>
-                  <p className="text-xl md:text-2xl lg:text-3xl font-bold text-primary">{formatCurrency(maxInstallment)}</p>
-                  <p className="text-[10px] md:text-xs text-muted-foreground mt-2">*Valor máximo da parcela (35%)</p>
+                <div className="p-3 bg-primary/10 rounded-lg border border-primary/30">
+                  <p className="text-xs font-medium text-foreground mb-0.5">Valor da parcela</p>
+                  <p className="text-lg font-bold text-primary">{formatCurrency(maxInstallment)}</p>
+                  <p className="text-[9px] text-muted-foreground mt-1">*Valor máximo da parcela (35%)</p>
                 </div>
-                <div className="p-4 md:p-5 bg-gradient-accent rounded-xl border-2 border-secondary shadow-lg animate-pulse flex flex-col justify-between">
-                  <p className="text-xs md:text-sm font-semibold text-secondary-foreground/90 mb-1 md:mb-2">Você pode receber até</p>
-                  <p className="text-2xl md:text-3xl lg:text-4xl font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
+                <div className="p-3 bg-secondary/10 rounded-lg border border-secondary/30">
+                  <p className="text-[10px] text-muted-foreground mb-1">Você pode receber até</p>
+                  <p className="text-lg font-bold text-secondary">{formatCurrency(availableCredit)}</p>
                 </div>
               </div>
             </div>
@@ -168,7 +168,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             <img
               src={heroImage}
               alt="Crédito Consignado"
-              className="w-[400px] lg:w-[480px] rounded-2xl shadow-2xl object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
+              className="w-[300px] lg:w-[360px] rounded-2xl shadow-2xl object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
             />
           </div>
         </div>
@@ -176,7 +176,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         {/* Mobile Layout - Compact */}
         <div className="md:hidden -space-y-0.5 -mt-52">
           {/* Logo - Mobile Top Centered */}
-          <div className="flex justify-center mb-1 -mt-12">
+          <div className="flex justify-center mb-1">
             <img src={logo} alt="Legal é Viver" className="h-6 w-auto" />
           </div>
           
@@ -196,7 +196,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           </div>
 
           {/* Hero Image - Mobile - Compact */}
-          <div className="flex justify-center -mx-4 -mt-4">
+          <div className="flex justify-center -mx-4 mt-0">
             <img
               src={heroImage}
               alt="Crédito Consignado"
@@ -206,7 +206,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
 
           {/* Salary Input - Mobile - Compact */}
           <div className="space-y-0.5 pt-0.5">
-            <label className="text-[11px] font-medium text-foreground">Preencha com o valor do seu salário, a partir de R$ 1.518</label>
+            <label className="text-[11px] font-medium text-foreground">Qual o valor do seu salário?</label>
             <div className="flex items-center gap-2.5">
               <div className="text-base font-bold text-secondary">{formatCurrency(salary)}</div>
               <Input
@@ -233,9 +233,9 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       {/* Mobile: Results Cards - Emphasis on Available Credit */}
       <div className="md:hidden grid grid-cols-1 gap-1.5 mt-2">
         {/* Available Credit - MAIN EMPHASIS */}
-        <div className="p-3 bg-gradient-accent rounded-xl border-2 border-secondary shadow-xl animate-pulse">
-          <p className="text-[10px] font-semibold text-secondary-foreground/90 mb-1">Você pode receber até</p>
-          <p className="text-[22px] font-black text-secondary-foreground leading-tight">{formatCurrency(availableCredit)}</p>
+        <div className="p-2 bg-gradient-accent rounded-lg border-2 border-secondary shadow-lg">
+          <p className="text-[8px] text-secondary-foreground/80 mb-0.5">Você pode receber até</p>
+          <p className="text-[19px] font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
         </div>
         {/* Installment Value - Secondary */}
         <div className="p-2.5 bg-primary/5 rounded-lg border border-primary/20">

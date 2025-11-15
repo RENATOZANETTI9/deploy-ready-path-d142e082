@@ -49,7 +49,6 @@ export const AuthorizationStep = ({ onNext, onBack }: AuthorizationStepProps) =>
         title: "Erro ao processar autorização",
         description: "Por favor, tente novamente",
         variant: "destructive",
-        duration: 3000,
       });
     } finally {
       setIsLoading(false);
