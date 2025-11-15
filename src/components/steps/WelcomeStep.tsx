@@ -168,7 +168,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             <img
               src={heroImage}
               alt="Crédito Consignado"
-              className="w-[220px] lg:w-[260px] h-[280px] lg:h-[340px] rounded-2xl shadow-2xl object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
+              className="w-[260px] lg:w-[300px] h-[420px] lg:h-[480px] rounded-2xl shadow-2xl object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
             />
           </div>
         </div>
