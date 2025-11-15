@@ -104,15 +104,15 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       {/* Hero Section - Responsive Layout */}
       <div className="flex flex-col space-y-4 md:space-y-0">
         {/* Desktop/Tablet Layout */}
-        <div className="hidden md:flex md:gap-6 md:items-start md:justify-between">
+        <div className="hidden md:flex md:gap-5 md:items-start">
           {/* Left Side: Title, Text and Slider */}
-          <div className="flex-1 max-w-2xl space-y-4">
+          <div className="flex-1 space-y-3">
             {/* Title and Text */}
-            <div className="text-left space-y-2">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-black text-foreground uppercase font-visby leading-tight">
+            <div className="text-left space-y-1.5">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-foreground uppercase font-visby leading-tight">
                 CRÉDITO CONSIGNADO CLT
               </h1>
-              <h2 className="text-base sm:text-lg md:text-xl lg:text-xl font-bold text-secondary uppercase font-visby">
+              <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-secondary uppercase font-visby">
                 O CRÉDITO DO TRABALHADOR
               </h2>
 
@@ -124,7 +124,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             </div>
 
             {/* Salary Slider Section */}
-            <div className="space-y-3 p-5 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm shadow-lg">
+            <div className="space-y-2 p-4 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-foreground">Preencha com o valor do seu salário, a partir de R$ 1.518</label>
                 <div className="flex items-center gap-3">
@@ -149,26 +149,26 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
               />
 
               {/* Results Cards */}
-              <div className="flex flex-col gap-3 pt-1">
-                <div className="p-4 bg-gradient-accent rounded-xl border-2 border-secondary shadow-lg animate-pulse">
-                  <p className="text-xs font-semibold text-secondary-foreground/90 mb-1">Você pode receber até</p>
-                  <p className="text-xl md:text-2xl font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
                 <div className="p-3 bg-primary/10 rounded-lg border border-primary/30">
                   <p className="text-xs font-medium text-foreground mb-0.5">Valor da parcela</p>
                   <p className="text-lg font-bold text-primary">{formatCurrency(maxInstallment)}</p>
                   <p className="text-[9px] text-muted-foreground mt-1">*Valor máximo da parcela (35%)</p>
+                </div>
+                <div className="p-4 bg-gradient-accent rounded-xl border-2 border-secondary shadow-lg animate-pulse">
+                  <p className="text-xs font-semibold text-secondary-foreground/90 mb-1">Você pode receber até</p>
+                  <p className="text-2xl md:text-3xl font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Right Side: Hero Image */}
-          <div className="flex-shrink-0 flex items-start">
+          <div className="flex-shrink-0">
             <img
               src={heroImage}
               alt="Crédito Consignado"
-              className="w-[260px] lg:w-[300px] h-[420px] lg:h-[480px] rounded-2xl shadow-2xl object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
+              className="w-[400px] lg:w-[480px] rounded-2xl shadow-2xl object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
             />
           </div>
         </div>
@@ -235,7 +235,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         {/* Available Credit - MAIN EMPHASIS */}
         <div className="p-3 bg-gradient-accent rounded-xl border-2 border-secondary shadow-xl animate-pulse">
           <p className="text-[10px] font-semibold text-secondary-foreground/90 mb-1">Você pode receber até</p>
-          <p className="text-lg font-black text-secondary-foreground leading-tight">{formatCurrency(availableCredit)}</p>
+          <p className="text-[22px] font-black text-secondary-foreground leading-tight">{formatCurrency(availableCredit)}</p>
         </div>
         {/* Installment Value - Secondary */}
         <div className="p-2.5 bg-primary/5 rounded-lg border border-primary/20">
