@@ -126,7 +126,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             {/* Salary Slider Section */}
             <div className="space-y-2 p-4 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">Qual o valor do seu salário?</label>
+                <label className="text-sm font-medium text-foreground">Preencha com o valor do seu salário, a partir de R$ 1.518</label>
                 <div className="flex items-center gap-3">
                   <div className="text-xl font-bold text-secondary">{formatCurrency(salary)}</div>
                   <Input
@@ -155,9 +155,9 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
                   <p className="text-lg font-bold text-primary">{formatCurrency(maxInstallment)}</p>
                   <p className="text-[9px] text-muted-foreground mt-1">*Valor máximo da parcela (35%)</p>
                 </div>
-                <div className="p-3 bg-secondary/10 rounded-lg border border-secondary/30">
-                  <p className="text-[10px] text-muted-foreground mb-1">Você pode receber até</p>
-                  <p className="text-lg font-bold text-secondary">{formatCurrency(availableCredit)}</p>
+                <div className="p-4 bg-gradient-accent rounded-xl border-2 border-secondary shadow-lg animate-pulse">
+                  <p className="text-xs font-semibold text-secondary-foreground/90 mb-1">Você pode receber até</p>
+                  <p className="text-2xl md:text-3xl font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
                 </div>
               </div>
             </div>
@@ -206,7 +206,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
 
           {/* Salary Input - Mobile - Compact */}
           <div className="space-y-0.5 pt-0.5">
-            <label className="text-[11px] font-medium text-foreground">Qual o valor do seu salário?</label>
+            <label className="text-[11px] font-medium text-foreground">Preencha com o valor do seu salário, a partir de R$ 1.518</label>
             <div className="flex items-center gap-2.5">
               <div className="text-base font-bold text-secondary">{formatCurrency(salary)}</div>
               <Input
@@ -233,9 +233,9 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       {/* Mobile: Results Cards - Emphasis on Available Credit */}
       <div className="md:hidden grid grid-cols-1 gap-1.5 mt-2">
         {/* Available Credit - MAIN EMPHASIS */}
-        <div className="p-2 bg-gradient-accent rounded-lg border-2 border-secondary shadow-lg">
-          <p className="text-[8px] text-secondary-foreground/80 mb-0.5">Você pode receber até</p>
-          <p className="text-[19px] font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
+        <div className="p-3 bg-gradient-accent rounded-xl border-2 border-secondary shadow-xl animate-pulse">
+          <p className="text-[10px] font-semibold text-secondary-foreground/90 mb-1">Você pode receber até</p>
+          <p className="text-[22px] font-black text-secondary-foreground leading-tight">{formatCurrency(availableCredit)}</p>
         </div>
         {/* Installment Value - Secondary */}
         <div className="p-2.5 bg-primary/5 rounded-lg border border-primary/20">
