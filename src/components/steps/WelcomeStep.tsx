@@ -149,26 +149,26 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
               />
 
               {/* Results Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+              <div className="flex flex-col gap-3 pt-1">
+                <div className="p-4 bg-gradient-accent rounded-xl border-2 border-secondary shadow-lg animate-pulse">
+                  <p className="text-xs font-semibold text-secondary-foreground/90 mb-1">Você pode receber até</p>
+                  <p className="text-xl md:text-2xl font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
+                </div>
                 <div className="p-3 bg-primary/10 rounded-lg border border-primary/30">
                   <p className="text-xs font-medium text-foreground mb-0.5">Valor da parcela</p>
                   <p className="text-lg font-bold text-primary">{formatCurrency(maxInstallment)}</p>
                   <p className="text-[9px] text-muted-foreground mt-1">*Valor máximo da parcela (35%)</p>
-                </div>
-                <div className="p-4 bg-gradient-accent rounded-xl border-2 border-secondary shadow-lg animate-pulse">
-                  <p className="text-xs font-semibold text-secondary-foreground/90 mb-1">Você pode receber até</p>
-                  <p className="text-xl md:text-2xl font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Right Side: Hero Image */}
-          <div className="flex-shrink-0 flex items-center">
+          <div className="flex-shrink-0 flex items-start">
             <img
               src={heroImage}
               alt="Crédito Consignado"
-              className="w-[280px] lg:w-[340px] rounded-2xl shadow-2xl object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
+              className="w-[220px] lg:w-[260px] h-[280px] lg:h-[340px] rounded-2xl shadow-2xl object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
             />
           </div>
         </div>
