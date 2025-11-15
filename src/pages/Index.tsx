@@ -69,6 +69,11 @@ const Index = () => {
     }, 1500);
   };
 
+  // Scroll to top whenever step changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentStep]);
+
   useEffect(() => {
     if (currentStep === 4 && !isLoading) {
       toast({
