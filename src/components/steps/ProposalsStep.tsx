@@ -147,12 +147,12 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals }: ProposalsSt
 
           {/* Botão de Contratação - DESTAQUE */}
           <Button 
-            className={`w-full group text-lg font-bold py-6 ${isBest ? 'bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-2xl animate-pulse hover:animate-none' : 'bg-primary hover:bg-primary/90'}`}
+            className={`w-full group font-bold py-6 ${isBest ? 'bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-2xl animate-pulse hover:animate-none' : 'bg-primary hover:bg-primary/90'}`}
             size="lg"
             onClick={() => handleContractClick(proposal)}
           >
-            <span className="flex-1">{isBest ? "🚀 Contratar Agora e Receber no PIX" : "Contratar esta proposta"}</span>
-            <ExternalLink className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            <span className="flex-1 text-sm md:text-lg">{isBest ? "🚀 Contratar e Receber" : "Contratar proposta"}</span>
+            <ExternalLink className="w-4 h-4 md:w-5 md:h-5 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
           </Button>
 
           {/* Dados Secundários - Discretos e Pequenos */}
