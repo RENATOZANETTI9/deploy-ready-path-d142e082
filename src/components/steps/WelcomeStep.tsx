@@ -155,9 +155,9 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
                   <p className="text-base font-semibold text-foreground">{formatCurrency(maxInstallment)}</p>
                   <p className="text-[9px] text-muted-foreground mt-1">*Valor máximo da parcela (35%)</p>
                 </div>
-                <div className="p-4 bg-gradient-accent rounded-lg border-2 border-secondary shadow-xl">
-                  <p className="text-xs text-secondary-foreground/80 mb-1 font-medium">Você pode receber até</p>
-                  <p className="text-3xl font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
+                <div className="p-3 bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-lg border-2 border-secondary shadow-lg animate-pulse">
+                  <p className="text-xs text-secondary font-bold mb-1 uppercase tracking-wide">💰 Você pode receber até</p>
+                  <p className="text-2xl font-black text-secondary">{formatCurrency(availableCredit)}</p>
                 </div>
               </div>
             </div>
@@ -230,18 +230,22 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         </div>
       </div>
 
-      {/* Mobile: Results Cards - Emphasis on Available Credit */}
-      <div className="md:hidden grid grid-cols-1 gap-1.5 mt-2">
+      {/* Mobile: Results Cards - Optimized Layout */}
+      <div className="md:hidden space-y-2 mt-2">
         {/* Available Credit - MAIN EMPHASIS */}
-        <div className="p-3 bg-gradient-accent rounded-lg border-2 border-secondary shadow-xl">
-          <p className="text-[9px] text-secondary-foreground/80 mb-0.5 font-medium">Você pode receber até</p>
-          <p className="text-[22px] font-black text-secondary-foreground leading-tight">{formatCurrency(availableCredit)}</p>
+        <div className="p-3 bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-xl border-2 border-secondary shadow-xl animate-pulse">
+          <p className="text-[10px] text-secondary font-bold mb-1 uppercase tracking-wide">💰 Você pode receber até</p>
+          <p className="text-xl font-black text-secondary leading-tight">{formatCurrency(availableCredit)}</p>
         </div>
-        {/* Installment Value - Secondary */}
-        <div className="p-2 bg-primary/5 rounded-lg border border-primary/20">
-          <p className="text-[8px] font-medium text-foreground/70 mb-0.5">Valor da parcela</p>
-          <p className="text-[11px] font-semibold text-foreground">{formatCurrency(maxInstallment)}</p>
-          <p className="text-[7px] text-muted-foreground mt-0.5">*Valor máximo da parcela (35%)</p>
+        {/* Installment Value - Compact */}
+        <div className="p-2.5 bg-primary/5 rounded-lg border border-primary/20">
+          <div className="flex justify-between items-center">
+            <div>
+              <p className="text-[9px] font-medium text-foreground/70 mb-0.5">Valor da parcela</p>
+              <p className="text-sm font-semibold text-foreground">{formatCurrency(maxInstallment)}</p>
+            </div>
+            <p className="text-[7px] text-muted-foreground text-right max-w-[100px]">*Valor máximo da parcela (35%)</p>
+          </div>
         </div>
       </div>
 
