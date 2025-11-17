@@ -70,12 +70,19 @@ const Index = () => {
   }, [currentStep, toast]);
 
   const handleFinish = () => {
+    setCurrentStep(0);
+    setFormData({
+      cpf: "",
+      pixType: "",
+      pixKey: "",
+      proposals: [],
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     toast({
       title: "Processo concluído",
       description: "Obrigado por utilizar nossos serviços!",
       duration: 3000,
     });
-    // Em produção, aqui redirecionaria ou resetaria o fluxo
   };
 
   const handleStepClick = (step: number) => {
