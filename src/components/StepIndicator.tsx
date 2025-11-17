@@ -25,9 +25,9 @@ export const StepIndicator = ({ currentStep, totalSteps, onStepClick }: StepIndi
                     transition-all duration-300
                     ${
                       isCompleted
-                        ? "bg-secondary text-secondary-foreground shadow-xl cursor-pointer hover:scale-125 animate-pulse"
+                        ? "bg-secondary text-secondary-foreground shadow-xl cursor-pointer hover:scale-125"
                         : isCurrent
-                        ? "bg-primary text-primary-foreground shadow-lg scale-110 animate-pulse"
+                        ? "bg-primary text-primary-foreground shadow-lg scale-110"
                         : "bg-muted text-muted-foreground"
                     }
                   `}
