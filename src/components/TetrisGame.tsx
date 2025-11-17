@@ -218,6 +218,11 @@ export const TetrisGame = () => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (gameOver) return;
       
+      // Prevenir que as setas mexam a página
+      if (["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"].includes(e.key)) {
+        e.preventDefault();
+      }
+      
       switch (e.key) {
         case "ArrowLeft":
           movePiece(-1, 0);
@@ -251,6 +256,26 @@ export const TetrisGame = () => {
     setGameOver(false);
   };
 
+  const handleTouchMove = (direction: 'left' | 'right' | 'down' | 'rotate') => {
+    if (gameOver) return;
+    
+    switch (direction) {
+      case 'left':
+        movePiece(-1, 0);
+        break;
+      case 'right':
+        movePiece(1, 0);
+        break;
+      case 'down':
+        movePiece(0, 1);
+        break;
+      case 'rotate':
+        rotatePiece();
+        break;
+    }
+    draw();
+  };
+
   return (
     <div className="flex flex-col items-center gap-4 p-4 bg-muted/30 rounded-lg">
       <div className="flex items-center justify-between w-full max-w-[200px]">
@@ -272,7 +297,44 @@ export const TetrisGame = () => {
         className="border-2 border-border rounded shadow-lg"
       />
       
-      <div className="text-xs text-muted-foreground text-center space-y-1">
+      {/* Controles Touch para Mobile */}
+      <div className="flex flex-col gap-2 w-full max-w-[200px] md:hidden">
+        <div className="flex justify-center">
+          <button
+            onClick={() => handleTouchMove('rotate')}
+            className="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg font-semibold active:bg-secondary/80 transition-colors"
+            disabled={gameOver}
+          >
+            ↻ GIRAR
+          </button>
+        </div>
+        <div className="grid grid-cols-3 gap-2">
+          <button
+            onClick={() => handleTouchMove('left')}
+            className="px-4 py-3 bg-primary text-primary-foreground rounded-lg font-bold active:bg-primary/80 transition-colors"
+            disabled={gameOver}
+          >
+            ←
+          </button>
+          <button
+            onClick={() => handleTouchMove('down')}
+            className="px-4 py-3 bg-primary text-primary-foreground rounded-lg font-bold active:bg-primary/80 transition-colors"
+            disabled={gameOver}
+          >
+            ↓
+          </button>
+          <button
+            onClick={() => handleTouchMove('right')}
+            className="px-4 py-3 bg-primary text-primary-foreground rounded-lg font-bold active:bg-primary/80 transition-colors"
+            disabled={gameOver}
+          >
+            →
+          </button>
+        </div>
+      </div>
+      
+      {/* Instruções apenas para Desktop */}
+      <div className="hidden md:block text-xs text-muted-foreground text-center space-y-1">
         <p>Use as setas do teclado para jogar</p>
         <p>↑ Girar | ← → Mover | ↓ Descer</p>
       </div>
