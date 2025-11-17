@@ -21,18 +21,18 @@ export const StepIndicator = ({ currentStep, totalSteps, onStepClick }: StepIndi
                 <div
                   onClick={() => isCompleted && onStepClick?.(stepNumber)}
                   className={`
-                    w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm
+                    w-14 h-14 rounded-full flex items-center justify-center font-bold text-base
                     transition-all duration-300
                     ${
                       isCompleted
-                        ? "bg-secondary text-secondary-foreground shadow-md cursor-pointer hover:scale-110"
+                        ? "bg-secondary text-secondary-foreground shadow-xl cursor-pointer hover:scale-125 animate-pulse"
                         : isCurrent
-                        ? "bg-primary text-primary-foreground shadow-md scale-110"
+                        ? "bg-primary text-primary-foreground shadow-lg scale-110 animate-pulse"
                         : "bg-muted text-muted-foreground"
                     }
                   `}
                 >
-                  {isCompleted ? <Check className="w-5 h-5" /> : stepNumber}
+                  {isCompleted ? <Check className="w-7 h-7" strokeWidth={3} /> : stepNumber}
                 </div>
                 <span className="text-xs mt-2 text-muted-foreground font-medium">
                   Etapa {stepNumber}
