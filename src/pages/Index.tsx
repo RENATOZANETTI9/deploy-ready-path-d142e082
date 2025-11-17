@@ -31,11 +31,13 @@ const Index = () => {
 
   const handleStart = () => {
     setCurrentStep(1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleCpfNext = (cpf: string) => {
     setFormData((prev) => ({ ...prev, cpf }));
     setCurrentStep(2);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     toast({
       title: "CPF confirmado",
       description: "Vamos para a próxima etapa",
@@ -44,6 +46,7 @@ const Index = () => {
 
   const handleAuthorizationNext = () => {
     setCurrentStep(3);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     toast({
       title: "Autorização concedida",
       description: "Obrigado pela confiança",
@@ -53,6 +56,7 @@ const Index = () => {
   const handlePixNext = (pixType: string, pixKey: string, proposals: any[]) => {
     setFormData((prev) => ({ ...prev, pixType, pixKey, proposals }));
     setIsLoading(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     
     toast({
       title: "Dados bancários confirmados",
@@ -63,6 +67,7 @@ const Index = () => {
     setTimeout(() => {
       setIsLoading(false);
       setCurrentStep(4);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 1500);
   };
 
@@ -86,6 +91,7 @@ const Index = () => {
   const handleStepClick = (step: number) => {
     if (step < currentStep) {
       setCurrentStep(step);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       toast({
         title: "Voltando para etapa anterior",
         description: `Você está na Etapa ${step}`,
@@ -96,6 +102,7 @@ const Index = () => {
   const handleBack = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
