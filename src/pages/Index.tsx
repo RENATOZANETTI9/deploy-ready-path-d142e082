@@ -99,16 +99,16 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/20 via-background to-primary/10 flex flex-col">
-      <div className="container mx-auto px-4 pt-4 md:pt-6 pb-8 flex-1">
+      <div className="container mx-auto px-2 md:px-4 pt-2 md:pt-6 pb-4 md:pb-8 flex-1">
         <div className="max-w-4xl mx-auto">
           {/* Header - Only show after welcome */}
           {currentStep > 0 && (
             <>
-              <div className="text-center mb-12">
-                <h1 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2 uppercase font-visby">
+              <div className="text-center mb-4 md:mb-12">
+                <h1 className="text-2xl md:text-4xl lg:text-5xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-1 md:mb-2 uppercase font-visby">
                   CRÉDITO CONSIGNADO CLT
                 </h1>
-                <p className="text-muted-foreground uppercase font-visby font-bold">
+                <p className="text-xs md:text-base text-muted-foreground uppercase font-visby font-bold">
                   PROCESSO RÁPIDO, SEGURO E 100% DIGITAL
                 </p>
               </div>
