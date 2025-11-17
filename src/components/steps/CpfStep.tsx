@@ -171,8 +171,12 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
       ) : (
         <>
       <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-          <Lock className="w-8 h-8 text-primary" />
+        <div className="relative inline-flex items-center justify-center w-24 h-24 mb-4">
+          <div className="absolute inset-0 rounded-full bg-primary/20 animate-pulse" />
+          <div className="absolute inset-0 rounded-full bg-primary/10 animate-ping" />
+          <div className="relative flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 shadow-lg">
+            <Lock className="w-12 h-12 text-primary animate-pulse" strokeWidth={2.5} />
+          </div>
         </div>
             <h2 className="text-2xl font-bold mb-2">Vamos começar</h2>
             <p className="text-muted-foreground">
