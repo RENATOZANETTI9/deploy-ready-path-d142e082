@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Wallet, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { LoadingProposals } from "@/components/LoadingProposals";
 
 interface PixStepProps {
   onNext: (pixType: string, pixKey: string, proposals: any[]) => void;
@@ -106,75 +107,81 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="text-center mb-8">
-        <div className="relative inline-flex items-center justify-center w-24 h-24 mb-4">
-          <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
-          <div className="absolute inset-0 rounded-full bg-secondary/10 animate-ping" />
-          <div className="relative flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-secondary/20 to-secondary/10 shadow-lg">
-            <Wallet className="w-12 h-12 text-secondary animate-pulse" strokeWidth={2.5} />
+    <>
+      {isLoading ? (
+        <LoadingProposals />
+      ) : (
+        <div className="w-full max-w-md mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <div className="text-center mb-8">
+            <div className="relative inline-flex items-center justify-center w-24 h-24 mb-4">
+              <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
+              <div className="absolute inset-0 rounded-full bg-secondary/10 animate-ping" />
+              <div className="relative flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-secondary/20 to-secondary/10 shadow-lg">
+                <Wallet className="w-12 h-12 text-secondary animate-pulse" strokeWidth={2.5} />
+              </div>
+            </div>
+            <h2 className="text-2xl font-bold mb-2">Dados Bancários</h2>
+            <p className="text-muted-foreground">
+              Informe sua chave PIX para receber o valor
+            </p>
           </div>
-        </div>
-        <h2 className="text-2xl font-bold mb-2">Dados Bancários</h2>
-        <p className="text-muted-foreground">
-          Informe sua chave PIX para receber o valor
-        </p>
-      </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="space-y-4">
-          <Label>Sua chave PIX é:</Label>
-          <RadioGroup value={pixType} onValueChange={setPixType}>
-            <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors cursor-pointer">
-              <RadioGroupItem value="cpf" id="cpf" />
-              <Label htmlFor="cpf" className="flex-1 cursor-pointer font-normal">
-                CPF
-              </Label>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-4">
+              <Label>Sua chave PIX é:</Label>
+              <RadioGroup value={pixType} onValueChange={setPixType}>
+                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors cursor-pointer">
+                  <RadioGroupItem value="cpf" id="cpf" />
+                  <Label htmlFor="cpf" className="flex-1 cursor-pointer font-normal">
+                    CPF
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors cursor-pointer">
+                  <RadioGroupItem value="phone" id="phone" />
+                  <Label htmlFor="phone" className="flex-1 cursor-pointer font-normal">
+                    Telefone
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors cursor-pointer">
+                  <RadioGroupItem value="email" id="email" />
+                  <Label htmlFor="email" className="flex-1 cursor-pointer font-normal">
+                    E-mail
+                  </Label>
+                </div>
+              </RadioGroup>
             </div>
-            <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors cursor-pointer">
-              <RadioGroupItem value="phone" id="phone" />
-              <Label htmlFor="phone" className="flex-1 cursor-pointer font-normal">
-                Telefone
-              </Label>
-            </div>
-            <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors cursor-pointer">
-              <RadioGroupItem value="email" id="email" />
-              <Label htmlFor="email" className="flex-1 cursor-pointer font-normal">
-                E-mail
-              </Label>
-            </div>
-          </RadioGroup>
-        </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="pixKey">Chave PIX</Label>
-          <Input
-            id="pixKey"
-            type="text"
-            placeholder={getPlaceholder()}
-            value={pixKey}
-            onChange={(e) => {
-              setPixKey(e.target.value);
-              if (error) setError("");
-            }}
-            className={error ? "border-destructive" : ""}
-          />
-          {error && <p className="text-sm text-destructive">{error}</p>}
-          <p className="text-xs text-muted-foreground">
-            Digite sua chave conforme o tipo selecionado
-          </p>
-        </div>
+            <div className="space-y-2">
+              <Label htmlFor="pixKey">Chave PIX</Label>
+              <Input
+                id="pixKey"
+                type="text"
+                placeholder={getPlaceholder()}
+                value={pixKey}
+                onChange={(e) => {
+                  setPixKey(e.target.value);
+                  if (error) setError("");
+                }}
+                className={error ? "border-destructive" : ""}
+              />
+              {error && <p className="text-sm text-destructive">{error}</p>}
+              <p className="text-xs text-muted-foreground">
+                Digite sua chave conforme o tipo selecionado
+              </p>
+            </div>
 
-        <div className="flex gap-3">
-          <Button type="button" variant="outline" size="lg" onClick={onBack} className="flex-1" disabled={isLoading}>
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Voltar
-          </Button>
-          <Button type="submit" variant="secondary" size="lg" disabled={isLoading} className="flex-1">
-            {isLoading ? "Processando..." : "Continuar"}
-          </Button>
+            <div className="flex gap-3">
+              <Button type="button" variant="outline" size="lg" onClick={onBack} className="flex-1" disabled={isLoading}>
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Voltar
+              </Button>
+              <Button type="submit" variant="secondary" size="lg" disabled={isLoading} className="flex-1">
+                {isLoading ? "Processando..." : "Continuar"}
+              </Button>
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
+      )}
+    </>
   );
 };
