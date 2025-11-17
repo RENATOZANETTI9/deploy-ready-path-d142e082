@@ -5,7 +5,6 @@ import { CpfStep } from "@/components/steps/CpfStep";
 import { AuthorizationStep } from "@/components/steps/AuthorizationStep";
 import { PixStep } from "@/components/steps/PixStep";
 import { ProposalsStep } from "@/components/steps/ProposalsStep";
-import { LoadingProposals } from "@/components/LoadingProposals";
 import { Footer } from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
 
@@ -18,7 +17,6 @@ interface FormData {
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     cpf: "",
     pixType: "",
@@ -57,32 +55,19 @@ const Index = () => {
 
   const handlePixNext = (pixType: string, pixKey: string, proposals: any[]) => {
     setFormData((prev) => ({ ...prev, pixType, pixKey, proposals }));
-    setIsLoading(true);
+    setCurrentStep(4);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-    toast({
-      title: "Dados bancários confirmados",
-      description: "Buscando as melhores propostas para você...",
-      duration: 3000,
-    });
-
-    // Pequeno delay para melhor UX
-    setTimeout(() => {
-      setIsLoading(false);
-      setCurrentStep(4);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 1500);
   };
 
   useEffect(() => {
-    if (currentStep === 4 && !isLoading) {
+    if (currentStep === 4) {
       toast({
         title: "Propostas encontradas! 🎉",
         description: "Encontramos 3 excelentes opções para você",
         duration: 3000,
       });
     }
-  }, [currentStep, isLoading, toast]);
+  }, [currentStep, toast]);
 
   const handleFinish = () => {
     toast({
@@ -138,9 +123,8 @@ const Index = () => {
             {currentStep === 0 && <WelcomeStep onStart={handleStart} />}
             {currentStep === 1 && <CpfStep onNext={handleCpfNext} onBack={handleBack} />}
             {currentStep === 2 && <AuthorizationStep onNext={handleAuthorizationNext} onBack={handleBack} />}
-            {currentStep === 3 && !isLoading && <PixStep onNext={handlePixNext} cpf={formData.cpf} onBack={handleBack} />}
-            {isLoading && <LoadingProposals />}
-            {currentStep === 4 && !isLoading && <ProposalsStep proposals={formData.proposals} onFinish={handleFinish} />}
+            {currentStep === 3 && <PixStep onNext={handlePixNext} cpf={formData.cpf} onBack={handleBack} />}
+            {currentStep === 4 && <ProposalsStep proposals={formData.proposals} onFinish={handleFinish} />}
           </div>
 
           {/* Footer */}
