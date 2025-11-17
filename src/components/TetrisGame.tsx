@@ -278,6 +278,12 @@ export const TetrisGame = () => {
 
   return (
     <div className="flex flex-col items-center gap-4 p-4 bg-muted/30 rounded-lg">
+      <div className="text-center mb-2">
+        <p className="text-sm md:text-base font-semibold text-primary animate-pulse">
+          Se divirta enquanto os bancos brigam por você
+        </p>
+      </div>
+      
       <div className="flex items-center justify-between w-full max-w-[200px]">
         <span className="text-sm font-semibold">Pontos: {score}</span>
         {gameOver && (
