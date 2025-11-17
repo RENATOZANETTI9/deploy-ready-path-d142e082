@@ -11,7 +11,7 @@ export const LoadingProposals = () => {
       <h2 className="text-2xl font-bold mb-4">Buscando as melhores propostas</h2>
       
       <div className="mb-6">
-        <TetrisGame />
+        <TetrisGame key={Date.now()} />
       </div>
       
       <div className="space-y-3 text-muted-foreground">
