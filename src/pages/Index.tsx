@@ -99,7 +99,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/20 via-background to-primary/10 flex flex-col">
-      <div className="container mx-auto px-4 py-8 md:py-12 flex-1">
+      <div className="container mx-auto px-4 pt-4 md:pt-6 pb-8 flex-1">
         <div className="max-w-4xl mx-auto">
           {/* Header - Only show after welcome */}
           {currentStep > 0 && (
