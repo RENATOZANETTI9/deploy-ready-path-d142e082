@@ -170,16 +170,16 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
         </div>
       ) : (
         <>
-      <div className="text-center mb-8">
-        <div className="relative inline-flex items-center justify-center w-24 h-24 mb-4">
+      <div className="text-center mb-4 md:mb-8">
+        <div className="relative inline-flex items-center justify-center w-12 h-12 md:w-20 md:h-20 mb-2 md:mb-4">
           <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
           <div className="absolute inset-0 rounded-full bg-secondary/10 animate-ping" />
-          <div className="relative flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-secondary/20 to-secondary/10 shadow-lg">
-            <Lock className="w-12 h-12 text-secondary animate-pulse" strokeWidth={2.5} />
+          <div className="relative flex items-center justify-center w-12 h-12 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-secondary/20 to-secondary/10 shadow-lg">
+            <Lock className="w-6 h-6 md:w-10 md:h-10 text-secondary animate-pulse" strokeWidth={2.5} />
           </div>
         </div>
-            <h2 className="text-2xl font-bold mb-2">Vamos começar</h2>
-            <p className="text-muted-foreground">
+        <h2 className="text-xl md:text-2xl font-bold mb-2">Informe seu CPF</h2>
+            <p className="text-sm md:text-base text-muted-foreground">
               Para iniciar, preciso apenas do seu CPF:
             </p>
           </div>
