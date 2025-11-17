@@ -200,7 +200,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             <img
               src={heroImage}
               alt="Crédito Consignado"
-              className="w-[65%] h-auto object-cover"
+              className="w-[80%] h-auto object-cover"
             />
           </div>
 
