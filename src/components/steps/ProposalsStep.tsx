@@ -331,7 +331,10 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals }: ProposalsSt
               </Button>
 
               <Button 
-                onClick={() => setIsDialogOpen(false)}
+                onClick={() => {
+                  setIsDialogOpen(false);
+                  onFinish();
+                }}
                 variant="outline"
                 className="w-full"
               >
