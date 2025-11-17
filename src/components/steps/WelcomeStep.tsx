@@ -150,14 +150,14 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
 
               {/* Results Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
-                <div className="p-3 bg-primary/10 rounded-lg border border-primary/30">
-                  <p className="text-xs font-medium text-foreground mb-0.5">Valor da parcela</p>
-                  <p className="text-lg font-bold text-primary">{formatCurrency(maxInstallment)}</p>
+                <div className="p-3 bg-primary/5 rounded-lg border border-primary/20">
+                  <p className="text-xs font-medium text-foreground/70 mb-0.5">Valor da parcela</p>
+                  <p className="text-base font-semibold text-foreground">{formatCurrency(maxInstallment)}</p>
                   <p className="text-[9px] text-muted-foreground mt-1">*Valor máximo da parcela (35%)</p>
                 </div>
-                <div className="p-3 bg-secondary/10 rounded-lg border border-secondary/30">
-                  <p className="text-[10px] text-muted-foreground mb-1">Você pode receber até</p>
-                  <p className="text-lg font-bold text-secondary">{formatCurrency(availableCredit)}</p>
+                <div className="p-4 bg-gradient-accent rounded-lg border-2 border-secondary shadow-xl">
+                  <p className="text-xs text-secondary-foreground/80 mb-1 font-medium">Você pode receber até</p>
+                  <p className="text-3xl font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
                 </div>
               </div>
             </div>
@@ -233,15 +233,15 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       {/* Mobile: Results Cards - Emphasis on Available Credit */}
       <div className="md:hidden grid grid-cols-1 gap-1.5 mt-2">
         {/* Available Credit - MAIN EMPHASIS */}
-        <div className="p-2 bg-gradient-accent rounded-lg border-2 border-secondary shadow-lg">
-          <p className="text-[8px] text-secondary-foreground/80 mb-0.5">Você pode receber até</p>
-          <p className="text-[19px] font-black text-secondary-foreground">{formatCurrency(availableCredit)}</p>
+        <div className="p-3 bg-gradient-accent rounded-lg border-2 border-secondary shadow-xl">
+          <p className="text-[9px] text-secondary-foreground/80 mb-0.5 font-medium">Você pode receber até</p>
+          <p className="text-[22px] font-black text-secondary-foreground leading-tight">{formatCurrency(availableCredit)}</p>
         </div>
         {/* Installment Value - Secondary */}
-        <div className="p-2.5 bg-primary/5 rounded-lg border border-primary/20">
-          <p className="text-[9px] font-medium text-foreground/70 mb-0.5">Valor da parcela</p>
-          <p className="text-xs font-semibold text-foreground">{formatCurrency(maxInstallment)}</p>
-          <p className="text-[8px] text-muted-foreground mt-0.5">*Valor máximo da parcela (35%)</p>
+        <div className="p-2 bg-primary/5 rounded-lg border border-primary/20">
+          <p className="text-[8px] font-medium text-foreground/70 mb-0.5">Valor da parcela</p>
+          <p className="text-[11px] font-semibold text-foreground">{formatCurrency(maxInstallment)}</p>
+          <p className="text-[7px] text-muted-foreground mt-0.5">*Valor máximo da parcela (35%)</p>
         </div>
       </div>
 
