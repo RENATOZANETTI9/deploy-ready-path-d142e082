@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
 import { Shield, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -14,6 +12,10 @@ export const AuthorizationStep = ({ onNext, onBack }: AuthorizationStepProps) =>
   const [accepted, setAccepted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+
+  const handleAccept = () => {
+    setAccepted(true);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,6 +51,7 @@ export const AuthorizationStep = ({ onNext, onBack }: AuthorizationStepProps) =>
         title: "Erro ao processar autorização",
         description: "Por favor, tente novamente",
         variant: "destructive",
+        duration: 3000,
       });
     } finally {
       setIsLoading(false);
@@ -71,7 +74,7 @@ export const AuthorizationStep = ({ onNext, onBack }: AuthorizationStepProps) =>
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="space-y-6">
         <div className="bg-card rounded-lg p-6 shadow-sm border space-y-4">
           <p className="font-medium">Ao autorizar, você:</p>
           
@@ -107,37 +110,42 @@ export const AuthorizationStep = ({ onNext, onBack }: AuthorizationStepProps) =>
           </div>
         </div>
 
-        <div className="flex items-start space-x-3 p-4 bg-muted/50 rounded-lg">
-          <Checkbox
-            id="authorization"
-            checked={accepted}
-            onCheckedChange={(checked) => setAccepted(checked as boolean)}
-            className="mt-1"
-          />
-          <Label
-            htmlFor="authorization"
-            className="text-sm font-medium leading-relaxed cursor-pointer"
-          >
-            Li e autorizo a consulta de dados conforme descrito acima
-          </Label>
-        </div>
-
-        <div className="flex gap-3">
-          <Button type="button" variant="outline" size="lg" onClick={onBack} className="flex-1">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Voltar
-          </Button>
-          <Button
-            type="submit"
-            variant="secondary"
-            size="lg"
-            disabled={!accepted || isLoading}
-            className="flex-1"
-          >
-            {isLoading ? "Processando..." : "Continuar"}
-          </Button>
-        </div>
-      </form>
+        {!accepted ? (
+          <div className="flex gap-3">
+            <Button type="button" variant="outline" size="lg" onClick={onBack} className="flex-1">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Voltar
+            </Button>
+            <Button
+              type="button"
+              variant="default"
+              size="lg"
+              onClick={handleAccept}
+              className="flex-1 bg-muted hover:bg-secondary hover:text-secondary-foreground transition-all"
+            >
+              Selecionar
+            </Button>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <div className="flex gap-3">
+              <Button type="button" variant="outline" size="lg" onClick={onBack} className="flex-1">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Voltar
+              </Button>
+              <Button
+                type="submit"
+                variant="secondary"
+                size="lg"
+                disabled={isLoading}
+                className="flex-1 bg-secondary text-secondary-foreground shadow-lg"
+              >
+                {isLoading ? "Processando..." : "Continuar"}
+              </Button>
+            </div>
+          </form>
+        )}
+      </div>
     </div>
   );
 };
