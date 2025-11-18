@@ -12,9 +12,14 @@ import { parseWebhookProposals, type Proposal } from "@/lib/proposalParser";
 interface ProposalsStepProps {
   onFinish: () => void;
   proposals: any[];
+  formData: {
+    cpf: string;
+    pixType: string;
+    pixKey: string;
+  };
 }
 
-export const ProposalsStep = ({ onFinish, proposals: rawProposals }: ProposalsStepProps) => {
+export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: ProposalsStepProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedProposal, setSelectedProposal] = useState<Proposal | null>(null);
   const [phone, setPhone] = useState("");
@@ -80,28 +85,36 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals }: ProposalsSt
     }
 
     try {
-      // Envia webhook com telefone e proposta selecionada
-      await fetch("https://webhook.vpslegaleviver.shop/webhook/nova_vida", {
+      // Envia webhook com todas as informações do formulário
+      await fetch("https://webhook.vpslegaleviver.shop/webhook/FINALIZAR", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          event: "contract_phone_submitted",
-          timestamp: new Date().toISOString(),
-          data: {
-            phone: phone,
+          cpf: formData.cpf,
+          pixType: formData.pixType,
+          pixKey: formData.pixKey,
+          phone: phone,
+          selectedProposal: {
             bank: selectedProposal?.bank,
             amount: selectedProposal?.amount,
+            netAmount: selectedProposal?.netAmount,
             installments: selectedProposal?.installments,
             installmentValue: selectedProposal?.installmentValue,
             rate: selectedProposal?.rate,
+            annualRate: selectedProposal?.annualRate,
+            iof: selectedProposal?.iof,
+            cetMonthly: selectedProposal?.cetMonthly,
+            cetAnnual: selectedProposal?.cetAnnual,
+            firstDueDate: selectedProposal?.firstDueDate,
             contractUrl: selectedProposal?.contractUrl,
-          }
+          },
+          timestamp: new Date().toISOString(),
         }),
       });
 
-      console.log("Webhook de telefone enviado com sucesso");
+      console.log("Webhook de finalização enviado com sucesso");
       
       // Abre o contrato diretamente em nova aba
       if (selectedProposal?.contractUrl) {

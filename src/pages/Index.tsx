@@ -131,7 +131,7 @@ const Index = () => {
             {currentStep === 1 && <CpfStep onNext={handleCpfNext} onBack={handleBack} />}
             {currentStep === 2 && <AuthorizationStep onNext={handleAuthorizationNext} onBack={handleBack} />}
             {currentStep === 3 && <PixStep onNext={handlePixNext} cpf={formData.cpf} onBack={handleBack} />}
-            {currentStep === 4 && <ProposalsStep proposals={formData.proposals} onFinish={handleFinish} />}
+            {currentStep === 4 && <ProposalsStep proposals={formData.proposals} onFinish={handleFinish} formData={formData} />}
           </div>
 
           {/* Footer */}
