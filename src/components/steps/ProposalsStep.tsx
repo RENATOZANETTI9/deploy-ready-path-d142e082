@@ -18,7 +18,6 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals }: ProposalsSt
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedProposal, setSelectedProposal] = useState<Proposal | null>(null);
   const [phone, setPhone] = useState("");
-  const [showContractLink, setShowContractLink] = useState(false);
   const { toast } = useToast();
 
   // Parsear propostas do webhook
@@ -67,7 +66,6 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals }: ProposalsSt
   const handleContractClick = (proposal: Proposal) => {
     setSelectedProposal(proposal);
     setIsDialogOpen(true);
-    setShowContractLink(false);
     setPhone("");
   };
 
@@ -96,22 +94,31 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals }: ProposalsSt
             bank: selectedProposal?.bank,
             amount: selectedProposal?.amount,
             installments: selectedProposal?.installments,
+            installmentValue: selectedProposal?.installmentValue,
             rate: selectedProposal?.rate,
+            contractUrl: selectedProposal?.contractUrl,
           }
         }),
       });
 
       console.log("Webhook de telefone enviado com sucesso");
+      
+      // Abre o contrato diretamente em nova aba
+      if (selectedProposal?.contractUrl) {
+        window.open(selectedProposal.contractUrl, '_blank');
+      }
+      
+      // Fecha o dialog e finaliza
+      setIsDialogOpen(false);
+      onFinish();
     } catch (error) {
       console.error("Erro ao enviar webhook:", error);
+      toast({
+        title: "Erro",
+        description: "Erro ao processar solicitação",
+        variant: "destructive",
+      });
     }
-
-    toast({
-      title: "Telefone confirmado",
-      description: "Gerando link de formalização...",
-    });
-
-    setShowContractLink(true);
   };
 
   const formatPhone = (value: string) => {
@@ -275,22 +282,17 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals }: ProposalsSt
           <DialogHeader>
             <DialogTitle>Finalizar Contratação</DialogTitle>
             <DialogDescription>
-              {!showContractLink ? (
-                "Informe seu telefone para receber o link de formalização do contrato"
-              ) : (
-                "Link de formalização gerado com sucesso!"
-              )}
+              Informe seu telefone para receber o link de formalização do contrato
             </DialogDescription>
           </DialogHeader>
 
-          {!showContractLink ? (
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="phone">Telefone com DDD</Label>
-                <div className="relative">
-                  <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    id="phone"
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="phone">Telefone com DDD</Label>
+              <div className="relative">
+                <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Input
+                  id="phone"
                     placeholder="(11) 98765-4321"
                     value={phone}
                     onChange={(e) => setPhone(formatPhone(e.target.value))}
@@ -304,44 +306,6 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals }: ProposalsSt
                 Confirmar Telefone
               </Button>
             </div>
-          ) : (
-            <div className="space-y-4">
-              <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 text-center">
-                <p className="text-sm mb-3">
-                  📱 Enviaremos o link por WhatsApp e SMS
-                </p>
-                <p className="font-semibold text-lg mb-1">
-                  {selectedProposal?.bank}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  R$ {selectedProposal?.amount} em {selectedProposal?.installments}x
-                </p>
-              </div>
-
-              <Button 
-                onClick={() => {
-                  window.open(selectedProposal?.contractUrl, '_blank');
-                  setIsDialogOpen(false);
-                }}
-                className="w-full group"
-                size="lg"
-              >
-                <span className="flex-1">Acessar Link de Formalização</span>
-                <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-
-              <Button 
-                onClick={() => {
-                  setIsDialogOpen(false);
-                  onFinish();
-                }}
-                variant="outline"
-                className="w-full"
-              >
-                Fechar
-              </Button>
-            </div>
-          )}
         </DialogContent>
       </Dialog>
     </div>
