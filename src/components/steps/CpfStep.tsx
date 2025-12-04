@@ -130,56 +130,56 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
     <>
       {showSuccess && <Confetti />}
       <div className="w-full max-w-md mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
-        {showSuccess ? (
-          <div className="text-center space-y-6 animate-in fade-in scale-in duration-500">
-            <div className="relative inline-flex items-center justify-center w-24 h-24 mb-4">
+      {showSuccess ? (
+          <div className="text-center space-y-3 md:space-y-6 animate-in fade-in scale-in duration-500">
+            <div className="relative inline-flex items-center justify-center w-16 h-16 md:w-24 md:h-24 mb-2 md:mb-4">
               <div className="absolute inset-0 rounded-full bg-green-500/20 animate-ping" />
-              <div className="relative flex items-center justify-center w-24 h-24 rounded-full bg-green-500/10">
-                <span className="text-6xl animate-bounce">🎉</span>
+              <div className="relative flex items-center justify-center w-16 h-16 md:w-24 md:h-24 rounded-full bg-green-500/10">
+                <span className="text-4xl md:text-6xl animate-bounce">🎉</span>
               </div>
             </div>
             
-            <h2 className="text-3xl font-bold text-green-600 dark:text-green-400">
+            <h2 className="text-xl md:text-3xl font-bold text-green-600 dark:text-green-400">
               CPF Validado!
             </h2>
             
-            <p className="text-lg text-muted-foreground">
+            <p className="text-sm md:text-lg text-muted-foreground">
               Ótimas notícias! Vamos continuar...
             </p>
             
-            <div className="flex items-center justify-center gap-3">
-              <span className="text-4xl animate-bounce" style={{ animationDelay: "0ms" }}>✨</span>
-              <span className="text-4xl animate-bounce" style={{ animationDelay: "100ms" }}>🎊</span>
-              <span className="text-4xl animate-bounce" style={{ animationDelay: "200ms" }}>✨</span>
+            <div className="flex items-center justify-center gap-2 md:gap-3">
+              <span className="text-2xl md:text-4xl animate-bounce" style={{ animationDelay: "0ms" }}>✨</span>
+              <span className="text-2xl md:text-4xl animate-bounce" style={{ animationDelay: "100ms" }}>🎊</span>
+              <span className="text-2xl md:text-4xl animate-bounce" style={{ animationDelay: "200ms" }}>✨</span>
             </div>
           </div>
         ) : isValidating ? (
-        <div className="text-center space-y-6">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-4 animate-pulse">
-            <Loader2 className="w-10 h-10 text-primary animate-spin" />
+        <div className="text-center space-y-3 md:space-y-6">
+          <div className="inline-flex items-center justify-center w-14 h-14 md:w-20 md:h-20 rounded-full bg-primary/10 mb-2 md:mb-4 animate-pulse">
+            <Loader2 className="w-7 h-7 md:w-10 md:h-10 text-primary animate-spin" />
           </div>
-          <h2 className="text-2xl font-bold">Validando seu CPF...</h2>
-          <p className="text-muted-foreground">
+          <h2 className="text-lg md:text-2xl font-bold">Validando seu CPF...</h2>
+          <p className="text-sm md:text-base text-muted-foreground">
             Aguarde enquanto verificamos seus dados
           </p>
-          <div className="mt-6 flex items-center justify-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: "0ms" }} />
-            <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: "150ms" }} />
-            <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: "300ms" }} />
+          <div className="mt-3 md:mt-6 flex items-center justify-center gap-2">
+            <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: "0ms" }} />
+            <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: "150ms" }} />
+            <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: "300ms" }} />
           </div>
         </div>
       ) : (
         <>
-      <div className="text-center mb-8">
-        <div className="relative inline-flex items-center justify-center w-24 h-24 mb-4">
+      <div className="text-center mb-4 md:mb-8">
+        <div className="relative inline-flex items-center justify-center w-16 h-16 md:w-24 md:h-24 mb-2 md:mb-4">
           <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
           <div className="absolute inset-0 rounded-full bg-secondary/10 animate-ping" />
-          <div className="relative flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-secondary/20 to-secondary/10 shadow-lg">
-            <Lock className="w-12 h-12 text-secondary animate-pulse" strokeWidth={2.5} />
+          <div className="relative flex items-center justify-center w-16 h-16 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-secondary/20 to-secondary/10 shadow-lg">
+            <Lock className="w-8 h-8 md:w-12 md:h-12 text-secondary animate-pulse" strokeWidth={2.5} />
           </div>
         </div>
-            <h2 className="text-2xl font-bold mb-2">Vamos começar</h2>
-            <p className="text-muted-foreground">
+            <h2 className="text-lg md:text-2xl font-bold mb-1 md:mb-2">Vamos começar</h2>
+            <p className="text-sm md:text-base text-muted-foreground">
               Para iniciar, preciso apenas do seu CPF:
             </p>
           </div>

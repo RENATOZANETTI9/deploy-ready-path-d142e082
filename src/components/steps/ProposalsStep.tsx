@@ -34,28 +34,28 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
   if (!proposals || proposals.length === 0) {
     return (
       <div className="w-full max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
-        <div className="text-center space-y-6">
-          <div className="relative inline-flex items-center justify-center w-24 h-24 mb-4">
+        <div className="text-center space-y-3 md:space-y-6">
+          <div className="relative inline-flex items-center justify-center w-16 h-16 md:w-24 md:h-24 mb-2 md:mb-4">
             <div className="absolute inset-0 rounded-full bg-destructive/20 animate-pulse" />
-            <div className="relative flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-destructive/20 to-destructive/10 shadow-lg">
-              <span className="text-5xl">😔</span>
+            <div className="relative flex items-center justify-center w-16 h-16 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-destructive/20 to-destructive/10 shadow-lg">
+              <span className="text-3xl md:text-5xl">😔</span>
             </div>
           </div>
           
-          <h2 className="text-2xl font-bold text-foreground">Não aprovado desta vez</h2>
+          <h2 className="text-lg md:text-2xl font-bold text-foreground">Não aprovado desta vez</h2>
           
-          <div className="bg-card rounded-lg p-6 shadow-sm border space-y-4">
-            <p className="text-base text-muted-foreground leading-relaxed">
+          <div className="bg-card rounded-lg p-3 md:p-6 shadow-sm border space-y-2 md:space-y-4">
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
               Passamos por <strong className="text-foreground">mais de 5 bancos</strong>, mas infelizmente não conseguimos aprovação em nenhum.
             </p>
             
-            <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
-              <p className="text-sm text-foreground">
+            <div className="bg-primary/5 border border-primary/20 rounded-lg p-2 md:p-4">
+              <p className="text-xs md:text-sm text-foreground">
                 📅 Nós continuaremos acompanhando sua análise e, <strong>a cada 30 dias</strong>, realizamos uma nova tentativa.
               </p>
             </div>
             
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs md:text-sm text-muted-foreground">
               Assim que houver aprovação, <strong className="text-foreground">avisamos você</strong>! 💚
             </p>
           </div>
@@ -147,97 +147,97 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
   const ProposalCard = ({ proposal, isBest }: { proposal: Proposal; isBest?: boolean }) => (
     <Card className={`relative overflow-hidden ${isBest ? "border-secondary border-2 shadow-xl" : ""}`}>
       {isBest && (
-        <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-secondary to-secondary/80 text-secondary-foreground text-center py-1.5 md:py-2 text-xs md:text-sm font-bold tracking-wide">
+        <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-secondary to-secondary/80 text-secondary-foreground text-center py-1 md:py-2 text-[10px] md:text-sm font-bold tracking-wide">
           ⭐ MELHOR PROPOSTA ⭐
         </div>
       )}
-      <CardContent className={`p-3 md:p-6 ${isBest ? "pt-10 md:pt-14" : ""}`}>
-        <div className="space-y-3 md:space-y-4">
-          <div className="flex items-center justify-between mb-1 md:mb-2">
-            <h3 className="text-sm md:text-lg font-bold">🏦 {proposal.bank}</h3>
-            {isBest && <Badge variant="outline" className="bg-secondary/10 text-secondary border-secondary text-[10px] md:text-xs">Recomendado</Badge>}
+      <CardContent className={`p-2 md:p-6 ${isBest ? "pt-8 md:pt-14" : ""}`}>
+        <div className="space-y-2 md:space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-xs md:text-lg font-bold">🏦 {proposal.bank}</h3>
+            {isBest && <Badge variant="outline" className="bg-secondary/10 text-secondary border-secondary text-[8px] md:text-xs px-1 md:px-2">Recomendado</Badge>}
           </div>
 
           {/* DESTAQUE PRINCIPAL: Valor Líquido Liberado */}
-          <div className="bg-gradient-to-br from-secondary/20 to-secondary/10 border-2 border-secondary rounded-xl p-3 md:p-6 text-center shadow-lg">
-            <p className="text-xs md:text-sm font-semibold text-secondary uppercase tracking-wide mb-1 md:mb-2">💰 Valor Liberado no seu PIX</p>
-            <p className="text-2xl md:text-5xl font-black text-secondary mb-1">R$ {proposal.netAmount}</p>
-            <p className="text-[10px] md:text-xs text-muted-foreground">Valor líquido que você recebe</p>
+          <div className="bg-gradient-to-br from-secondary/20 to-secondary/10 border-2 border-secondary rounded-lg p-2 md:p-6 text-center shadow-lg">
+            <p className="text-[10px] md:text-sm font-semibold text-secondary uppercase tracking-wide mb-0.5 md:mb-2">💰 Valor Liberado no seu PIX</p>
+            <p className="text-xl md:text-5xl font-black text-secondary">R$ {proposal.netAmount}</p>
+            <p className="text-[8px] md:text-xs text-muted-foreground">Valor líquido que você recebe</p>
           </div>
 
           {/* TODAS as informações visíveis */}
-          <div className="bg-muted/30 rounded-lg p-3 md:p-4">
-            <p className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-wide mb-2 md:mb-3 font-semibold">Detalhes Completos da Proposta</p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
-              <div className="flex items-start gap-1.5 bg-background/50 rounded p-1.5 md:p-2">
-                <Calendar className="w-3 h-3 text-secondary mt-0.5 flex-shrink-0" />
+          <div className="bg-muted/30 rounded-lg p-2 md:p-4">
+            <p className="text-[8px] md:text-xs text-muted-foreground uppercase tracking-wide mb-1.5 md:mb-3 font-semibold">Detalhes da Proposta</p>
+            <div className="grid grid-cols-3 gap-1 md:gap-3">
+              <div className="flex items-start gap-1 bg-background/50 rounded p-1 md:p-2">
+                <Calendar className="w-2.5 h-2.5 md:w-3 md:h-3 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[8px] md:text-[9px] text-muted-foreground">1ª Parcela</p>
-                  <p className="text-[10px] md:text-xs font-semibold">{proposal.firstDueDate}</p>
+                  <p className="text-[7px] md:text-[9px] text-muted-foreground">1ª Parcela</p>
+                  <p className="text-[8px] md:text-xs font-semibold">{proposal.firstDueDate}</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-1.5 bg-background/50 rounded p-1.5 md:p-2">
-                <Calendar className="w-3 h-3 text-secondary mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-1 bg-background/50 rounded p-1 md:p-2">
+                <Calendar className="w-2.5 h-2.5 md:w-3 md:h-3 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[8px] md:text-[9px] text-muted-foreground">Prazo</p>
-                  <p className="text-[10px] md:text-xs font-semibold">{proposal.installments}x</p>
+                  <p className="text-[7px] md:text-[9px] text-muted-foreground">Prazo</p>
+                  <p className="text-[8px] md:text-xs font-semibold">{proposal.installments}x</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-1.5 bg-background/50 rounded p-1.5 md:p-2">
-                <DollarSign className="w-3 h-3 text-secondary mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-1 bg-background/50 rounded p-1 md:p-2">
+                <DollarSign className="w-2.5 h-2.5 md:w-3 md:h-3 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[8px] md:text-[9px] text-muted-foreground">Parcela</p>
-                  <p className="text-[10px] md:text-xs font-semibold">R$ {proposal.installmentValue}</p>
+                  <p className="text-[7px] md:text-[9px] text-muted-foreground">Parcela</p>
+                  <p className="text-[8px] md:text-xs font-semibold">R$ {proposal.installmentValue}</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-1.5 bg-background/50 rounded p-1.5 md:p-2">
-                <DollarSign className="w-3 h-3 text-secondary mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-1 bg-background/50 rounded p-1 md:p-2">
+                <DollarSign className="w-2.5 h-2.5 md:w-3 md:h-3 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[8px] md:text-[9px] text-muted-foreground">Financiado</p>
-                  <p className="text-[10px] md:text-xs font-semibold">R$ {proposal.amount}</p>
+                  <p className="text-[7px] md:text-[9px] text-muted-foreground">Financiado</p>
+                  <p className="text-[8px] md:text-xs font-semibold">R$ {proposal.amount}</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-1.5 bg-background/50 rounded p-1.5 md:p-2">
-                <DollarSign className="w-3 h-3 text-secondary mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-1 bg-background/50 rounded p-1 md:p-2">
+                <DollarSign className="w-2.5 h-2.5 md:w-3 md:h-3 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[8px] md:text-[9px] text-muted-foreground">IOF</p>
-                  <p className="text-[10px] md:text-xs font-semibold">R$ {proposal.iof}</p>
+                  <p className="text-[7px] md:text-[9px] text-muted-foreground">IOF</p>
+                  <p className="text-[8px] md:text-xs font-semibold">R$ {proposal.iof}</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-1.5 bg-background/50 rounded p-1.5 md:p-2">
-                <Percent className="w-3 h-3 text-secondary mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-1 bg-background/50 rounded p-1 md:p-2">
+                <Percent className="w-2.5 h-2.5 md:w-3 md:h-3 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[8px] md:text-[9px] text-muted-foreground">Taxa Mensal</p>
-                  <p className="text-[10px] md:text-xs font-semibold">{proposal.rate}%</p>
+                  <p className="text-[7px] md:text-[9px] text-muted-foreground">Taxa Mensal</p>
+                  <p className="text-[8px] md:text-xs font-semibold">{proposal.rate}%</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-1.5 bg-background/50 rounded p-1.5 md:p-2">
-                <Percent className="w-3 h-3 text-secondary mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-1 bg-background/50 rounded p-1 md:p-2">
+                <Percent className="w-2.5 h-2.5 md:w-3 md:h-3 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[8px] md:text-[9px] text-muted-foreground">Taxa Anual</p>
-                  <p className="text-[10px] md:text-xs font-semibold">{proposal.annualRate}%</p>
+                  <p className="text-[7px] md:text-[9px] text-muted-foreground">Taxa Anual</p>
+                  <p className="text-[8px] md:text-xs font-semibold">{proposal.annualRate}%</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-1.5 bg-background/50 rounded p-1.5 md:p-2">
-                <Percent className="w-3 h-3 text-secondary mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-1 bg-background/50 rounded p-1 md:p-2">
+                <Percent className="w-2.5 h-2.5 md:w-3 md:h-3 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[8px] md:text-[9px] text-muted-foreground">CET Mensal</p>
-                  <p className="text-[10px] md:text-xs font-semibold">{proposal.cetMonthly}%</p>
+                  <p className="text-[7px] md:text-[9px] text-muted-foreground">CET Mensal</p>
+                  <p className="text-[8px] md:text-xs font-semibold">{proposal.cetMonthly}%</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-1.5 bg-background/50 rounded p-1.5 md:p-2">
-                <Percent className="w-3 h-3 text-secondary mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-1 bg-background/50 rounded p-1 md:p-2">
+                <Percent className="w-2.5 h-2.5 md:w-3 md:h-3 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[8px] md:text-[9px] text-muted-foreground">CET Anual</p>
-                  <p className="text-[10px] md:text-xs font-semibold">{proposal.cetAnnual}%</p>
+                  <p className="text-[7px] md:text-[9px] text-muted-foreground">CET Anual</p>
+                  <p className="text-[8px] md:text-xs font-semibold">{proposal.cetAnnual}%</p>
                 </div>
               </div>
             </div>
@@ -245,12 +245,12 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
 
           {/* Botão de Contratação - DESTAQUE */}
           <Button 
-            className={`w-full group font-bold py-4 md:py-6 ${isBest ? 'bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-2xl animate-pulse hover:animate-none' : 'bg-primary hover:bg-primary/90'}`}
+            className={`w-full group font-bold py-3 md:py-6 ${isBest ? 'bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-2xl animate-pulse hover:animate-none' : 'bg-primary hover:bg-primary/90'}`}
             size="lg"
             onClick={() => handleContractClick(proposal)}
           >
-            <span className="flex-1 text-xs md:text-lg">{isBest ? "🚀 Contratar e Receber" : "Contratar proposta"}</span>
-            <ExternalLink className="w-4 h-4 md:w-5 md:h-5 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+            <span className="flex-1 text-[10px] md:text-lg">{isBest ? "🚀 Contratar e Receber" : "Contratar proposta"}</span>
+            <ExternalLink className="w-3 h-3 md:w-5 md:h-5 ml-1 md:ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
           </Button>
         </div>
       </CardContent>
@@ -259,17 +259,17 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
 
   return (
     <div className="w-full max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-4">
-          <span className="text-3xl">🎉</span>
+      <div className="text-center mb-4 md:mb-8">
+        <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-accent/10 mb-2 md:mb-4">
+          <span className="text-2xl md:text-3xl">🎉</span>
         </div>
-        <h2 className="text-3xl font-bold mb-2">Encontramos as melhores propostas para você!</h2>
-        <p className="text-muted-foreground">
+        <h2 className="text-xl md:text-3xl font-bold mb-1 md:mb-2">Encontramos as melhores propostas!</h2>
+        <p className="text-xs md:text-base text-muted-foreground">
           Selecione a opção que melhor se adequa às suas necessidades
         </p>
       </div>
 
-      <div className="space-y-6 mb-8">
+      <div className="space-y-3 md:space-y-6 mb-4 md:mb-8">
         {proposals.map((proposal, index) => (
           <div key={index} className="animate-in fade-in slide-in-from-bottom-4" style={{ animationDelay: `${index * 150}ms` }}>
             <ProposalCard 
@@ -280,9 +280,9 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
         ))}
       </div>
 
-      <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-6">
-        <p className="text-sm text-center">
-          💡 <span className="font-semibold">Dica:</span> A melhor proposta (destacada acima) oferece o menor custo total para você!
+      <div className="bg-primary/5 border border-primary/20 rounded-lg p-2 md:p-4 mb-3 md:mb-6">
+        <p className="text-xs md:text-sm text-center">
+          💡 <span className="font-semibold">Dica:</span> A melhor proposta oferece o menor custo total!
         </p>
       </div>
 
