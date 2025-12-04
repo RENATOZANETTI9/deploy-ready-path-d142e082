@@ -130,21 +130,42 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
             <div className="space-y-4">
               <Label>Sua chave PIX é:</Label>
               <RadioGroup value={pixType} onValueChange={setPixType}>
-                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors cursor-pointer">
-                  <RadioGroupItem value="cpf" id="cpf" />
-                  <Label htmlFor="cpf" className="flex-1 cursor-pointer font-normal">
+                <div 
+                  className={`flex items-center space-x-3 p-3 rounded-lg border transition-all cursor-pointer ${
+                    pixType === "cpf" 
+                      ? "bg-secondary/20 border-secondary text-secondary-foreground" 
+                      : "hover:bg-muted/50"
+                  }`}
+                  onClick={() => setPixType("cpf")}
+                >
+                  <RadioGroupItem value="cpf" id="cpf" className="data-[state=checked]:border-secondary data-[state=checked]:text-secondary" />
+                  <Label htmlFor="cpf" className={`flex-1 cursor-pointer font-normal ${pixType === "cpf" ? "font-semibold text-secondary" : ""}`}>
                     CPF
                   </Label>
                 </div>
-                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors cursor-pointer">
-                  <RadioGroupItem value="phone" id="phone" />
-                  <Label htmlFor="phone" className="flex-1 cursor-pointer font-normal">
+                <div 
+                  className={`flex items-center space-x-3 p-3 rounded-lg border transition-all cursor-pointer ${
+                    pixType === "phone" 
+                      ? "bg-secondary/20 border-secondary text-secondary-foreground" 
+                      : "hover:bg-muted/50"
+                  }`}
+                  onClick={() => setPixType("phone")}
+                >
+                  <RadioGroupItem value="phone" id="phone" className="data-[state=checked]:border-secondary data-[state=checked]:text-secondary" />
+                  <Label htmlFor="phone" className={`flex-1 cursor-pointer font-normal ${pixType === "phone" ? "font-semibold text-secondary" : ""}`}>
                     Telefone
                   </Label>
                 </div>
-                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors cursor-pointer">
-                  <RadioGroupItem value="email" id="email" />
-                  <Label htmlFor="email" className="flex-1 cursor-pointer font-normal">
+                <div 
+                  className={`flex items-center space-x-3 p-3 rounded-lg border transition-all cursor-pointer ${
+                    pixType === "email" 
+                      ? "bg-secondary/20 border-secondary text-secondary-foreground" 
+                      : "hover:bg-muted/50"
+                  }`}
+                  onClick={() => setPixType("email")}
+                >
+                  <RadioGroupItem value="email" id="email" className="data-[state=checked]:border-secondary data-[state=checked]:text-secondary" />
+                  <Label htmlFor="email" className={`flex-1 cursor-pointer font-normal ${pixType === "email" ? "font-semibold text-secondary" : ""}`}>
                     E-mail
                   </Label>
                 </div>
