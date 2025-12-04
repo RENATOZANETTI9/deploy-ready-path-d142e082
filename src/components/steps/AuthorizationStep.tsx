@@ -60,41 +60,41 @@ export const AuthorizationStep = ({ onNext, onBack }: AuthorizationStepProps) =>
 
   return (
     <div className="w-full max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="text-center mb-8">
-        <div className="relative inline-flex items-center justify-center w-24 h-24 mb-4">
+      <div className="text-center mb-4 md:mb-8">
+        <div className="relative inline-flex items-center justify-center w-16 h-16 md:w-24 md:h-24 mb-2 md:mb-4">
           <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
           <div className="absolute inset-0 rounded-full bg-secondary/10 animate-ping" />
-          <div className="relative flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-secondary/20 to-secondary/10 shadow-lg">
-            <Shield className="w-12 h-12 text-secondary animate-pulse" strokeWidth={2.5} />
+          <div className="relative flex items-center justify-center w-16 h-16 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-secondary/20 to-secondary/10 shadow-lg">
+            <Shield className="w-8 h-8 md:w-12 md:h-12 text-secondary animate-pulse" strokeWidth={2.5} />
           </div>
         </div>
-        <h2 className="text-2xl font-bold mb-2">Autorização de Consulta</h2>
-        <p className="text-muted-foreground">
+        <h2 className="text-lg md:text-2xl font-bold mb-1 md:mb-2">Autorização de Consulta</h2>
+        <p className="text-sm md:text-base text-muted-foreground">
           Para continuar, precisamos que você autorize a consulta de dados. 🔒
         </p>
       </div>
 
-      <div className="space-y-6">
-        <div className="bg-card rounded-lg p-6 shadow-sm border space-y-4">
-          <p className="font-medium">Ao autorizar, você:</p>
+      <div className="space-y-3 md:space-y-6">
+        <div className="bg-card rounded-lg p-3 md:p-6 shadow-sm border space-y-2 md:space-y-4">
+          <p className="text-sm md:text-base font-medium">Ao autorizar, você:</p>
           
-          <div className="space-y-3 text-sm text-muted-foreground">
+          <div className="space-y-2 md:space-y-3 text-xs md:text-sm text-muted-foreground">
             <p className="flex gap-2">
-              <span className="w-2 h-2 rounded-full bg-secondary mt-1.5 flex-shrink-0"></span>
+              <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-secondary mt-1 md:mt-1.5 flex-shrink-0"></span>
               <span>
                 concorda que seus dados serão tratados conforme a Política de
                 Privacidade dos bancos/fintech;
               </span>
             </p>
             <p className="flex gap-2">
-              <span className="w-2 h-2 rounded-full bg-secondary mt-1.5 flex-shrink-0"></span>
+              <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-secondary mt-1 md:mt-1.5 flex-shrink-0"></span>
               <span>
                 permite que os bancos/fintech consultem as informações no Sistema
                 de Informações de Crédito do Banco Central;
               </span>
             </p>
             <p className="flex gap-2">
-              <span className="w-2 h-2 rounded-full bg-secondary mt-1.5 flex-shrink-0"></span>
+              <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-secondary mt-1 md:mt-1.5 flex-shrink-0"></span>
               <span>
                 autoriza os bancos/fintech a consultar informações dos seus
                 contratos de trabalho.
@@ -102,8 +102,8 @@ export const AuthorizationStep = ({ onNext, onBack }: AuthorizationStepProps) =>
             </p>
           </div>
 
-          <div className="pt-4 border-t">
-            <p className="text-xs text-muted-foreground">
+          <div className="pt-2 md:pt-4 border-t">
+            <p className="text-[10px] md:text-xs text-muted-foreground">
               E fica ciente que nosso atendimento segue todas as regras da Lei
               Geral de Proteção de Dados (LGPD).
             </p>
