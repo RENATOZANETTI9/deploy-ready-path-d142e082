@@ -147,111 +147,111 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
   const ProposalCard = ({ proposal, isBest }: { proposal: Proposal; isBest?: boolean }) => (
     <Card className={`relative overflow-hidden ${isBest ? "border-secondary border-2 shadow-xl" : ""}`}>
       {isBest && (
-        <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-secondary to-secondary/80 text-secondary-foreground text-center py-2 text-sm font-bold tracking-wide">
+        <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-secondary to-secondary/80 text-secondary-foreground text-center py-1.5 md:py-2 text-xs md:text-sm font-bold tracking-wide">
           ⭐ MELHOR PROPOSTA ⭐
         </div>
       )}
-      <CardContent className={`p-6 ${isBest ? "pt-14" : ""}`}>
-        <div className="space-y-4">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="text-lg font-bold">🏦 {proposal.bank}</h3>
-            {isBest && <Badge variant="outline" className="bg-secondary/10 text-secondary border-secondary">Recomendado</Badge>}
+      <CardContent className={`p-3 md:p-6 ${isBest ? "pt-10 md:pt-14" : ""}`}>
+        <div className="space-y-3 md:space-y-4">
+          <div className="flex items-center justify-between mb-1 md:mb-2">
+            <h3 className="text-sm md:text-lg font-bold">🏦 {proposal.bank}</h3>
+            {isBest && <Badge variant="outline" className="bg-secondary/10 text-secondary border-secondary text-[10px] md:text-xs">Recomendado</Badge>}
           </div>
 
           {/* DESTAQUE PRINCIPAL: Valor Líquido Liberado */}
-          <div className="bg-gradient-to-br from-secondary/20 to-secondary/10 border-2 border-secondary rounded-xl p-6 text-center shadow-lg">
-            <p className="text-sm font-semibold text-secondary uppercase tracking-wide mb-2">💰 Valor Liberado no seu PIX</p>
-            <p className="text-5xl font-black text-secondary mb-1">R$ {proposal.netAmount}</p>
-            <p className="text-xs text-muted-foreground">Valor líquido que você recebe</p>
+          <div className="bg-gradient-to-br from-secondary/20 to-secondary/10 border-2 border-secondary rounded-xl p-3 md:p-6 text-center shadow-lg">
+            <p className="text-xs md:text-sm font-semibold text-secondary uppercase tracking-wide mb-1 md:mb-2">💰 Valor Liberado no seu PIX</p>
+            <p className="text-2xl md:text-5xl font-black text-secondary mb-1">R$ {proposal.netAmount}</p>
+            <p className="text-[10px] md:text-xs text-muted-foreground">Valor líquido que você recebe</p>
           </div>
 
-          {/* Botão de Contratação - DESTAQUE */}
-          <Button 
-            className={`w-full group font-bold py-6 ${isBest ? 'bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-2xl animate-pulse hover:animate-none' : 'bg-primary hover:bg-primary/90'}`}
-            size="lg"
-            onClick={() => handleContractClick(proposal)}
-          >
-            <span className="flex-1 text-sm md:text-lg">{isBest ? "🚀 Contratar e Receber" : "Contratar proposta"}</span>
-            <ExternalLink className="w-4 h-4 md:w-5 md:h-5 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
-          </Button>
-
-          {/* Dados Secundários - Discretos e Pequenos */}
-          <div className="pt-4 border-t border-border/50">
-            <p className="text-[10px] text-muted-foreground uppercase tracking-wide mb-3 font-semibold">Detalhes da Proposta</p>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-              <div className="flex items-start gap-1.5">
-                <Calendar className="w-3 h-3 text-muted-foreground mt-0.5 flex-shrink-0" />
+          {/* TODAS as informações visíveis */}
+          <div className="bg-muted/30 rounded-lg p-3 md:p-4">
+            <p className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-wide mb-2 md:mb-3 font-semibold">Detalhes Completos da Proposta</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
+              <div className="flex items-start gap-1.5 bg-background/50 rounded p-1.5 md:p-2">
+                <Calendar className="w-3 h-3 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[9px] text-muted-foreground">1ª Parcela</p>
-                  <p className="text-[11px] font-medium">{proposal.firstDueDate}</p>
+                  <p className="text-[8px] md:text-[9px] text-muted-foreground">1ª Parcela</p>
+                  <p className="text-[10px] md:text-xs font-semibold">{proposal.firstDueDate}</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-1.5">
-                <Calendar className="w-3 h-3 text-muted-foreground mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-1.5 bg-background/50 rounded p-1.5 md:p-2">
+                <Calendar className="w-3 h-3 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[9px] text-muted-foreground">Prazo</p>
-                  <p className="text-[11px] font-medium">{proposal.installments} parcelas</p>
+                  <p className="text-[8px] md:text-[9px] text-muted-foreground">Prazo</p>
+                  <p className="text-[10px] md:text-xs font-semibold">{proposal.installments}x</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-1.5">
-                <DollarSign className="w-3 h-3 text-muted-foreground mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-1.5 bg-background/50 rounded p-1.5 md:p-2">
+                <DollarSign className="w-3 h-3 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[9px] text-muted-foreground">Valor Parcela</p>
-                  <p className="text-[11px] font-medium">R$ {proposal.installmentValue}</p>
+                  <p className="text-[8px] md:text-[9px] text-muted-foreground">Parcela</p>
+                  <p className="text-[10px] md:text-xs font-semibold">R$ {proposal.installmentValue}</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-1.5">
-                <DollarSign className="w-3 h-3 text-muted-foreground mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-1.5 bg-background/50 rounded p-1.5 md:p-2">
+                <DollarSign className="w-3 h-3 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[9px] text-muted-foreground">Valor Financiado</p>
-                  <p className="text-[11px] font-medium">R$ {proposal.amount}</p>
+                  <p className="text-[8px] md:text-[9px] text-muted-foreground">Financiado</p>
+                  <p className="text-[10px] md:text-xs font-semibold">R$ {proposal.amount}</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-1.5">
-                <DollarSign className="w-3 h-3 text-muted-foreground mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-1.5 bg-background/50 rounded p-1.5 md:p-2">
+                <DollarSign className="w-3 h-3 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[9px] text-muted-foreground">IOF</p>
-                  <p className="text-[11px] font-medium">R$ {proposal.iof}</p>
+                  <p className="text-[8px] md:text-[9px] text-muted-foreground">IOF</p>
+                  <p className="text-[10px] md:text-xs font-semibold">R$ {proposal.iof}</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-1.5">
-                <Percent className="w-3 h-3 text-muted-foreground mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-1.5 bg-background/50 rounded p-1.5 md:p-2">
+                <Percent className="w-3 h-3 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[9px] text-muted-foreground">Taxa Mensal</p>
-                  <p className="text-[11px] font-medium">{proposal.rate}%</p>
+                  <p className="text-[8px] md:text-[9px] text-muted-foreground">Taxa Mensal</p>
+                  <p className="text-[10px] md:text-xs font-semibold">{proposal.rate}%</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-1.5">
-                <Percent className="w-3 h-3 text-muted-foreground mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-1.5 bg-background/50 rounded p-1.5 md:p-2">
+                <Percent className="w-3 h-3 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[9px] text-muted-foreground">Taxa Anual</p>
-                  <p className="text-[11px] font-medium">{proposal.annualRate}%</p>
+                  <p className="text-[8px] md:text-[9px] text-muted-foreground">Taxa Anual</p>
+                  <p className="text-[10px] md:text-xs font-semibold">{proposal.annualRate}%</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-1.5">
-                <Percent className="w-3 h-3 text-muted-foreground mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-1.5 bg-background/50 rounded p-1.5 md:p-2">
+                <Percent className="w-3 h-3 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[9px] text-muted-foreground">CET Mensal</p>
-                  <p className="text-[11px] font-medium">{proposal.cetMonthly}%</p>
+                  <p className="text-[8px] md:text-[9px] text-muted-foreground">CET Mensal</p>
+                  <p className="text-[10px] md:text-xs font-semibold">{proposal.cetMonthly}%</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-1.5">
-                <Percent className="w-3 h-3 text-muted-foreground mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-1.5 bg-background/50 rounded p-1.5 md:p-2">
+                <Percent className="w-3 h-3 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[9px] text-muted-foreground">CET Anual</p>
-                  <p className="text-[11px] font-medium">{proposal.cetAnnual}%</p>
+                  <p className="text-[8px] md:text-[9px] text-muted-foreground">CET Anual</p>
+                  <p className="text-[10px] md:text-xs font-semibold">{proposal.cetAnnual}%</p>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Botão de Contratação - DESTAQUE */}
+          <Button 
+            className={`w-full group font-bold py-4 md:py-6 ${isBest ? 'bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-2xl animate-pulse hover:animate-none' : 'bg-primary hover:bg-primary/90'}`}
+            size="lg"
+            onClick={() => handleContractClick(proposal)}
+          >
+            <span className="flex-1 text-xs md:text-lg">{isBest ? "🚀 Contratar e Receber" : "Contratar proposta"}</span>
+            <ExternalLink className="w-4 h-4 md:w-5 md:h-5 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+          </Button>
         </div>
       </CardContent>
     </Card>

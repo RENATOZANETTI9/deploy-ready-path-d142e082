@@ -23,7 +23,11 @@ const COLORS = [
   "#FF6B6B", "#4ECDC4", "#45B7D1", "#FFA07A", "#98D8C8", "#F7DC6F", "#BB8FCE"
 ];
 
-export const TetrisGame = () => {
+interface TetrisGameProps {
+  onWait?: () => void;
+}
+
+export const TetrisGame = ({ onWait }: TetrisGameProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
@@ -277,73 +281,91 @@ export const TetrisGame = () => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 p-4 bg-muted/30 rounded-lg">
-      <div className="text-center mb-2">
-        <p className="text-sm md:text-base font-semibold text-primary animate-pulse">
-          Se divirta enquanto os bancos brigam por você
+    <div className="flex flex-col items-center gap-3 p-4 bg-muted/30 rounded-lg">
+      {/* Frase em destaque */}
+      <div className="text-center mb-2 bg-gradient-to-r from-secondary/20 to-primary/20 rounded-lg p-3 border-2 border-secondary/50">
+        <p className="text-base md:text-lg font-bold text-secondary animate-pulse">
+          🎮 Se divirta enquanto os bancos brigam por você! 🏦
         </p>
       </div>
       
       <div className="flex items-center justify-between w-full max-w-[200px]">
         <span className="text-sm font-semibold">Pontos: {score}</span>
+      </div>
+      
+      {/* Container do jogo com overlay de game over */}
+      <div className="relative">
+        <canvas
+          ref={canvasRef}
+          width={BOARD_WIDTH * CELL_SIZE}
+          height={BOARD_HEIGHT * CELL_SIZE}
+          className={`border-2 border-border rounded shadow-lg transition-all duration-300 ${gameOver ? 'opacity-40' : ''}`}
+        />
+        
+        {/* Overlay de Game Over */}
         {gameOver && (
-          <button
-            onClick={resetGame}
-            className="text-xs px-3 py-1 bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors"
-          >
-            Reiniciar
-          </button>
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-background/60 rounded">
+            <p className="text-xl font-bold text-foreground">GAME OVER</p>
+            <p className="text-sm text-muted-foreground">Pontuação: {score}</p>
+            <div className="flex flex-col gap-2 w-32">
+              <button
+                onClick={resetGame}
+                className="px-4 py-2 bg-secondary text-secondary-foreground rounded-lg font-bold hover:bg-secondary/90 transition-colors"
+              >
+                Reiniciar
+              </button>
+              <button
+                onClick={onWait}
+                className="px-4 py-2 bg-secondary text-secondary-foreground rounded-lg font-bold hover:bg-secondary/90 transition-colors"
+              >
+                Aguardar
+              </button>
+            </div>
+          </div>
         )}
       </div>
       
-      <canvas
-        ref={canvasRef}
-        width={BOARD_WIDTH * CELL_SIZE}
-        height={BOARD_HEIGHT * CELL_SIZE}
-        className="border-2 border-border rounded shadow-lg"
-      />
-      
       {/* Controles Touch para Mobile */}
-      <div className="flex flex-col gap-2 w-full max-w-[200px] md:hidden">
-        <div className="flex justify-center">
-          <button
-            onClick={() => handleTouchMove('rotate')}
-            className="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg font-semibold active:bg-secondary/80 transition-colors"
-            disabled={gameOver}
-          >
-            ↻ GIRAR
-          </button>
+      {!gameOver && (
+        <div className="flex flex-col gap-2 w-full max-w-[200px] md:hidden">
+          <div className="flex justify-center">
+            <button
+              onClick={() => handleTouchMove('rotate')}
+              className="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg font-semibold active:bg-secondary/80 transition-colors"
+            >
+              ↻ GIRAR
+            </button>
+          </div>
+          <div className="grid grid-cols-3 gap-2">
+            <button
+              onClick={() => handleTouchMove('left')}
+              className="px-4 py-3 bg-primary text-primary-foreground rounded-lg font-bold active:bg-primary/80 transition-colors"
+            >
+              ←
+            </button>
+            <button
+              onClick={() => handleTouchMove('down')}
+              className="px-4 py-3 bg-primary text-primary-foreground rounded-lg font-bold active:bg-primary/80 transition-colors"
+            >
+              ↓
+            </button>
+            <button
+              onClick={() => handleTouchMove('right')}
+              className="px-4 py-3 bg-primary text-primary-foreground rounded-lg font-bold active:bg-primary/80 transition-colors"
+            >
+              →
+            </button>
+          </div>
         </div>
-        <div className="grid grid-cols-3 gap-2">
-          <button
-            onClick={() => handleTouchMove('left')}
-            className="px-4 py-3 bg-primary text-primary-foreground rounded-lg font-bold active:bg-primary/80 transition-colors"
-            disabled={gameOver}
-          >
-            ←
-          </button>
-          <button
-            onClick={() => handleTouchMove('down')}
-            className="px-4 py-3 bg-primary text-primary-foreground rounded-lg font-bold active:bg-primary/80 transition-colors"
-            disabled={gameOver}
-          >
-            ↓
-          </button>
-          <button
-            onClick={() => handleTouchMove('right')}
-            className="px-4 py-3 bg-primary text-primary-foreground rounded-lg font-bold active:bg-primary/80 transition-colors"
-            disabled={gameOver}
-          >
-            →
-          </button>
-        </div>
-      </div>
+      )}
       
       {/* Instruções apenas para Desktop */}
-      <div className="hidden md:block text-xs text-muted-foreground text-center space-y-1">
-        <p>Use as setas do teclado para jogar</p>
-        <p>↑ Girar | ← → Mover | ↓ Descer</p>
-      </div>
+      {!gameOver && (
+        <div className="hidden md:block text-xs text-muted-foreground text-center space-y-1">
+          <p>Use as setas do teclado para jogar</p>
+          <p>↑ Girar | ← → Mover | ↓ Descer</p>
+        </div>
+      )}
     </div>
   );
 };
