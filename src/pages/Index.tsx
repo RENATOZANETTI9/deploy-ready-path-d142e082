@@ -126,12 +126,17 @@ const Index = () => {
           )}
 
           {/* Steps Content */}
-          <div className="bg-card rounded-2xl shadow-lg p-6 md:p-8 lg:p-12 border min-h-[500px] flex items-center justify-center">
-            {currentStep === 0 && <WelcomeStep onStart={handleStart} />}
-            {currentStep === 1 && <CpfStep onNext={handleCpfNext} onBack={handleBack} />}
-            {currentStep === 2 && <AuthorizationStep onNext={handleAuthorizationNext} onBack={handleBack} />}
-            {currentStep === 3 && <PixStep onNext={handlePixNext} cpf={formData.cpf} onBack={handleBack} />}
-            {currentStep === 4 && <ProposalsStep proposals={formData.proposals} onFinish={handleFinish} formData={formData} />}
+          <div className="bg-card rounded-2xl shadow-lg p-6 md:p-8 lg:p-12 border min-h-[500px] flex items-center justify-center overflow-hidden">
+            <div 
+              key={currentStep} 
+              className="w-full animate-in fade-in slide-in-from-right-4 duration-300"
+            >
+              {currentStep === 0 && <WelcomeStep onStart={handleStart} />}
+              {currentStep === 1 && <CpfStep onNext={handleCpfNext} onBack={handleBack} />}
+              {currentStep === 2 && <AuthorizationStep onNext={handleAuthorizationNext} onBack={handleBack} />}
+              {currentStep === 3 && <PixStep onNext={handlePixNext} cpf={formData.cpf} onBack={handleBack} />}
+              {currentStep === 4 && <ProposalsStep proposals={formData.proposals} onFinish={handleFinish} formData={formData} />}
+            </div>
           </div>
 
           {/* Footer */}
