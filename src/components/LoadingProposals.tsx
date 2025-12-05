@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TetrisGame } from "./TetrisGame";
 
 export const LoadingProposals = () => {
   const [showGame, setShowGame] = useState(true);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const handleWait = () => {
     setShowGame(false);
@@ -31,7 +36,7 @@ export const LoadingProposals = () => {
       </div>
       
       {showGame ? (
-        <div className="mb-3 md:mb-6">
+        <div className="mb-3 md:mb-6 scale-[0.75] md:scale-100 origin-top">
           <TetrisGame key={Date.now()} onWait={handleWait} />
         </div>
       ) : (
