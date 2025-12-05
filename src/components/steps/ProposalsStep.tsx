@@ -33,7 +33,7 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
   // Validação: se não houver propostas
   if (!proposals || proposals.length === 0) {
     return (
-      <div className="w-full max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="w-full max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 scale-[0.8] md:scale-100 origin-top">
         <div className="text-center space-y-3 md:space-y-6">
           <div className="relative inline-flex items-center justify-center w-16 h-16 md:w-24 md:h-24 mb-2 md:mb-4">
             <div className="absolute inset-0 rounded-full bg-destructive/20 animate-pulse" />
@@ -258,7 +258,7 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
   );
 
   return (
-    <div className="w-full max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="w-full max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 scale-[0.8] md:scale-100 origin-top">
       <div className="text-center mb-4 md:mb-8">
         <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-accent/10 mb-2 md:mb-4">
           <span className="text-2xl md:text-3xl">🎉</span>
