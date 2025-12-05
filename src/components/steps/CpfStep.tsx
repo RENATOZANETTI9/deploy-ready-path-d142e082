@@ -129,7 +129,7 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
   return (
     <>
       {showSuccess && <Confetti />}
-      <div className="w-full max-w-md mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="w-full max-w-md mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 scale-[0.8] md:scale-100 origin-top">
       {showSuccess ? (
           <div className="text-center space-y-3 md:space-y-6 animate-in fade-in scale-in duration-500">
             <div className="relative inline-flex items-center justify-center w-16 h-16 md:w-24 md:h-24 mb-2 md:mb-4">

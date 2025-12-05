@@ -59,7 +59,7 @@ export const AuthorizationStep = ({ onNext, onBack }: AuthorizationStepProps) =>
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="w-full max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 scale-[0.8] md:scale-100 origin-top">
       <div className="text-center mb-4 md:mb-8">
         <div className="relative inline-flex items-center justify-center w-16 h-16 md:w-24 md:h-24 mb-2 md:mb-4">
           <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
