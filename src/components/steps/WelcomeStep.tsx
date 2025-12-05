@@ -95,7 +95,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         />
       </div>
 
-      <div className="relative w-full max-w-2xl md:max-w-5xl lg:max-w-6xl mx-auto space-y-5 animate-fade-in z-10">
+      <div className="relative w-full max-w-2xl md:max-w-5xl lg:max-w-6xl mx-auto space-y-5 animate-fade-in z-10 scale-90 origin-top">
         {/* Header with Logo - Desktop only */}
         <div className="hidden md:flex justify-center mb-6">
           <img src={logo} alt="Legal é Viver" className="h-12 md:h-14 w-auto animate-fade-in" />
