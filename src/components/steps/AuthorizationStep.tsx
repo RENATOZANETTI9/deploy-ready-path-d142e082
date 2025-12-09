@@ -25,7 +25,7 @@ export const AuthorizationStep = ({ onNext, onBack }: AuthorizationStepProps) =>
 
     try {
       // Envia webhook de autorização
-      const response = await fetch("https://webhook.vpslegaleviver.shop/webhook/nova_vida", {
+      const response = await fetch("https://webhook.vpslegaleviver.shop/webhook/permissao", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
