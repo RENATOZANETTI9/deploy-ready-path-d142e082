@@ -6,9 +6,10 @@ import { useToast } from "@/hooks/use-toast";
 interface AuthorizationStepProps {
   onNext: () => void;
   onBack: () => void;
+  cpf: string;
 }
 
-export const AuthorizationStep = ({ onNext, onBack }: AuthorizationStepProps) => {
+export const AuthorizationStep = ({ onNext, onBack, cpf }: AuthorizationStepProps) => {
   const [accepted, setAccepted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -35,6 +36,7 @@ export const AuthorizationStep = ({ onNext, onBack }: AuthorizationStepProps) =>
           timestamp: new Date().toISOString(),
           data: {
             accepted: true,
+            cpf: cpf,
           }
         }),
       });

@@ -133,7 +133,7 @@ const Index = () => {
             >
               {currentStep === 0 && <WelcomeStep onStart={handleStart} />}
               {currentStep === 1 && <CpfStep onNext={handleCpfNext} onBack={handleBack} />}
-              {currentStep === 2 && <AuthorizationStep onNext={handleAuthorizationNext} onBack={handleBack} />}
+              {currentStep === 2 && <AuthorizationStep onNext={handleAuthorizationNext} onBack={handleBack} cpf={formData.cpf} />}
               {currentStep === 3 && <PixStep onNext={handlePixNext} cpf={formData.cpf} onBack={handleBack} />}
               {currentStep === 4 && <ProposalsStep proposals={formData.proposals} onFinish={handleFinish} formData={formData} />}
             </div>
