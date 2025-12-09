@@ -14,7 +14,7 @@ interface PixStepProps {
 }
 
 export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
-  const [pixType, setPixType] = useState("cpf");
+  const [pixType, setPixType] = useState("");
   const [pixKey, setPixKey] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -44,6 +44,10 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
   };
 
   const validatePixKey = () => {
+    if (!pixType) {
+      setError("Selecione o tipo de chave PIX");
+      return false;
+    }
     if (!pixKey.trim()) {
       setError("Digite sua chave PIX");
       return false;
@@ -159,7 +163,6 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
                       ? "bg-secondary/20 border-secondary text-secondary-foreground" 
                       : "hover:bg-muted/50"
                   }`}
-                  onClick={() => handlePixTypeChange("cpf")}
                 >
                   <RadioGroupItem value="cpf" id="cpf" className="data-[state=checked]:border-secondary data-[state=checked]:text-secondary" />
                   <Label htmlFor="cpf" className={`flex-1 cursor-pointer font-normal text-sm md:text-base ${pixType === "cpf" ? "font-semibold text-secondary" : ""}`}>
@@ -172,7 +175,6 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
                       ? "bg-secondary/20 border-secondary text-secondary-foreground" 
                       : "hover:bg-muted/50"
                   }`}
-                  onClick={() => handlePixTypeChange("phone")}
                 >
                   <RadioGroupItem value="phone" id="phone" className="data-[state=checked]:border-secondary data-[state=checked]:text-secondary" />
                   <Label htmlFor="phone" className={`flex-1 cursor-pointer font-normal text-sm md:text-base ${pixType === "phone" ? "font-semibold text-secondary" : ""}`}>
@@ -185,7 +187,6 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
                       ? "bg-secondary/20 border-secondary text-secondary-foreground" 
                       : "hover:bg-muted/50"
                   }`}
-                  onClick={() => handlePixTypeChange("email")}
                 >
                   <RadioGroupItem value="email" id="email" className="data-[state=checked]:border-secondary data-[state=checked]:text-secondary" />
                   <Label htmlFor="email" className={`flex-1 cursor-pointer font-normal text-sm md:text-base ${pixType === "email" ? "font-semibold text-secondary" : ""}`}>
