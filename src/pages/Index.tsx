@@ -7,6 +7,7 @@ import { PixStep } from "@/components/steps/PixStep";
 import { ProposalsStep } from "@/components/steps/ProposalsStep";
 import { Footer } from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
+import { useProgressStorage } from "@/hooks/use-progress-storage";
 
 interface FormData {
   cpf: string;
@@ -16,14 +17,33 @@ interface FormData {
 }
 
 const Index = () => {
+  const { loadProgress, saveProgress, clearProgress, defaultFormData } = useProgressStorage();
   const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState<FormData>({
-    cpf: "",
-    pixType: "",
-    pixKey: "",
-    proposals: [],
-  });
+  const [formData, setFormData] = useState<FormData>(defaultFormData);
+  const [hasRestoredProgress, setHasRestoredProgress] = useState(false);
   const { toast } = useToast();
+
+  // Carrega progresso salvo ao iniciar
+  useEffect(() => {
+    const savedProgress = loadProgress();
+    if (savedProgress && savedProgress.currentStep > 0) {
+      setCurrentStep(savedProgress.currentStep);
+      setFormData(savedProgress.formData);
+      setHasRestoredProgress(true);
+      toast({
+        title: "Progresso recuperado",
+        description: "Continuando de onde você parou",
+        duration: 3000,
+      });
+    }
+  }, []);
+
+  // Salva progresso sempre que mudar
+  useEffect(() => {
+    if (currentStep > 0) {
+      saveProgress(currentStep, formData);
+    }
+  }, [currentStep, formData, saveProgress]);
 
   const totalSteps = 4;
 
@@ -71,12 +91,8 @@ const Index = () => {
 
   const handleFinish = () => {
     setCurrentStep(0);
-    setFormData({
-      cpf: "",
-      pixType: "",
-      pixKey: "",
-      proposals: [],
-    });
+    setFormData(defaultFormData);
+    clearProgress(); // Limpa progresso ao finalizar
     window.scrollTo({ top: 0, behavior: 'smooth' });
     toast({
       title: "Processo concluído",
