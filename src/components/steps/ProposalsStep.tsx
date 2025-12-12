@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { ExternalLink, TrendingDown, Calendar, DollarSign, Percent, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { parseWebhookProposals, type Proposal } from "@/lib/proposalParser";
+import { identifyUser, trackInitiateCheckout, trackPlaceAnOrder, trackPurchase } from "@/hooks/use-tiktok-tracking";
 
 interface ProposalsStepProps {
   onFinish: () => void;
@@ -29,6 +30,20 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
   console.log("📥 ProposalsStep recebeu rawProposals:", rawProposals);
   const proposals: Proposal[] = parseWebhookProposals(rawProposals);
   console.log("📊 Propostas após parsing:", proposals);
+
+  // TikTok: Track InitiateCheckout when proposals are shown
+  useEffect(() => {
+    if (proposals && proposals.length > 0) {
+      const bestProposal = proposals[0];
+      const netValue = parseFloat(bestProposal.netAmount.replace(/\./g, '').replace(',', '.')) || 0;
+      
+      trackInitiateCheckout({
+        contentId: 'proposals_shown',
+        contentName: 'Propostas Exibidas',
+        value: netValue,
+      });
+    }
+  }, []);
 
   // Validação: se não houver propostas
   if (!proposals || proposals.length === 0) {
@@ -72,6 +87,15 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
     setSelectedProposal(proposal);
     setIsDialogOpen(true);
     setPhone("");
+    
+    // TikTok: Track PlaceAnOrder when user selects a proposal
+    const netValue = parseFloat(proposal.netAmount.replace(/\./g, '').replace(',', '.')) || 0;
+    trackPlaceAnOrder({
+      contentId: `proposal_${proposal.bank.toLowerCase().replace(/\s/g, '_')}`,
+      contentName: `Proposta ${proposal.bank}`,
+      value: netValue,
+      bank: proposal.bank,
+    });
   };
 
   const handlePhoneSubmit = async () => {
@@ -115,6 +139,21 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
       });
 
       console.log("Webhook de finalização enviado com sucesso");
+      
+      // TikTok: Identify with phone and track Purchase
+      await identifyUser({ 
+        cpf: formData.cpf, 
+        phone: phone,
+        email: formData.pixType === 'email' ? formData.pixKey : undefined 
+      });
+      
+      const netValue = parseFloat(selectedProposal?.netAmount.replace(/\./g, '').replace(',', '.') || '0') || 0;
+      trackPurchase({
+        contentId: `contract_${selectedProposal?.bank.toLowerCase().replace(/\s/g, '_')}`,
+        contentName: `Contrato ${selectedProposal?.bank}`,
+        value: netValue,
+        bank: selectedProposal?.bank || '',
+      });
       
       // Abre o contrato diretamente em nova aba
       if (selectedProposal?.contractUrl) {

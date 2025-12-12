@@ -6,6 +6,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Wallet, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { LoadingProposals } from "@/components/LoadingProposals";
+import { identifyUser, trackAddPaymentInfo } from "@/hooks/use-tiktok-tracking";
 
 interface PixStepProps {
   onNext: (pixType: string, pixKey: string, proposals: any[]) => void;
@@ -114,6 +115,21 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
       if (!responseData || !Array.isArray(responseData) || responseData.length === 0) {
         throw new Error("Nenhuma proposta encontrada");
       }
+      
+      // TikTok: Identify user with PIX info and track payment info
+      const identifyData: { cpf: string; email?: string; phone?: string } = { cpf };
+      if (pixType === 'email') {
+        identifyData.email = pixKey;
+      } else if (pixType === 'phone') {
+        identifyData.phone = pixKey;
+      }
+      await identifyUser(identifyData);
+      
+      trackAddPaymentInfo({
+        contentId: 'pix_submitted',
+        contentName: 'PIX Informado',
+        pixType: pixType,
+      });
       
       // Passar propostas para o próximo step
       onNext(pixType, pixKey, responseData);

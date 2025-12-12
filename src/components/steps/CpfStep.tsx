@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2, Lock, ArrowLeft } from "lucide-react";
 import { Confetti } from "@/components/Confetti";
+import { identifyUser, trackCompleteRegistration } from "@/hooks/use-tiktok-tracking";
 
 interface CpfStepProps {
   onNext: (cpf: string) => void;
@@ -101,6 +102,13 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
       const data = await response.json();
 
       if (data[0]?.resposta === "existe") {
+        // TikTok: Identify user and track registration
+        await identifyUser({ cpf });
+        trackCompleteRegistration({
+          contentId: 'cpf_validation',
+          contentName: 'CPF Validado',
+        });
+        
         setShowSuccess(true);
         setTimeout(() => {
           onNext(cpf);
