@@ -27,20 +27,10 @@ export const useProgressStorage = () => {
 
   const loadProgress = useCallback((): ProgressData | null => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
+      const saved = sessionStorage.getItem(STORAGE_KEY);
       if (saved) {
         const data = JSON.parse(saved) as ProgressData;
-        // Verifica se os dados não são muito antigos (24 horas)
-        const lastUpdated = new Date(data.lastUpdated);
-        const now = new Date();
-        const hoursDiff = (now.getTime() - lastUpdated.getTime()) / (1000 * 60 * 60);
-        
-        if (hoursDiff < 24) {
-          return data;
-        } else {
-          // Dados expirados, limpa o storage
-          localStorage.removeItem(STORAGE_KEY);
-        }
+        return data;
       }
     } catch (error) {
       console.error("Erro ao carregar progresso:", error);
@@ -55,7 +45,7 @@ export const useProgressStorage = () => {
         formData,
         lastUpdated: new Date().toISOString(),
       };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     } catch (error) {
       console.error("Erro ao salvar progresso:", error);
     }
@@ -63,7 +53,7 @@ export const useProgressStorage = () => {
 
   const clearProgress = useCallback(() => {
     try {
-      localStorage.removeItem(STORAGE_KEY);
+      sessionStorage.removeItem(STORAGE_KEY);
     } catch (error) {
       console.error("Erro ao limpar progresso:", error);
     }
