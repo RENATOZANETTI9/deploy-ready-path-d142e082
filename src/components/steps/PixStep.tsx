@@ -117,9 +117,15 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
       if (responseData && typeof responseData === 'object' && !Array.isArray(responseData)) {
         // Novo formato: objeto com múltiplos bancos
         if (responseData.status === 'certo') {
-          // Converter objeto para array de propostas
+          // Converter objeto para array de propostas, filtrando nulos
           proposals = Object.entries(responseData)
-            .filter(([key]) => key !== 'status' && key !== 'cpf')
+            .filter(([key, value]: [string, any]) => 
+              key !== 'status' && 
+              key !== 'cpf' && 
+              value !== null &&
+              typeof value === 'object' &&
+              value.valor_financiado
+            )
             .map(([key, value]: [string, any]) => ({ ...value, bank: value.bank || key }));
           console.log("Propostas extraídas do objeto:", proposals);
         } else {

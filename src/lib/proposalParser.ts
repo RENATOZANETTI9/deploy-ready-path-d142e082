@@ -49,8 +49,8 @@ export const parseWebhookObject = (webhookData: Record<string, any>): Proposal[]
   const proposals: Proposal[] = [];
   
   for (const [key, value] of Object.entries(webhookData)) {
-    // Ignorar campos que não são propostas
-    if (key === 'status' || key === 'cpf' || typeof value !== 'object' || value === null) continue;
+    // Ignorar campos que não são propostas ou valores inválidos/nulos
+    if (key === 'status' || key === 'cpf' || typeof value !== 'object' || value === null || !value.valor_financiado) continue;
     
     const bankName = value.bank || key;
     
@@ -78,7 +78,14 @@ export const parseWebhookObject = (webhookData: Record<string, any>): Proposal[]
 export const parseWebhookProposals = (webhookData: WebhookProposal[]): Proposal[] => {
   console.log("🔍 Parseando propostas do webhook:", webhookData);
   
-  const parsed = webhookData.map((item) => ({
+  // Filtrar itens nulos ou inválidos antes do map
+  const validItems = webhookData.filter(item => 
+    item !== null && 
+    typeof item === 'object' && 
+    item.valor_financiado
+  );
+  
+  const parsed = validItems.map((item) => ({
     bank: item.bank?.toUpperCase() || "BANCO",
     amount: cleanCurrency(item.valor_financiado),
     installments: item.prazo ? item.prazo.toString() : "0",
