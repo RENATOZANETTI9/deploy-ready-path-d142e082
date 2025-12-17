@@ -111,8 +111,28 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
       const responseData = await response.json();
       console.log("Resposta do webhook com propostas:", responseData);
       
-      // Validar se retornou propostas
-      if (!responseData || !Array.isArray(responseData) || responseData.length === 0) {
+      let proposals: any[];
+
+      // Verificar se é objeto (novo formato) ou array (formato antigo)
+      if (responseData && typeof responseData === 'object' && !Array.isArray(responseData)) {
+        // Novo formato: objeto com múltiplos bancos
+        if (responseData.status === 'certo') {
+          // Converter objeto para array de propostas
+          proposals = Object.entries(responseData)
+            .filter(([key]) => key !== 'status' && key !== 'cpf')
+            .map(([key, value]: [string, any]) => ({ ...value, bank: value.bank || key }));
+          console.log("Propostas extraídas do objeto:", proposals);
+        } else {
+          throw new Error("Status da proposta não é 'certo'");
+        }
+      } else if (Array.isArray(responseData) && responseData.length > 0) {
+        // Formato antigo: array
+        proposals = responseData;
+      } else {
+        throw new Error("Nenhuma proposta encontrada");
+      }
+
+      if (proposals.length === 0) {
         throw new Error("Nenhuma proposta encontrada");
       }
       
@@ -132,7 +152,7 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
       });
       
       // Passar propostas para o próximo step
-      onNext(pixType, pixKey, responseData);
+      onNext(pixType, pixKey, proposals);
     } catch (error) {
       console.error("Erro ao processar:", error);
       toast({
