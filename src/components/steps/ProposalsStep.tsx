@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ExternalLink, TrendingDown, Calendar, DollarSign, Percent, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { parseWebhookProposals, type Proposal } from "@/lib/proposalParser";
+import { parseWebhookProposals, parseWebhookObject, type Proposal } from "@/lib/proposalParser";
 import { identifyUser, trackInitiateCheckout, trackPlaceAnOrder, trackPurchase } from "@/hooks/use-tiktok-tracking";
 
 interface ProposalsStepProps {
@@ -26,9 +26,27 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
   const [phone, setPhone] = useState("");
   const { toast } = useToast();
 
-  // Parsear propostas do webhook
+  // Parsear propostas do webhook - detectar formato automaticamente
   console.log("📥 ProposalsStep recebeu rawProposals:", rawProposals);
-  const proposals: Proposal[] = parseWebhookProposals(rawProposals);
+  
+  let proposals: Proposal[] = [];
+  
+  if (Array.isArray(rawProposals) && rawProposals.length > 0) {
+    const firstItem = rawProposals[0];
+    
+    // Verificar se o primeiro item é um objeto com bancos como chaves (novo formato)
+    // Se o item NÃO tiver valor_financiado na raiz, é o formato de objeto com múltiplos bancos
+    if (typeof firstItem === 'object' && firstItem !== null && !firstItem.valor_financiado) {
+      // Novo formato: array com objetos que contêm múltiplos bancos como chaves
+      console.log("🔄 Detectado formato de objeto com múltiplos bancos");
+      proposals = rawProposals.flatMap(item => parseWebhookObject(item));
+    } else {
+      // Formato antigo: array de propostas diretas
+      console.log("🔄 Detectado formato de array de propostas diretas");
+      proposals = parseWebhookProposals(rawProposals);
+    }
+  }
+  
   console.log("📊 Propostas após parsing:", proposals);
 
   // TikTok: Track InitiateCheckout when proposals are shown
