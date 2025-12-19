@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ExternalLink, TrendingDown, Calendar, DollarSign, Percent, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { parseWebhookProposals, parseWebhookObject, type Proposal } from "@/lib/proposalParser";
+import { parseWebhookResponse, parseWebhookProposals, parseWebhookObject, type Proposal } from "@/lib/proposalParser";
 import { identifyUser, trackInitiateCheckout, trackPlaceAnOrder, trackPurchase } from "@/hooks/use-tiktok-tracking";
 
 interface ProposalsStepProps {
@@ -34,10 +34,12 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
   if (Array.isArray(rawProposals) && rawProposals.length > 0) {
     const firstItem = rawProposals[0];
     
-    // Verificar se o primeiro item é um objeto com bancos como chaves (novo formato)
-    // Se o item NÃO tiver valor_financiado na raiz, é o formato de objeto com múltiplos bancos
-    if (typeof firstItem === 'object' && firstItem !== null && !firstItem.valor_financiado) {
-      // Novo formato: array com objetos que contêm múltiplos bancos como chaves
+    // Verificar se é o novo formato com "bancos" como string JSON
+    if (typeof firstItem === 'object' && firstItem !== null && firstItem.bancos) {
+      console.log("🔄 Detectado formato com 'bancos' como string JSON");
+      proposals = parseWebhookResponse(rawProposals);
+    } else if (typeof firstItem === 'object' && firstItem !== null && !firstItem.valor_financiado) {
+      // Formato de objeto com múltiplos bancos como chaves
       console.log("🔄 Detectado formato de objeto com múltiplos bancos");
       proposals = rawProposals.flatMap(item => parseWebhookObject(item));
     } else {
