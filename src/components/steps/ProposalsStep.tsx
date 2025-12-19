@@ -49,7 +49,14 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
     }
   }
   
-  console.log("📊 Propostas após parsing:", proposals);
+  // Filtrar propostas sem link de contrato válido
+  proposals = proposals.filter(p => 
+    p.contractUrl && 
+    p.contractUrl !== "Sem link de contrato" && 
+    p.contractUrl.trim() !== ""
+  );
+  
+  console.log("📊 Propostas após parsing e filtro:", proposals);
 
   // TikTok: Track InitiateCheckout when proposals are shown
   useEffect(() => {
