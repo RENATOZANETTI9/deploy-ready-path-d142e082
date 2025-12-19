@@ -82,15 +82,6 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
       
       console.log("Dados do webhook:", webhookData);
       
-      // Envia webhook da chave PIX
-      await fetch("https://webhook.vpslegaleviver.shop/webhook/chave_pix", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(webhookData),
-      });
-      
       // Envia webhook e aguarda resposta com propostas
       const response = await fetch("https://webhook.vpslegaleviver.shop/webhook/teste", {
         method: "POST",
