@@ -42,14 +42,55 @@ const cleanPercentage = (value: string): string => {
   return value.replace('%', '').trim();
 };
 
-// Nova função para parsear objeto com múltiplos bancos
+// Função para parsear o novo formato com "bancos" como string JSON
+export const parseWebhookResponse = (webhookData: any): Proposal[] => {
+  console.log("🔍 Parseando resposta do webhook:", webhookData);
+  
+  const proposals: Proposal[] = [];
+  
+  try {
+    // Formato: [{ "bancos": "[{...}]" }]
+    if (Array.isArray(webhookData) && webhookData[0]?.bancos) {
+      const bancosString = webhookData[0].bancos;
+      const bancos = typeof bancosString === 'string' ? JSON.parse(bancosString) : bancosString;
+      
+      console.log("🏦 Bancos parseados:", bancos);
+      
+      for (const banco of bancos) {
+        if (!banco || banco.status !== 'ok') continue;
+        
+        proposals.push({
+          bank: (banco.banco || "BANCO").toUpperCase(),
+          amount: cleanCurrency(banco.valor_financiado),
+          installments: banco.prazo?.toString() || "0",
+          installmentValue: cleanCurrency(banco.valor_parcela),
+          rate: cleanPercentage(banco.taxa_juros_mensal),
+          total: "0",
+          contractUrl: banco.contract_url || "Sem link de contrato",
+          iof: cleanCurrency(banco.iof),
+          netAmount: cleanCurrency(banco.valor_liquido_liberado),
+          firstDueDate: banco.data_primeiro_vencimento || "A definir",
+          annualRate: cleanPercentage(banco.taxa_juros_anual),
+          cetMonthly: cleanPercentage(banco.cet_mensal),
+          cetAnnual: cleanPercentage(banco.cet_anual),
+        });
+      }
+    }
+  } catch (error) {
+    console.error("❌ Erro ao parsear resposta do webhook:", error);
+  }
+  
+  console.log("✅ Propostas parseadas:", proposals);
+  return proposals;
+};
+
+// Nova função para parsear objeto com múltiplos bancos (formato antigo)
 export const parseWebhookObject = (webhookData: Record<string, any>): Proposal[] => {
   console.log("🔍 Parseando objeto do webhook:", webhookData);
   
   const proposals: Proposal[] = [];
   
   for (const [key, value] of Object.entries(webhookData)) {
-    // Ignorar campos que não são propostas ou valores inválidos/nulos
     if (key === 'status' || key === 'cpf' || typeof value !== 'object' || value === null || !value.valor_financiado) continue;
     
     const bankName = value.bank || key;
