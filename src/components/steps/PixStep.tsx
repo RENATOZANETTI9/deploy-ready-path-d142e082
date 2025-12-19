@@ -83,7 +83,7 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
       console.log("Dados do webhook:", webhookData);
       
       // Envia webhook e aguarda resposta com propostas
-      const response = await fetch("https://webhook.vpslegaleviver.shop/webhook/teste", {
+      const response = await fetch("https://webhook.vpslegaleviver.shop/webhook/propostas", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
