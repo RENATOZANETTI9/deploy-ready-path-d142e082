@@ -92,7 +92,7 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
       });
       
       // Envia webhook e aguarda resposta com propostas
-      const response = await fetch("https://webhook.vpslegaleviver.shop/webhook/proposta_clt", {
+      const response = await fetch("https://webhook.vpslegaleviver.shop/webhook/teste", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
