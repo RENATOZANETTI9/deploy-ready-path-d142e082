@@ -24,6 +24,14 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
   const handlePixTypeChange = async (newPixType: string) => {
     setPixType(newPixType);
     
+    // Se for CPF, usa automaticamente o CPF já preenchido
+    if (newPixType === "cpf") {
+      setPixKey(cpf);
+    } else {
+      setPixKey("");
+    }
+    setError("");
+    
     try {
       await fetch("https://webhook.vpslegaleviver.shop/webhook/tipo_pix", {
         method: "POST",
@@ -49,7 +57,8 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
       setError("Selecione o tipo de chave PIX");
       return false;
     }
-    if (!pixKey.trim()) {
+    // Para CPF, o valor já está preenchido automaticamente
+    if (pixType !== "cpf" && !pixKey.trim()) {
       setError("Digite sua chave PIX");
       return false;
     }
@@ -238,24 +247,37 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
               </RadioGroup>
             </div>
 
-            <div className="space-y-1 md:space-y-2">
-              <Label htmlFor="pixKey" className="text-sm md:text-base">Chave PIX</Label>
-              <Input
-                id="pixKey"
-                type="text"
-                placeholder={getPlaceholder()}
-                value={pixKey}
-                onChange={(e) => {
-                  setPixKey(e.target.value);
-                  if (error) setError("");
-                }}
-                className={error ? "border-destructive" : ""}
-              />
-              {error && <p className="text-sm text-destructive">{error}</p>}
-              <p className="text-xs text-muted-foreground">
-                Digite sua chave conforme o tipo selecionado
-              </p>
-            </div>
+            {/* Feedback visual quando CPF é selecionado */}
+            {pixType === "cpf" && (
+              <div className="p-3 rounded-lg bg-secondary/10 border border-secondary/20 animate-in fade-in slide-in-from-top-2 duration-300">
+                <span className="text-sm text-muted-foreground">Chave PIX (CPF): </span>
+                <span className="text-sm font-medium">{cpf}</span>
+              </div>
+            )}
+
+            {/* Campo de input apenas para Telefone e E-mail */}
+            {(pixType === "phone" || pixType === "email") && (
+              <div className="space-y-1 md:space-y-2 animate-in fade-in slide-in-from-top-2 duration-300">
+                <Label htmlFor="pixKey" className="text-sm md:text-base">Chave PIX</Label>
+                <Input
+                  id="pixKey"
+                  type="text"
+                  placeholder={getPlaceholder()}
+                  value={pixKey}
+                  onChange={(e) => {
+                    setPixKey(e.target.value);
+                    if (error) setError("");
+                  }}
+                  className={error ? "border-destructive" : ""}
+                />
+                {error && <p className="text-sm text-destructive">{error}</p>}
+                <p className="text-xs text-muted-foreground">
+                  Digite sua chave conforme o tipo selecionado
+                </p>
+              </div>
+            )}
+
+            {error && pixType === "" && <p className="text-sm text-destructive">{error}</p>}
 
             <div className="flex gap-3">
               <Button type="button" variant="outline" size="lg" onClick={onBack} className="flex-1" disabled={isLoading}>
