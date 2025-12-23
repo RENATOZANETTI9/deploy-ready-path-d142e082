@@ -323,8 +323,18 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
     </Card>
   );
 
+  const formatCPF = (cpf: string) => {
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+  };
+
   return (
     <div className="w-full max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 scale-[0.8] md:scale-100 origin-top">
+      {/* Exibição do CPF */}
+      <div className="bg-muted/50 rounded-lg p-3 border mb-4 text-center">
+        <span className="text-sm text-muted-foreground">CPF: </span>
+        <span className="text-sm font-semibold">{formatCPF(formData.cpf)}</span>
+      </div>
+
       <div className="text-center mb-4 md:mb-8">
         <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-accent/10 mb-2 md:mb-4">
           <span className="text-2xl md:text-3xl">🎉</span>
