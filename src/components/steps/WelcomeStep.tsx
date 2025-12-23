@@ -255,6 +255,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           <p className="text-[11px] font-medium text-destructive">O salário mínimo deve ser de R$ 1.518,00</p>
         )}
         <Button
+          id="simular-agora-btn"
           onClick={onStart}
           disabled={!isValidSalary}
           size="lg"
