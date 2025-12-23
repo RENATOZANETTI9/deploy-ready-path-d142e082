@@ -30,46 +30,17 @@ const Index = () => {
 
   const totalSteps = 4;
 
-  const handleInactivityReset = useCallback(() => {
-    setCurrentStep(0);
-    setFormData(defaultFormData);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    toast({
-      title: "Sessão expirada",
-      description: "Por inatividade, você foi redirecionado ao início",
-      duration: 3000,
-    });
-  }, [toast]);
-
-  const handleScrollToSimular = useCallback(() => {
-    const button = document.getElementById('simular-agora-btn');
-    if (button) {
-      button.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      button.classList.add('animate-pulse', 'ring-4', 'ring-secondary/50');
-      setTimeout(() => {
-        button.classList.remove('animate-pulse', 'ring-4', 'ring-secondary/50');
-      }, 2000);
-    }
-  }, []);
-
-  // Timer de 10 segundos para scroll ao "Simular Agora" na tela inicial
-  useInactivityTimer({
-    timeout: 10000,
-    onInactive: handleScrollToSimular,
-    enabled: currentStep === 0
-  });
-
-  // Timer de 10 segundos para resetar nas outras etapas
-  useInactivityTimer({
-    timeout: 10000,
-    onInactive: handleInactivityReset,
-    enabled: currentStep > 0
-  });
-
   const handleStart = () => {
     setCurrentStep(1);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  // Timer de 10 segundos - só na tela principal, vai para etapa 1
+  useInactivityTimer({
+    timeout: 10000,
+    onInactive: handleStart,
+    enabled: currentStep === 0
+  });
 
   const handleCpfNext = (cpf: string) => {
     setFormData((prev) => ({ ...prev, cpf }));
