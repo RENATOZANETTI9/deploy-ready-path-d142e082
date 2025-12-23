@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { StepIndicator } from "@/components/StepIndicator";
 import { WelcomeStep } from "@/components/steps/WelcomeStep";
 import { CpfStep } from "@/components/steps/CpfStep";
@@ -7,6 +7,7 @@ import { PixStep } from "@/components/steps/PixStep";
 import { ProposalsStep } from "@/components/steps/ProposalsStep";
 import { Footer } from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
+import { useInactivityTimer } from "@/hooks/use-inactivity-timer";
 
 interface FormData {
   cpf: string;
@@ -28,6 +29,23 @@ const Index = () => {
   const { toast } = useToast();
 
   const totalSteps = 4;
+
+  const handleInactivityReset = useCallback(() => {
+    setCurrentStep(0);
+    setFormData(defaultFormData);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    toast({
+      title: "Sessão expirada",
+      description: "Por inatividade, você foi redirecionado ao início",
+      duration: 3000,
+    });
+  }, [toast]);
+
+  useInactivityTimer({
+    timeout: 10000,
+    onInactive: handleInactivityReset,
+    enabled: currentStep > 0
+  });
 
   const handleStart = () => {
     setCurrentStep(1);
