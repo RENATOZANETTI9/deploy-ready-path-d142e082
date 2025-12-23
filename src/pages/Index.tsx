@@ -52,9 +52,9 @@ const Index = () => {
     }
   }, []);
 
-  // Timer de 1 segundo para scroll ao "Simular Agora" na tela inicial
+  // Timer de 10 segundos para scroll ao "Simular Agora" na tela inicial
   useInactivityTimer({
-    timeout: 1000,
+    timeout: 10000,
     onInactive: handleScrollToSimular,
     enabled: currentStep === 0
   });
