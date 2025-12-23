@@ -41,6 +41,25 @@ const Index = () => {
     });
   }, [toast]);
 
+  const handleScrollToSimular = useCallback(() => {
+    const button = document.getElementById('simular-agora-btn');
+    if (button) {
+      button.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      button.classList.add('animate-pulse', 'ring-4', 'ring-secondary/50');
+      setTimeout(() => {
+        button.classList.remove('animate-pulse', 'ring-4', 'ring-secondary/50');
+      }, 2000);
+    }
+  }, []);
+
+  // Timer de 1 segundo para scroll ao "Simular Agora" na tela inicial
+  useInactivityTimer({
+    timeout: 1000,
+    onInactive: handleScrollToSimular,
+    enabled: currentStep === 0
+  });
+
+  // Timer de 10 segundos para resetar nas outras etapas
   useInactivityTimer({
     timeout: 10000,
     onInactive: handleInactivityReset,
