@@ -10,17 +10,11 @@ interface AuthorizationStepProps {
 }
 
 export const AuthorizationStep = ({ onNext, onBack, cpf }: AuthorizationStepProps) => {
-  const [accepted, setAccepted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleAccept = () => {
-    setAccepted(true);
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!accepted) return;
 
     setIsLoading(true);
 
@@ -122,41 +116,28 @@ export const AuthorizationStep = ({ onNext, onBack, cpf }: AuthorizationStepProp
           </div>
         </div>
 
-        {!accepted ? (
-          <div className="flex gap-3">
-            <Button type="button" variant="outline" size="lg" onClick={onBack} className="flex-1">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Voltar
-            </Button>
-            <Button
-              type="button"
-              variant="default"
-              size="lg"
-              onClick={handleAccept}
-              className="flex-1 bg-muted hover:bg-secondary hover:text-secondary-foreground transition-all"
-            >
-              Selecionar
-            </Button>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit}>
-            <div className="flex gap-3">
-              <Button type="button" variant="outline" size="lg" onClick={onBack} className="flex-1">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Voltar
-              </Button>
-              <Button
-                type="submit"
-                variant="secondary"
-                size="lg"
-                disabled={isLoading}
-                className="flex-1 bg-secondary text-secondary-foreground shadow-lg"
-              >
-                {isLoading ? "Processando..." : "Continuar"}
-              </Button>
-            </div>
-          </form>
-        )}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+          <Button
+            type="submit"
+            size="lg"
+            disabled={isLoading}
+            className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg animate-pulse"
+            style={{ animationDuration: '2s' }}
+          >
+            {isLoading ? "Processando..." : "Autorizar"}
+          </Button>
+          
+          <Button 
+            type="button" 
+            variant="ghost" 
+            size="sm" 
+            onClick={onBack} 
+            className="self-center text-muted-foreground hover:text-foreground"
+          >
+            <ArrowLeft className="w-4 h-4 mr-1" />
+            Voltar
+          </Button>
+        </form>
       </div>
     </div>
   );
