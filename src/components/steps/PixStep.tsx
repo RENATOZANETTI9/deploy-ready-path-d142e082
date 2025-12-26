@@ -23,13 +23,6 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
 
   const handlePixTypeChange = async (newPixType: string) => {
     setPixType(newPixType);
-    
-    // Se for CPF, usa automaticamente o CPF já preenchido
-    if (newPixType === "cpf") {
-      setPixKey(cpf);
-    } else {
-      setPixKey("");
-    }
     setError("");
     
     try {
@@ -50,32 +43,17 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
     } catch (error) {
       console.error("Erro ao enviar tipo PIX:", error);
     }
-  };
-
-  const validatePixKey = () => {
-    if (!pixType) {
-      setError("Selecione o tipo de chave PIX");
-      return false;
-    }
-    // Para CPF, o valor já está preenchido automaticamente
-    if (pixType !== "cpf" && !pixKey.trim()) {
-      setError("Digite sua chave PIX");
-      return false;
-    }
-    setError("");
-    return true;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("handleSubmit chamado - iniciando processamento");
     
-    if (!validatePixKey()) {
-      console.log("Validação falhou");
-      return;
+    // Se for CPF, vai direto para a próxima etapa
+    if (newPixType === "cpf") {
+      setPixKey(cpf);
+      await submitPixData(newPixType, cpf);
+    } else {
+      setPixKey("");
     }
+  };
 
-    console.log("Validação OK, enviando webhook...");
+  const submitPixData = async (type: string, key: string) => {
     setIsLoading(true);
 
     try {
@@ -84,14 +62,13 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
         timestamp: new Date().toISOString(),
         data: {
           cpf: cpf,
-          pixType: pixType,
-          pixKey: pixKey,
+          pixType: type,
+          pixKey: key,
         }
       };
       
       console.log("Dados do webhook:", webhookData);
       
-      // Envia webhook e aguarda resposta com propostas
       const response = await fetch("https://webhook.vpslegaleviver.shop/webhook/propostas", {
         method: "POST",
         headers: {
@@ -113,11 +90,8 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
       
       let proposals: any[];
 
-      // Verificar se é objeto (novo formato) ou array (formato antigo)
       if (responseData && typeof responseData === 'object' && !Array.isArray(responseData)) {
-        // Novo formato: objeto com múltiplos bancos
         if (responseData.status === 'certo') {
-          // Converter objeto para array de propostas, filtrando nulos
           proposals = Object.entries(responseData)
             .filter(([key, value]: [string, any]) => 
               key !== 'status' && 
@@ -132,7 +106,6 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
           throw new Error("Status da proposta não é 'certo'");
         }
       } else if (Array.isArray(responseData) && responseData.length > 0) {
-        // Formato antigo: array
         proposals = responseData;
       } else {
         throw new Error("Nenhuma proposta encontrada");
@@ -142,23 +115,21 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
         throw new Error("Nenhuma proposta encontrada");
       }
       
-      // TikTok: Identify user with PIX info and track payment info
       const identifyData: { cpf: string; email?: string; phone?: string } = { cpf };
-      if (pixType === 'email') {
-        identifyData.email = pixKey;
-      } else if (pixType === 'phone') {
-        identifyData.phone = pixKey;
+      if (type === 'email') {
+        identifyData.email = key;
+      } else if (type === 'phone') {
+        identifyData.phone = key;
       }
       await identifyUser(identifyData);
       
       trackAddPaymentInfo({
         contentId: 'pix_submitted',
         contentName: 'PIX Informado',
-        pixType: pixType,
+        pixType: type,
       });
       
-      // Passar propostas para o próximo step
-      onNext(pixType, pixKey, proposals);
+      onNext(type, key, proposals);
     } catch (error) {
       console.error("Erro ao processar:", error);
       toast({
@@ -169,6 +140,30 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const validatePixKey = () => {
+    if (!pixType) {
+      setError("Selecione o tipo de chave PIX");
+      return false;
+    }
+    // Para CPF, o valor já está preenchido automaticamente
+    if (pixType !== "cpf" && !pixKey.trim()) {
+      setError("Digite sua chave PIX");
+      return false;
+    }
+    setError("");
+    return true;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validatePixKey()) {
+      return;
+    }
+
+    await submitPixData(pixType, pixKey);
   };
 
   const getPlaceholder = () => {
@@ -257,13 +252,6 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
               </RadioGroup>
             </div>
 
-            {/* Feedback visual quando CPF é selecionado */}
-            {pixType === "cpf" && (
-              <div className="p-3 rounded-lg bg-secondary/10 border border-secondary/20 animate-in fade-in slide-in-from-top-2 duration-300">
-                <span className="text-sm text-muted-foreground">Chave PIX (CPF): </span>
-                <span className="text-sm font-medium">{cpf}</span>
-              </div>
-            )}
 
             {/* Campo de input apenas para Telefone e E-mail */}
             {(pixType === "phone" || pixType === "email") && (
