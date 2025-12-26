@@ -9,6 +9,7 @@ import { ExternalLink, TrendingDown, Calendar, DollarSign, Percent, Phone } from
 import { useToast } from "@/hooks/use-toast";
 import { parseWebhookResponse, parseWebhookProposals, parseWebhookObject, type Proposal } from "@/lib/proposalParser";
 import { identifyUser, trackInitiateCheckout, trackPlaceAnOrder, trackPurchase } from "@/hooks/use-tiktok-tracking";
+import { WhatsAppHelper } from "@/components/WhatsAppHelper";
 
 interface ProposalsStepProps {
   onFinish: () => void;
@@ -365,6 +366,10 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
       <Button onClick={onFinish} variant="outline" className="w-full" size="lg">
         Fechar
       </Button>
+      
+      <div className="mt-6 text-center">
+        <WhatsAppHelper />
+      </div>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="sm:max-w-md">

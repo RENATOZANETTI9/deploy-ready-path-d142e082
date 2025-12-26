@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Shield, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { WhatsAppHelper } from "@/components/WhatsAppHelper";
 
 interface AuthorizationStepProps {
   onNext: () => void;
@@ -138,6 +139,10 @@ export const AuthorizationStep = ({ onNext, onBack, cpf }: AuthorizationStepProp
             Voltar
           </Button>
         </form>
+        
+        <div className="mt-6 text-center">
+          <WhatsAppHelper />
+        </div>
       </div>
     </div>
   );
