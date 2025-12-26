@@ -7,6 +7,7 @@ import { Wallet, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { LoadingProposals } from "@/components/LoadingProposals";
 import { identifyUser, trackAddPaymentInfo } from "@/hooks/use-tiktok-tracking";
+import { WhatsAppHelper } from "@/components/WhatsAppHelper";
 
 interface PixStepProps {
   onNext: (pixType: string, pixKey: string, proposals: any[]) => void;
@@ -283,10 +284,14 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
                 Voltar
               </Button>
               <Button type="submit" variant="secondary" size="lg" disabled={isLoading} className="flex-1">
-                {isLoading ? "Processando..." : "Continuar"}
-              </Button>
+              {isLoading ? "Processando..." : "Continuar"}
+            </Button>
             </div>
           </form>
+          
+          <div className="mt-6 text-center">
+            <WhatsAppHelper />
+          </div>
         </div>
       )}
     </>

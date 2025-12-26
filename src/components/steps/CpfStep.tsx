@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Loader2, Lock, ArrowLeft } from "lucide-react";
 import { Confetti } from "@/components/Confetti";
 import { identifyUser, trackCompleteRegistration } from "@/hooks/use-tiktok-tracking";
+import { WhatsAppHelper } from "@/components/WhatsAppHelper";
 
 interface CpfStepProps {
   onNext: (cpf: string) => void;
@@ -224,6 +225,10 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
           </Button>
         </div>
           </form>
+          
+          <div className="mt-6 text-center">
+            <WhatsAppHelper />
+          </div>
         </>
         )}
       </div>
