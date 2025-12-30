@@ -204,9 +204,9 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
                 <Wallet className="w-8 h-8 md:w-12 md:h-12 text-secondary animate-pulse" strokeWidth={2.5} />
               </div>
             </div>
-            <h2 className="text-lg md:text-2xl font-bold mb-1 md:mb-2">Dados Bancários</h2>
+            <h2 className="text-lg md:text-2xl font-bold mb-1 md:mb-2">Informe sua chave Pix</h2>
             <p className="text-sm md:text-base text-muted-foreground">
-              Informe sua chave PIX para receber o valor
+              Usaremos sua chave Pix para confirmar sua identidade e fazer a simulação, respeitando a lei de proteção de dados
             </p>
           </div>
 
