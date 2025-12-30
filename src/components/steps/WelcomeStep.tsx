@@ -578,7 +578,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       </div>
 
       {/* CTA after FAQ */}
-      <section className="text-center py-12 px-4 sm:px-6">
+      <section className="text-center pt-8 pb-4 px-4 sm:px-6">
         <Button
           onClick={onStart}
           disabled={!isValidSalary}
