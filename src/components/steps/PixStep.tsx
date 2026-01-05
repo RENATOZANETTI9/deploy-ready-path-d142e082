@@ -8,6 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 import { LoadingProposals } from "@/components/LoadingProposals";
 import { identifyUser, trackAddPaymentInfo } from "@/hooks/use-tiktok-tracking";
 import { WhatsAppHelper } from "@/components/WhatsAppHelper";
+import { getUtmData } from "@/hooks/use-utm-tracking";
 
 interface PixStepProps {
   onNext: (pixType: string, pixKey: string, proposals: any[]) => void;
@@ -26,6 +27,8 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
     setPixType(newPixType);
     setError("");
     
+    const utmData = getUtmData();
+    
     try {
       await fetch("https://webhook.vpslegaleviver.shop/webhook/tipo_pix", {
         method: "POST",
@@ -35,6 +38,7 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
         body: JSON.stringify({
           event: "pix_type_selected",
           timestamp: new Date().toISOString(),
+          origem: utmData,
           data: {
             cpf: cpf,
             pixType: newPixType,
@@ -58,9 +62,12 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
     setIsLoading(true);
 
     try {
+      const utmData = getUtmData();
+      
       const webhookData = {
         event: "pix_key_submitted",
         timestamp: new Date().toISOString(),
+        origem: utmData,
         data: {
           cpf: cpf,
           pixType: type,

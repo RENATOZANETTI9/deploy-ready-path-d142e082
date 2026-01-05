@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { parseWebhookResponse, parseWebhookProposals, parseWebhookObject, type Proposal } from "@/lib/proposalParser";
 import { identifyUser, trackInitiateCheckout, trackPlaceAnOrder, trackPurchase } from "@/hooks/use-tiktok-tracking";
 import { WhatsAppHelper } from "@/components/WhatsAppHelper";
+import { getUtmData } from "@/hooks/use-utm-tracking";
 
 interface ProposalsStepProps {
   onFinish: () => void;
@@ -137,6 +138,8 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
     }
 
     try {
+      const utmData = getUtmData();
+      
       // Envia webhook com todas as informações do formulário
       await fetch("https://webhook.vpslegaleviver.shop/webhook/FINALIZAR", {
         method: "POST",
@@ -148,6 +151,7 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
           pixType: formData.pixType,
           pixKey: formData.pixKey,
           phone: phone,
+          origem: utmData,
           selectedProposal: {
             bank: selectedProposal?.bank,
             amount: selectedProposal?.amount,

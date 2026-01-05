@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Shield, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { WhatsAppHelper } from "@/components/WhatsAppHelper";
+import { getUtmData } from "@/hooks/use-utm-tracking";
 
 interface AuthorizationStepProps {
   onNext: () => void;
@@ -20,6 +21,8 @@ export const AuthorizationStep = ({ onNext, onBack, cpf }: AuthorizationStepProp
     setIsLoading(true);
 
     try {
+      const utmData = getUtmData();
+      
       // Envia webhook de autorização
       const response = await fetch("https://webhook.vpslegaleviver.shop/webhook/permissao", {
         method: "POST",
@@ -29,6 +32,7 @@ export const AuthorizationStep = ({ onNext, onBack, cpf }: AuthorizationStepProp
         body: JSON.stringify({
           event: "authorization_accepted",
           timestamp: new Date().toISOString(),
+          origem: utmData,
           data: {
             accepted: true,
             cpf: cpf,
