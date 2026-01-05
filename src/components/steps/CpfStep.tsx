@@ -6,6 +6,7 @@ import { Loader2, Lock, ArrowLeft } from "lucide-react";
 import { Confetti } from "@/components/Confetti";
 import { identifyUser, trackCompleteRegistration } from "@/hooks/use-tiktok-tracking";
 import { WhatsAppHelper } from "@/components/WhatsAppHelper";
+import { getUtmData } from "@/hooks/use-utm-tracking";
 
 interface CpfStepProps {
   onNext: (cpf: string) => void;
@@ -44,12 +45,15 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
 
   const validateCpfWithBackend = async () => {
     try {
+      const utmData = getUtmData();
+      
       const response = await fetch('https://webhook.vpslegaleviver.shop/webhook/nova_vida', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          origem: utmData,
           nodes: [
             {
               parameters: {

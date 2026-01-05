@@ -8,6 +8,7 @@ import { ProposalsStep } from "@/components/steps/ProposalsStep";
 import { Footer } from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
 import { useInactivityTimer } from "@/hooks/use-inactivity-timer";
+import { useUtmTracking } from "@/hooks/use-utm-tracking";
 
 interface FormData {
   cpf: string;
@@ -27,6 +28,9 @@ const Index = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<FormData>(defaultFormData);
   const { toast } = useToast();
+  
+  // Captura dados UTM ao entrar no site
+  useUtmTracking();
 
   const totalSteps = 4;
 
