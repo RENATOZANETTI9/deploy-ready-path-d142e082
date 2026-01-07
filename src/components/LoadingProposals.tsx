@@ -5,23 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getUtmData } from "@/hooks/use-utm-tracking";
-import logoAlt from "@/assets/logo-legal-e-viver-alt.webp";
 
-const Header = () => (
-  <div className="w-full text-center mb-6">
-    <img 
-      src={logoAlt} 
-      alt="Legal é Viver" 
-      className="h-8 mx-auto mb-3"
-    />
-    <h1 className="text-primary text-lg font-bold tracking-wide uppercase">
-      Crédito Consignado CLT
-    </h1>
-    <p className="text-secondary text-xs font-medium uppercase tracking-wider">
-      Processo rápido, seguro e 100% digital
-    </p>
-  </div>
-);
 const isDataprevClosingPeriod = () => {
   const today = new Date();
   const day = today.getDate();
@@ -145,39 +129,36 @@ export const LoadingProposals = ({
   // Tela de confirmação após enviar WhatsApp
   if (showConfirmation) {
     return (
-      <div className="fixed inset-0 z-50 flex flex-col items-center bg-background p-4 pt-6 overflow-auto">
-        <Header />
-        <div className="w-full max-w-sm bg-card border rounded-xl p-5 shadow-lg animate-in fade-in duration-300 text-center">
-          <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
-            <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
-            <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
-              <CheckCircle2 className="w-8 h-8 text-secondary" strokeWidth={2} />
-            </div>
+      <div className="w-full max-w-md mx-auto text-center animate-in fade-in duration-300">
+        <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
+          <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
+          <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
+            <CheckCircle2 className="w-8 h-8 text-secondary" strokeWidth={2} />
           </div>
-          
-          <h2 className="text-lg font-bold mb-3 text-secondary">Muito obrigado! 💚</h2>
-          
-          <div className="space-y-3 text-muted-foreground text-sm leading-relaxed">
-            <p>
-              Entraremos em contato em <strong className="text-foreground">no máximo 24 horas</strong> via WhatsApp para te informar as opções disponíveis.
-            </p>
-            <p>
-              Caso não entremos em contato dentro deste período, infelizmente significa que ainda não teremos valores liberados para você.
-            </p>
-            <p className="text-secondary font-medium">
-              Mas fique tranquilo! Faremos de tudo para te dar um retorno positivo.
-            </p>
-          </div>
-          
-          <Button 
-            variant="secondary" 
-            size="lg" 
-            className="w-full mt-6"
-            onClick={handleConfirmationClose}
-          >
-            Entendido
-          </Button>
         </div>
+        
+        <h2 className="text-lg font-bold mb-3 text-secondary">Muito obrigado! 💚</h2>
+        
+        <div className="space-y-3 text-muted-foreground text-sm leading-relaxed">
+          <p>
+            Entraremos em contato em <strong className="text-foreground">no máximo 24 horas</strong> via WhatsApp para te informar as opções disponíveis.
+          </p>
+          <p>
+            Caso não entremos em contato dentro deste período, infelizmente significa que ainda não teremos valores liberados para você.
+          </p>
+          <p className="text-secondary font-medium">
+            Mas fique tranquilo! Faremos de tudo para te dar um retorno positivo.
+          </p>
+        </div>
+        
+        <Button 
+          variant="secondary" 
+          size="lg" 
+          className="w-full mt-6"
+          onClick={handleConfirmationClose}
+        >
+          Entendido
+        </Button>
       </div>
     );
   }
@@ -185,51 +166,48 @@ export const LoadingProposals = ({
   // Tela de coleta de WhatsApp após timeout
   if (isTimedOut) {
     return (
-      <div className="fixed inset-0 z-50 flex flex-col items-center bg-background p-4 pt-6 overflow-auto">
-        <Header />
-        <div className="w-full max-w-sm bg-card border rounded-xl p-5 shadow-lg animate-in fade-in duration-300 text-center">
-          <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
-            <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
-            <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
-              <Phone className="w-8 h-8 text-secondary" strokeWidth={2} />
-            </div>
+      <div className="w-full max-w-md mx-auto text-center animate-in fade-in duration-300">
+        <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
+          <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
+          <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
+            <Phone className="w-8 h-8 text-secondary" strokeWidth={2} />
           </div>
-          
-          <h2 className="text-lg font-bold mb-3 text-foreground">
-            Não vamos deixar você esperando aqui.
-          </h2>
-          
-          <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
-            Estamos fazendo o melhor e aguardando a resposta de todos os bancos para trazer pra você a melhor opção dentro dos cinco. 
-            Assim que tivermos retorno, <strong className="text-foreground">entraremos em contato pelo WhatsApp</strong>.
-          </p>
-          
-          <div className="space-y-2 text-left">
-            <Label htmlFor="whatsapp" className="text-sm font-medium">
-              Informe seu WhatsApp
-            </Label>
-            <Input
-              id="whatsapp"
-              type="tel"
-              placeholder="(00) 00000-0000"
-              value={whatsappNumber}
-              onChange={(e) => setWhatsappNumber(formatPhone(e.target.value))}
-              className="text-center text-base h-11"
-              maxLength={15}
-            />
-          </div>
-          
-          <Button 
-            variant="secondary" 
-            size="lg" 
-            className="w-full mt-4 gap-2"
-            onClick={handleWhatsAppSubmit}
-            disabled={whatsappNumber.replace(/\D/g, '').length < 10 || isSubmitting}
-          >
-            <MessageCircle className="w-4 h-4" />
-            {isSubmitting ? "Salvando..." : "Salvar"}
-          </Button>
         </div>
+        
+        <h2 className="text-lg font-bold mb-3 text-foreground">
+          Não vamos deixar você esperando aqui.
+        </h2>
+        
+        <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
+          Estamos fazendo o melhor e aguardando a resposta de todos os bancos para trazer pra você a melhor opção dentro dos cinco. 
+          Assim que tivermos retorno, <strong className="text-foreground">entraremos em contato pelo WhatsApp</strong>.
+        </p>
+        
+        <div className="space-y-2 text-left">
+          <Label htmlFor="whatsapp" className="text-sm font-medium">
+            Informe seu WhatsApp
+          </Label>
+          <Input
+            id="whatsapp"
+            type="tel"
+            placeholder="(00) 00000-0000"
+            value={whatsappNumber}
+            onChange={(e) => setWhatsappNumber(formatPhone(e.target.value))}
+            className="text-center text-base h-11"
+            maxLength={15}
+          />
+        </div>
+        
+        <Button 
+          variant="secondary" 
+          size="lg" 
+          className="w-full mt-4 gap-2"
+          onClick={handleWhatsAppSubmit}
+          disabled={whatsappNumber.replace(/\D/g, '').length < 10 || isSubmitting}
+        >
+          <MessageCircle className="w-4 h-4" />
+          {isSubmitting ? "Salvando..." : "Salvar"}
+        </Button>
       </div>
     );
   }
