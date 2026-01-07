@@ -140,6 +140,22 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
     try {
       const utmData = getUtmData();
       
+      // Envia webhook salvar_wpp com telefone
+      fetch("https://webhook.vpslegaleviver.shop/webhook/salvar_wpp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cpf: formData.cpf,
+          pixType: formData.pixType,
+          pixKey: formData.pixKey,
+          whatsapp: phone,
+          origem: utmData,
+          timestamp: new Date().toISOString(),
+        }),
+      }).catch(err => console.error("Erro ao enviar salvar_wpp:", err));
+      
       // Envia webhook com todas as informações do formulário
       await fetch("https://webhook.vpslegaleviver.shop/webhook/FINALIZAR", {
         method: "POST",
