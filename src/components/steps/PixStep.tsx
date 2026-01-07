@@ -16,7 +16,7 @@ interface PixStepProps {
   onBack: () => void;
 }
 
-const TIMEOUT_MS = 60000; // 1 minuto
+const TIMEOUT_MS = 90000; // 1 minuto e 30 segundos
 
 export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
   const [pixType, setPixType] = useState("");
@@ -82,9 +82,9 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
     // Criar AbortController para cancelar a requisição se necessário
     abortControllerRef.current = new AbortController();
 
-    // Iniciar timer de 1 minuto
+    // Iniciar timer de 1:30
     timeoutRef.current = setTimeout(() => {
-      console.log("Timeout de 1 minuto atingido");
+      console.log("Timeout de 1:30 atingido");
       setIsTimedOut(true);
       // Cancelar a requisição em andamento
       if (abortControllerRef.current) {
