@@ -5,7 +5,23 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getUtmData } from "@/hooks/use-utm-tracking";
+import logoAlt from "@/assets/logo-legal-e-viver-alt.webp";
 
+const Header = () => (
+  <div className="w-full text-center mb-6">
+    <img 
+      src={logoAlt} 
+      alt="Legal é Viver" 
+      className="h-8 mx-auto mb-3"
+    />
+    <h1 className="text-primary text-lg font-bold tracking-wide uppercase">
+      Crédito Consignado CLT
+    </h1>
+    <p className="text-secondary text-xs font-medium uppercase tracking-wider">
+      Processo rápido, seguro e 100% digital
+    </p>
+  </div>
+);
 const isDataprevClosingPeriod = () => {
   const today = new Date();
   const day = today.getDate();
@@ -129,18 +145,19 @@ export const LoadingProposals = ({
   // Tela de confirmação após enviar WhatsApp
   if (showConfirmation) {
     return (
-      <div className="w-full max-w-lg mx-auto text-center animate-in fade-in duration-500 p-4">
-        <div className="bg-card border rounded-2xl p-6 md:p-8 shadow-lg">
-          <div className="relative inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 mb-4 md:mb-6">
+      <div className="fixed inset-0 z-50 flex flex-col items-center bg-background p-4 pt-6 overflow-auto">
+        <Header />
+        <div className="w-full max-w-sm bg-card border rounded-xl p-5 shadow-lg animate-in fade-in duration-300 text-center">
+          <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
             <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
-            <div className="relative flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
-              <CheckCircle2 className="w-10 h-10 md:w-12 md:h-12 text-secondary" strokeWidth={2} />
+            <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
+              <CheckCircle2 className="w-8 h-8 text-secondary" strokeWidth={2} />
             </div>
           </div>
           
-          <h2 className="text-xl md:text-2xl font-bold mb-4 text-secondary">Muito obrigado! 💚</h2>
+          <h2 className="text-lg font-bold mb-3 text-secondary">Muito obrigado! 💚</h2>
           
-          <div className="space-y-4 text-muted-foreground text-sm md:text-base leading-relaxed">
+          <div className="space-y-3 text-muted-foreground text-sm leading-relaxed">
             <p>
               Entraremos em contato em <strong className="text-foreground">no máximo 24 horas</strong> via WhatsApp para te informar as opções disponíveis.
             </p>
@@ -148,7 +165,7 @@ export const LoadingProposals = ({
               Caso não entremos em contato dentro deste período, infelizmente significa que ainda não teremos valores liberados para você.
             </p>
             <p className="text-secondary font-medium">
-              Mas fique tranquilo! Faremos de tudo para te dar um retorno positivo em até 24 horas.
+              Mas fique tranquilo! Faremos de tudo para te dar um retorno positivo.
             </p>
           </div>
           
@@ -168,8 +185,9 @@ export const LoadingProposals = ({
   // Tela de coleta de WhatsApp após timeout
   if (isTimedOut) {
     return (
-      <div className="fixed inset-0 z-50 flex items-start justify-center bg-background/95 backdrop-blur-sm p-4 pt-8 overflow-auto">
-        <div className="w-full max-w-sm bg-card border rounded-xl p-5 shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-300 text-center">
+      <div className="fixed inset-0 z-50 flex flex-col items-center bg-background p-4 pt-6 overflow-auto">
+        <Header />
+        <div className="w-full max-w-sm bg-card border rounded-xl p-5 shadow-lg animate-in fade-in duration-300 text-center">
           <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
             <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
             <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
