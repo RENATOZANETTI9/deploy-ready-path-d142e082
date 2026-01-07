@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ExternalLink, TrendingDown, Calendar, DollarSign, Percent, Phone } from "lucide-react";
+import { ExternalLink, Calendar, DollarSign, Percent, Phone, MessageCircle, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { parseWebhookResponse, parseWebhookProposals, parseWebhookObject, type Proposal } from "@/lib/proposalParser";
 import { identifyUser, trackInitiateCheckout, trackPlaceAnOrder, trackPurchase } from "@/hooks/use-tiktok-tracking";
@@ -23,10 +24,16 @@ interface ProposalsStepProps {
 }
 
 export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: ProposalsStepProps) => {
+  const navigate = useNavigate();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedProposal, setSelectedProposal] = useState<Proposal | null>(null);
   const [phone, setPhone] = useState("");
   const { toast } = useToast();
+  
+  // Estados para fluxo de "sem propostas"
+  const [whatsappNumber, setWhatsappNumber] = useState("");
+  const [showNoProposalsConfirmation, setShowNoProposalsConfirmation] = useState(false);
+  const [isSubmittingWhatsApp, setIsSubmittingWhatsApp] = useState(false);
 
   // Parsear propostas do webhook - detectar formato automaticamente
   console.log("📥 ProposalsStep recebeu rawProposals:", rawProposals);
@@ -74,39 +81,119 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
     }
   }, []);
 
-  // Validação: se não houver propostas
+  // Formatar WhatsApp
+  const formatWhatsApp = (value: string) => {
+    const numbers = value.replace(/\D/g, "");
+    if (numbers.length <= 2) return numbers;
+    if (numbers.length <= 7) return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
+    return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`;
+  };
+
+  // Enviar WhatsApp quando não há propostas
+  const handleWhatsAppSubmitNoProposals = async () => {
+    const cleanNumber = whatsappNumber.replace(/\D/g, "");
+    if (cleanNumber.length < 10) return;
+
+    setIsSubmittingWhatsApp(true);
+    try {
+      const utmData = getUtmData();
+      
+      await fetch("https://webhook.vpslegaleviver.shop/webhook/salvar_wpp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cpf: formData.cpf,
+          pixType: formData.pixType,
+          pixKey: formData.pixKey,
+          whatsapp: cleanNumber,
+          origem: utmData,
+          event: "no_proposals_whatsapp_collected",
+          timestamp: new Date().toISOString(),
+        }),
+      });
+
+      setShowNoProposalsConfirmation(true);
+    } catch (error) {
+      console.error("Erro ao enviar WhatsApp:", error);
+    } finally {
+      setIsSubmittingWhatsApp(false);
+    }
+  };
+
+  // Validação: se não houver propostas, mostra coleta de WhatsApp
   if (!proposals || proposals.length === 0) {
+    // Tela de confirmação após envio
+    if (showNoProposalsConfirmation) {
+      return (
+        <div className="w-full max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 scale-[0.8] md:scale-100 origin-top">
+          <div className="text-center space-y-4 md:space-y-6">
+            <div className="w-16 h-16 md:w-20 md:h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+              <CheckCircle2 className="w-8 h-8 md:w-10 md:h-10 text-primary" />
+            </div>
+            <h2 className="text-xl md:text-2xl font-bold text-foreground">
+              Muito obrigado! 💚
+            </h2>
+            <p className="text-sm md:text-base text-muted-foreground max-w-md mx-auto">
+              Entraremos em contato em até 24h via WhatsApp com as melhores opções para você.
+            </p>
+
+            <Button 
+              onClick={() => navigate("/obrigado")} 
+              className="w-full max-w-sm"
+              size="lg"
+            >
+              Entendido
+            </Button>
+          </div>
+        </div>
+      );
+    }
+
+    // Tela de coleta de WhatsApp
     return (
       <div className="w-full max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 scale-[0.8] md:scale-100 origin-top">
-        <div className="text-center space-y-3 md:space-y-6">
-          <div className="relative inline-flex items-center justify-center w-16 h-16 md:w-24 md:h-24 mb-2 md:mb-4">
-            <div className="absolute inset-0 rounded-full bg-destructive/20 animate-pulse" />
-            <div className="relative flex items-center justify-center w-16 h-16 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-destructive/20 to-destructive/10 shadow-lg">
-              <span className="text-3xl md:text-5xl">😔</span>
-            </div>
+        <div className="text-center space-y-4 md:space-y-6">
+          <div className="w-16 h-16 md:w-20 md:h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+            <MessageCircle className="w-8 h-8 md:w-10 md:h-10 text-primary" />
           </div>
-          
-          <h2 className="text-lg md:text-2xl font-bold text-foreground">Não aprovado desta vez</h2>
-          
-          <div className="bg-card rounded-lg p-3 md:p-6 shadow-sm border space-y-2 md:space-y-4">
-            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-              Passamos por <strong className="text-foreground">mais de 5 bancos</strong>, mas infelizmente não conseguimos aprovação em nenhum.
-            </p>
-            
-            <div className="bg-primary/5 border border-primary/20 rounded-lg p-2 md:p-4">
-              <p className="text-xs md:text-sm text-foreground">
-                📅 Nós continuaremos acompanhando sua análise e, <strong>a cada 30 dias</strong>, realizamos uma nova tentativa.
-              </p>
-            </div>
-            
-            <p className="text-xs md:text-sm text-muted-foreground">
-              Assim que houver aprovação, <strong className="text-foreground">avisamos você</strong>! 💚
-            </p>
+          <h2 className="text-xl md:text-2xl font-bold text-foreground">
+            Estamos analisando suas opções
+          </h2>
+          <p className="text-sm md:text-base text-muted-foreground max-w-md mx-auto">
+            Estamos consultando todos os bancos parceiros para encontrar as melhores condições para você. 
+            Deixe seu WhatsApp que entraremos em contato em breve!
+          </p>
+        </div>
+
+        <div className="space-y-4 mt-6">
+          <div className="space-y-2">
+            <Label htmlFor="whatsapp-no-proposals">Seu WhatsApp</Label>
+            <Input
+              id="whatsapp-no-proposals"
+              type="tel"
+              placeholder="(00) 00000-0000"
+              value={whatsappNumber}
+              onChange={(e) => setWhatsappNumber(formatWhatsApp(e.target.value))}
+              maxLength={15}
+              className="text-center text-lg"
+            />
           </div>
 
-          <Button onClick={onFinish} variant="secondary" size="lg" className="w-full max-w-sm">
-            Entendido
+          <Button 
+            onClick={handleWhatsAppSubmitNoProposals}
+            disabled={whatsappNumber.replace(/\D/g, "").length < 10 || isSubmittingWhatsApp}
+            className="w-full gap-2"
+            size="lg"
+          >
+            <MessageCircle className="w-4 h-4" />
+            {isSubmittingWhatsApp ? "Salvando..." : "Salvar"}
           </Button>
+        </div>
+
+        <div className="mt-6">
+          <WhatsAppHelper />
         </div>
       </div>
     );
