@@ -123,7 +123,7 @@ export const LoadingProposals = ({
   };
 
   const handleConfirmationClose = () => {
-    window.location.href = '/';
+    window.location.href = '/obrigado';
   };
 
   // Tela de confirmação após enviar WhatsApp
