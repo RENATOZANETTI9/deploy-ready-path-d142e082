@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,12 +16,29 @@ interface PixStepProps {
   onBack: () => void;
 }
 
+const TIMEOUT_MS = 60000; // 1 minuto
+
 export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
   const [pixType, setPixType] = useState("");
   const [pixKey, setPixKey] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isTimedOut, setIsTimedOut] = useState(false);
   const { toast } = useToast();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, []);
 
   const handlePixTypeChange = async (newPixType: string) => {
     setPixType(newPixType);
@@ -60,6 +77,20 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
 
   const submitPixData = async (type: string, key: string) => {
     setIsLoading(true);
+    setIsTimedOut(false);
+
+    // Criar AbortController para cancelar a requisição se necessário
+    abortControllerRef.current = new AbortController();
+
+    // Iniciar timer de 1 minuto
+    timeoutRef.current = setTimeout(() => {
+      console.log("Timeout de 1 minuto atingido");
+      setIsTimedOut(true);
+      // Cancelar a requisição em andamento
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    }, TIMEOUT_MS);
 
     try {
       const utmData = getUtmData();
@@ -83,7 +114,14 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(webhookData),
+        signal: abortControllerRef.current.signal,
       });
+
+      // Limpar timeout se a resposta chegou a tempo
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
 
       console.log("Resposta do webhook:", response.status, response.statusText);
 
@@ -137,17 +175,31 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
         pixType: type,
       });
       
-      onNext(type, key, proposals);
-    } catch (error) {
-      console.error("Erro ao processar:", error);
-      toast({
-        title: "Erro ao buscar propostas",
-        description: "Por favor, tente novamente ou entre em contato",
-        variant: "destructive",
-      });
-    } finally {
       setIsLoading(false);
+      onNext(type, key, proposals);
+    } catch (error: any) {
+      // Limpar timeout
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+
+      // Se foi abortado pelo timeout, não mostrar erro (já está mostrando tela de WhatsApp)
+      if (error.name === 'AbortError') {
+        console.log("Requisição cancelada por timeout");
+        return;
+      }
+
+      console.error("Erro ao processar:", error);
+      
+      // Se ainda não deu timeout, mostrar a tela de coleta de WhatsApp também
+      setIsTimedOut(true);
     }
+  };
+
+  const handleWhatsAppSubmit = (phone: string) => {
+    console.log("WhatsApp coletado:", phone);
+    // O componente LoadingProposals já cuida do redirecionamento
   };
 
   const validatePixKey = () => {
@@ -194,7 +246,13 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
   return (
     <>
       {isLoading ? (
-        <LoadingProposals />
+        <LoadingProposals 
+          isTimedOut={isTimedOut}
+          cpf={cpf}
+          pixType={pixType}
+          pixKey={pixKey}
+          onWhatsAppSubmit={handleWhatsAppSubmit}
+        />
       ) : (
         <div className="w-full max-w-md mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 scale-[0.8] md:scale-100 origin-top">
           {/* Exibição do CPF */}
