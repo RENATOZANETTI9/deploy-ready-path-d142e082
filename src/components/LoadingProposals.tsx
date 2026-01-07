@@ -168,25 +168,24 @@ export const LoadingProposals = ({
   // Tela de coleta de WhatsApp após timeout
   if (isTimedOut) {
     return (
-      <div className="w-full max-w-lg mx-auto text-center animate-in fade-in duration-500 p-4">
-        <div className="bg-card border rounded-2xl p-6 md:p-8 shadow-lg">
-          <div className="relative inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 mb-4 md:mb-6">
-            <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
-            <div className="relative flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
-              <Phone className="w-10 h-10 md:w-12 md:h-12 text-secondary" strokeWidth={2} />
-            </div>
+      <div className="fixed inset-0 z-50 flex items-start justify-center bg-background/95 backdrop-blur-sm p-4 pt-8 overflow-auto">
+        <div className="w-full max-w-sm bg-card border rounded-xl p-5 shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-300">
+          <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-full bg-secondary/20">
+            <Phone className="w-6 h-6 text-secondary" strokeWidth={2} />
           </div>
           
-          <h2 className="text-xl md:text-2xl font-bold mb-2 text-secondary">Tudo certo por aqui! ✅</h2>
+          <h2 className="text-lg font-bold mb-3 text-foreground">
+            Não vamos deixar você esperando aqui.
+          </h2>
           
-          <p className="text-muted-foreground text-sm md:text-base mb-6 leading-relaxed">
-            Estamos fazendo a melhor análise possível para te trazer as melhores opções dentro dos cinco bancos que operamos. 
+          <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
+            Estamos fazendo o melhor e aguardando a resposta de todos os bancos para trazer pra você a melhor opção dentro dos cinco. 
             Assim que tivermos retorno, <strong className="text-foreground">entraremos em contato pelo WhatsApp</strong>.
           </p>
           
-          <div className="space-y-3 text-left">
-            <Label htmlFor="whatsapp" className="text-sm md:text-base font-medium">
-              Informe seu WhatsApp para contato
+          <div className="space-y-2">
+            <Label htmlFor="whatsapp" className="text-sm font-medium">
+              Informe seu WhatsApp
             </Label>
             <Input
               id="whatsapp"
@@ -194,7 +193,7 @@ export const LoadingProposals = ({
               placeholder="(00) 00000-0000"
               value={whatsappNumber}
               onChange={(e) => setWhatsappNumber(formatPhone(e.target.value))}
-              className="text-center text-lg"
+              className="text-center text-base h-11"
               maxLength={15}
             />
           </div>
@@ -202,11 +201,11 @@ export const LoadingProposals = ({
           <Button 
             variant="secondary" 
             size="lg" 
-            className="w-full mt-6 gap-2"
+            className="w-full mt-4 gap-2"
             onClick={handleWhatsAppSubmit}
             disabled={whatsappNumber.replace(/\D/g, '').length < 10 || isSubmitting}
           >
-            <MessageCircle className="w-5 h-5" />
+            <MessageCircle className="w-4 h-4" />
             {isSubmitting ? "Salvando..." : "Salvar"}
           </Button>
         </div>
