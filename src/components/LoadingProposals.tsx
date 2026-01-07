@@ -169,9 +169,12 @@ export const LoadingProposals = ({
   if (isTimedOut) {
     return (
       <div className="fixed inset-0 z-50 flex items-start justify-center bg-background/95 backdrop-blur-sm p-4 pt-8 overflow-auto">
-        <div className="w-full max-w-sm bg-card border rounded-xl p-5 shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-300">
-          <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-full bg-secondary/20">
-            <Phone className="w-6 h-6 text-secondary" strokeWidth={2} />
+        <div className="w-full max-w-sm bg-card border rounded-xl p-5 shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-300 text-center">
+          <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
+            <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
+            <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
+              <Phone className="w-8 h-8 text-secondary" strokeWidth={2} />
+            </div>
           </div>
           
           <h2 className="text-lg font-bold mb-3 text-foreground">
@@ -183,7 +186,7 @@ export const LoadingProposals = ({
             Assim que tivermos retorno, <strong className="text-foreground">entraremos em contato pelo WhatsApp</strong>.
           </p>
           
-          <div className="space-y-2">
+          <div className="space-y-2 text-left">
             <Label htmlFor="whatsapp" className="text-sm font-medium">
               Informe seu WhatsApp
             </Label>
