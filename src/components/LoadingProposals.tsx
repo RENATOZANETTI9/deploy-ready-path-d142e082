@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getUtmData } from "@/hooks/use-utm-tracking";
+import { StepIndicator } from "./StepIndicator";
 
 const isDataprevClosingPeriod = () => {
   const today = new Date();
@@ -129,8 +130,10 @@ export const LoadingProposals = ({
   // Tela de confirmação após enviar WhatsApp
   if (showConfirmation) {
     return (
-      <div className="w-full max-w-md mx-auto text-center animate-in fade-in duration-300">
-        <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
+      <div className="w-full">
+        <StepIndicator currentStep={4} totalSteps={4} />
+        <div className="w-full max-w-md mx-auto text-center animate-in fade-in duration-300">
+          <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
           <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
           <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
             <CheckCircle2 className="w-8 h-8 text-secondary" strokeWidth={2} />
@@ -151,14 +154,15 @@ export const LoadingProposals = ({
           </p>
         </div>
         
-        <Button 
-          variant="secondary" 
-          size="lg" 
-          className="w-full mt-6"
-          onClick={handleConfirmationClose}
-        >
-          Entendido
-        </Button>
+          <Button 
+            variant="secondary" 
+            size="lg" 
+            className="w-full mt-6"
+            onClick={handleConfirmationClose}
+          >
+            Entendido
+          </Button>
+        </div>
       </div>
     );
   }
@@ -166,8 +170,10 @@ export const LoadingProposals = ({
   // Tela de coleta de WhatsApp após timeout
   if (isTimedOut) {
     return (
-      <div className="w-full max-w-md mx-auto text-center animate-in fade-in duration-300">
-        <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
+      <div className="w-full">
+        <StepIndicator currentStep={4} totalSteps={4} />
+        <div className="w-full max-w-md mx-auto text-center animate-in fade-in duration-300">
+          <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
           <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
           <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
             <Phone className="w-8 h-8 text-secondary" strokeWidth={2} />
@@ -198,16 +204,17 @@ export const LoadingProposals = ({
           />
         </div>
         
-        <Button 
-          variant="secondary" 
-          size="lg" 
-          className="w-full mt-4 gap-2"
-          onClick={handleWhatsAppSubmit}
-          disabled={whatsappNumber.replace(/\D/g, '').length < 10 || isSubmitting}
-        >
-          <MessageCircle className="w-4 h-4" />
-          {isSubmitting ? "Salvando..." : "Salvar"}
-        </Button>
+          <Button 
+            variant="secondary" 
+            size="lg" 
+            className="w-full mt-4 gap-2"
+            onClick={handleWhatsAppSubmit}
+            disabled={whatsappNumber.replace(/\D/g, '').length < 10 || isSubmitting}
+          >
+            <MessageCircle className="w-4 h-4" />
+            {isSubmitting ? "Salvando..." : "Salvar"}
+          </Button>
+        </div>
       </div>
     );
   }
