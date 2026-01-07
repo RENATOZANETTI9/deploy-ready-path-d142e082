@@ -77,7 +77,7 @@ const Index = () => {
     if (currentStep === 4) {
       toast({
         title: "Propostas encontradas! 🎉",
-        description: "Encontramos 3 excelentes opções para você",
+        description: "Encontramos ótimas opções para você",
         duration: 3000,
       });
     }
