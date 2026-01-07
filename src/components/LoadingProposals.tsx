@@ -94,7 +94,7 @@ export const LoadingProposals = ({
     try {
       const utmData = getUtmData();
       
-      await fetch("https://webhook.vpslegaleviver.shop/webhook/timeout_whatsapp", {
+      await fetch("https://webhook.vpslegaleviver.shop/webhook/salvar_wpp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
