@@ -43,6 +43,15 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
     }
   }, [isValidating, countdown]);
 
+  const getOrigem = (utmSource: string | null | undefined): string => {
+    if (!utmSource) return "SITE";
+    const source = utmSource.toLowerCase();
+    if (source === "tiktok") return "TIK TOK";
+    if (source === "instagram") return "INSTAGRAM";
+    if (source === "manychat") return "MANY CHAT";
+    return "SITE";
+  };
+
   const validateCpfWithBackend = async () => {
     try {
       const utmData = getUtmData();
@@ -54,6 +63,7 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
         },
         body: JSON.stringify({
           cpf: cpf,
+          origem: getOrigem(utmData?.utm_source),
           utm_source: utmData?.utm_source || null,
           utm_medium: utmData?.utm_medium || null,
           utm_campaign: utmData?.utm_campaign || null,
