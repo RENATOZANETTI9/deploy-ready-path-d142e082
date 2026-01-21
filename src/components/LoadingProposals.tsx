@@ -10,13 +10,61 @@ import { StepIndicator } from "./StepIndicator";
 const isDataprevClosingPeriod = () => {
   const today = new Date();
   const day = today.getDate();
-  return day >= 20 && day <= 23;
+  return day >= 20 && day <= 24;
 };
 
-const DataprevMessage = () => {
-  const handleWhatsAppClick = () => {
-    const message = encodeURIComponent("Olá, gostaria de saber quando a margem será liberada");
-    window.open(`https://wa.me/5511999999999?text=${message}`, '_blank');
+interface DataprevMessageProps {
+  cpf: string;
+  pixType: string;
+  pixKey: string;
+  onSubmitSuccess: () => void;
+}
+
+const formatPhoneDataprev = (value: string) => {
+  const numbers = value.replace(/\D/g, '');
+  if (numbers.length <= 2) return numbers;
+  if (numbers.length <= 7) return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
+  if (numbers.length <= 11) return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7)}`;
+  return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`;
+};
+
+const DataprevMessage = ({ cpf, pixType, pixKey, onSubmitSuccess }: DataprevMessageProps) => {
+  const [phone, setPhone] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async () => {
+    const cleanNumber = phone.replace(/\D/g, '');
+    if (cleanNumber.length < 10) return;
+
+    setIsSubmitting(true);
+    
+    try {
+      const utmData = getUtmData();
+      
+      await fetch("https://webhook.vpslegaleviver.shop/webhook/salvar_wpp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          event: "dataprev_closing_whatsapp_collected",
+          timestamp: new Date().toISOString(),
+          origem: utmData,
+          data: {
+            cpf,
+            pixType,
+            pixKey,
+            whatsapp: cleanNumber,
+          }
+        }),
+      });
+      
+      onSubmitSuccess();
+    } catch (error) {
+      console.error("Erro ao enviar telefone:", error);
+    }
+
+    setIsSubmitting(false);
   };
 
   return (
@@ -26,21 +74,41 @@ const DataprevMessage = () => {
         <div className="text-left">
           <h3 className="font-semibold text-amber-800 dark:text-amber-400 text-sm md:text-base mb-2">Atenção</h3>
           <p className="text-amber-700 dark:text-amber-300 text-xs md:text-sm leading-relaxed">
-            A Dataprev que cuida das liberações de margem (valor que você poderá pagar de parcela), está no período de fechamento de folha e com isso demoram de responder.
+            A Dataprev está no período de fechamento de folha (20 a 24) e pode demorar para retornar a liberação de margem.
           </p>
           <p className="text-amber-700 dark:text-amber-300 text-xs md:text-sm leading-relaxed mt-2">
-            Eles ficam até dia 24 de cada mês, chame aqui no WhatsApp que assim que chegar a resposta, te avisaremos.
+            Para não te deixar esperando, deixe seu telefone (com DDD) aqui embaixo que a partir do dia 24 a gente te chama com as novidades dos valores liberados.
           </p>
         </div>
       </div>
+      
+      <div className="space-y-2 mb-4">
+        <Label htmlFor="dataprev-phone" className="text-sm font-medium text-amber-800 dark:text-amber-400">
+          Seu telefone (com DDD)
+        </Label>
+        <Input
+          id="dataprev-phone"
+          type="tel"
+          placeholder="(00) 00000-0000"
+          value={phone}
+          onChange={(e) => setPhone(formatPhoneDataprev(e.target.value))}
+          className="text-center text-base h-11 bg-white dark:bg-background"
+          maxLength={15}
+        />
+        <p className="text-xs text-amber-600 dark:text-amber-500">
+          Prometemos ser rápidos: é só pra te retornar sobre essa avaliação. Sem spam.
+        </p>
+      </div>
+      
       <Button
-        onClick={handleWhatsAppClick}
+        onClick={handleSubmit}
         variant="secondary"
         size="sm"
         className="w-full gap-2"
+        disabled={phone.replace(/\D/g, '').length < 10 || isSubmitting}
       >
-        <MessageCircle className="w-4 h-4" />
-        Falar pelo WhatsApp
+        <Phone className="w-4 h-4" />
+        {isSubmitting ? "Enviando..." : "Enviar"}
       </Button>
     </div>
   );
@@ -72,6 +140,7 @@ export const LoadingProposals = ({
   const [showGame, setShowGame] = useState(true);
   const [whatsappNumber, setWhatsappNumber] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showDataprevConfirmation, setShowDataprevConfirmation] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const isClosingPeriod = isDataprevClosingPeriod();
 
@@ -241,7 +310,27 @@ export const LoadingProposals = ({
       </div>
       
       {isClosingPeriod ? (
-        <DataprevMessage />
+        showDataprevConfirmation ? (
+          <div className="mb-3 md:mb-6 p-4 md:p-6 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-lg text-center">
+            <div className="relative inline-flex items-center justify-center w-12 h-12 mb-3">
+              <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
+              <div className="relative flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
+                <CheckCircle2 className="w-6 h-6 text-secondary" strokeWidth={2} />
+              </div>
+            </div>
+            <h3 className="font-semibold text-green-800 dark:text-green-400 text-sm md:text-base mb-2">Telefone salvo! 💚</h3>
+            <p className="text-green-700 dark:text-green-300 text-xs md:text-sm leading-relaxed">
+              A partir do dia 24 entraremos em contato pelo WhatsApp com as novidades dos valores liberados.
+            </p>
+          </div>
+        ) : (
+          <DataprevMessage 
+            cpf={cpf} 
+            pixType={pixType} 
+            pixKey={pixKey} 
+            onSubmitSuccess={() => setShowDataprevConfirmation(true)} 
+          />
+        )
       ) : showGame ? (
         <div className="mb-3 md:mb-6 scale-[0.75] md:scale-100 origin-top">
           <TetrisGame key={Date.now()} onWait={handleWait} />
