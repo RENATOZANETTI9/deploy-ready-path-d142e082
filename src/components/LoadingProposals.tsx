@@ -89,16 +89,17 @@ const DataprevMessage = ({ cpf, pixType, pixKey, onSubmitSuccess }: DataprevMess
         {/* Campo de telefone chamativo */}
         <div className="bg-white dark:bg-background rounded-lg p-4 border-2 border-secondary shadow-md animate-pulse-subtle">
           <div className="flex items-center gap-2 mb-3">
-            <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
               <Phone className="w-4 h-4 text-secondary" />
             </div>
-            <Label htmlFor="dataprev-phone" className="text-base font-semibold text-foreground">
-              Seu telefone (com DDD)
-            </Label>
+            <p className="text-sm font-medium text-green-600 dark:text-green-400">
+              Digite seu WhatsApp ou telefone no campo abaixo
+            </p>
           </div>
           <Input
             id="dataprev-phone"
-            type="tel"
+            type="text"
+            inputMode="numeric"
             placeholder="(00) 00000-0000"
             value={phone}
             onChange={(e) => setPhone(formatPhoneDataprev(e.target.value))}
@@ -118,8 +119,7 @@ const DataprevMessage = ({ cpf, pixType, pixKey, onSubmitSuccess }: DataprevMess
           className="w-full mt-4 gap-2 h-12 text-base font-semibold shadow-lg"
           disabled={phone.replace(/\D/g, '').length < 10 || isSubmitting}
         >
-          <Phone className="w-5 h-5" />
-          {isSubmitting ? "Enviando..." : "Enviar meu telefone"}
+          {isSubmitting ? "Enviando..." : "Enviar"}
         </Button>
       </div>
     </div>
