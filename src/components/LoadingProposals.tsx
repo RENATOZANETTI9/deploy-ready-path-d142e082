@@ -68,48 +68,60 @@ const DataprevMessage = ({ cpf, pixType, pixKey, onSubmitSuccess }: DataprevMess
   };
 
   return (
-    <div className="mb-3 md:mb-6 p-4 md:p-6 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-lg">
-      <div className="flex items-start gap-3 mb-4">
-        <AlertTriangle className="w-5 h-5 md:w-6 md:h-6 text-amber-600 dark:text-amber-500 flex-shrink-0 mt-0.5" />
-        <div className="text-left">
-          <h3 className="font-semibold text-amber-800 dark:text-amber-400 text-sm md:text-base mb-2">Atenção</h3>
-          <p className="text-amber-700 dark:text-amber-300 text-xs md:text-sm leading-relaxed">
-            A Dataprev está no período de fechamento de folha (20 a 24) e pode demorar para retornar a liberação de margem.
-          </p>
-          <p className="text-amber-700 dark:text-amber-300 text-xs md:text-sm leading-relaxed mt-2">
-            Para não te deixar esperando, deixe seu telefone (com DDD) aqui embaixo que a partir do dia 24 a gente te chama com as novidades dos valores liberados.
+    <div className="w-full max-w-md mx-auto">
+      {/* Card de atenção */}
+      <div className="p-4 md:p-6 bg-amber-50 dark:bg-amber-950/30 border-2 border-amber-300 dark:border-amber-700 rounded-xl shadow-lg">
+        <div className="flex items-start gap-3 mb-5">
+          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-amber-200 dark:bg-amber-800 flex items-center justify-center">
+            <AlertTriangle className="w-5 h-5 text-amber-700 dark:text-amber-300" />
+          </div>
+          <div className="text-left">
+            <h3 className="font-bold text-amber-900 dark:text-amber-200 text-base md:text-lg mb-2">Atenção</h3>
+            <p className="text-amber-800 dark:text-amber-300 text-sm leading-relaxed">
+              A Dataprev está no período de fechamento de folha (20 a 24) e pode demorar para retornar a liberação de margem.
+            </p>
+            <p className="text-amber-800 dark:text-amber-300 text-sm leading-relaxed mt-2">
+              Para não te deixar esperando, deixe seu telefone (com DDD) aqui embaixo que <strong>a partir do dia 24 a gente te chama</strong> com as novidades dos valores liberados.
+            </p>
+          </div>
+        </div>
+        
+        {/* Campo de telefone chamativo */}
+        <div className="bg-white dark:bg-background rounded-lg p-4 border-2 border-secondary shadow-md animate-pulse-subtle">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center">
+              <Phone className="w-4 h-4 text-secondary" />
+            </div>
+            <Label htmlFor="dataprev-phone" className="text-base font-semibold text-foreground">
+              Seu telefone (com DDD)
+            </Label>
+          </div>
+          <Input
+            id="dataprev-phone"
+            type="tel"
+            placeholder="(00) 00000-0000"
+            value={phone}
+            onChange={(e) => setPhone(formatPhoneDataprev(e.target.value))}
+            className="text-center text-lg h-14 font-semibold border-2 border-secondary/50 focus:border-secondary bg-secondary/5"
+            maxLength={15}
+            autoFocus
+          />
+          <p className="text-xs text-muted-foreground mt-2 text-center">
+            Prometemos ser rápidos: é só pra te retornar sobre essa avaliação. Sem spam.
           </p>
         </div>
+        
+        <Button
+          onClick={handleSubmit}
+          variant="secondary"
+          size="lg"
+          className="w-full mt-4 gap-2 h-12 text-base font-semibold shadow-lg"
+          disabled={phone.replace(/\D/g, '').length < 10 || isSubmitting}
+        >
+          <Phone className="w-5 h-5" />
+          {isSubmitting ? "Enviando..." : "Enviar meu telefone"}
+        </Button>
       </div>
-      
-      <div className="space-y-2 mb-4">
-        <Label htmlFor="dataprev-phone" className="text-sm font-medium text-amber-800 dark:text-amber-400">
-          Seu telefone (com DDD)
-        </Label>
-        <Input
-          id="dataprev-phone"
-          type="tel"
-          placeholder="(00) 00000-0000"
-          value={phone}
-          onChange={(e) => setPhone(formatPhoneDataprev(e.target.value))}
-          className="text-center text-base h-11 bg-white dark:bg-background"
-          maxLength={15}
-        />
-        <p className="text-xs text-amber-600 dark:text-amber-500">
-          Prometemos ser rápidos: é só pra te retornar sobre essa avaliação. Sem spam.
-        </p>
-      </div>
-      
-      <Button
-        onClick={handleSubmit}
-        variant="secondary"
-        size="sm"
-        className="w-full gap-2"
-        disabled={phone.replace(/\D/g, '').length < 10 || isSubmitting}
-      >
-        <Phone className="w-4 h-4" />
-        {isSubmitting ? "Enviando..." : "Enviar"}
-      </Button>
     </div>
   );
 };
@@ -288,6 +300,35 @@ export const LoadingProposals = ({
     );
   }
 
+  // Renderização quando é período Dataprev - tela focada apenas no formulário
+  if (isClosingPeriod) {
+    return (
+      <div className="w-full max-w-2xl mx-auto text-center animate-in fade-in duration-500">
+        {showDataprevConfirmation ? (
+          <div className="w-full max-w-md mx-auto p-4 md:p-6 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-lg text-center">
+            <div className="relative inline-flex items-center justify-center w-12 h-12 mb-3">
+              <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
+              <div className="relative flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
+                <CheckCircle2 className="w-6 h-6 text-secondary" strokeWidth={2} />
+              </div>
+            </div>
+            <h3 className="font-semibold text-green-800 dark:text-green-400 text-sm md:text-base mb-2">Telefone salvo! 💚</h3>
+            <p className="text-green-700 dark:text-green-300 text-xs md:text-sm leading-relaxed">
+              A partir do dia 24 entraremos em contato pelo WhatsApp com as novidades dos valores liberados.
+            </p>
+          </div>
+        ) : (
+          <DataprevMessage 
+            cpf={cpf} 
+            pixType={pixType} 
+            pixKey={pixKey} 
+            onSubmitSuccess={() => setShowDataprevConfirmation(true)} 
+          />
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="w-full max-w-2xl mx-auto text-center animate-in fade-in duration-500">
       <h2 className="text-lg md:text-2xl font-bold mb-2 md:mb-4">Buscando as melhores propostas</h2>
@@ -309,29 +350,7 @@ export const LoadingProposals = ({
         </div>
       </div>
       
-      {isClosingPeriod ? (
-        showDataprevConfirmation ? (
-          <div className="mb-3 md:mb-6 p-4 md:p-6 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-lg text-center">
-            <div className="relative inline-flex items-center justify-center w-12 h-12 mb-3">
-              <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
-              <div className="relative flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
-                <CheckCircle2 className="w-6 h-6 text-secondary" strokeWidth={2} />
-              </div>
-            </div>
-            <h3 className="font-semibold text-green-800 dark:text-green-400 text-sm md:text-base mb-2">Telefone salvo! 💚</h3>
-            <p className="text-green-700 dark:text-green-300 text-xs md:text-sm leading-relaxed">
-              A partir do dia 24 entraremos em contato pelo WhatsApp com as novidades dos valores liberados.
-            </p>
-          </div>
-        ) : (
-          <DataprevMessage 
-            cpf={cpf} 
-            pixType={pixType} 
-            pixKey={pixKey} 
-            onSubmitSuccess={() => setShowDataprevConfirmation(true)} 
-          />
-        )
-      ) : showGame ? (
+      {showGame ? (
         <div className="mb-3 md:mb-6 scale-[0.75] md:scale-100 origin-top">
           <TetrisGame key={Date.now()} onWait={handleWait} />
         </div>

@@ -75,9 +75,23 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
     }
   };
 
+  // Verifica se estamos no período de fechamento da Dataprev (20 a 24)
+  const isDataprevClosingPeriod = () => {
+    const today = new Date();
+    const day = today.getDate();
+    return day >= 20 && day <= 24;
+  };
+
   const submitPixData = async (type: string, key: string) => {
     setIsLoading(true);
     setIsTimedOut(false);
+
+    // Se estamos no período de fechamento da Dataprev, não fazer chamada ao webhook
+    // Apenas mostrar a tela de coleta de telefone
+    if (isDataprevClosingPeriod()) {
+      console.log("Período de fechamento Dataprev - pulando chamada de propostas");
+      return; // Não faz nada, apenas mostra o LoadingProposals com o card Dataprev
+    }
 
     // Criar AbortController para cancelar a requisição se necessário
     abortControllerRef.current = new AbortController();
