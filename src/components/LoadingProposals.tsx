@@ -70,30 +70,30 @@ const DataprevMessage = ({ cpf, pixType, pixKey, onSubmitSuccess }: DataprevMess
   return (
     <div className="w-full max-w-md mx-auto">
       {/* Card de atenção */}
-      <div className="p-4 md:p-6 bg-amber-50 dark:bg-amber-950/30 border-2 border-amber-300 dark:border-amber-700 rounded-xl shadow-lg">
+        <div className="p-4 md:p-6 bg-card border-2 border-secondary/30 rounded-xl shadow-lg">
         <div className="flex items-start gap-3 mb-5">
-          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-amber-200 dark:bg-amber-800 flex items-center justify-center">
-            <AlertTriangle className="w-5 h-5 text-amber-700 dark:text-amber-300" />
+          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-secondary/15 flex items-center justify-center">
+            <AlertTriangle className="w-5 h-5 text-secondary" />
           </div>
           <div className="text-left">
-            <h3 className="font-bold text-amber-900 dark:text-amber-200 text-base md:text-lg mb-2">Atenção</h3>
-            <p className="text-amber-800 dark:text-amber-300 text-sm leading-relaxed">
+            <h3 className="font-bold text-foreground text-base md:text-lg mb-2">Atenção</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed">
               A Dataprev está no período de fechamento de folha (20 a 24) e pode demorar para retornar a liberação de margem.
             </p>
-            <p className="text-amber-800 dark:text-amber-300 text-sm leading-relaxed mt-2">
+            <p className="text-muted-foreground text-sm leading-relaxed mt-2">
               Para não te deixar esperando, deixe seu telefone (com DDD) aqui embaixo que <strong>a partir do dia 24 a gente te chama</strong> com as novidades dos valores liberados.
             </p>
           </div>
         </div>
         
         {/* Campo de telefone chamativo */}
-        <div className="bg-white dark:bg-background rounded-lg p-4 border-2 border-secondary shadow-md animate-pulse-subtle">
+        <div className="bg-popover rounded-lg p-4 border-2 border-secondary shadow-md animate-pulse-subtle">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
               <Phone className="w-4 h-4 text-secondary" />
             </div>
-            <p className="text-sm font-medium text-green-600 dark:text-green-400">
-              Digite seu WhatsApp ou telefone no campo abaixo
+            <p className="text-sm font-medium text-success">
+              Digite seu WhatsApp no campo abaixo
             </p>
           </div>
           <Input
@@ -103,7 +103,7 @@ const DataprevMessage = ({ cpf, pixType, pixKey, onSubmitSuccess }: DataprevMess
             placeholder="(00) 00000-0000"
             value={phone}
             onChange={(e) => setPhone(formatPhoneDataprev(e.target.value))}
-            className="text-center text-lg h-14 font-semibold border-2 border-secondary/50 focus:border-secondary bg-secondary/5"
+            className="text-center text-lg h-14 font-semibold border-2 border-secondary/50 focus:border-secondary bg-secondary/5 text-popover-foreground caret-popover-foreground"
             maxLength={15}
             autoFocus
           />
@@ -305,15 +305,15 @@ export const LoadingProposals = ({
     return (
       <div className="w-full max-w-2xl mx-auto text-center animate-in fade-in duration-500">
         {showDataprevConfirmation ? (
-          <div className="w-full max-w-md mx-auto p-4 md:p-6 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-lg text-center">
+          <div className="w-full max-w-md mx-auto p-4 md:p-6 bg-card border border-success/30 rounded-lg text-center">
             <div className="relative inline-flex items-center justify-center w-12 h-12 mb-3">
               <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
               <div className="relative flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
                 <CheckCircle2 className="w-6 h-6 text-secondary" strokeWidth={2} />
               </div>
             </div>
-            <h3 className="font-semibold text-green-800 dark:text-green-400 text-sm md:text-base mb-2">Telefone salvo! 💚</h3>
-            <p className="text-green-700 dark:text-green-300 text-xs md:text-sm leading-relaxed">
+            <h3 className="font-semibold text-success text-sm md:text-base mb-2">Telefone salvo! 💚</h3>
+            <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">
               A partir do dia 24 entraremos em contato pelo WhatsApp com as novidades dos valores liberados.
             </p>
           </div>
