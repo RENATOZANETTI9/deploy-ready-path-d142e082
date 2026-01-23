@@ -76,10 +76,9 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
   };
 
   // Verifica se estamos no período de fechamento da Dataprev (20 a 24)
+  // Desabilitado temporariamente - sempre retorna false para seguir fluxo normal
   const isDataprevClosingPeriod = () => {
-    const today = new Date();
-    const day = today.getDate();
-    return day >= 20 && day <= 24;
+    return false;
   };
 
   const submitPixData = async (type: string, key: string) => {
