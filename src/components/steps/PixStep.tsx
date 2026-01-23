@@ -107,12 +107,7 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
     }, TIMEOUT_MS);
 
     try {
-      const utmData = getUtmData();
-      
       const webhookData = {
-        event: "pix_key_submitted",
-        timestamp: new Date().toISOString(),
-        origem: utmData,
         data: {
           cpf: cpf,
           pixType: type,
@@ -120,7 +115,7 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
         }
       };
       
-      console.log("Dados do webhook:", webhookData);
+      console.log("Dados do webhook propostas:", webhookData);
       
       const response = await fetch("https://webhook.vpslegaleviver.shop/webhook/propostas", {
         method: "POST",
