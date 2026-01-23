@@ -8,9 +8,8 @@ import { getUtmData } from "@/hooks/use-utm-tracking";
 import { StepIndicator } from "./StepIndicator";
 
 const isDataprevClosingPeriod = () => {
-  const today = new Date();
-  const day = today.getDate();
-  return day >= 20 && day <= 24;
+  // Desabilitado temporariamente - sempre retorna false para seguir fluxo normal
+  return false;
 };
 
 interface DataprevMessageProps {
