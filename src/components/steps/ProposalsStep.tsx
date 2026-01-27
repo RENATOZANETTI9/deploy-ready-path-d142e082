@@ -163,17 +163,20 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
           </div>
           
           <h2 className="text-lg font-bold text-foreground">
-            🎉 Boa notícia!
+            ⏳ Atualização da sua simulação
           </h2>
           
           <div className="text-muted-foreground text-sm leading-relaxed max-w-md mx-auto space-y-3">
             <p>
-              Já temos bancos com propostas aprovadas.<br />
-              Estamos aguardando o retorno dos demais para te apresentar a <strong className="text-foreground">melhor opção</strong>.
+              Sua proposta está sendo analisada para aprovação em <strong className="text-foreground">9 bancos</strong>.<br />
+              Já temos retornos positivos e seguimos aguardando os demais para identificar a <strong className="text-foreground">melhor condição</strong> para você.
+            </p>
+            <p className="text-xs text-muted-foreground/80">
+              ⏱️ Os bancos podem responder em até 7 dias úteis.
             </p>
             <p>
               📲 <strong className="text-foreground">Deixe seu WhatsApp</strong><br />
-              Avisamos você em até 24h com as condições mais vantajosas.
+              Assim que concluirmos a análise, falamos com você em até 24 horas.
             </p>
           </div>
         </div>
