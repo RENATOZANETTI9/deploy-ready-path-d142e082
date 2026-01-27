@@ -143,4 +143,21 @@ All colors MUST be HSL.
       box-shadow: 0 0 0 8px hsl(var(--secondary) / 0);
     }
   }
+
+  .animate-blink {
+    animation: blink 1s ease-in-out infinite;
+  }
+  
+  @keyframes blink {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+      box-shadow: 0 0 20px hsl(var(--success) / 0.5);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.02);
+      box-shadow: 0 0 30px hsl(var(--success) / 0.8);
+    }
+  }
 }
