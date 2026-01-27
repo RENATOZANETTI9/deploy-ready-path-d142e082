@@ -261,17 +261,17 @@ export const LoadingProposals = ({
         </div>
         
         <h2 className="text-lg font-bold mb-3 text-foreground">
-          Não vamos deixar você esperando aqui.
+          ⏳ Simulação em análise
         </h2>
         
         <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
-          Estamos fazendo o melhor e aguardando a resposta de todos os bancos para trazer pra você a melhor opção dentro dos cinco. 
-          Assim que tivermos retorno, <strong className="text-foreground">entraremos em contato pelo WhatsApp</strong>.
+          Sua proposta está sendo avaliada por <strong className="text-foreground">9 bancos</strong>.
+          Alguns retornos podem levar um pouco mais. Deixe seu WhatsApp. Assim que houver novidade, <strong className="text-foreground">falamos com você em até 24h</strong>.
         </p>
         
         <div className="space-y-2 text-left">
           <Label htmlFor="whatsapp" className="text-sm font-medium">
-            Informe seu WhatsApp
+            Informe seu WhatsApp aqui abaixo
           </Label>
           <Input
             id="whatsapp"
