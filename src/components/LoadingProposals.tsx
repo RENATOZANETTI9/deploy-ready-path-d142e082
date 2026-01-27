@@ -254,41 +254,44 @@ export const LoadingProposals = ({
         <StepIndicator currentStep={4} totalSteps={4} />
         <div className="w-full max-w-md mx-auto text-center animate-in fade-in duration-300">
           <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
-          <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
-          <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
-            <Phone className="w-8 h-8 text-secondary" strokeWidth={2} />
+            <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
+            <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
+              <Phone className="w-8 h-8 text-secondary" strokeWidth={2} />
+            </div>
           </div>
-        </div>
         
-        <h2 className="text-lg font-bold mb-3 text-foreground">
-          🎉 Boa notícia!
-        </h2>
+          <h2 className="text-lg font-bold mb-3 text-foreground">
+            ⏳ Atualização da sua simulação
+          </h2>
         
-        <div className="text-muted-foreground text-sm mb-5 leading-relaxed space-y-3">
-          <p>
-            Já temos bancos com propostas aprovadas.<br />
-            Estamos aguardando o retorno dos demais para te apresentar a <strong className="text-foreground">melhor opção</strong>.
-          </p>
-          <p>
-            📲 <strong className="text-foreground">Deixe seu WhatsApp</strong><br />
-            Avisamos você em até 24h com as condições mais vantajosas.
-          </p>
-        </div>
+          <div className="text-muted-foreground text-sm mb-5 leading-relaxed space-y-3">
+            <p>
+              Sua proposta está sendo analisada para aprovação em <strong className="text-foreground">9 bancos</strong>.<br />
+              Já temos retornos positivos e seguimos aguardando os demais para identificar a <strong className="text-foreground">melhor condição</strong> para você.
+            </p>
+            <p className="text-xs text-muted-foreground/80">
+              ⏱️ Os bancos podem responder em até 7 dias úteis.
+            </p>
+            <p>
+              📲 <strong className="text-foreground">Deixe seu WhatsApp</strong><br />
+              Assim que concluirmos a análise, falamos com você em até 24 horas.
+            </p>
+          </div>
         
-        <div className="space-y-2 text-left">
-          <Label htmlFor="whatsapp" className="text-sm font-medium">
-            👉 Informe seu WhatsApp aqui
-          </Label>
-          <Input
-            id="whatsapp"
-            type="tel"
-            placeholder="(00) 00000-0000"
-            value={whatsappNumber}
-            onChange={(e) => setWhatsappNumber(formatPhone(e.target.value))}
-            className="text-center text-base h-11"
-            maxLength={15}
-          />
-        </div>
+          <div className="space-y-2 text-left">
+            <Label htmlFor="whatsapp" className="text-sm font-medium">
+              👉 Informe seu WhatsApp aqui
+            </Label>
+            <Input
+              id="whatsapp"
+              type="tel"
+              placeholder="(00) 00000-0000"
+              value={whatsappNumber}
+              onChange={(e) => setWhatsappNumber(formatPhone(e.target.value))}
+              className="text-center text-base h-11"
+              maxLength={15}
+            />
+          </div>
         
           <Button 
             size="lg" 
