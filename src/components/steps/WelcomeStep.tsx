@@ -118,7 +118,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
 
               {/* Support Text */}
               <p className="text-xs md:text-sm text-muted-foreground pt-1.5 text-left">
-                Coloque <strong>mais de 5 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong>{" "}
+                Coloque <strong>9 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong>{" "}
                 e as <strong>melhores condições</strong> exclusivas para você
               </p>
             </div>
@@ -191,7 +191,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
 
             {/* Support Text - Compact */}
             <p className="text-[9px] text-muted-foreground pt-0.5 text-center">
-              Coloque <strong>mais de 5 bancos</strong> para competirem e garantir a <strong>melhor taxa</strong>
+              Coloque <strong>9 bancos</strong> para competirem e garantir a <strong>melhor taxa</strong>
             </p>
           </div>
 
