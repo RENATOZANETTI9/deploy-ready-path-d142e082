@@ -10,7 +10,7 @@ interface WhatsAppHelperProps {
 
 export const WhatsAppHelper = ({ 
   delay = 15000,
-  phoneNumber = "5511999999999",
+  phoneNumber = "558005914153",
   message = "Olá, preciso de ajuda com minha proposta"
 }: WhatsAppHelperProps) => {
   const [isVisible, setIsVisible] = useState(false);
