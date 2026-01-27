@@ -197,7 +197,7 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
           <Button 
             onClick={handleWhatsAppSubmitNoProposals}
             disabled={whatsappNumber.replace(/\D/g, "").length < 10 || isSubmittingWhatsApp}
-            className="w-full gap-2 bg-success hover:bg-success/90 text-success-foreground animate-pulse shadow-lg shadow-success/30"
+            className="w-full gap-2 bg-success hover:bg-success/90 text-success-foreground animate-blink"
             size="lg"
           >
             <MessageCircle className="w-4 h-4" />
