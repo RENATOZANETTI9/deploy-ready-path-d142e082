@@ -154,22 +154,29 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
     // Tela de coleta de WhatsApp
     return (
       <div className="w-full max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 scale-[0.8] md:scale-100 origin-top">
-        <div className="text-center space-y-4 md:space-y-6">
-          <div className="w-16 h-16 md:w-20 md:h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-            <MessageCircle className="w-8 h-8 md:w-10 md:h-10 text-primary" />
+        <div className="text-center space-y-3 md:space-y-4">
+          <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
+            <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
+            <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
+              <Phone className="w-8 h-8 text-secondary" strokeWidth={2} />
+            </div>
           </div>
-          <h2 className="text-xl md:text-2xl font-bold text-foreground">
-            Estamos analisando suas opções
+          
+          <h2 className="text-lg font-bold text-foreground">
+            ⏳ Simulação em análise
           </h2>
-          <p className="text-sm md:text-base text-muted-foreground max-w-md mx-auto">
-            Estamos consultando todos os bancos parceiros para encontrar as melhores condições para você. 
-            Deixe seu WhatsApp que entraremos em contato em breve!
+          
+          <p className="text-muted-foreground text-sm leading-relaxed max-w-md mx-auto">
+            Sua proposta está sendo avaliada por <strong className="text-foreground">9 bancos</strong>.
+            Alguns retornos podem levar um pouco mais. Deixe seu WhatsApp. Assim que houver novidade, <strong className="text-foreground">falamos com você em até 24h</strong>.
           </p>
         </div>
 
         <div className="space-y-4 mt-6">
-          <div className="space-y-2">
-            <Label htmlFor="whatsapp-no-proposals">Seu WhatsApp</Label>
+          <div className="space-y-2 text-left">
+            <Label htmlFor="whatsapp-no-proposals" className="text-sm font-medium">
+              Informe seu WhatsApp aqui abaixo
+            </Label>
             <Input
               id="whatsapp-no-proposals"
               type="tel"
@@ -177,13 +184,14 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
               value={whatsappNumber}
               onChange={(e) => setWhatsappNumber(formatWhatsApp(e.target.value))}
               maxLength={15}
-              className="text-center text-lg"
+              className="text-center text-base h-11"
             />
           </div>
 
           <Button 
             onClick={handleWhatsAppSubmitNoProposals}
             disabled={whatsappNumber.replace(/\D/g, "").length < 10 || isSubmittingWhatsApp}
+            variant="secondary"
             className="w-full gap-2"
             size="lg"
           >
