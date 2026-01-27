@@ -172,10 +172,10 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
               Alguns retornos podem levar um pouco mais, mas seguimos acompanhando tudo automaticamente.
             </p>
             <p className="text-xs text-muted-foreground/80">
-              ⏱️ Os bancos podem responder em até 7 dias úteis.
+              Os bancos podem responder em até 7 dias úteis.
             </p>
             <p>
-              📲 <strong className="text-foreground">Deixe seu WhatsApp</strong><br />
+              <strong className="text-foreground">Deixe seu WhatsApp</strong><br />
               Assim que finalizarmos a análise, falamos com você em até 24 horas.
             </p>
           </div>
@@ -184,7 +184,7 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
         <div className="space-y-4 mt-6">
           <div className="space-y-2 text-left">
             <Label htmlFor="whatsapp-no-proposals" className="text-sm font-medium">
-              👉 Informe seu WhatsApp aqui
+              Informe seu WhatsApp aqui
             </Label>
             <Input
               id="whatsapp-no-proposals"
