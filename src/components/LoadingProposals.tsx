@@ -291,9 +291,8 @@ export const LoadingProposals = ({
         </div>
         
           <Button 
-            variant="secondary" 
             size="lg" 
-            className="w-full mt-4 gap-2"
+            className="w-full mt-4 gap-2 bg-success hover:bg-success/90 text-success-foreground animate-pulse shadow-lg shadow-success/30"
             onClick={handleWhatsAppSubmit}
             disabled={whatsappNumber.replace(/\D/g, '').length < 10 || isSubmitting}
           >
