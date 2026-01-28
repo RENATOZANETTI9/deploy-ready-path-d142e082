@@ -96,8 +96,6 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
 
     setIsSubmittingWhatsApp(true);
     try {
-      const utmData = getUtmData();
-      
       await fetch("https://webhook.vpslegaleviver.shop/webhook/salvar_wpp", {
         method: "POST",
         headers: {
@@ -105,12 +103,7 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
         },
         body: JSON.stringify({
           cpf: formData.cpf,
-          pixType: formData.pixType,
-          pixKey: formData.pixKey,
           whatsapp: cleanNumber,
-          origem: utmData,
-          event: "no_proposals_whatsapp_collected",
-          timestamp: new Date().toISOString(),
         }),
       });
 
@@ -251,11 +244,7 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
         },
         body: JSON.stringify({
           cpf: formData.cpf,
-          pixType: formData.pixType,
-          pixKey: formData.pixKey,
           whatsapp: phone,
-          origem: utmData,
-          timestamp: new Date().toISOString(),
         }),
       }).catch(err => console.error("Erro ao enviar salvar_wpp:", err));
       

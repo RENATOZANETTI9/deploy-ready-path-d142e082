@@ -38,23 +38,14 @@ const DataprevMessage = ({ cpf, pixType, pixKey, onSubmitSuccess }: DataprevMess
     setIsSubmitting(true);
     
     try {
-      const utmData = getUtmData();
-      
       await fetch("https://webhook.vpslegaleviver.shop/webhook/salvar_wpp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          event: "dataprev_closing_whatsapp_collected",
-          timestamp: new Date().toISOString(),
-          origem: utmData,
-          data: {
-            cpf,
-            pixType,
-            pixKey,
-            whatsapp: cleanNumber,
-          }
+          cpf,
+          whatsapp: cleanNumber,
         }),
       });
       
@@ -172,23 +163,14 @@ export const LoadingProposals = ({
     setIsSubmitting(true);
     
     try {
-      const utmData = getUtmData();
-      
       await fetch("https://webhook.vpslegaleviver.shop/webhook/salvar_wpp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          event: "timeout_whatsapp_collected",
-          timestamp: new Date().toISOString(),
-          origem: utmData,
-          data: {
-            cpf,
-            pixType,
-            pixKey,
-            whatsapp: cleanNumber,
-          }
+          cpf,
+          whatsapp: cleanNumber,
         }),
       });
     } catch (error) {
