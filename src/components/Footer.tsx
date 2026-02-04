@@ -1,4 +1,5 @@
 import { Instagram } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo-legal-e-viver.webp";
 
 export const Footer = () => {
@@ -27,6 +28,23 @@ export const Footer = () => {
               <Instagram className="h-5 w-5" />
               <span className="font-medium">Instagram</span>
             </a>
+          </div>
+
+          {/* Legal Links */}
+          <div className="flex gap-4 text-sm">
+            <Link 
+              to="/termos-e-condicoes" 
+              className="text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
+            >
+              Termos e Condições
+            </Link>
+            <span className="text-muted-foreground">•</span>
+            <Link 
+              to="/politica-de-privacidade" 
+              className="text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
+            >
+              Política de Privacidade
+            </Link>
           </div>
 
           {/* Company Info */}
