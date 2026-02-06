@@ -73,7 +73,7 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
 
       const data = await response.json();
 
-      const resposta = data[0]?.resposta;
+      const resposta = data[0]?.resposta?.toLowerCase?.() || "";
       
       if (resposta === "existe") {
         // TikTok: Identify user and track registration
@@ -87,7 +87,7 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
         setTimeout(() => {
           onNext(cpf);
         }, 2500);
-      } else if (resposta === "já consultado") {
+      } else if (resposta.includes("consultado")) {
         setError("Este CPF já foi consultado anteriormente. Não é possível realizar uma nova consulta. Entraremos em contato em breve!");
         setIsValidating(false);
         setCountdown(6);
