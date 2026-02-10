@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { parseWebhookResponse } from "@/lib/proposalParser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -142,28 +143,25 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
       const responseData = await response.json();
       console.log("Resposta do webhook com propostas:", responseData);
       
-      let proposals: any[];
-
-      if (responseData && typeof responseData === 'object' && !Array.isArray(responseData)) {
-        if (responseData.status === 'certo') {
-          proposals = Object.entries(responseData)
-            .filter(([key, value]: [string, any]) => 
-              key !== 'status' && 
-              key !== 'cpf' && 
-              value !== null &&
-              typeof value === 'object' &&
-              value.valor_financiado
-            )
-            .map(([key, value]: [string, any]) => ({ ...value, bank: value.bank || key }));
-          console.log("Propostas extraídas do objeto:", proposals);
-        } else {
-          throw new Error("Status da proposta não é 'certo'");
-        }
-      } else if (Array.isArray(responseData) && responseData.length > 0) {
-        proposals = responseData;
-      } else {
-        throw new Error("Nenhuma proposta encontrada");
+      // Checar se não há bancos liberados
+      if (Array.isArray(responseData) && responseData[0]?.response && 
+          responseData[0].response.toLowerCase().includes("nenhum banco liberado")) {
+        console.log("Nenhum banco liberado - indo para fallback");
+        setIsTimedOut(true);
+        return;
       }
+
+      // Usar o parser atualizado
+      const parsedProposals = parseWebhookResponse(responseData);
+      
+      if (parsedProposals.length === 0) {
+        console.log("Nenhuma proposta válida encontrada - indo para fallback");
+        setIsTimedOut(true);
+        return;
+      }
+
+      // Converter para o formato esperado pelo onNext
+      const proposals = parsedProposals;
 
       if (proposals.length === 0) {
         throw new Error("Nenhuma proposta encontrada");
