@@ -50,9 +50,10 @@ export const parseWebhookResponse = (webhookData: any): Proposal[] => {
   
   try {
     // Formato: [{ "bancos": "[{...}]" }]
-    if (Array.isArray(webhookData) && webhookData[0]?.bancos) {
-      const bancosString = webhookData[0].bancos;
-      const bancos = typeof bancosString === 'string' ? JSON.parse(bancosString) : bancosString;
+    if (Array.isArray(webhookData) && webhookData[0]?.["Bancos liberados"]) {
+      const bancosString = webhookData[0]["Bancos liberados"];
+      const parsed = typeof bancosString === 'string' ? JSON.parse(bancosString) : bancosString;
+      const bancos = Array.isArray(parsed) ? parsed : [parsed];
       
       console.log("🏦 Bancos parseados:", bancos);
       
