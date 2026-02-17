@@ -15,16 +15,16 @@ import {
   Calendar,
   BadgeCheck,
   Zap,
-  DollarSign,
-} from "lucide-react";
+  DollarSign } from
+"lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+  AccordionTrigger } from
+"@/components/ui/accordion";
 import logo from "@/assets/logo-legal-e-viver.webp";
 import heroImage from "@/assets/luciana-hero.png";
 import sideLine from "@/assets/side-line.png";
@@ -56,7 +56,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
     return new Intl.NumberFormat("pt-BR", {
       style: "currency",
       currency: "BRL",
-      minimumFractionDigits: 2,
+      minimumFractionDigits: 2
     }).format(value);
   };
 
@@ -79,20 +79,20 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
     <>
       {/* Decorative Line - Left Side */}
       <div className="fixed left-0 top-0 h-screen w-8 md:w-16 pointer-events-none overflow-hidden opacity-30 z-0">
-        <img 
-          src={sideLine} 
-          alt="" 
-          className="h-full w-full object-fill scale-y-110"
-        />
+        <img
+          src={sideLine}
+          alt=""
+          className="h-full w-full object-fill scale-y-110" />
+
       </div>
 
       {/* Decorative Line - Right Side (mirrored) */}
       <div className="fixed right-0 top-0 h-screen w-8 md:w-16 pointer-events-none overflow-hidden opacity-30 z-0 scale-x-[-1]">
-        <img 
-          src={sideLine} 
-          alt="" 
-          className="h-full w-full object-fill scale-y-110"
-        />
+        <img
+          src={sideLine}
+          alt=""
+          className="h-full w-full object-fill scale-y-110" />
+
       </div>
 
       <div className="relative w-full max-w-2xl md:max-w-5xl lg:max-w-6xl mx-auto space-y-5 animate-fade-in z-10 scale-90 origin-top">
@@ -126,27 +126,27 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             {/* Salary Slider Section */}
             <div className="space-y-3 p-4 bg-card/50 rounded-2xl border border-border/50 backdrop-blur-sm">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">Preencha com o valor do seu salário, a partir de R$ 1.518</label>
+                <label className="text-sm font-medium text-foreground">Preencha com o valor do seu salário, a partir de R$ 1.621,00</label>
                 <div className="flex items-center gap-3">
                   <div className="text-lg font-bold text-[#FF8C42]">{formatCurrency(salary)}</div>
                   <Input
-                    type="text"
-                    value={salary}
-                    onChange={handleInputChange}
-                    placeholder="R$ 1.518"
-                    className="max-w-[130px] text-base font-semibold"
-                  />
+                      type="text"
+                      value={salary}
+                      onChange={handleInputChange}
+                      placeholder="R$ 1.518"
+                      className="max-w-[130px] text-base font-semibold" />
+
                 </div>
               </div>
 
               <Slider
-                value={[salary]}
-                onValueChange={(value) => setSalary(value[0])}
-                min={minSalary}
-                max={maxSalary}
-                step={10}
-                className="w-full"
-              />
+                  value={[salary]}
+                  onValueChange={(value) => setSalary(value[0])}
+                  min={minSalary}
+                  max={maxSalary}
+                  step={10}
+                  className="w-full" />
+
 
               {/* Results Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
@@ -166,10 +166,10 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           {/* Right Side: Hero Image */}
           <div className="flex-shrink-0">
             <img
-              src={heroImage}
-              alt="Crédito Consignado"
-              className="w-[300px] lg:w-[360px] rounded-2xl shadow-2xl object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
-            />
+                src={heroImage}
+                alt="Crédito Consignado"
+                className="w-[300px] lg:w-[360px] rounded-2xl shadow-2xl object-cover transition-transform duration-300 hover:scale-105 cursor-pointer" />
+
           </div>
         </div>
 
@@ -198,10 +198,10 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           {/* Hero Image - Mobile - Compact */}
           <div className="flex justify-center -mx-4 -mt-16">
             <img
-              src={heroImage}
-              alt="Crédito Consignado"
-              className="w-[80%] h-auto object-cover"
-            />
+                src={heroImage}
+                alt="Crédito Consignado"
+                className="w-[80%] h-auto object-cover" />
+
           </div>
 
           {/* Salary Input - Mobile - Compact */}
@@ -210,23 +210,23 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             <div className="flex items-center gap-2.5">
               <div className="text-sm font-bold text-[#FF8C42]">{formatCurrency(salary)}</div>
               <Input
-                type="text"
-                value={salary}
-                onChange={handleInputChange}
-                placeholder="R$ 1.518"
-                className="max-w-[115px] text-xs font-semibold"
-              />
+                  type="text"
+                  value={salary}
+                  onChange={handleInputChange}
+                  placeholder="R$ 1.518"
+                  className="max-w-[115px] text-xs font-semibold" />
+
             </div>
           </div>
 
           <Slider
-            value={[salary]}
-            onValueChange={(value) => setSalary(value[0])}
-            min={minSalary}
-            max={maxSalary}
-            step={10}
-            className="w-full mt-1.5"
-          />
+              value={[salary]}
+              onValueChange={(value) => setSalary(value[0])}
+              min={minSalary}
+              max={maxSalary}
+              step={10}
+              className="w-full mt-1.5" />
+
         </div>
       </div>
 
@@ -251,16 +251,16 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
 
       {/* CTA Button - Prominent */}
       <div className="text-center space-y-1.5 pt-0.5">
-        {!isValidSalary && (
+        {!isValidSalary &&
           <p className="text-[11px] font-medium text-destructive">O salário mínimo deve ser de R$ 1.518,00</p>
-        )}
+          }
         <Button
-          id="simular-agora-btn"
-          onClick={onStart}
-          disabled={!isValidSalary}
-          size="lg"
-          className="w-full md:w-auto md:max-w-md px-10 py-4 text-sm md:text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-xl hover:shadow-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-        >
+            id="simular-agora-btn"
+            onClick={onStart}
+            disabled={!isValidSalary}
+            size="lg"
+            className="w-full md:w-auto md:max-w-md px-10 py-4 text-sm md:text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-xl hover:shadow-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+
           Simule Agora
         </Button>
         <p className="text-[9px] md:text-xs text-muted-foreground px-2">Contratação sujeita a análise. Os valores podem variar conforme respostas dos bancos.</p>
@@ -280,12 +280,12 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           <div className="bg-muted/30 rounded-lg overflow-hidden border border-border/50">
             <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
               <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/cItwT8Gws4g"
-                title="Depoimento 1"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+                  className="absolute top-0 left-0 w-full h-full"
+                  src="https://www.youtube.com/embed/cItwT8Gws4g"
+                  title="Depoimento 1"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen />
+
             </div>
           </div>
 
@@ -293,12 +293,12 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           <div className="bg-muted/30 rounded-lg overflow-hidden border border-border/50">
             <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
               <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/MJink-JZHV4"
-                title="Depoimento 2"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+                  className="absolute top-0 left-0 w-full h-full"
+                  src="https://www.youtube.com/embed/MJink-JZHV4"
+                  title="Depoimento 2"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen />
+
             </div>
           </div>
 
@@ -306,12 +306,12 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
           <div className="bg-muted/30 rounded-lg overflow-hidden border border-border/50">
             <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
               <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/4pRNBTypGgQ"
-                title="Depoimento 3"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+                  className="absolute top-0 left-0 w-full h-full"
+                  src="https://www.youtube.com/embed/4pRNBTypGgQ"
+                  title="Depoimento 3"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen />
+
             </div>
           </div>
         </div>
@@ -320,20 +320,20 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       {/* CTA after testimonials */}
       <section className="text-center py-12 px-4 sm:px-6">
         <Button
-          onClick={onStart}
-          disabled={!isValidSalary}
-          className="w-full md:w-auto md:max-w-md px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight"
-        >
+            onClick={onStart}
+            disabled={!isValidSalary}
+            className="w-full md:w-auto md:max-w-md px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight">
+
           Faça igual elas, simule agora!
         </Button>
       </section>
 
       {/* Tópico 1: O que é o consignado para trabalhadores */}
-      <div 
-        id="sobre" 
-        className="mt-16 space-y-4 scroll-mt-20"
-        ref={aboutSection.elementRef}
-      >
+      <div
+          id="sobre"
+          className="mt-16 space-y-4 scroll-mt-20"
+          ref={aboutSection.elementRef}>
+
         <div className={`text-center transition-all duration-700 ${aboutSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h3 className="text-2xl md:text-3xl font-black text-foreground uppercase font-visby">
             O que é o consignado para trabalhadores?
@@ -351,10 +351,10 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       </div>
 
       {/* Tópico 2: Como funciona */}
-      <div 
-        className="mt-16 space-y-6"
-        ref={howItWorksSection.elementRef}
-      >
+      <div
+          className="mt-16 space-y-6"
+          ref={howItWorksSection.elementRef}>
+
         <div className={`text-center transition-all duration-700 ${howItWorksSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h3 className="text-2xl md:text-3xl font-black text-foreground uppercase font-visby">
             Como funciona
@@ -411,20 +411,20 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       {/* CTA after Como Funciona */}
       <section className="text-center py-12 px-4 sm:px-6">
         <Button
-          onClick={onStart}
-          disabled={!isValidSalary}
-          className="w-full md:w-auto md:max-w-md px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight"
-        >
+            onClick={onStart}
+            disabled={!isValidSalary}
+            className="w-full md:w-auto md:max-w-md px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight">
+
           Simule agora! É rápido e gratuito
         </Button>
       </section>
 
       {/* Tópico 3: Benefícios */}
-      <div 
-        id="vantagens" 
-        className="mt-16 space-y-6 scroll-mt-20"
-        ref={benefitsSection.elementRef}
-      >
+      <div
+          id="vantagens"
+          className="mt-16 space-y-6 scroll-mt-20"
+          ref={benefitsSection.elementRef}>
+
         <div className={`text-center space-y-2 transition-all duration-700 ${benefitsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h3 className="text-2xl md:text-3xl font-black text-foreground uppercase font-visby">
             Benefícios do novo consignado privado
@@ -498,20 +498,20 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       {/* CTA after Benefícios */}
       <section className="text-center py-12 px-4 sm:px-6">
         <Button
-          onClick={onStart}
-          disabled={!isValidSalary}
-          className="w-full md:w-auto md:max-w-md px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight"
-        >
+            onClick={onStart}
+            disabled={!isValidSalary}
+            className="w-full md:w-auto md:max-w-md px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight">
+
           Simule agora! É rápido e gratuito
         </Button>
       </section>
 
       {/* Tópico 4: FAQ */}
-      <div 
-        id="faq" 
-        className="mt-16 space-y-6 scroll-mt-20"
-        ref={faqSection.elementRef}
-      >
+      <div
+          id="faq"
+          className="mt-16 space-y-6 scroll-mt-20"
+          ref={faqSection.elementRef}>
+
         <div className={`text-center transition-all duration-700 ${faqSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h3 className="text-2xl md:text-3xl font-black text-foreground uppercase font-visby">
             Perguntas Frequentes
@@ -580,15 +580,15 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       {/* CTA after FAQ */}
       <section className="text-center pt-8 pb-4 px-4 sm:px-6">
         <Button
-          onClick={onStart}
-          disabled={!isValidSalary}
-          className="w-full md:w-auto md:max-w-md px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight"
-        >
+            onClick={onStart}
+            disabled={!isValidSalary}
+            className="w-full md:w-auto md:max-w-md px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight">
+
           Simule agora! É rápido e gratuito
         </Button>
       </section>
 
       </div>
-    </>
-  );
+    </>);
+
 };
