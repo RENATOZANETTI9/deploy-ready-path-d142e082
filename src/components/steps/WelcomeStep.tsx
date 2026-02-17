@@ -36,8 +36,8 @@ interface WelcomeStepProps {
 }
 
 export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
-  const [salary, setSalary] = useState(1518);
-  const minSalary = 1518;
+  const [salary, setSalary] = useState(1621);
+  const minSalary = 1621;
   const maxSalary = 20000;
 
   // Scroll animations
@@ -133,7 +133,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
                       type="text"
                       value={salary}
                       onChange={handleInputChange}
-                      placeholder="R$ 1.518"
+                      placeholder="R$ 1.621"
                       className="max-w-[130px] text-base font-semibold" />
 
                 </div>
@@ -206,15 +206,15 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
 
           {/* Salary Input - Mobile - Compact */}
           <div className="space-y-0.5 pt-0.5">
-            <label className="text-[11px] font-medium text-foreground">Preencha com o valor do seu salário, a partir de R$ 1.518</label>
+            <label className="text-[11px] font-medium text-foreground">Preencha com o valor do seu salário, a partir de R$ 1.621</label>
             <div className="flex items-center gap-2.5">
               <div className="text-sm font-bold text-[#FF8C42]">{formatCurrency(salary)}</div>
               <Input
                   type="text"
                   value={salary}
                   onChange={handleInputChange}
-                  placeholder="R$ 1.518"
-                  className="max-w-[115px] text-xs font-semibold" />
+                   placeholder="R$ 1.621"
+                   className="max-w-[115px] text-xs font-semibold" />
 
             </div>
           </div>
@@ -252,7 +252,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
       {/* CTA Button - Prominent */}
       <div className="text-center space-y-1.5 pt-0.5">
         {!isValidSalary &&
-          <p className="text-[11px] font-medium text-destructive">O salário mínimo deve ser de R$ 1.518,00</p>
+          <p className="text-[11px] font-medium text-destructive">O salário mínimo deve ser de R$ 1.621,00</p>
           }
         <Button
             id="simular-agora-btn"
