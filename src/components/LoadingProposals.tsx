@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { TetrisGame } from "./TetrisGame";
+import { useState, useEffect, useRef } from "react";
 import { MessageCircle, AlertTriangle, Phone, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -139,7 +138,8 @@ export const LoadingProposals = ({
   pixKey = "",
   onWhatsAppSubmit 
 }: LoadingProposalsProps) => {
-  const [showGame, setShowGame] = useState(true);
+  const [countdown, setCountdown] = useState(15);
+  const [countdownDone, setCountdownDone] = useState(false);
   const [whatsappNumber, setWhatsappNumber] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showDataprevConfirmation, setShowDataprevConfirmation] = useState(false);
@@ -151,10 +151,16 @@ export const LoadingProposals = ({
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  const handleWait = () => {
-    setShowGame(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  // Countdown timer - only when not timed out and not in closing period
+  useEffect(() => {
+    if (isTimedOut || isClosingPeriod || countdownDone) return;
+    if (countdown <= 0) {
+      setCountdownDone(true);
+      return;
+    }
+    const timer = setTimeout(() => setCountdown(prev => prev - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [countdown, isTimedOut, isClosingPeriod, countdownDone]);
 
   const handleWhatsAppSubmit = async () => {
     const cleanNumber = whatsappNumber.replace(/\D/g, '');
@@ -251,9 +257,6 @@ export const LoadingProposals = ({
               Sua proposta está sendo analisada para aprovação em <strong className="text-foreground">9 bancos ao mesmo tempo</strong>.<br />
               Alguns retornos podem levar um pouco mais, mas seguimos acompanhando tudo automaticamente.
             </p>
-            <p className="text-xs text-muted-foreground/80">
-              Os bancos podem responder em até 7 dias úteis.
-            </p>
             <p>
               <strong className="text-foreground">Deixe seu WhatsApp</strong><br />
               Assim que finalizarmos a análise, falamos com você em até 24 horas.
@@ -318,6 +321,63 @@ export const LoadingProposals = ({
     );
   }
 
+  // If countdown finished and not yet timed out externally, show WhatsApp form
+  if (countdownDone && !isTimedOut) {
+    return (
+      <div className="w-full">
+        <StepIndicator currentStep={4} totalSteps={4} />
+        <div className="w-full max-w-md mx-auto text-center animate-in fade-in duration-300">
+          <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
+            <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
+            <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
+              <Phone className="w-8 h-8 text-secondary" strokeWidth={2} />
+            </div>
+          </div>
+        
+          <h2 className="text-lg font-bold mb-3 text-foreground">
+            ⏳ Atualização da sua simulação
+          </h2>
+        
+          <div className="text-muted-foreground text-sm mb-5 leading-relaxed space-y-3">
+            <p>
+              Sua proposta está sendo analisada para aprovação em <strong className="text-foreground">9 bancos ao mesmo tempo</strong>.<br />
+              Alguns retornos podem levar um pouco mais, mas seguimos acompanhando tudo automaticamente.
+            </p>
+            <p>
+              <strong className="text-foreground">Deixe seu WhatsApp</strong><br />
+              Assim que finalizarmos a análise, falamos com você em até 24 horas.
+            </p>
+          </div>
+        
+          <div className="space-y-2 text-left">
+            <Label htmlFor="whatsapp" className="text-sm font-medium">
+              Informe seu WhatsApp aqui
+            </Label>
+            <Input
+              id="whatsapp"
+              type="tel"
+              placeholder="(00) 00000-0000"
+              value={whatsappNumber}
+              onChange={(e) => setWhatsappNumber(formatPhone(e.target.value))}
+              className="text-center text-base h-11"
+              maxLength={15}
+            />
+          </div>
+        
+          <Button 
+            size="lg" 
+            className="w-full mt-4 gap-2 bg-success hover:bg-success/90 text-success-foreground animate-blink"
+            onClick={handleWhatsAppSubmit}
+            disabled={whatsappNumber.replace(/\D/g, '').length < 10 || isSubmitting}
+          >
+            <MessageCircle className="w-4 h-4" />
+            {isSubmitting ? "Salvando..." : "Salvar"}
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full max-w-2xl mx-auto text-center animate-in fade-in duration-500">
       <h2 className="text-lg md:text-2xl font-bold mb-2 md:mb-4">Buscando as melhores propostas</h2>
@@ -339,20 +399,11 @@ export const LoadingProposals = ({
         </div>
       </div>
       
-      {showGame ? (
-        <div className="mb-3 md:mb-6 scale-[0.75] md:scale-100 origin-top">
-          <TetrisGame key={Date.now()} onWait={handleWait} />
-        </div>
-      ) : (
-        <div className="mb-3 md:mb-6 p-4 md:p-8 bg-muted/30 rounded-lg">
-          <div className="flex items-center justify-center gap-2 md:gap-3 mb-2 md:mb-4">
-            <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-secondary animate-bounce" style={{ animationDelay: "0ms" }} />
-            <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-secondary animate-bounce" style={{ animationDelay: "150ms" }} />
-            <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-secondary animate-bounce" style={{ animationDelay: "300ms" }} />
-          </div>
-          <p className="text-sm md:text-base text-muted-foreground">Aguarde, estamos finalizando...</p>
-        </div>
-      )}
+      {/* Countdown */}
+      <div className="mb-3 md:mb-6 p-4 md:p-8 bg-muted/30 rounded-lg">
+        <div className="text-4xl md:text-6xl font-bold text-secondary mb-2">{countdown}</div>
+        <p className="text-sm md:text-base text-muted-foreground">Aguarde, estamos finalizando...</p>
+      </div>
     </div>
   );
 };
