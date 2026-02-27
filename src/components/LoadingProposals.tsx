@@ -138,7 +138,7 @@ export const LoadingProposals = ({
   pixKey = "",
   onWhatsAppSubmit 
 }: LoadingProposalsProps) => {
-  const [countdown, setCountdown] = useState(15);
+  const [countdown, setCountdown] = useState(10);
   const [countdownDone, setCountdownDone] = useState(false);
   const [whatsappNumber, setWhatsappNumber] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
