@@ -416,9 +416,10 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         <Button
             onClick={onStart}
             disabled={!isValidSalary}
-            className="w-full md:w-auto md:max-w-md px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight">
+            className="group w-full md:w-auto md:max-w-lg px-8 md:px-12 py-6 md:py-7 text-lg md:text-xl font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight animate-pulse-subtle">
 
           Simule agora! É rápido e gratuito
+          <ArrowRight className="!size-5 md:!size-6 ml-1 transition-transform group-hover:translate-x-1 animate-bounce" />
         </Button>
       </section>
 
