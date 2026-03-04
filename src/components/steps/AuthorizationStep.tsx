@@ -80,7 +80,7 @@ export const AuthorizationStep = ({ onNext, onBack, cpf }: AuthorizationStepProp
           </div>
         </div>
         <h2 className="text-lg md:text-2xl font-bold mb-1 md:mb-2">Autorização de Consulta</h2>
-        <p className="text-sm md:text-base text-muted-foreground">
+        <p className="text-sm md:text-base font-semibold text-secondary bg-secondary/10 border border-secondary/30 rounded-lg px-4 py-2 inline-block">
           Para continuar, precisamos que você autorize a consulta de dados. 🔒
         </p>
       </div>
