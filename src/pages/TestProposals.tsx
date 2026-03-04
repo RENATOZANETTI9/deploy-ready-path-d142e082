@@ -48,7 +48,7 @@ const mockProposals = [
   },
 ];
 
-const wrappedProposals = [{ "Bancos liberados": JSON.stringify(mockProposals) }];
+const wrappedProposals = [{ "Bancos liberados": JSON.stringify(mockProposals), bancos: JSON.stringify(mockProposals) }];
 
 const TestProposals = () => {
   return (
