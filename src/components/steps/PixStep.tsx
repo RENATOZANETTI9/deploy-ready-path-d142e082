@@ -283,7 +283,7 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
 
           <form onSubmit={handleSubmit} className="space-y-3 md:space-y-6">
             <div className="space-y-2 md:space-y-4">
-              <Label className="text-sm md:text-base">Sua chave PIX é:</Label>
+              <Label className="text-sm md:text-base">Escolha sua chave PIX:</Label>
               <RadioGroup value={pixType} onValueChange={handlePixTypeChange}>
                 <div 
                   className={`flex items-center space-x-2 md:space-x-3 p-2 md:p-3 rounded-lg border transition-all cursor-pointer ${
