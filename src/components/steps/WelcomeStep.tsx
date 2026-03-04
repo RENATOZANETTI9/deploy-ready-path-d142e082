@@ -260,10 +260,10 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             onClick={onStart}
             disabled={!isValidSalary}
             size="lg"
-            className="group w-full md:w-auto md:max-w-lg px-10 py-4 md:px-14 md:py-6 text-sm md:text-xl font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-xl hover:shadow-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed animate-pulse-subtle">
+            className="group w-full md:w-auto md:max-w-lg px-12 py-6 md:px-16 md:py-8 text-lg md:text-2xl font-black uppercase tracking-wide bg-gradient-to-r from-secondary to-[hsl(15,100%,50%)] hover:from-secondary/90 hover:to-[hsl(15,100%,45%)] text-secondary-foreground rounded-2xl shadow-[0_0_30px_hsl(25,100%,55%,0.5)] hover:shadow-[0_0_50px_hsl(25,100%,55%,0.7)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed animate-pulse-subtle hover:scale-105 border-2 border-secondary/50">
 
-          Simule Agora
-          <ArrowRight className="!size-5 md:!size-6 ml-1 transition-transform group-hover:translate-x-1 animate-bounce" />
+          🚀 Simule Agora
+          <ArrowRight className="!size-6 md:!size-8 ml-2 transition-transform group-hover:translate-x-2 animate-bounce" />
         </Button>
         <p className="text-[9px] md:text-xs text-muted-foreground px-2">Contratação sujeita a análise. Os valores podem variar conforme respostas dos bancos.</p>
       </div>
