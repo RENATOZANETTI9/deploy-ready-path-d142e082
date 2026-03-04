@@ -149,21 +149,9 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
             Aguarde enquanto verificamos seus dados
           </p>
           {/* Countdown */}
-          <div className="flex items-center justify-center">
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-primary/30 flex items-center justify-center relative">
-              <span className="text-2xl md:text-3xl font-black text-primary">{countdown}</span>
-              <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
-                <circle
-                  cx="50" cy="50" r="46"
-                  fill="none"
-                  stroke="hsl(var(--primary))"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                  strokeDasharray={`${(countdown / 6) * 289} 289`}
-                  className="transition-all duration-1000 ease-linear"
-                />
-              </svg>
-            </div>
+          <div className="mb-3 md:mb-6 p-4 md:p-8 bg-muted/30 rounded-lg">
+            <div className="text-4xl md:text-6xl font-bold text-secondary mb-2">{countdown}</div>
+            <p className="text-sm md:text-base text-muted-foreground">Aguarde, estamos finalizando...</p>
           </div>
           <div className="mt-3 md:mt-6 flex items-center justify-center gap-2">
             <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: "0ms" }} />
