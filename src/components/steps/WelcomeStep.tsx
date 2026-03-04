@@ -15,7 +15,8 @@ import {
   Calendar,
   BadgeCheck,
   Zap,
-  DollarSign } from
+  DollarSign,
+  ArrowRight } from
 "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
@@ -259,9 +260,10 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
             onClick={onStart}
             disabled={!isValidSalary}
             size="lg"
-            className="w-full md:w-auto md:max-w-md px-10 py-4 text-sm md:text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-xl hover:shadow-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+            className="group w-full md:w-auto md:max-w-lg px-10 py-4 md:px-14 md:py-6 text-sm md:text-xl font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-xl hover:shadow-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed animate-pulse-subtle">
 
           Simule Agora
+          <ArrowRight className="!size-5 md:!size-6 ml-1 transition-transform group-hover:translate-x-1 animate-bounce" />
         </Button>
         <p className="text-[9px] md:text-xs text-muted-foreground px-2">Contratação sujeita a análise. Os valores podem variar conforme respostas dos bancos.</p>
       </div>
@@ -322,9 +324,10 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         <Button
             onClick={onStart}
             disabled={!isValidSalary}
-            className="w-full md:w-auto md:max-w-md px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight">
+            className="group w-full md:w-auto md:max-w-lg px-8 md:px-12 py-6 md:py-7 text-lg md:text-xl font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight animate-pulse-subtle">
 
           Faça igual elas, simule agora!
+          <ArrowRight className="!size-5 md:!size-6 ml-1 transition-transform group-hover:translate-x-1 animate-bounce" />
         </Button>
       </section>
 
@@ -413,9 +416,10 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         <Button
             onClick={onStart}
             disabled={!isValidSalary}
-            className="w-full md:w-auto md:max-w-md px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight">
+            className="group w-full md:w-auto md:max-w-lg px-8 md:px-12 py-6 md:py-7 text-lg md:text-xl font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight animate-pulse-subtle">
 
           Simule agora! É rápido e gratuito
+          <ArrowRight className="!size-5 md:!size-6 ml-1 transition-transform group-hover:translate-x-1 animate-bounce" />
         </Button>
       </section>
 
@@ -500,9 +504,10 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         <Button
             onClick={onStart}
             disabled={!isValidSalary}
-            className="w-full md:w-auto md:max-w-md px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight">
+            className="group w-full md:w-auto md:max-w-lg px-8 md:px-12 py-6 md:py-7 text-lg md:text-xl font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight animate-pulse-subtle">
 
           Simule agora! É rápido e gratuito
+          <ArrowRight className="!size-5 md:!size-6 ml-1 transition-transform group-hover:translate-x-1 animate-bounce" />
         </Button>
       </section>
 
@@ -582,9 +587,10 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         <Button
             onClick={onStart}
             disabled={!isValidSalary}
-            className="w-full md:w-auto md:max-w-md px-8 py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight">
+            className="group w-full md:w-auto md:max-w-lg px-8 md:px-12 py-6 md:py-7 text-lg md:text-xl font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal text-center leading-tight animate-pulse-subtle">
 
           Simule agora! É rápido e gratuito
+          <ArrowRight className="!size-5 md:!size-6 ml-1 transition-transform group-hover:translate-x-1 animate-bounce" />
         </Button>
       </section>
 
