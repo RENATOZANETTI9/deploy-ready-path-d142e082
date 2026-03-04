@@ -15,7 +15,8 @@ import {
   Calendar,
   BadgeCheck,
   Zap,
-  DollarSign } from
+  DollarSign,
+  ArrowRight } from
 "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
