@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Wallet, ArrowLeft } from "lucide-react";
+import { Wallet, ArrowLeft, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { LoadingProposals } from "@/components/LoadingProposals";
 import { identifyUser, trackAddPaymentInfo } from "@/hooks/use-tiktok-tracking";

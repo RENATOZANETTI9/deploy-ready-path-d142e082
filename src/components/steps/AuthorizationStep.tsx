@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Shield, ArrowLeft } from "lucide-react";
+import { Shield, ArrowLeft, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { WhatsAppHelper } from "@/components/WhatsAppHelper";
 import { getUtmData } from "@/hooks/use-utm-tracking";

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Loader2, Lock, ArrowLeft } from "lucide-react";
+import { Loader2, Lock, ArrowLeft, ArrowRight } from "lucide-react";
 import { Confetti } from "@/components/Confetti";
 import { identifyUser, trackCompleteRegistration } from "@/hooks/use-tiktok-tracking";
 import { WhatsAppHelper } from "@/components/WhatsAppHelper";
