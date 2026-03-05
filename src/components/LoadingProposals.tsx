@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getUtmData } from "@/hooks/use-utm-tracking";
-import { StepIndicator } from "./StepIndicator";
+
 
 const isDataprevClosingPeriod = () => {
   // Desabilitado temporariamente - sempre retorna false para seguir fluxo normal
