@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getUtmData } from "@/hooks/use-utm-tracking";
-import { StepIndicator } from "./StepIndicator";
+
 
 const isDataprevClosingPeriod = () => {
   // Desabilitado temporariamente - sempre retorna false para seguir fluxo normal
@@ -199,7 +199,6 @@ export const LoadingProposals = ({
   if (showConfirmation) {
     return (
       <div className="w-full">
-        <StepIndicator currentStep={4} totalSteps={4} />
         <div className="w-full max-w-md mx-auto text-center animate-in fade-in duration-300">
           <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
           <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
@@ -239,7 +238,6 @@ export const LoadingProposals = ({
   if (isTimedOut) {
     return (
       <div className="w-full">
-        <StepIndicator currentStep={4} totalSteps={4} />
         <div className="w-full max-w-md mx-auto text-center animate-in fade-in duration-300">
           <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
             <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
@@ -325,7 +323,6 @@ export const LoadingProposals = ({
   if (countdownDone && !isTimedOut) {
     return (
       <div className="w-full">
-        <StepIndicator currentStep={4} totalSteps={4} />
         <div className="w-full max-w-md mx-auto text-center animate-in fade-in duration-300">
           <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
             <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
