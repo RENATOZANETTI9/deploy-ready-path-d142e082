@@ -255,16 +255,48 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         {!isValidSalary &&
           <p className="text-[11px] font-medium text-destructive">O salário mínimo deve ser de R$ 1.621,00</p>
           }
-        <Button
-            id="simular-agora-btn"
-            onClick={onStart}
-            disabled={!isValidSalary}
-            size="lg"
-            className="group w-full md:w-auto md:max-w-lg px-12 py-6 md:px-16 md:py-8 text-lg md:text-2xl font-black uppercase tracking-wide bg-gradient-to-r from-secondary to-[hsl(15,100%,50%)] hover:from-secondary/90 hover:to-[hsl(15,100%,45%)] text-secondary-foreground rounded-2xl shadow-[0_0_30px_hsl(25,100%,55%,0.5)] hover:shadow-[0_0_50px_hsl(25,100%,55%,0.7)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed animate-pulse-subtle hover:scale-105 border-2 border-secondary/50">
+        
+        {/* Urgency badge above button */}
+        <div className="flex items-center justify-center gap-2 text-xs md:text-sm font-bold text-secondary animate-pulse">
+          <Zap className="!size-4 fill-secondary" />
+          <span>Restam poucas vagas hoje — garanta a sua!</span>
+          <Zap className="!size-4 fill-secondary" />
+        </div>
 
-          🚀 Simule Agora
-          <ArrowRight className="!size-6 md:!size-8 ml-2 transition-transform group-hover:translate-x-2 animate-bounce" />
-        </Button>
+        <div className="relative inline-block w-full md:w-auto">
+          {/* Glowing ring animation */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-secondary via-[hsl(15,100%,50%)] to-secondary rounded-2xl blur-md opacity-60 animate-pulse" />
+          
+          <Button
+              id="simular-agora-btn"
+              onClick={onStart}
+              disabled={!isValidSalary}
+              size="lg"
+              className="relative group w-full md:w-auto md:max-w-lg px-12 py-6 md:px-16 md:py-8 text-lg md:text-2xl font-black uppercase tracking-wide bg-gradient-to-r from-secondary to-[hsl(15,100%,50%)] hover:from-secondary/90 hover:to-[hsl(15,100%,45%)] text-secondary-foreground rounded-2xl shadow-[0_0_30px_hsl(25,100%,55%,0.5)] hover:shadow-[0_0_50px_hsl(25,100%,55%,0.7)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 border-2 border-secondary/50">
+
+            ✨ Simule Agora
+            <ArrowRight className="!size-6 md:!size-8 ml-2 transition-transform group-hover:translate-x-2 animate-bounce" />
+          </Button>
+        </div>
+
+        {/* Social proof below button */}
+        <div className="flex items-center justify-center gap-1.5 pt-1">
+          <div className="flex -space-x-2">
+            <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-primary/30 border-2 border-background flex items-center justify-center">
+              <UserCheck className="!size-3 text-primary" />
+            </div>
+            <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-secondary/30 border-2 border-background flex items-center justify-center">
+              <UserCheck className="!size-3 text-secondary" />
+            </div>
+            <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-primary/30 border-2 border-background flex items-center justify-center">
+              <UserCheck className="!size-3 text-primary" />
+            </div>
+          </div>
+          <p className="text-[9px] md:text-xs text-muted-foreground font-medium">
+            <strong className="text-foreground">+2.300 pessoas</strong> simularam nas últimas 24h
+          </p>
+        </div>
+
         <p className="text-[9px] md:text-xs text-muted-foreground px-2">Contratação sujeita a análise. Os valores podem variar conforme respostas dos bancos.</p>
       </div>
 
