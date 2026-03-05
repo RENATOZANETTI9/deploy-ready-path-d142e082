@@ -246,9 +246,7 @@ export const LoadingProposals = ({
             </div>
           </div>
         
-          <h2 className="text-lg font-bold mb-3 text-foreground">
-            ⏳ Atualização da sua simulação
-          </h2>
+          <h2 className="text-sm md:text-base font-semibold text-white bg-secondary border border-secondary/80 rounded-lg px-4 py-2 inline-block mb-3">Monitoramento em tempo real ativado</h2>
         
           <div className="text-muted-foreground text-sm mb-5 leading-relaxed space-y-3">
             <p>
