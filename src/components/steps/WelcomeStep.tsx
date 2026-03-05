@@ -214,8 +214,8 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
                   type="text"
                   value={salary}
                   onChange={handleInputChange}
-                   placeholder="R$ 1.621"
-                   className="max-w-[115px] text-xs font-semibold" />
+                  placeholder="R$ 1.621"
+                  className="max-w-[115px] text-xs font-semibold" />
 
             </div>
           </div>
@@ -259,7 +259,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
         {/* Urgency badge above button */}
         <div className="flex items-center justify-center gap-2 text-xs md:text-sm font-bold text-secondary animate-pulse">
           <Zap className="!size-4 fill-secondary" />
-          <span>Restam poucas vagas hoje — garanta a sua!</span>
+          <span>Garanta seu crédito agora!</span>
           <Zap className="!size-4 fill-secondary" />
         </div>
 
