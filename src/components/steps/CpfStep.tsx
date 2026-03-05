@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Loader2, Lock, ArrowLeft } from "lucide-react";
+import { Loader2, Lock, ArrowLeft, ArrowRight } from "lucide-react";
 import { Confetti } from "@/components/Confetti";
 import { identifyUser, trackCompleteRegistration } from "@/hooks/use-tiktok-tracking";
 import { WhatsAppHelper } from "@/components/WhatsAppHelper";
@@ -197,13 +197,17 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
               </p>
             </div>
 
-        <div className="flex gap-3">
-          <Button type="button" variant="outline" size="lg" onClick={onBack} className="flex-1">
-            <ArrowLeft className="w-4 h-4 mr-2" />
+        <div className="flex flex-col gap-3">
+          <div className="relative inline-block w-full">
+            <div className="absolute -inset-1 bg-gradient-to-r from-secondary via-[hsl(15,100%,50%)] to-secondary rounded-2xl blur-md opacity-60 animate-pulse" />
+            <Button type="submit" size="lg" className="relative group w-full px-8 py-5 md:py-6 text-base md:text-lg font-black uppercase tracking-wide bg-gradient-to-r from-secondary to-[hsl(15,100%,50%)] hover:from-secondary/90 hover:to-[hsl(15,100%,45%)] text-secondary-foreground rounded-2xl shadow-[0_0_30px_hsl(25,100%,55%,0.5)] hover:shadow-[0_0_50px_hsl(25,100%,55%,0.7)] transition-all duration-300 hover:scale-105 border-2 border-secondary/50">
+              ✨ Continuar
+              <ArrowRight className="!size-5 md:!size-6 ml-2 transition-transform group-hover:translate-x-2 animate-bounce" />
+            </Button>
+          </div>
+          <Button type="button" variant="ghost" size="sm" onClick={onBack} className="self-center text-muted-foreground hover:text-foreground">
+            <ArrowLeft className="w-4 h-4 mr-1" />
             Voltar
-          </Button>
-          <Button type="submit" variant="secondary" size="lg" className="flex-1">
-            Continuar
           </Button>
         </div>
           </form>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Shield, ArrowLeft } from "lucide-react";
+import { Shield, ArrowLeft, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { WhatsAppHelper } from "@/components/WhatsAppHelper";
 import { getUtmData } from "@/hooks/use-utm-tracking";
@@ -122,15 +122,18 @@ export const AuthorizationStep = ({ onNext, onBack, cpf }: AuthorizationStepProp
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-          <Button
-            type="submit"
-            size="lg"
-            disabled={isLoading}
-            className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg animate-pulse"
-            style={{ animationDuration: '2s' }}
-          >
-            {isLoading ? "Processando..." : "Autorizar"}
-          </Button>
+          <div className="relative inline-block w-full">
+            <div className="absolute -inset-1 bg-gradient-to-r from-secondary via-[hsl(15,100%,50%)] to-secondary rounded-2xl blur-md opacity-60 animate-pulse" />
+            <Button
+              type="submit"
+              size="lg"
+              disabled={isLoading}
+              className="relative group w-full px-8 py-5 md:py-6 text-base md:text-lg font-black uppercase tracking-wide bg-gradient-to-r from-secondary to-[hsl(15,100%,50%)] hover:from-secondary/90 hover:to-[hsl(15,100%,45%)] text-secondary-foreground rounded-2xl shadow-[0_0_30px_hsl(25,100%,55%,0.5)] hover:shadow-[0_0_50px_hsl(25,100%,55%,0.7)] transition-all duration-300 hover:scale-105 border-2 border-secondary/50 disabled:opacity-50"
+            >
+              {isLoading ? "Processando..." : "✨ Autorizar"}
+              <ArrowRight className="!size-5 md:!size-6 ml-2 transition-transform group-hover:translate-x-2 animate-bounce" />
+            </Button>
+          </div>
           
           <Button 
             type="button" 
