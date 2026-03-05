@@ -242,7 +242,7 @@ export const LoadingProposals = ({
           <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
             <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
             <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
-              <Phone className="w-8 h-8 text-secondary" strokeWidth={2} />
+              <MessageCircle className="w-8 h-8 text-secondary" strokeWidth={2} />
             </div>
           </div>
         
