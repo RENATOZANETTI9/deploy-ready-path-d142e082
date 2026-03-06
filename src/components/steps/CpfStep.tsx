@@ -19,6 +19,9 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
   const [isValidating, setIsValidating] = useState(false);
   const [countdown, setCountdown] = useState(10);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [backendResult, setBackendResult] = useState<null | "success" | "consultado" | "invalid" | "error">(null);
+
+  const TOTAL_SECONDS = 10;
 
   const formatCPF = (value: string) => {
     const numbers = value.replace(/\D/g, "");
@@ -34,14 +37,40 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
     return true;
   };
 
+  // Countdown timer
   useEffect(() => {
     if (isValidating && countdown > 0) {
       const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
       return () => clearTimeout(timer);
-    } else if (isValidating && countdown === 0) {
-      validateCpfWithBackend();
     }
   }, [isValidating, countdown]);
+
+  // When countdown finishes AND backend responded, handle result
+  useEffect(() => {
+    if (!isValidating || countdown > 0 || backendResult === null) return;
+
+    if (backendResult === "success") {
+      setShowSuccess(true);
+      setTimeout(() => {
+        onNext(cpf);
+      }, 2500);
+    } else if (backendResult === "consultado") {
+      setError("Este CPF já foi consultado anteriormente. Não é possível realizar uma nova consulta. Entraremos em contato em breve!");
+      setIsValidating(false);
+      setCountdown(TOTAL_SECONDS);
+      setBackendResult(null);
+    } else if (backendResult === "invalid") {
+      setError("CPF inválido. Por favor, verifique os dados e tente novamente.");
+      setIsValidating(false);
+      setCountdown(TOTAL_SECONDS);
+      setBackendResult(null);
+    } else {
+      setError("Erro ao validar CPF. Por favor, tente novamente.");
+      setIsValidating(false);
+      setCountdown(TOTAL_SECONDS);
+      setBackendResult(null);
+    }
+  }, [isValidating, countdown, backendResult]);
 
   const getOrigem = (utmSource: string | null | undefined): string => {
     if (!utmSource) return "SITE";
@@ -72,34 +101,22 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
       });
 
       const data = await response.json();
-
       const resposta = data[0]?.resposta?.toLowerCase?.() || "";
       
       if (resposta === "existe") {
-        // TikTok: Identify user and track registration
         await identifyUser({ cpf });
         trackCompleteRegistration({
           contentId: 'cpf_validation',
           contentName: 'CPF Validado',
         });
-        
-        setShowSuccess(true);
-        setTimeout(() => {
-          onNext(cpf);
-        }, 2500);
+        setBackendResult("success");
       } else if (resposta.includes("consultado")) {
-        setError("Este CPF já foi consultado anteriormente. Não é possível realizar uma nova consulta. Entraremos em contato em breve!");
-        setIsValidating(false);
-        setCountdown(10);
+        setBackendResult("consultado");
       } else {
-        setError("CPF inválido. Por favor, verifique os dados e tente novamente.");
-        setIsValidating(false);
-        setCountdown(10);
+        setBackendResult("invalid");
       }
     } catch (err) {
-      setError("Erro ao validar CPF. Por favor, tente novamente.");
-      setIsValidating(false);
-      setCountdown(10);
+      setBackendResult("error");
     }
   };
 
@@ -108,7 +125,10 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
     if (validateCPF(cpf)) {
       setError("");
       setIsValidating(true);
-      setCountdown(10);
+      setCountdown(TOTAL_SECONDS);
+      setBackendResult(null);
+      // Fire backend call immediately in parallel with countdown
+      validateCpfWithBackend();
     }
   };
 
