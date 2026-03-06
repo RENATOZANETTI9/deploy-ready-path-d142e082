@@ -90,7 +90,7 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
       } else if (resposta.includes("consultado")) {
         setError("Este CPF já foi consultado anteriormente. Não é possível realizar uma nova consulta. Entraremos em contato em breve!");
         setIsValidating(false);
-        setCountdown(6);
+        setCountdown(10);
       } else {
         setError("CPF inválido. Por favor, verifique os dados e tente novamente.");
         setIsValidating(false);
