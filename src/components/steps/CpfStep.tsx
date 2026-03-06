@@ -17,7 +17,7 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
   const [cpf, setCpf] = useState("");
   const [error, setError] = useState("");
   const [isValidating, setIsValidating] = useState(false);
-  const [countdown, setCountdown] = useState(6);
+  const [countdown, setCountdown] = useState(10);
   const [showSuccess, setShowSuccess] = useState(false);
 
   const formatCPF = (value: string) => {
