@@ -17,7 +17,7 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
   const [cpf, setCpf] = useState("");
   const [error, setError] = useState("");
   const [isValidating, setIsValidating] = useState(false);
-  const [countdown, setCountdown] = useState(6);
+  const [countdown, setCountdown] = useState(10);
   const [showSuccess, setShowSuccess] = useState(false);
 
   const formatCPF = (value: string) => {
@@ -90,16 +90,16 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
       } else if (resposta.includes("consultado")) {
         setError("Este CPF já foi consultado anteriormente. Não é possível realizar uma nova consulta. Entraremos em contato em breve!");
         setIsValidating(false);
-        setCountdown(6);
+        setCountdown(10);
       } else {
         setError("CPF inválido. Por favor, verifique os dados e tente novamente.");
         setIsValidating(false);
-        setCountdown(6);
+        setCountdown(10);
       }
     } catch (err) {
       setError("Erro ao validar CPF. Por favor, tente novamente.");
       setIsValidating(false);
-      setCountdown(6);
+      setCountdown(10);
     }
   };
 
@@ -108,7 +108,7 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
     if (validateCPF(cpf)) {
       setError("");
       setIsValidating(true);
-      setCountdown(6);
+      setCountdown(10);
     }
   };
 
