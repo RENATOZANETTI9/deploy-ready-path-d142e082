@@ -99,7 +99,7 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
     } catch (err) {
       setError("Erro ao validar CPF. Por favor, tente novamente.");
       setIsValidating(false);
-      setCountdown(6);
+      setCountdown(10);
     }
   };
 
