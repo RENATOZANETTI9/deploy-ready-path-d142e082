@@ -108,7 +108,7 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
     if (validateCPF(cpf)) {
       setError("");
       setIsValidating(true);
-      setCountdown(6);
+      setCountdown(10);
     }
   };
 
