@@ -94,7 +94,7 @@ export const CpfStep = ({ onNext, onBack }: CpfStepProps) => {
       } else {
         setError("CPF inválido. Por favor, verifique os dados e tente novamente.");
         setIsValidating(false);
-        setCountdown(6);
+        setCountdown(10);
       }
     } catch (err) {
       setError("Erro ao validar CPF. Por favor, tente novamente.");
