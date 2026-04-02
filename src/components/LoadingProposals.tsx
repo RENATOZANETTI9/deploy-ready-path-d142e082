@@ -179,44 +179,37 @@ export const LoadingProposals = ({
     window.location.href = '/';
   };
 
-  // Tela de confirmação após enviar WhatsApp
-  if (showConfirmation) {
-    return (
-      <div className="w-full">
-        <div className="w-full max-w-md mx-auto text-center animate-in fade-in duration-300">
-          <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
-          <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
-          <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
-            <CheckCircle2 className="w-8 h-8 text-secondary" strokeWidth={2} />
+  // AlertDialog de confirmação
+  const confirmationDialog = (
+    <AlertDialog open={showConfirmation}>
+      <AlertDialogContent className="max-w-sm mx-auto">
+        <AlertDialogHeader className="items-center text-center">
+          <div className="relative inline-flex items-center justify-center w-16 h-16 mb-2 mx-auto">
+            <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
+            <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
+              <CheckCircle2 className="w-8 h-8 text-secondary" strokeWidth={2} />
+            </div>
           </div>
-        </div>
-        
-        <h2 className="text-lg font-bold mb-3 text-secondary">Muito obrigado! 💚</h2>
-        
-        <div className="space-y-3 text-muted-foreground text-sm leading-relaxed">
-          <p>
-            Entraremos em contato em <strong className="text-foreground">no máximo 24 horas</strong> via WhatsApp para te informar as opções disponíveis.
-          </p>
-          <p>
-            Caso não entremos em contato dentro deste período, infelizmente significa que ainda não teremos valores liberados para você.
-          </p>
-          <p className="text-secondary font-medium">
-            Mas fique tranquilo! Faremos de tudo para te dar um retorno positivo.
-          </p>
-        </div>
-        
-          <Button
-            variant="secondary"
-            size="lg"
-            className="w-full mt-6"
-            onClick={handleConfirmationClose}>
-            
-            Entendido
-          </Button>
-        </div>
-      </div>);
-
-  }
+          <AlertDialogTitle className="text-lg text-secondary">Jornada finalizada! 💚</AlertDialogTitle>
+          <AlertDialogDescription className="text-sm text-muted-foreground leading-relaxed space-y-2">
+            <p>
+              Sua solicitação foi registrada com sucesso. Entraremos em contato em <strong className="text-foreground">até 24 horas</strong> via WhatsApp.
+            </p>
+            <p>
+              Obrigado por confiar na gente!
+            </p>
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter className="sm:justify-center">
+          <AlertDialogAction
+            onClick={handleConfirmationClose}
+            className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground">
+            Voltar ao início
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
 
   // Tela de coleta de WhatsApp após timeout
   if (isTimedOut) {
