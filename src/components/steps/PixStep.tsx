@@ -232,7 +232,17 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
       return;
     }
 
-    await submitPixData(pixType, pixKey);
+    setShowPhoneVerification(true);
+  };
+
+  const handlePhoneConfirm = async (whatsapp: string) => {
+    setSelectedWhatsApp(whatsapp);
+    setShowPhoneVerification(false);
+    await submitPixData(pixType, pixKey, whatsapp);
+  };
+
+  const handlePhoneBack = () => {
+    setShowPhoneVerification(false);
   };
 
   const getPlaceholder = () => {
