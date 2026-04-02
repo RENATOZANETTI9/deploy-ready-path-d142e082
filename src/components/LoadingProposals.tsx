@@ -308,14 +308,15 @@ export const LoadingProposals = ({
             </p>
           </div>
         
+          {confirmationDialog}
           <Button
             size="lg"
             className="w-full mt-4 gap-2 bg-success hover:bg-success/90 text-success-foreground animate-blink"
-            onClick={handleWhatsAppSubmit}
-            disabled={isSubmitting}>
+            onClick={handleEntendido}>
             
             <MessageCircle className="w-4 h-4" />
-            {isSubmitting ? "Salvando..." : "Entendido"}
+            Entendido
+          </Button>
           </Button>
         </div>
       </div>);
