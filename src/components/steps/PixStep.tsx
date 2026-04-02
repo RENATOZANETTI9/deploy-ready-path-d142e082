@@ -10,6 +10,7 @@ import { LoadingProposals } from "@/components/LoadingProposals";
 import { identifyUser, trackAddPaymentInfo } from "@/hooks/use-tiktok-tracking";
 import { WhatsAppHelper } from "@/components/WhatsAppHelper";
 import { getUtmData } from "@/hooks/use-utm-tracking";
+import { PhoneVerificationStep } from "@/components/steps/PhoneVerificationStep";
 
 interface PixStepProps {
   onNext: (pixType: string, pixKey: string, proposals: any[]) => void;
@@ -25,8 +26,10 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isTimedOut, setIsTimedOut] = useState(false);
+  const [showPhoneVerification, setShowPhoneVerification] = useState(false);
+  const [selectedWhatsApp, setSelectedWhatsApp] = useState("");
   const { toast } = useToast();
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
 
   // Cleanup timeout on unmount
@@ -67,10 +70,10 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
       console.error("Erro ao enviar tipo PIX:", error);
     }
     
-    // Se for CPF, vai direto para a próxima etapa
+    // Se for CPF, vai direto para verificação de telefone
     if (newPixType === "cpf") {
       setPixKey(cpf);
-      await submitPixData(newPixType, cpf);
+      setShowPhoneVerification(true);
     } else {
       setPixKey("");
     }
@@ -82,25 +85,20 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
     return false;
   };
 
-  const submitPixData = async (type: string, key: string) => {
+  const submitPixData = async (type: string, key: string, whatsapp?: string) => {
     setIsLoading(true);
     setIsTimedOut(false);
 
-    // Se estamos no período de fechamento da Dataprev, não fazer chamada ao webhook
-    // Apenas mostrar a tela de coleta de telefone
     if (isDataprevClosingPeriod()) {
       console.log("Período de fechamento Dataprev - pulando chamada de propostas");
-      return; // Não faz nada, apenas mostra o LoadingProposals com o card Dataprev
+      return;
     }
 
-    // Criar AbortController para cancelar a requisição se necessário
     abortControllerRef.current = new AbortController();
 
-    // Iniciar timer de 1:30
     timeoutRef.current = setTimeout(() => {
       console.log("Timeout de 1:30 atingido");
       setIsTimedOut(true);
-      // Cancelar a requisição em andamento
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }
@@ -112,6 +110,7 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
           cpf: cpf,
           pixType: type,
           pixKey: key,
+          ...(whatsapp && { whatsapp }),
         }
       };
       
@@ -229,7 +228,17 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
       return;
     }
 
-    await submitPixData(pixType, pixKey);
+    setShowPhoneVerification(true);
+  };
+
+  const handlePhoneConfirm = async (whatsapp: string) => {
+    setSelectedWhatsApp(whatsapp);
+    setShowPhoneVerification(false);
+    await submitPixData(pixType, pixKey, whatsapp);
+  };
+
+  const handlePhoneBack = () => {
+    setShowPhoneVerification(false);
   };
 
   const getPlaceholder = () => {
@@ -251,7 +260,13 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
 
   return (
     <>
-      {isLoading ? (
+      {showPhoneVerification ? (
+        <PhoneVerificationStep
+          cpf={cpf}
+          onConfirm={handlePhoneConfirm}
+          onBack={handlePhoneBack}
+        />
+      ) : isLoading ? (
         <LoadingProposals 
           isTimedOut={isTimedOut}
           cpf={cpf}
