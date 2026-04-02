@@ -171,37 +171,12 @@ export const LoadingProposals = ({
     return () => clearTimeout(timer);
   }, [countdown, isTimedOut, isClosingPeriod, countdownDone]);
 
-  const handleWhatsAppSubmit = async () => {
-    const cleanNumber = whatsappNumber.replace(/\D/g, '');
-    if (cleanNumber.length < 10) return;
-
-    setIsSubmitting(true);
-
-    try {
-      await fetch("https://webhook.vpslegaleviver.shop/webhook/salvar_wpp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          cpf,
-          whatsapp: cleanNumber
-        })
-      });
-    } catch (error) {
-      console.error("Erro ao enviar WhatsApp:", error);
-    }
-
-    setIsSubmitting(false);
+  const handleEntendido = () => {
     setShowConfirmation(true);
-
-    if (onWhatsAppSubmit) {
-      onWhatsAppSubmit(cleanNumber);
-    }
   };
 
   const handleConfirmationClose = () => {
-    window.location.href = '/obrigado';
+    window.location.href = '/';
   };
 
   // Tela de confirmação após enviar WhatsApp
