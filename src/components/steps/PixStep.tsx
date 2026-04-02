@@ -26,8 +26,10 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isTimedOut, setIsTimedOut] = useState(false);
+  const [showPhoneVerification, setShowPhoneVerification] = useState(false);
+  const [selectedWhatsApp, setSelectedWhatsApp] = useState("");
   const { toast } = useToast();
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
 
   // Cleanup timeout on unmount
