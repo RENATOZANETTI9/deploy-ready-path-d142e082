@@ -141,7 +141,7 @@ export const PhoneVerificationStep = ({ cpf, onConfirm, onBack }: PhoneVerificat
           Para garantir que é realmente você realizando a consulta, qual desses números é seu WhatsApp?
         </h2>
         <p className="text-xs md:text-sm text-[hsl(45,100%,50%)] font-medium">
-          ⚠️ Fique atento em escolher o WhatsApp correto, pois enviamos validação para respeitar a LGPD.
+          ⚠️ Para sua segurança e proteção de dados, confirme qual destes números é o seu WhatsApp atual para garantir que apenas você receba a proposta. Seguindo os padrões de segurança da LGPD.
         </p>
       </div>
 
