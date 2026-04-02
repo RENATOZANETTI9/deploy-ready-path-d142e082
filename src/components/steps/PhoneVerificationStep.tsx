@@ -130,7 +130,7 @@ export const PhoneVerificationStep = ({ cpf, onConfirm, onBack }: PhoneVerificat
         <h2 className="text-base md:text-xl font-bold mb-1 md:mb-2">
           Para garantir que é realmente você realizando a consulta, qual desses números é seu WhatsApp?
         </h2>
-        <p className="text-xs md:text-sm text-amber-400 font-medium">
+        <p className="text-xs md:text-sm text-[hsl(45,100%,50%)] font-medium">
           ⚠️ Fique atento em escolher o WhatsApp correto, pois enviamos validação para respeitar a LGPD.
         </p>
       </div>
