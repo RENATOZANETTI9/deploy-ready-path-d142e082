@@ -97,6 +97,8 @@ export const PhoneVerificationStep = ({ cpf, onConfirm, onBack }: PhoneVerificat
     setShowManualInput(false);
     setManualPhone("");
     setError("");
+    // Auto-advance when selecting a listed phone
+    onConfirm(phone.replace(/\D/g, ""));
   };
 
   const handleShowManual = () => {
