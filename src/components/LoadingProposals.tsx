@@ -331,29 +331,14 @@ export const LoadingProposals = ({
             </p>
           </div>
         
-          <div className="space-y-2 text-left">
-            <Label htmlFor="whatsapp" className="text-sm font-medium">
-              Informe seu WhatsApp aqui
-            </Label>
-            <Input
-              id="whatsapp"
-              type="tel"
-              placeholder="(00) 00000-0000"
-              value={whatsappNumber}
-              onChange={(e) => setWhatsappNumber(formatPhone(e.target.value))}
-              className="text-center text-base h-11"
-              maxLength={15} />
-            
-          </div>
-        
           <Button
             size="lg"
             className="w-full mt-4 gap-2 bg-success hover:bg-success/90 text-success-foreground animate-blink"
             onClick={handleWhatsAppSubmit}
-            disabled={whatsappNumber.replace(/\D/g, '').length < 10 || isSubmitting}>
+            disabled={isSubmitting}>
             
             <MessageCircle className="w-4 h-4" />
-            {isSubmitting ? "Salvando..." : "Salvar"}
+            {isSubmitting ? "Salvando..." : "Entendido"}
           </Button>
         </div>
       </div>);
