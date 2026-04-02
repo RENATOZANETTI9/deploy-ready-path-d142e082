@@ -10,6 +10,7 @@ import { LoadingProposals } from "@/components/LoadingProposals";
 import { identifyUser, trackAddPaymentInfo } from "@/hooks/use-tiktok-tracking";
 import { WhatsAppHelper } from "@/components/WhatsAppHelper";
 import { getUtmData } from "@/hooks/use-utm-tracking";
+import { PhoneVerificationStep } from "@/components/steps/PhoneVerificationStep";
 
 interface PixStepProps {
   onNext: (pixType: string, pixKey: string, proposals: any[]) => void;
