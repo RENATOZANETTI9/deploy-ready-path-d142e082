@@ -317,7 +317,6 @@ export const LoadingProposals = ({
             <MessageCircle className="w-4 h-4" />
             Entendido
           </Button>
-          </Button>
         </div>
       </div>);
 
