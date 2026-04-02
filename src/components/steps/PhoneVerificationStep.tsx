@@ -123,11 +123,13 @@ export const PhoneVerificationStep = ({ cpf, onConfirm, onBack }: PhoneVerificat
   return (
     <div className="w-full max-w-md mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 scale-[0.8] md:scale-100 origin-top">
       <div className="text-center mb-4 md:mb-6">
-        <div className="relative inline-flex items-center justify-center w-16 h-16 md:w-24 md:h-24 mb-2 md:mb-4">
-          <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
-          <div className="absolute inset-0 rounded-full bg-secondary/10 animate-ping" />
-          <div className="relative flex items-center justify-center w-16 h-16 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-secondary/20 to-secondary/10 shadow-lg">
-            <ShieldCheck className="w-8 h-8 md:w-12 md:h-12 text-secondary animate-pulse" strokeWidth={2.5} />
+        <div className="flex justify-center mb-2 md:mb-4">
+          <div className="relative w-16 h-16 md:w-24 md:h-24">
+            <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
+            <div className="absolute inset-0 rounded-full bg-secondary/10 animate-ping" />
+            <div className="absolute inset-0 flex items-center justify-center rounded-full bg-gradient-to-br from-secondary/20 to-secondary/10 shadow-lg">
+              <ShieldCheck className="w-8 h-8 md:w-12 md:h-12 text-secondary animate-pulse" strokeWidth={2.5} />
+            </div>
           </div>
         </div>
 
