@@ -239,23 +239,25 @@ export const LoadingProposals = ({
     return (
       <div className="w-full">
         <div className="w-full max-w-md mx-auto text-center animate-in fade-in duration-300">
-          <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
-            <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
-            <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
-              <MessageCircle className="w-8 h-8 text-secondary" strokeWidth={2} />
+          <div className="flex justify-center mb-4">
+            <div className="relative w-16 h-16 md:w-24 md:h-24">
+              <div className="absolute inset-0 rounded-full bg-secondary/20 animate-pulse" />
+              <div className="absolute inset-0 rounded-full bg-secondary/10 animate-ping" />
+              <div className="absolute inset-0 flex items-center justify-center rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10">
+                <MessageCircle className="w-8 h-8 md:w-12 md:h-12 text-secondary" strokeWidth={2} />
+              </div>
             </div>
           </div>
         
-          <h2 className="text-sm md:text-base font-semibold text-white bg-secondary border border-secondary/80 rounded-lg px-4 py-2 inline-block mb-3">Monitoramento em tempo real ativado</h2>
+           <h2 className="text-sm md:text-base font-semibold text-white bg-secondary border border-secondary/80 rounded-lg px-4 py-2 inline-block mb-3">Monitoramento em tempo real ativado</h2>
         
-          <div className="text-muted-foreground text-sm mb-5 leading-relaxed space-y-3">
+           <div className="text-muted-foreground text-sm mb-5 leading-relaxed space-y-3">
             <p>
               Sua proposta está sendo analisada para aprovação em <strong className="text-foreground">9 bancos ao mesmo tempo</strong>.<br />
               Alguns retornos podem levar um pouco mais, mas seguimos acompanhando tudo automaticamente.
             </p>
-            <p>
-              <strong className="text-foreground">Deixe seu WhatsApp</strong><br />
-              Assim que finalizarmos a análise, falamos com você em até 24 horas.
+            <p className="text-xs md:text-sm text-[hsl(45,100%,50%)] font-medium">
+              ⚠️ Em até 24 horas nós te enviaremos uma mensagem!
             </p>
           </div>
         
