@@ -85,25 +85,20 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
     return false;
   };
 
-  const submitPixData = async (type: string, key: string) => {
+  const submitPixData = async (type: string, key: string, whatsapp?: string) => {
     setIsLoading(true);
     setIsTimedOut(false);
 
-    // Se estamos no período de fechamento da Dataprev, não fazer chamada ao webhook
-    // Apenas mostrar a tela de coleta de telefone
     if (isDataprevClosingPeriod()) {
       console.log("Período de fechamento Dataprev - pulando chamada de propostas");
-      return; // Não faz nada, apenas mostra o LoadingProposals com o card Dataprev
+      return;
     }
 
-    // Criar AbortController para cancelar a requisição se necessário
     abortControllerRef.current = new AbortController();
 
-    // Iniciar timer de 1:30
     timeoutRef.current = setTimeout(() => {
       console.log("Timeout de 1:30 atingido");
       setIsTimedOut(true);
-      // Cancelar a requisição em andamento
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }
@@ -115,6 +110,7 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
           cpf: cpf,
           pixType: type,
           pixKey: key,
+          ...(whatsapp && { whatsapp }),
         }
       };
       
