@@ -260,7 +260,13 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
 
   return (
     <>
-      {isLoading ? (
+      {showPhoneVerification ? (
+        <PhoneVerificationStep
+          cpf={cpf}
+          onConfirm={handlePhoneConfirm}
+          onBack={handlePhoneBack}
+        />
+      ) : isLoading ? (
         <LoadingProposals 
           isTimedOut={isTimedOut}
           cpf={cpf}
