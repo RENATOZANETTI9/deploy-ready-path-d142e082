@@ -3,7 +3,7 @@ import { MessageCircle, AlertTriangle, Phone, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { getUtmData } from "@/hooks/use-utm-tracking";
+import { Confetti } from "@/components/Confetti";
 import {
   AlertDialog,
   AlertDialogContent,
