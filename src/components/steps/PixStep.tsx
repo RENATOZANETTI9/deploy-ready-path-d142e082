@@ -70,10 +70,10 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
       console.error("Erro ao enviar tipo PIX:", error);
     }
     
-    // Se for CPF, vai direto para a próxima etapa
+    // Se for CPF, vai direto para verificação de telefone
     if (newPixType === "cpf") {
       setPixKey(cpf);
-      await submitPixData(newPixType, cpf);
+      setShowPhoneVerification(true);
     } else {
       setPixKey("");
     }
