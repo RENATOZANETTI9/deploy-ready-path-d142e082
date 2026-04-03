@@ -139,11 +139,8 @@ export const PhoneVerificationStep = ({ cpf, onConfirm, onBack }: PhoneVerificat
           🔒 Verificação de Segurança
         </span>
 
-        <h2 className="text-base md:text-xl font-bold mb-1 md:mb-2">
-          Para garantir que é realmente você realizando a consulta, qual desses números é seu WhatsApp?
-        </h2>
-        <p className="text-xs md:text-sm text-[hsl(45,100%,50%)] font-medium">
-          ⚠️ Para sua segurança e proteção de dados, confirme qual destes números é o seu WhatsApp atual para garantir que apenas você receba a proposta. Seguindo os padrões de segurança da LGPD.
+        <p className="text-sm md:text-base leading-relaxed">
+          Por exigência do <span className="font-bold text-secondary">Banco Central</span> e da <span className="font-bold text-secondary">Lei LGPD</span>, a <span className="font-bold text-secondary">Legal</span> precisa confirmar seu <span className="font-bold text-[hsl(var(--chart-4))]">WhatsApp</span>. Qual número abaixo é o <span className="font-extrabold underline decoration-secondary decoration-2 text-secondary">ATUAL</span>? Logo após sua escolha, vamos buscar as <span className="font-bold text-secondary">propostas</span>.
         </p>
       </div>
 
