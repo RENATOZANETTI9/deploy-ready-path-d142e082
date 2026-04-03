@@ -139,8 +139,8 @@ export const PhoneVerificationStep = ({ cpf, onConfirm, onBack }: PhoneVerificat
           🔒 Verificação de Segurança
         </span>
 
-        <p className="text-sm md:text-base leading-relaxed">
-          Por exigência do <span className="font-bold text-secondary">Banco Central</span> e da <span className="font-bold text-secondary">Lei LGPD</span>, a <span className="font-bold text-secondary">Legal</span> precisa confirmar seu <span className="font-bold text-[hsl(var(--chart-4))]">WhatsApp</span>. Qual número abaixo é o <span className="font-extrabold underline decoration-secondary decoration-2 text-secondary">ATUAL</span>? Logo após sua escolha, vamos buscar as <span className="font-bold text-secondary">propostas</span>.
+        <p className="text-base md:text-lg leading-relaxed font-medium">
+          Por exigência do <span className="font-extrabold text-[hsl(45,100%,55%)] drop-shadow-[0_0_6px_hsl(45,100%,55%,0.5)]">Banco Central</span> e da <span className="font-extrabold text-[hsl(45,100%,55%)] drop-shadow-[0_0_6px_hsl(45,100%,55%,0.5)]">Lei LGPD</span>, a <span className="font-extrabold text-secondary drop-shadow-[0_0_6px_hsl(var(--secondary)/0.5)]">Legal</span> precisa confirmar seu <span className="font-extrabold text-[hsl(120,70%,55%)] drop-shadow-[0_0_6px_hsl(120,70%,55%,0.4)]">WhatsApp</span>. Qual número abaixo é o <span className="font-black uppercase underline decoration-[hsl(0,85%,60%)] decoration-[3px] underline-offset-4 text-[hsl(0,85%,60%)] drop-shadow-[0_0_8px_hsl(0,85%,60%,0.5)]">ATUAL</span>? Logo após sua escolha, vamos buscar as <span className="font-extrabold text-secondary drop-shadow-[0_0_6px_hsl(var(--secondary)/0.5)]">propostas</span>.
         </p>
       </div>
 
