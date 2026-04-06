@@ -9,6 +9,7 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 import TestProposals from "./pages/TestProposals";
+import { WhatsAppFloatingButton } from "./components/WhatsAppFloatingButton";
 
 const queryClient = new QueryClient();
 
