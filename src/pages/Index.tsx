@@ -155,6 +155,8 @@ const Index = () => {
               <p>🔒 Seus dados estão protegidos e seguros</p>
             </div>
           )}
+          {/* FAQ Section - always visible */}
+          <FaqSection />
         </div>
       </div>
       
