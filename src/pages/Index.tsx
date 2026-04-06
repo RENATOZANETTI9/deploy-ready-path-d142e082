@@ -6,6 +6,7 @@ import { AuthorizationStep } from "@/components/steps/AuthorizationStep";
 import { PixStep } from "@/components/steps/PixStep";
 import { ProposalsStep } from "@/components/steps/ProposalsStep";
 import { Footer } from "@/components/Footer";
+import { FaqSection } from "@/components/FaqSection";
 import { useToast } from "@/hooks/use-toast";
 import { useInactivityTimer } from "@/hooks/use-inactivity-timer";
 import { useUtmTracking } from "@/hooks/use-utm-tracking";
