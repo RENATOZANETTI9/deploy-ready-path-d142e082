@@ -104,7 +104,7 @@ const products = [
 ];
 
 const numbers = [
-  { value: "+15", label: "anos de mercado" },
+  { value: "+13", label: "anos de mercado" },
   { value: "+650k", label: "clientes atendidos" },
   { value: "+2 Bi", label: "simulações realizadas" },
   { value: "+20", label: "parceiros financeiros" },
@@ -288,7 +288,7 @@ const Home = () => {
               </div>
 
               <p className="text-xs text-muted-foreground pt-2">
-                by Legal Capital · +15 anos de mercado
+                by Legal Capital · +13 anos de mercado
               </p>
             </div>
 
@@ -307,7 +307,7 @@ const Home = () => {
                     <Award className="w-5 h-5 text-secondary" />
                   </div>
                   <div>
-                    <p className="text-sm font-bold">+15 anos</p>
+                    <p className="text-sm font-bold">+13 anos</p>
                     <p className="text-xs text-muted-foreground">de mercado</p>
                   </div>
                 </div>
@@ -386,7 +386,7 @@ const Home = () => {
               <p className="text-xs tracking-[0.3em] uppercase text-secondary mb-3">Quem Somos</p>
               <h2 className="text-3xl md:text-4xl font-black mb-5">Quem é a LEGAL</h2>
               <p className="text-foreground/80 leading-relaxed mb-6">
-                A LEGAL é uma empresa com mais de 15 anos de atuação no mercado, oferecendo soluções financeiras com responsabilidade, transparência e atendimento próximo. Atuamos como correspondente autorizado, seguindo as normas aplicáveis do Banco Central do Brasil, conectando clientes às melhores alternativas financeiras disponíveis.
+                A LEGAL é uma empresa com mais de 13 anos de atuação no mercado, oferecendo soluções financeiras com responsabilidade, transparência e atendimento próximo. Atuamos como correspondente autorizado, seguindo as normas aplicáveis do Banco Central do Brasil, conectando clientes às melhores alternativas financeiras disponíveis.
               </p>
 
               <div className="grid sm:grid-cols-2 gap-3 mb-6">
@@ -412,7 +412,7 @@ const Home = () => {
                 { icon: ShieldCheck, title: "Correspondente Autorizado", text: "Conformidade com as normas do BCB" },
                 { icon: Sparkles, title: "Tecnologia Financeira", text: "Processos digitais e seguros" },
                 { icon: Headphones, title: "Atendimento Consultivo", text: "Equipe próxima e humanizada" },
-                { icon: Award, title: "+15 anos de mercado", text: "Experiência consolidada" },
+                { icon: Award, title: "+13 anos de mercado", text: "Experiência consolidada" },
               ].map((item) => (
                 <div
                   key={item.title}
