@@ -105,8 +105,8 @@ const products = [
 
 const numbers = [
   { value: "+15", label: "anos de mercado" },
-  { value: "+50k", label: "clientes atendidos" },
-  { value: "+120k", label: "simulações realizadas" },
+  { value: "+650k", label: "clientes atendidos" },
+  { value: "+2 Bi", label: "simulações realizadas" },
   { value: "+20", label: "parceiros financeiros" },
 ];
 
