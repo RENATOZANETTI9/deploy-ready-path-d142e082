@@ -116,7 +116,7 @@ export const WelcomeStep = ({ onStart }: WelcomeStepProps) => {
               <h2 className="text-sm sm:text-base md:text-lg font-bold text-secondary uppercase font-visby">
                 O CRÉDITO DO TRABALHADOR
               </h2>
-
+              {"\n\n\n"}
               {/* Support Text */}
               <p className="text-xs md:text-sm text-muted-foreground pt-1.5 text-left">
                 Coloque <strong>9 bancos</strong> para competirem entre si e garantir a <strong>melhor taxa</strong>{" "}
