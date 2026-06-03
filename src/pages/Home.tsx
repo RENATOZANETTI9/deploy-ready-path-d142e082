@@ -114,13 +114,12 @@ const numbers = [
 ];
 
 const Logo = ({ className = "" }: { className?: string }) => (
-  <Link to="/" className={`flex items-baseline gap-1.5 ${className}`}>
-    <span className="text-2xl md:text-3xl font-black tracking-[0.15em] text-foreground font-visby">
-      LEGAL
-    </span>
-    <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-secondary font-medium">
-      capital
-    </span>
+  <Link to="/" className={`flex items-center ${className}`}>
+    <img
+      src={legalCapitalLogo}
+      alt="LEGAL CAPITAL"
+      className="h-10 md:h-12 w-auto object-contain"
+    />
   </Link>
 );
 
