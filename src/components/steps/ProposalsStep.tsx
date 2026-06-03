@@ -36,7 +36,7 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
   const [isSubmittingWhatsApp, setIsSubmittingWhatsApp] = useState(false);
 
   // Parsear propostas do webhook - detectar formato automaticamente
-  console.log("📥 ProposalsStep recebeu rawProposals:", rawProposals);
+
   
   let proposals: Proposal[] = [];
   
@@ -295,10 +295,63 @@ export const ProposalsStep = ({ onFinish, proposals: rawProposals, formData }: P
         bank: selectedProposal?.bank || '',
       });
       
-      // Abre o contrato diretamente em nova aba
+      // Abre o contrato diretamente em nova aba (com validação de URL)
       if (selectedProposal?.contractUrl) {
-        window.open(selectedProposal.contractUrl, '_blank');
+        try {
+          const parsedUrl = new URL(selectedProposal.contractUrl);
+          const ALLOWED_HOSTS = [
+            "vpslegaleviver.shop",
+            "webhook.vpslegaleviver.shop",
+            "legalviver.com.br",
+            "www.legalviver.com.br",
+          ];
+          const ALLOWED_SUFFIXES = [
+            ".vpslegaleviver.shop",
+            ".legalviver.com.br",
+            ".bb.com.br",
+            ".caixa.gov.br",
+            ".itau.com.br",
+            ".bradesco.com.br",
+            ".santander.com.br",
+            ".banco.bradesco",
+            ".bancopan.com.br",
+            ".safra.com.br",
+            ".original.com.br",
+            ".c6bank.com.br",
+            ".inter.co",
+            ".picpay.com",
+            ".mercantil.com.br",
+            ".facta.com.br",
+            ".bmgconsig.com.br",
+            ".bmg.com.br",
+            ".daycoval.com.br",
+            ".paninvestimentos.com.br",
+            ".v8sistema.com",
+          ];
+          const host = parsedUrl.hostname.toLowerCase();
+          const isAllowed =
+            parsedUrl.protocol === "https:" &&
+            (ALLOWED_HOSTS.includes(host) ||
+              ALLOWED_SUFFIXES.some((suffix) => host.endsWith(suffix)));
+          if (isAllowed) {
+            window.open(parsedUrl.toString(), "_blank", "noopener,noreferrer");
+          } else {
+            toast({
+              title: "Link não confiável",
+              description:
+                "O contrato retornado não está em um domínio autorizado. Entre em contato com o suporte.",
+              variant: "destructive",
+            });
+          }
+        } catch {
+          toast({
+            title: "Link inválido",
+            description: "Não foi possível abrir o contrato. Tente novamente.",
+            variant: "destructive",
+          });
+        }
       }
+
       
       // Fecha o dialog e finaliza
       setIsDialogOpen(false);
