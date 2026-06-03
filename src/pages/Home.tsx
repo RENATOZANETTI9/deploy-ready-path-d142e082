@@ -302,17 +302,6 @@ const Home = () => {
                   className="w-full h-auto object-cover"
                 />
               </div>
-              <div className="absolute -bottom-4 -left-4 md:-left-8 bg-card/90 backdrop-blur border border-border/40 rounded-2xl p-4 shadow-strong">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center">
-                    <Award className="w-5 h-5 text-secondary" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold">+13 anos</p>
-                    <p className="text-xs text-muted-foreground">de mercado</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
