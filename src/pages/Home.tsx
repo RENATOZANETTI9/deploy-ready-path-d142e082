@@ -256,7 +256,7 @@ const Home = () => {
               </h1>
 
               <p className="text-base md:text-lg text-foreground/80 leading-relaxed max-w-xl">
-                Consórcio, financiamento de veículos, financiamento imobiliário, abertura de conta e Crédito CLT com atendimento consultivo, seguro e personalizado.
+                Na LEGAL CAPITAL, unimos inteligência consultiva, segurança e agilidade digital para viabilizar seus projetos de vida e de negócios.
               </p>
 
               <div className="flex flex-wrap gap-2">
