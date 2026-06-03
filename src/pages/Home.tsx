@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Footer } from "@/components/Footer";
 import lucianaHeroAsset from "@/assets/luciana-hero-v2.png.asset.json";
+import legalCapitalLogoAsset from "@/assets/legal-capital-logo.png.asset.json";
 const lucianaHero = lucianaHeroAsset.url;
+const legalCapitalLogo = legalCapitalLogoAsset.url;
 import {
   Wallet,
   Car,
