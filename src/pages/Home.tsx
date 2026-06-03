@@ -172,7 +172,7 @@ const Header = () => {
           className="hidden lg:inline-flex"
         >
           <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-full px-5">
-            <MessageCircle className="w-4 h-4" /> Falar com a LEGAL
+            <MessageCircle className="w-4 h-4" /> Falar com especialista agora
           </Button>
         </a>
 
@@ -219,7 +219,7 @@ const Header = () => {
               className="mt-2"
             >
               <Button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-full">
-                <MessageCircle className="w-4 h-4" /> Falar com a LEGAL
+                <MessageCircle className="w-4 h-4" /> Falar com especialista agora
               </Button>
             </a>
           </div>
@@ -252,7 +252,7 @@ const Home = () => {
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.05] tracking-tight">
-                Na <span className="text-secondary">LEGAL</span>, você encontra as melhores soluções financeiras em um só lugar.
+                Conectando você às melhores oportunidades financeiras do mercado
               </h1>
 
               <p className="text-base md:text-lg text-foreground/80 leading-relaxed max-w-xl">
@@ -278,7 +278,7 @@ const Home = () => {
                   rel="noopener noreferrer"
                 >
                   <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-full px-7 h-12 shadow-strong">
-                    <MessageCircle className="w-5 h-5" /> Falar com a LEGAL agora
+                    <MessageCircle className="w-5 h-5" /> Falar com especialista agora
                   </Button>
                 </a>
                 <a href="#produtos">
