@@ -260,7 +260,7 @@ const Home = () => {
                 Na LEGAL CAPITAL, unimos inteligência consultiva, segurança e agilidade digital para viabilizar seus projetos de vida e de negócios.
               </p>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
                 {products.map((p) => (
                   <span
                     key={p.id}
