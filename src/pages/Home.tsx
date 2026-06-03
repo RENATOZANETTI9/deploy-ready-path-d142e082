@@ -256,7 +256,7 @@ const Home = () => {
                 Conectando você às melhores oportunidades financeiras do mercado
               </h1>
 
-              <p className="text-base md:text-lg text-foreground/80 leading-relaxed max-w-xl">
+              <p className="text-base md:text-lg text-foreground/80 leading-relaxed max-w-xl mx-auto lg:mx-0">
                 Na LEGAL CAPITAL, unimos inteligência consultiva, segurança e agilidade digital para viabilizar seus projetos de vida e de negócios.
               </p>
 
