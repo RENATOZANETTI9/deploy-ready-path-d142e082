@@ -244,7 +244,7 @@ const Home = () => {
 
         <div className="container mx-auto px-4 pt-12 md:pt-20 pb-16 md:pb-24 relative">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <div className="space-y-6">
+            <div className="space-y-6 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border/50 bg-card/40 backdrop-blur">
                 <ShieldCheck className="w-3.5 h-3.5 text-secondary" />
                 <span className="text-xs tracking-wider uppercase text-foreground/80">
