@@ -260,18 +260,6 @@ const Home = () => {
                 Na LEGAL CAPITAL, unimos inteligência consultiva, segurança e agilidade digital para viabilizar seus projetos de vida e de negócios.
               </p>
 
-              <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-                {products.map((p) => (
-                  <span
-                    key={p.id}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card/60 border border-border/40 text-xs text-foreground/90 backdrop-blur"
-                  >
-                    <p.icon className="w-3.5 h-3.5 text-secondary" />
-                    {p.title}
-                  </span>
-                ))}
-              </div>
-
               <div className="flex flex-col sm:flex-row gap-3 pt-2 justify-center lg:justify-start">
                 <a
                   href={waLink("Olá LEGAL, quero falar com a equipe agora.")}
@@ -288,6 +276,19 @@ const Home = () => {
                   </Button>
                 </a>
               </div>
+
+              <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+                {products.map((p) => (
+                  <span
+                    key={p.id}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card/60 border border-border/40 text-xs text-foreground/90 backdrop-blur"
+                  >
+                    <p.icon className="w-3.5 h-3.5 text-secondary" />
+                    {p.title}
+                  </span>
+                ))}
+              </div>
+
 
               <p className="text-xs text-muted-foreground pt-2">
                 by Legal Capital · +13 anos de mercado
