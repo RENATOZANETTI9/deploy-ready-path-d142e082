@@ -114,7 +114,7 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
         }
       };
       
-      console.log("Dados do webhook propostas:", webhookData);
+      
       
       const response = await fetch("https://webhook.vpslegaleviver.shop/webhook/propostas", {
         method: "POST",
@@ -140,7 +140,7 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
       }
 
       const responseData = await response.json();
-      console.log("Resposta do webhook com propostas:", responseData);
+      
       
       // Checar se não há bancos liberados
       if (Array.isArray(responseData) && responseData[0]?.response && 
@@ -203,7 +203,7 @@ export const PixStep = ({ onNext, cpf, onBack }: PixStepProps) => {
   };
 
   const handleWhatsAppSubmit = (phone: string) => {
-    console.log("WhatsApp coletado:", phone);
+    // WhatsApp coletado — LoadingProposals cuida do redirecionamento
     // O componente LoadingProposals já cuida do redirecionamento
   };
 

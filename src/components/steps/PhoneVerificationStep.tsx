@@ -41,17 +41,17 @@ export const PhoneVerificationStep = ({ cpf, onConfirm, onBack }: PhoneVerificat
           if (extracted.length > 0) {
             setPhones(extracted);
           } else {
-            // Fallback: mock data para teste
-            setPhones(["11987654321", "21976543210", "31965432109", "41954321098"]);
+            // Sem telefones encontrados — pede entrada manual
+            setPhones([]);
+            setShowManualInput(true);
           }
         } else {
-          // Fallback: mock data para teste
-          setPhones(["11987654321", "21976543210", "31965432109", "41954321098"]);
+          setPhones([]);
+          setShowManualInput(true);
         }
       } catch (err) {
-        console.error("Erro ao buscar telefones:", err);
-        // Fallback: mock data para teste
-        setPhones(["11987654321", "21976543210", "31965432109", "41954321098"]);
+        setPhones([]);
+        setShowManualInput(true);
       } finally {
         setIsLoading(false);
       }

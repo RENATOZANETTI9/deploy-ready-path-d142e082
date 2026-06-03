@@ -31,7 +31,7 @@ export const captureUtmData = (): void => {
   };
 
   sessionStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(utmData));
-  console.log('📊 UTM data captured:', utmData);
+  
 };
 
 export const getUtmData = (): UtmData | null => {
