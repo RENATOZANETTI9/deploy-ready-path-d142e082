@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Footer } from "@/components/Footer";
-import lucianaHero from "@/assets/luciana-hero.png";
+import lucianaHeroAsset from "@/assets/luciana-hero-v2.png.asset.json";
+const lucianaHero = lucianaHeroAsset.url;
 import {
   Wallet,
   Car,
