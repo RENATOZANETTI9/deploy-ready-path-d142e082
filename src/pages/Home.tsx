@@ -118,7 +118,7 @@ const Logo = ({ className = "" }: { className?: string }) => (
     <img
       src={legalCapitalLogo}
       alt="LEGAL CAPITAL"
-      className="h-10 md:h-12 w-auto object-contain"
+      className="h-12 md:h-14 lg:h-16 w-auto object-contain"
     />
   </Link>
 );
@@ -130,7 +130,7 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/40 bg-background/70 backdrop-blur-xl">
       <div className="container mx-auto px-4 h-16 md:h-20 flex items-center justify-between">
-        <Logo />
+        <Logo className="ml-2 md:ml-6" />
 
         <nav className="hidden lg:flex items-center gap-8">
           <a href="#inicio" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
