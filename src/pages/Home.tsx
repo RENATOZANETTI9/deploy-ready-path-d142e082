@@ -260,14 +260,21 @@ const Home = () => {
                 Na LEGAL CAPITAL, unimos inteligência consultiva, segurança e agilidade digital para viabilizar seus projetos de vida e de negócios.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3 pt-2 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row gap-3 pt-2 justify-center lg:justify-start items-center">
                 <a
                   href={waLink("Olá LEGAL, quero falar com a equipe agora.")}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="relative group inline-block"
                 >
-                  <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-full px-7 h-12 shadow-strong">
-                    <MessageCircle className="w-5 h-5" /> Falar com especialista agora
+                  <span className="absolute -inset-1 rounded-full bg-gradient-to-r from-secondary via-accent to-secondary opacity-70 blur-md group-hover:opacity-100 animate-glow-pulse" aria-hidden="true" />
+                  <Button
+                    size="lg"
+                    className="relative overflow-hidden bg-gradient-to-r from-secondary to-accent hover:from-accent hover:to-secondary text-secondary-foreground rounded-full px-8 h-14 text-base font-bold shadow-[0_15px_40px_-10px_hsl(var(--secondary)/0.7)] border-b-4 border-secondary/60 hover:border-secondary/40 hover:-translate-y-0.5 active:translate-y-0 active:border-b-2 transition-all duration-300"
+                  >
+                    <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" aria-hidden="true" />
+                    <MessageCircle className="w-5 h-5 relative z-10" />
+                    <span className="relative z-10">Falar com especialista agora</span>
                   </Button>
                 </a>
                 <a href="#produtos">
