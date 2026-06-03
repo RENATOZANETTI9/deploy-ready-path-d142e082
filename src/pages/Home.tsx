@@ -272,7 +272,7 @@ const Home = () => {
                 ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 pt-2">
+              <div className="flex flex-col sm:flex-row gap-3 pt-2 justify-center lg:justify-start">
                 <a
                   href={waLink("Olá LEGAL, quero falar com a equipe agora.")}
                   target="_blank"
