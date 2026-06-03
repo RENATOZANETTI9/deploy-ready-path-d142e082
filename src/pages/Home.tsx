@@ -244,8 +244,8 @@ const Home = () => {
 
         <div className="container mx-auto px-4 pt-12 md:pt-20 pb-16 md:pb-24 relative">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border/50 bg-card/40 backdrop-blur">
+            <div className="space-y-6 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border/50 bg-card/40 backdrop-blur mx-auto lg:mx-0">
                 <ShieldCheck className="w-3.5 h-3.5 text-secondary" />
                 <span className="text-xs tracking-wider uppercase text-foreground/80">
                   Correspondente Autorizado
@@ -256,11 +256,11 @@ const Home = () => {
                 Conectando você às melhores oportunidades financeiras do mercado
               </h1>
 
-              <p className="text-base md:text-lg text-foreground/80 leading-relaxed max-w-xl">
+              <p className="text-base md:text-lg text-foreground/80 leading-relaxed max-w-xl mx-auto lg:mx-0">
                 Na LEGAL CAPITAL, unimos inteligência consultiva, segurança e agilidade digital para viabilizar seus projetos de vida e de negócios.
               </p>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
                 {products.map((p) => (
                   <span
                     key={p.id}
@@ -272,7 +272,7 @@ const Home = () => {
                 ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 pt-2">
+              <div className="flex flex-col sm:flex-row gap-3 pt-2 justify-center lg:justify-start">
                 <a
                   href={waLink("Olá LEGAL, quero falar com a equipe agora.")}
                   target="_blank"
@@ -512,8 +512,8 @@ const Home = () => {
       {/* FOOTER */}
       <footer className="border-t border-border/40 bg-card/30 backdrop-blur">
         <div className="container mx-auto px-4 py-12">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
+          <div className="grid md:grid-cols-3 gap-8 mb-8 text-center md:text-left">
+            <div className="flex flex-col items-center md:items-start">
               <Logo />
               <p className="text-xs text-muted-foreground mt-3">by Legal Capital</p>
               <p className="text-sm text-foreground/80 mt-4 max-w-xs">
