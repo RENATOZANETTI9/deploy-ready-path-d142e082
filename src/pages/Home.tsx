@@ -113,7 +113,10 @@ const numbers = [
 const Logo = ({ className = "" }: { className?: string }) => (
   <Link to="/" className={`flex items-baseline gap-1.5 ${className}`}>
     <span className="text-2xl md:text-3xl font-black tracking-[0.15em] text-foreground font-visby">
-      LEGAL CAPITAL
+      LEGAL
+    </span>
+    <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-secondary font-medium">
+      capital
     </span>
   </Link>
 );
@@ -248,7 +251,7 @@ const Home = () => {
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.05] tracking-tight">
-                LEGAL CAPITAL
+                Na <span className="text-secondary">LEGAL</span>, você encontra as melhores soluções financeiras em um só lugar.
               </h1>
 
               <p className="text-base md:text-lg text-foreground/80 leading-relaxed max-w-xl">
