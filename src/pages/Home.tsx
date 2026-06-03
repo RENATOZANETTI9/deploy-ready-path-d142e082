@@ -512,8 +512,8 @@ const Home = () => {
       {/* FOOTER */}
       <footer className="border-t border-border/40 bg-card/30 backdrop-blur">
         <div className="container mx-auto px-4 py-12">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
+          <div className="grid md:grid-cols-3 gap-8 mb-8 text-center md:text-left">
+            <div className="flex flex-col items-center md:items-start">
               <Logo />
               <p className="text-xs text-muted-foreground mt-3">by Legal Capital</p>
               <p className="text-sm text-foreground/80 mt-4 max-w-xs">
