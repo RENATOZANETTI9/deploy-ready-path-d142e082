@@ -251,7 +251,7 @@ const Home = () => {
                 </span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.05] tracking-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-black leading-[1.05] tracking-tight">
                 Conectando você às melhores oportunidades financeiras do mercado
               </h1>
 
