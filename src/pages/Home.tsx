@@ -219,7 +219,7 @@ const Header = () => {
               className="mt-2"
             >
               <Button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-full">
-                <MessageCircle className="w-4 h-4" /> Falar com a LEGAL
+                <MessageCircle className="w-4 h-4" /> Falar com especialista agora
               </Button>
             </a>
           </div>
